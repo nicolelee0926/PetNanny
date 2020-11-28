@@ -295,7 +295,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/service_walk"
+                    android:text="@string/service_stay"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="@+id/photoCardView_3"

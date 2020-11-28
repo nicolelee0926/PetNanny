@@ -22,6 +22,11 @@
         <item>鳥</item>
     </string-array>
 
+    <string name="pet_array_title">請選擇您的寵物</string>
+    <string-array name="pet_array">
+        <item>新增更多寵物</item>
+    </string-array>
+
     <string name="location_array_title">服務區域</string>
     <string-array name="location_array">
         <item>中正區</item>
@@ -37,4 +42,15 @@
         <item>北投區</item>
         <item>文山區</item>
     </string-array>
+
+    <string name="profile_add_nanny_service_array_title">選擇您的服務類別</string>
+    <string-array name="profile_add_nanny_service">
+        <item>到府照顧   $ 300 / 次</item>
+        <item>到府洗澡   $ 800 / 次</item>
+        <item>到府美容   $ 1200 / 次</item>
+        <item>到府訓練   $ 1500 / 次</item>
+        <item>遛狗散步   $ 500 / 次</item>
+        <item>住宿託管   $ 1000 / 次</item>
+    </string-array>
+
 </resources>
