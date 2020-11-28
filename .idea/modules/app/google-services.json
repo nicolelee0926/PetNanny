@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "369604249447",
+    "firebase_url": "https://petnanny-3733a.firebaseio.com",
+    "project_id": "petnanny-3733a",
+    "storage_bucket": "petnanny-3733a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369604249447:android:36dd8dd799c25681be11c2",
+        "android_client_info": {
+          "package_name": "com.nicole.petnanny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369604249447-1e6jj89hu907jckg0atiudpdhbv105q4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nicole.petnanny",
+            "certificate_hash": "992fbeaa7b8b34dd747e29e7c23784b8d04e4b06"
+          }
+        },
+        {
+          "client_id": "369604249447-gnihhrl8ah5uqcilk4s7m010773j4qgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFGTE7VcDey6D6mT76IShOS2gX1R3X6W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369604249447-gnihhrl8ah5uqcilk4s7m010773j4qgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

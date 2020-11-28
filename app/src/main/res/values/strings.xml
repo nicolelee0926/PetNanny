@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">PetNanny</string>
+    <string name="title_home">主頁</string>
+    <string name="title_chat">聊天室</string>
+    <string name="title_order">訂單</string>
+    <string name="title_profile">個人</string>
+    <string name="service_take_a_bath">到府洗澡</string>
+    <string name="service_train">到府訓練</string>
+    <string name="service_beauty">到府美容</string>
+    <string name="service_walk">遛狗散步</string>
+    <string name="service_take_care">到府照顧</string>
+    <string name="service_stay">住宿託管</string>
+
+
+    <!--  spinner  -->
+    <string name="type_array_title">寵物類型</string>
+    <string-array name="type_array">
+        <item>狗</item>
+        <item>貓</item>
+        <item>兔</item>
+        <item>鼠</item>
+        <item>鳥</item>
+    </string-array>
+
+    <string name="location_array_title">服務區域</string>
+    <string-array name="location_array">
+        <item>中正區</item>
+        <item>萬華區</item>
+        <item>中山區</item>
+        <item>大安區</item>
+        <item>大同區</item>
+        <item>松山區</item>
+        <item>信義區</item>
+        <item>內湖區</item>
+        <item>南港區</item>
+        <item>士林區</item>
+        <item>北投區</item>
+        <item>文山區</item>
+    </string-array>
+</resources>
