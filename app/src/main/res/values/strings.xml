@@ -86,4 +86,12 @@
         <item>20 歲</item>
     </string-array>
 
+    <string name="nanny_license_array_title">選擇你的證照類型</string>
+    <string-array name="nanny_license_array">
+        <item>良民證</item>
+        <item>特定寵物業許可證</item>
+        <item>獸醫師執照</item>
+        <item>美容師執照</item>
+    </string-array>
+
 </resources>

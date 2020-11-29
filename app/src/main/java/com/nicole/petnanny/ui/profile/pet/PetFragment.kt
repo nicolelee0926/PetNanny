@@ -1,13 +1,13 @@
-package com.nicole.petnanny.ui.profile
+package com.nicole.petnanny.ui.profile.pet
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.nicole.petnanny.databinding.FragmentNannyBinding
+import com.nicole.petnanny.databinding.FragmentPetBinding
 
-class NannyFragment(): Fragment() {
+class PetFragment() : Fragment()  {
     var type : Int = 0
     constructor(int : Int) : this() {
         this.type = int
@@ -17,7 +17,7 @@ class NannyFragment(): Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentNannyBinding.inflate(inflater, container, false)
+        val binding = FragmentPetBinding.inflate(inflater, container, false)
 
         return binding.root
     }

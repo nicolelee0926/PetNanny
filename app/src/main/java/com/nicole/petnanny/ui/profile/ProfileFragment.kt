@@ -1,12 +1,15 @@
 package com.nicole.petnanny.ui.profile
 
+import android.app.Service
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nicole.petnanny.databinding.FragmentProfileBinding
+import com.nicole.petnanny.ui.profile.service.ServiceViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -16,6 +19,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
+
 
         val pager  = binding.pagerProfile
         val tab_layout = binding.tabLayoutProfile

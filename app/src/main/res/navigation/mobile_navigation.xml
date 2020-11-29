@@ -8,19 +8,39 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.nicole.petnanny.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Navigation_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_chat"
         android:name="com.nicole.petnanny.ui.chat.ChatFragment"
-        android:label="ChatFragment" />
+        android:label="Navigation_chat"
+        tools:layout="@layout/fragment_chat"/>
     <fragment
         android:id="@+id/navigation_order"
         android:name="com.nicole.petnanny.ui.order.OrderFragment"
-        android:label="OrderFragment" />
+        android:label="Navigation_order"
+        tools:layout="@layout/fragment_order"/>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.nicole.petnanny.ui.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="Navigation_profile"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.nicole.petnanny.ui.profile.service.ServiceFragment"
+        android:label="ServiceFragment"
+        tools:layout="@layout/fragment_service">
+        <action
+            android:id="@+id/action_serviceFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addServiceFragment"
+        android:name="com.nicole.petnanny.ui.profile.service.add.AddServiceFragment"
+        android:label="AddServiceFragment"
+        tools:layout="@layout/fragment_profile_add_service"/>
+    <action android:id="@+id/action_global_navigation_profile" app:destination="@id/navigation_profile" />
+    <action android:id="@+id/action_global_addServiceFragment" app:destination="@id/addServiceFragment" />
+    <action android:id="@+id/action_global_serviceFragment" app:destination="@id/serviceFragment" />
 
 </navigation>
