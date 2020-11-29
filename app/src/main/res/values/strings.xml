@@ -53,4 +53,37 @@
         <item>住宿託管   $ 1000 / 次</item>
     </string-array>
 
+    <string name="figure_array_title">選擇你的寵物體型</string>
+    <string-array name="figure_array">
+        <item>迷你 小於 5 公斤</item>
+        <item>小型 5 ~ 10 公斤 </item>
+        <item>中型 10 ~ 20 公斤</item>
+        <item>大型 20 ~ 40 公斤</item>
+        <item>超大型 大於 40 公斤</item>
+    </string-array>
+
+    <string name="pet_age_array_title">選擇你的寵物體型</string>
+    <string-array name="pet_age_array">
+        <item>1 歲</item>
+        <item>2 歲</item>
+        <item>3 歲</item>
+        <item>4 歲</item>
+        <item>5 歲</item>
+        <item>6 歲</item>
+        <item>7 歲</item>
+        <item>8 歲</item>
+        <item>9 歲</item>
+        <item>10 歲</item>
+        <item>11 歲</item>
+        <item>12 歲</item>
+        <item>13 歲</item>
+        <item>14 歲</item>
+        <item>15 歲</item>
+        <item>16 歲</item>
+        <item>17 歲</item>
+        <item>18 歲</item>
+        <item>19 歲</item>
+        <item>20 歲</item>
+    </string-array>
+
 </resources>

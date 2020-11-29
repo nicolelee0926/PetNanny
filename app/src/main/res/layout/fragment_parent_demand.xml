@@ -209,13 +209,14 @@
 
     <Spinner
         android:id="@+id/spinner_type"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:entries="@array/pet_array"
         android:prompt="@string/pet_array_title"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toTopOf="@+id/textView51" />
 
     <ImageView
@@ -249,10 +250,10 @@
         android:ems="10"
         android:hint="請輸入保姆需要注意的事項"
         android:imeOptions="actionDone"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:gravity="end"
+        android:gravity="start"
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
