@@ -15,11 +15,26 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="238dp"
+            android:scaleType="fitStart"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bg_profile"
-            android:scaleType="fitStart"/>
+            app:srcCompat="@drawable/bg_profile" />
+
+        <TextView
+            android:id="@+id/textView76"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="大家養他們就要負起責任喔~不要亂拋棄!請以認養代替購買！我們家可愛的臘腸也是認養的！不要以為認養的都很醜！寵物的外貌是會因為照顧的人而改變的！"
+            android:textColor="@color/colorDeepGray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/photoCardView"
@@ -55,18 +70,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photoCardView" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/photoCardView_visit1"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/colorGreen"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView76">
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="獸醫證照"
+                android:textColor="@color/colorDeepGray"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/photoCardView_visit"
+                app:layout_constraintStart_toStartOf="@+id/photoCardView_visit"
+                app:layout_constraintTop_toTopOf="@+id/photoCardView_visit" />
+        </androidx.cardview.widget.CardView>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:minHeight="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/photoCardView_visit1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -115,7 +156,7 @@
             style="@style/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toTopOf="@+id/pager_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
