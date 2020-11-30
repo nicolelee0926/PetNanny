@@ -32,13 +32,15 @@ class ServiceFragment(): Fragment() {
         val serviceAdapter = ServiceAdapter()
         binding.rvNanny.adapter = serviceAdapter
 
-        viewModel.serviceListData.observe(viewLifecycleOwner, Observer {
+        viewModel.getFakeServiceListData.observe(viewLifecycleOwner, Observer {
             serviceAdapter.submitList(it)
         })
 
         binding.btnAddService.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddServiceFragment())
         }
+
+
 
         return binding.root
     }

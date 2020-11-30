@@ -22,13 +22,13 @@ class AddServiceFragment: Fragment() {
         viewModel = ViewModelProvider(this).get(AddServiceViewModel::class.java)
         binding.viewModel = viewModel
 
+//        binding.btnAddService.setOnClickListener {
+//            viewModel.setService()
+//        }
 
+        viewModel.sendServiceData.observe(viewLifecycleOwner) {
 
-
-
-
-
-
+        }
 
         return binding.root
     }

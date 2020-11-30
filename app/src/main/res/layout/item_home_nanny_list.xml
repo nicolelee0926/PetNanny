@@ -4,24 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.nicole.petnanny.model.Nanny" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_home_visit"
+            android:id="@+id/btn_nanny_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,33 +33,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_visit"
-                    android:layout_width="86dp"
-                    android:layout_height="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="#FFD6A2"
-                    app:cardCornerRadius="50dp"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_visit1"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21">
-
-
-                    <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="美容師執照"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/photoCardView_visit"
-                        app:layout_constraintStart_toStartOf="@+id/photoCardView_visit"
-                        app:layout_constraintTop_toTopOf="@+id/photoCardView_visit" />
-                </androidx.cardview.widget.CardView>
 
                 <ImageView
                     android:id="@+id/imageView14"
@@ -77,12 +54,13 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:padding="5dp"
+                    android:text="@{data.serviceArea}"
                     android:textColor="@color/colorWhite"
                     android:textSize="15sp"
-                    android:text="中山區"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="中山區" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -91,7 +69,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="TextView"
+                    android:text="@{data.nannyIntroduction}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,10 +83,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="胖小喵的窩"
+                    android:text="@{data.serviceName}"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView14"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView19"
+                    tools:text="胖小喵的窩" />
 
                 <ImageView
                     android:id="@+id/imageView6"
@@ -136,16 +115,17 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="1000"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_visit" />
+                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_visit1"
+                    app:servicePrice="@{data.price}"
+                    tools:text="1000" />
 
                 <TextView
                     android:id="@+id/textView23"
@@ -188,12 +168,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="獸醫證照"
+                        android:text="@{data.license}"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/photoCardView_visit"
                         app:layout_constraintStart_toStartOf="@+id/photoCardView_visit"
-                        app:layout_constraintTop_toTopOf="@+id/photoCardView_visit" />
+                        app:layout_constraintTop_toTopOf="@+id/photoCardView_visit"
+                        tools:text="獸醫證照" />
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

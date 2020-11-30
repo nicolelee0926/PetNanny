@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.nicole.petnanny.databinding.ItemProfileNannyBinding
+import com.nicole.petnanny.databinding.ItemProfileServiceBinding
 import com.nicole.petnanny.model.Nanny
 
 class ServiceAdapter : ListAdapter<Nanny, ServiceAdapter.ServiceViewHolder>(ServiceDiffCallback()) {
@@ -18,7 +18,7 @@ class ServiceAdapter : ListAdapter<Nanny, ServiceAdapter.ServiceViewHolder>(Serv
         holder.bind(item)
     }
 
-    class ServiceViewHolder  private constructor(private val binding: ItemProfileNannyBinding) :
+    class ServiceViewHolder  private constructor(private val binding: ItemProfileServiceBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item : Nanny) {
@@ -29,7 +29,7 @@ class ServiceAdapter : ListAdapter<Nanny, ServiceAdapter.ServiceViewHolder>(Serv
         companion object{
             fun from(parent: ViewGroup): ServiceViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemProfileNannyBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemProfileServiceBinding.inflate(layoutInflater, parent, false)
                 return ServiceViewHolder(binding)
             }
         }

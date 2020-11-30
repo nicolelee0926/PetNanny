@@ -98,6 +98,23 @@
         android:id="@+id/nannyListFragment"
         android:name="com.nicole.petnanny.ui.home.nannylist.NannyListFragment"
         android:label="NannyListFragment"
-        tools:layout="@layout/fragment_home_nanny_list"/>
+        tools:layout="@layout/fragment_home_nanny_list">
+        <action
+            android:id="@+id/action_nannyListFragment_to_nannyServiceFragment"
+            app:destination="@id/nannyServiceFragment" />
+        <action
+            android:id="@+id/action_nannyListFragment_to_nannyDetailFragment"
+            app:destination="@id/nannyDetailFragment" />
+    </fragment>
+     <dialog
+        android:id="@+id/nannyServiceFragment"
+        android:name="com.nicole.petnanny.ui.home.choiceservice.NannyServiceFragment"
+        android:label="NannyServiceFragment"
+        tools:layout="@layout/fragment_home_nanny_service"/>
+    <fragment
+        android:id="@+id/nannyDetailFragment"
+        android:name="com.nicole.petnanny.ui.home.nannydetail.NannyDetailFragment"
+        android:label="NannyDetailFragment"
+        tools:layout="@layout/fragment_home_nanny_detail"/>
 
 </navigation>
