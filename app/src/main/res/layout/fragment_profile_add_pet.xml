@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="名稱"
+                    android:text="品種"
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"

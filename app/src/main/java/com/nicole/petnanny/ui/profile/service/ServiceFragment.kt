@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentServiceBinding
+import com.nicole.petnanny.ui.profile.ProfileFragmentDirections
 
 class ServiceFragment(): Fragment() {
     var type : Int = 0
@@ -36,7 +37,7 @@ class ServiceFragment(): Fragment() {
         })
 
         binding.btnAddService.setOnClickListener {
-            findNavController().navigate(ServiceFragmentDirections.actionServiceFragmentToAddServiceFragment())
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddServiceFragment())
         }
 
         return binding.root
