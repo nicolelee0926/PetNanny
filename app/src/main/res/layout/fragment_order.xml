@@ -12,6 +12,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.order.OrderFragment">
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_order"
+            style="@style/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toTopOf="@+id/pager_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabIndicatorHeight="1dp"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            app:tabTextColor="@color/colorGray" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager_order"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout_order">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

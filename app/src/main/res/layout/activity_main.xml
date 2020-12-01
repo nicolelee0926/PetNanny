@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.nicole.petnanny.ui.main.MainActivityViewModel" />
     </data>
 
 
@@ -37,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="寵物保姆"
+                    android:text="@{viewModel.currentFragmentType.value}"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"/>
             </androidx.appcompat.widget.Toolbar>

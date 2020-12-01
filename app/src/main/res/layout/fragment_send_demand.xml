@@ -139,12 +139,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="需求日期"
+                    android:text="開始日期"
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView16"
                     app:layout_constraintStart_toEndOf="@+id/imageView16"
                     app:layout_constraintTop_toTopOf="@+id/imageView16" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="結束日期"
+                    android:textColor="@color/colorGray"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView52"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
                 <ImageView
                     android:id="@+id/imageView22"
@@ -153,7 +164,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView16"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
                     app:srcCompat="@drawable/ic_order_location" />
 
                 <TextView

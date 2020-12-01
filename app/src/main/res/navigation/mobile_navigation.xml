@@ -18,12 +18,26 @@
         android:id="@+id/navigation_chat"
         android:name="com.nicole.petnanny.ui.chat.ChatFragment"
         android:label="Navigation_chat"
-        tools:layout="@layout/fragment_chat"/>
+        tools:layout="@layout/fragment_chat">
+        <action
+            android:id="@+id/action_navigation_chat_to_demandFragment"
+            app:destination="@id/demandFragment" />
+        <action
+            android:id="@+id/action_navigation_chat_to_workFragment"
+            app:destination="@id/workFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_order"
         android:name="com.nicole.petnanny.ui.order.OrderFragment"
         android:label="Navigation_order"
-        tools:layout="@layout/fragment_order"/>
+        tools:layout="@layout/fragment_order">
+        <action
+            android:id="@+id/action_navigation_order_to_myClientFragment"
+            app:destination="@id/myClientFragment" />
+        <action
+            android:id="@+id/action_navigation_order_to_myOrderFragment"
+            app:destination="@id/myOrderFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.nicole.petnanny.ui.profile.ProfileFragment"
@@ -125,5 +139,25 @@
         android:name="com.nicole.petnanny.ui.home.senddemand.SendDemandFragment"
         android:label="SendDemandFragment"
         tools:layout="@layout/fragment_send_demand"/>
+    <fragment
+        android:id="@+id/demandFragment"
+        android:name="com.nicole.petnanny.ui.chat.demand.DemandFragment"
+        android:label="DemandFragment"
+        tools:layout="@layout/fragment_chat_demand"/>
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="com.nicole.petnanny.ui.chat.work.WorkFragment"
+        android:label="WorkFragment"
+        tools:layout="@layout/fragment_chat_work"/>
+    <fragment
+        android:id="@+id/myClientFragment"
+        android:name="com.nicole.petnanny.ui.order.nannyorder.MyClientFragment"
+        android:label="MyClientFragment"
+        tools:layout="@layout/fragment_order_my_client"/>
+    <fragment
+        android:id="@+id/myOrderFragment"
+        android:name="com.nicole.petnanny.ui.order.parentorder.MyOrderFragment"
+        android:label="MyOrderFragment"
+        tools:layout="@layout/fragment_order_my_order"/>
 
 </navigation>
