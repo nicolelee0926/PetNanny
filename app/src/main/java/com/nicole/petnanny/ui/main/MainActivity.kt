@@ -1,10 +1,10 @@
 package com.nicole.petnanny.ui.main
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -12,10 +12,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.nicole.petnanny.CurrentFragmentType
 import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.ActivityMainBinding
+import com.nicole.petnanny.ext.getVmFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainActivityViewModel
+    val viewModel by viewModels<MainViewModel> { getVmFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
 
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel
         binding.viewModel = viewModel
 
         setupNavController()
@@ -41,6 +42,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_chat -> CurrentFragmentType.CHAT
                 R.id.navigation_order -> CurrentFragmentType.ORDER
                 R.id.navigation_profile -> CurrentFragmentType.PROFILE
+                R.id.addUserFragment -> CurrentFragmentType.PROFILE_USER_EDIT
+                R.id.nannyCenterFragment -> CurrentFragmentType.PROFILE_NANNY_CENTER
+                R.id.addPetFragmentL -> CurrentFragmentType.PROFILE_ADD_PET
+                R.id.addServiceFragment -> CurrentFragmentType.PROFILE_ADD_SERVICE
+                R.id.nannyExamineFragment -> CurrentFragmentType.PROFILE_NANNY_CENTER_EXAMINE
+                R.id.nannyLicense -> CurrentFragmentType.PROFILE_NANNY_CENTER_LICENSE
+                R.id.nannyDetailFragment -> CurrentFragmentType.HOME_NANNY_DETAIL
+                R.id.nannyListFragment -> CurrentFragmentType.HOME_SEARCH_NANNY
                 else -> viewModel.currentFragmentType.value
             }
         }

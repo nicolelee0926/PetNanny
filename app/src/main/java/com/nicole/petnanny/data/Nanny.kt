@@ -1,4 +1,4 @@
-package com.nicole.petnanny.model
+package com.nicole.petnanny.data
 
 data class Nanny(
     var serviceName : String = "",

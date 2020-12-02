@@ -1,4 +1,4 @@
-package com.nicole.petnanny
+package com.nicole.petnanny.util
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter

@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.nicole.petnanny.CurrentFragmentType"/>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.nicole.petnanny.ui.main.MainActivityViewModel" />
+            type="com.nicole.petnanny.ui.main.MainViewModel" />
     </data>
 
 
@@ -20,10 +22,13 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{((viewModel.currentFragmentType == CurrentFragmentType.HOME_SEARCH_NANNY) || (viewModel.currentFragmentType == CurrentFragmentType.HOME_NANNY_DETAIL)) ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/nav_host_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -32,16 +37,44 @@
                 android:background="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:contentInsetStart="0dp">
 
-                <TextView
-                    android:id="@+id/text_toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@{viewModel.currentFragmentType.value}"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/text_toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@{viewModel.currentFragmentType.value}"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20sp"
+                        tools:text="寵物保姆"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text_toolbar_title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_USER_EDIT || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_PET || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_SERVICE ? View.VISIBLE : View.GONE}"
+                        android:text="新增"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="新增" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 

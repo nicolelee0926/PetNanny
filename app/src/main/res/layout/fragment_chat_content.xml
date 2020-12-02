@@ -68,8 +68,6 @@
             android:layout_marginTop="8dp"
             android:text="幸福訓練師"
             android:textColor="@color/colorDeepGray"
-            android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView29"
             app:layout_constraintTop_toBottomOf="@+id/textView93" />
 
@@ -90,6 +88,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="散步遛狗"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/colorDeepGray"
             app:layout_constraintStart_toEndOf="@+id/imageView29"
             app:layout_constraintTop_toTopOf="parent" />

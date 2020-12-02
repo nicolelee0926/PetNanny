@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.nicole.petnanny.model.Nanny" />
+            type="com.nicole.petnanny.data.Nanny" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

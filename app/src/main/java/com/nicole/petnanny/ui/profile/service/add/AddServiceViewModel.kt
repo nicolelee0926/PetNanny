@@ -3,7 +3,7 @@ package com.nicole.petnanny.ui.profile.service.add
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nicole.petnanny.model.Nanny
+import com.nicole.petnanny.data.Nanny
 
 class AddServiceViewModel: ViewModel() {
 

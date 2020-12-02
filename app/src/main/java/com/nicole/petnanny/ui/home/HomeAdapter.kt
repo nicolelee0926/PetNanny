@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.databinding.ItemHomeNannyBinding
-import com.nicole.petnanny.model.Nanny
+import com.nicole.petnanny.data.Nanny
 
 class HomeAdapter : ListAdapter<Nanny, HomeAdapter.HomeViewHolder>(HomeDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {

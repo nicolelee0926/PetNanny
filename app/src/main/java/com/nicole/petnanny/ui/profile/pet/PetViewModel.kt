@@ -3,7 +3,7 @@ package com.nicole.petnanny.ui.profile.pet
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nicole.petnanny.model.Pet
+import com.nicole.petnanny.data.Pet
 
 class PetViewModel:ViewModel() {
 

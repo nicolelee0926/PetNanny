@@ -3,8 +3,7 @@ package com.nicole.petnanny.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nicole.petnanny.model.Nanny
-import com.nicole.petnanny.model.Pet
+import com.nicole.petnanny.data.Nanny
 
 class HomeViewModel : ViewModel() {
 

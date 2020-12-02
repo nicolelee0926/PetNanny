@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.databinding.ItemHomeNannyListBinding
-import com.nicole.petnanny.model.Nanny
+import com.nicole.petnanny.data.Nanny
 
 class NannyListAdapter(val viewModel: NannyListViewModel) : ListAdapter<Nanny, NannyListAdapter.NannyListViewHolder>(NannyListDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NannyListViewHolder {

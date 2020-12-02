@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.databinding.ItemProfilePetBinding
-import com.nicole.petnanny.model.Pet
+import com.nicole.petnanny.data.Pet
 
 class PetAdapter : ListAdapter<Pet, PetAdapter.PetViewHolder>(PetDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
