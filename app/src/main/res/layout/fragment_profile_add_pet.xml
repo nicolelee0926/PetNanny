@@ -84,7 +84,9 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:text="@={viewModel.petName}"
                     app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
 
                 <TextView
                     android:id="@+id/textView67"
@@ -99,7 +101,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
                 <Spinner
-                    android:id="@+id/spinner_type4"
+                    android:id="@+id/spinner_type"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -122,7 +124,7 @@
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner_type4" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_type" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName5"
@@ -132,6 +134,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
                     android:ems="10"
+                    android:text="@={viewModel.petVariety}"
                     android:hint="輸入您的寵物品種"
                     android:inputType="textPersonName"
                     android:textSize="14sp"
@@ -145,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="名稱"
+                    android:text="性別"
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -192,7 +195,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/radio_gender" />
 
                 <Spinner
-                    android:id="@+id/spinner_type5"
+                    android:id="@+id/spinner_age"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -215,7 +218,7 @@
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner_type5" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_age" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName7"
@@ -236,7 +239,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView72" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView72"
+                    android:text="@={viewModel.petIntroduction}"/>
 
                 <TextView
                     android:id="@+id/textView70"
@@ -303,7 +307,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView73" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView73"
+                    android:text="@={viewModel.petChipNumber}"/>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

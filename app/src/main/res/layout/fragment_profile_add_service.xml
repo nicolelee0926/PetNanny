@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-            android:id="@+id/spinner_type"
+            android:id="@+id/spinner_service_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -50,7 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_type" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_service_type" />
 
         <TextView
             android:id="@+id/textView60"
@@ -79,6 +79,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:textSize="14sp"
+            android:text="@={viewModel.serviceName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView60"
             app:layout_constraintTop_toTopOf="@+id/textView60" />
@@ -109,6 +110,7 @@
             android:paddingHorizontal="8dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:text="@={viewModel.serviceIntroduction}"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView61"
@@ -140,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <Spinner
-            android:id="@+id/spinner_type2"
+            android:id="@+id/spinner_service_area"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -164,7 +166,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_type2" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_service_area" />
 
         <TextView
             android:id="@+id/textView63"
@@ -224,7 +226,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view6" />
 
         <Spinner
-            android:id="@+id/spinner_type3"
+            android:id="@+id/spinner_accept_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -236,20 +238,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView65"
             app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-        <Button
-            android:id="@+id/btn_add_service"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_button_corner"
-            android:text="新增服務"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

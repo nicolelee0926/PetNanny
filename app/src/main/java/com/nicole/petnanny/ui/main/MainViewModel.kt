@@ -8,4 +8,20 @@ import com.nicole.petnanny.data.source.PetNannyRepository
 class MainViewModel(private val repository: PetNannyRepository): ViewModel() {
 
     val currentFragmentType = MutableLiveData<CurrentFragmentType>()
+
+    val addPetFlag = MutableLiveData<Boolean>()
+    fun changePetStatusTrue(){
+        addPetFlag.value = true
+    }
+    fun changePetStatusFalse(){
+        addPetFlag.value = false
+    }
+
+    val addServiceFlag = MutableLiveData<Boolean>()
+    fun changeServiceStatusTrue(){
+        addServiceFlag.value = true
+    }
+    fun changeServiceStatusFalse(){
+        addServiceFlag.value = false
+    }
 }

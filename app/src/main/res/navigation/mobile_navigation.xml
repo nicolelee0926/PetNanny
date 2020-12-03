@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/addPetFragmentL"
-        android:name="com.nicole.petnanny.ui.profile.pet.add.AddPetFragmentL"
+        android:name="com.nicole.petnanny.ui.profile.pet.add.AddPetFragment"
         android:label="AddPetFragmentL"
         tools:layout="@layout/fragment_profile_add_pet"/>
     <fragment

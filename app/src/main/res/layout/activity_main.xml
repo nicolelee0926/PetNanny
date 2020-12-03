@@ -9,6 +9,9 @@
         <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.main.MainViewModel" />
+        <variable
+            name="addPetViewModel"
+            type="com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel" />
     </data>
 
 
@@ -59,12 +62,42 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/text_toolbar_title2"
+                        android:id="@+id/text_toolbar_add_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="16dp"
-                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_USER_EDIT || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_PET || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_SERVICE ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_USER_EDIT ? View.VISIBLE : View.GONE}"
+                        android:text="新增"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="新增" />
+
+                    <TextView
+                        android:id="@+id/text_toolbar_add_pet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_PET ? View.VISIBLE : View.GONE}"
+                        android:text="新增"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="新增" />
+
+                    <TextView
+                        android:id="@+id/text_toolbar_add_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_SERVICE ? View.VISIBLE : View.GONE}"
                         android:text="新增"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp"

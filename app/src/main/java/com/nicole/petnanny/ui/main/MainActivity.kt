@@ -1,18 +1,22 @@
 package com.nicole.petnanny.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.nicole.petnanny.CurrentFragmentType
+import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.ActivityMainBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +37,17 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         setupNavController()
+
+
+        binding.textToolbarAddPet.setOnClickListener {
+            Log.d("hiya_pet", "hiya ")
+            viewModel.changePetStatusTrue()
+        }
+
+        binding.textToolbarAddService.setOnClickListener {
+            Log.d("hiya_service", "hiya ")
+            viewModel.changeServiceStatusTrue()
+        }
     }
 
     private fun setupNavController(){

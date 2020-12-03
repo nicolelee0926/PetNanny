@@ -11,6 +11,8 @@
     <string name="service_take_care">到府照顧</string>
     <string name="service_stay">住宿託管</string>
 
+    <string name="you_know_nothing">You know nothing</string>
+
 
     <!--  spinner  -->
     <string name="type_array_title">寵物類型</string>
