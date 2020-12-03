@@ -48,6 +48,16 @@ class MainActivity : AppCompatActivity() {
             Log.d("hiya_service", "hiya ")
             viewModel.changeServiceStatusTrue()
         }
+
+        binding.textToolbarAddUser.setOnClickListener {
+            Log.d("hiya_user", "hiya ")
+            viewModel.changeUserStatusTrue()
+        }
+
+        binding.textToolbarAddNannyExamine.setOnClickListener {
+            Log.d("hiya_user", "hiya ")
+            viewModel.changeNannyExamineStatusTrue()
+        }
     }
 
     private fun setupNavController(){

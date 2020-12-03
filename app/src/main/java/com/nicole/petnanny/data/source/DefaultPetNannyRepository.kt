@@ -3,6 +3,7 @@ package com.nicole.petnanny.data.source
 import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.Pet
 import com.nicole.petnanny.data.Result
+import com.nicole.petnanny.data.User
 
 class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource,
                                 private val localDataSource: PetNannyDataSource
@@ -20,6 +21,18 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     }
     override suspend fun getServices(): Result<List<Nanny>> {
         return remoteDataSource.getServices()
+    }
+
+    override suspend fun addUser(user: User): Result<Boolean> {
+        return remoteDataSource.addUser(user)
+    }
+
+    override suspend fun getUser(): Result<User> {
+        return remoteDataSource.getUser()
+    }
+
+    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> {
+        return remoteDataSource.addNannyExamine(nannyExamine)
     }
 
 

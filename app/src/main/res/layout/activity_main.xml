@@ -105,6 +105,21 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="新增" />
+
+                    <TextView
+                        android:id="@+id/text_toolbar_add_nanny_examine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_NANNY_CENTER_EXAMINE ? View.VISIBLE : View.GONE}"
+                        android:text="建立"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="建立" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

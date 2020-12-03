@@ -12,5 +12,11 @@ data class Nanny(
     var nannyName : String = "",
     var nannyPhoto : String = "",
     var price : Int = 0,
-    var serviceArea : String = ""
+    var serviceArea : String = "",
+    var nannyBirthday : String = "",
+    var nannyPhone : String = "",
+    var nannyIDNumber : String = "",
+    var nannyPetExperience : String = "",
+    var nannyIDPhoto : String = "",
+    var nannySelfPhoto : String = ""
 )

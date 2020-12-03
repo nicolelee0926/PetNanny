@@ -24,4 +24,20 @@ class MainViewModel(private val repository: PetNannyRepository): ViewModel() {
     fun changeServiceStatusFalse(){
         addServiceFlag.value = false
     }
+
+    val addUserFlag = MutableLiveData<Boolean>()
+    fun changeUserStatusTrue(){
+        addUserFlag.value = true
+    }
+    fun changeUserStatusFalse(){
+        addUserFlag.value = false
+    }
+
+    val addNannyExamineFlag = MutableLiveData<Boolean>()
+    fun changeNannyExamineStatusTrue(){
+        addNannyExamineFlag.value = true
+    }
+    fun changeNannyExamineStatusFalse(){
+        addNannyExamineFlag.value = false
+    }
 }

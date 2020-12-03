@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.nicole.petnanny.ui.profile.user.AddUserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,6 +98,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:textSize="14sp"
+            android:text="@={viewModel.userIntroduction}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

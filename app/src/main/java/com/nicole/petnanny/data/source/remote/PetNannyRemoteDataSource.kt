@@ -10,11 +10,13 @@ import com.nicole.petnanny.data.source.PetNannyDataSource
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import com.nicole.petnanny.data.Result
+import com.nicole.petnanny.data.User
 
 object PetNannyRemoteDataSource: PetNannyDataSource {
 
     private const val PATH_PET = "Pet"
     private const val PATH_NANNY = "Nanny"
+    private const val PATH_USER = "User"
 
     override suspend fun addPet(pet: Pet): Result<Boolean> = suspendCoroutine { continuation ->
         val Pet = FirebaseFirestore.getInstance().collection(PATH_PET)
@@ -110,6 +112,74 @@ object PetNannyRemoteDataSource: PetNannyDataSource {
                     task.exception?.let {
 
                         Log.d("get_service_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun addUser(user: User): Result<Boolean> = suspendCoroutine { continuation ->
+        val User = FirebaseFirestore.getInstance().collection(PATH_USER)
+        val document = User.document()
+
+        document
+            .set(user)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("addUser", "addUser: $user")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Log.d("add_service_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun getUser(): Result<User> = suspendCoroutine { continuation ->
+//        FirebaseFirestore.getInstance()
+//            .collection(PATH_USER).document()
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                        Log.d("result", "${task.result?.documents} => ${task.result?.documents}")
+//                        val user = document.toObject(Nanny::class.java)
+//                    }
+//                    continuation.resume(Result.Success(service))
+//                } else {
+//                    task.exception?.let {
+//
+//                        Log.d("get_service_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
+//                        continuation.resume(Result.Error(it))
+//                        return@addOnCompleteListener
+//                    }
+//                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//            }
+    }
+
+    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> = suspendCoroutine { continuation ->
+        val Nanny = FirebaseFirestore.getInstance().collection(PATH_NANNY)
+        val document = Nanny.document()
+
+        document
+            .set(nannyExamine)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("addNannyExamine", "addNannyExamine: $nannyExamine")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Log.d("add_service_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }

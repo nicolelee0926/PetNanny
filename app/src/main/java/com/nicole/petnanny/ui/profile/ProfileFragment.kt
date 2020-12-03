@@ -1,18 +1,19 @@
 package com.nicole.petnanny.ui.profile
 
-import android.app.Service
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nicole.petnanny.databinding.FragmentProfileBinding
-import com.nicole.petnanny.ui.profile.service.ServiceViewModel
+import com.nicole.petnanny.ext.getVmFactory
 
 class ProfileFragment : Fragment() {
+
+    private val viewModel by viewModels<ProfileViewModel> { getVmFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +21,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentProfileBinding.inflate(inflater, container, false)
-
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         val pager  = binding.pagerProfile
         val tab_layout = binding.tabLayoutProfile
