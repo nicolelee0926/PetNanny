@@ -16,7 +16,6 @@ object ServiceLocator {
     fun provideRepository(context: Context): PetNannyRepository {
         synchronized(this) {
             return repository
-                ?: repository
                 ?: createPetNannyRepository(context)
         }
     }

@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nannyLicense -> CurrentFragmentType.PROFILE_NANNY_CENTER_LICENSE
                 R.id.nannyDetailFragment -> CurrentFragmentType.HOME_NANNY_DETAIL
                 R.id.nannyListFragment -> CurrentFragmentType.HOME_SEARCH_NANNY
+                R.id.loginFragment -> CurrentFragmentType.LOGIN
                 else -> viewModel.currentFragmentType.value
             }
         }

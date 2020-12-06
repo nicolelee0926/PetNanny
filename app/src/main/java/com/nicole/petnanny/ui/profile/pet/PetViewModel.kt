@@ -20,7 +20,7 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
     val pet: LiveData<List<Pet>>
         get() = _pet
 
-
+    var livePets = MutableLiveData<List<Pet>>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -52,8 +52,14 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
     }
 
     init {
-        getPetsResult()
+//        if (PetNannyApplication.instance.isLiveDataDesign()) {
+//            getLivePetsResult()
+//        }
+//        else{
+            getPetsResult()
+//        }
     }
+
 
     fun getPetsResult() {
         coroutineScope.launch {
@@ -67,6 +73,7 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
                     result.data
+
                 }
                 is Result.Fail -> {
                     _error.value = result.error
@@ -88,6 +95,9 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
         }
     }
 
-
-
+//    private fun getLivePetsResult() {
+//        livePets = repository.getLivePets()
+//        _status.value = LoadApiStatus.DONE
+//        _refreshStatus.value = false
+//    }
 }

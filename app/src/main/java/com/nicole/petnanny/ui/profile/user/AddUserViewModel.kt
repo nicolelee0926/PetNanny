@@ -11,6 +11,7 @@ import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.User
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,9 +20,6 @@ import kotlinx.coroutines.launch
 
 class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() {
 
-    private val _user= MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
 
     val setUserData = MutableLiveData<User>()
 
@@ -45,14 +43,14 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun addUser(user: User) {
+    fun updateUser(user: User) {
         Log.d("addUser", "hate")
 
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            when (val result = repository.addUser(user)) {
+            when (val result = repository.updateUser(user)) {
                 is Result.Success-> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
@@ -80,7 +78,8 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
 
     fun setUser() {
         setUserData.value = User(
-            selfIntroduction = userIntroduction.value.toString()
+            selfIntroduction = userIntroduction.value.toString(),
+            userEmail = UserManager.user.value?.userEmail
         )
     }
 }

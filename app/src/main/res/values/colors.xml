@@ -10,5 +10,7 @@
     <color name="colorBlack50">#80515151</color>
     <color name="colorBlack_12Alpha">#E0E0E0</color>
     <color name="colorGrayLight">#EEEEEE</color>
+    <color name="colorOffWhite">#FFF9F9</color>
+    <color name="colorPrimaryLight">#FFC074</color>
 
 </resources>

@@ -14,13 +14,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.nicole.petnanny.data.Result
+import com.nicole.petnanny.ui.login.UserManager
 
 class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() {
 
-
-    private val _pet = MutableLiveData<Pet>()
-    val pet : LiveData<Pet>
-        get() = _pet
 
     val setPetData = MutableLiveData<Pet>()
 
@@ -97,7 +94,8 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
                 gender = selectedGender.value.toString(),
                 petLigation = selectedLigation.value.toString(),
                 petType = selectedType.value.toString(),
-                petAge = selectedAge.value.toString()
+                petAge = selectedAge.value.toString(),
+                userEmail = UserManager.user.value?.userEmail
         )
     }
 

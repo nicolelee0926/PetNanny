@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.nicole.petnanny.ui.login.UserManager"/>
         <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.profile.user.AddUserViewModel" />
@@ -65,6 +66,7 @@
             android:layout_marginEnd="16dp"
             android:textSize="16sp"
             android:textColor="@color/colorDeepGray"
+            android:text="@{UserManager.INSTANCE.user.userEmail}"
             tools:text="nicolelee800926@gamil.com"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

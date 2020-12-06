@@ -1,9 +1,9 @@
 package com.nicole.petnanny.data.source
 
-import com.nicole.petnanny.data.Nanny
-import com.nicole.petnanny.data.Pet
-import com.nicole.petnanny.data.Result
-import com.nicole.petnanny.data.User
+import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.FirebaseUser
+import com.nicole.petnanny.data.*
 
 class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource,
                                 private val localDataSource: PetNannyDataSource
@@ -16,6 +16,7 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getPets()
     }
 
+
     override suspend fun addService(service: Nanny): Result<Boolean> {
         return remoteDataSource.addService(service)
     }
@@ -23,16 +24,28 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getServices()
     }
 
-    override suspend fun addUser(user: User): Result<Boolean> {
-        return remoteDataSource.addUser(user)
+    override suspend fun updateUser(user: User): Result<Boolean> {
+        return remoteDataSource.updateUser(user)
     }
 
-    override suspend fun getUser(): Result<User> {
-        return remoteDataSource.getUser()
+    override suspend fun getUser(userEmail: String): Result<User> {
+        return remoteDataSource.getUser(userEmail)
     }
 
     override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> {
         return remoteDataSource.addNannyExamine(nannyExamine)
+    }
+
+    override suspend fun addUserToFirebase(user: User): Result<Boolean> {
+        return remoteDataSource.addUserToFirebase(user)
+    }
+
+    override suspend fun getServicesForHomePage(): Result<List<Nanny>> {
+        return remoteDataSource.getServicesForHomePage()
+    }
+
+    override suspend fun getHomeServiceTypeFilter(serviceType: String): Result<List<Nanny>> {
+        return remoteDataSource.getHomeServiceTypeFilter(serviceType)
     }
 
 

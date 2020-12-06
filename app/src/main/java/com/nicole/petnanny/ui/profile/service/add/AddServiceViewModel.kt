@@ -10,6 +10,7 @@ import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,6 +29,7 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
     var serviceIntroduction = MutableLiveData<String>().apply { value = "" }
     var selectedLocation = MutableLiveData<String>().apply { value = "" }
     var selectedAcceptPet = MutableLiveData<String>().apply { value = "" }
+    var servicePrice = MutableLiveData<String>().apply { value = "" }
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -86,7 +88,9 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 serviceType = selectedServiceType.value.toString(),
                 nannyIntroduction = serviceIntroduction.value.toString(),
                 serviceArea = selectedLocation.value.toString(),
-                acceptPetType = selectedServiceType.value.toString()
+                acceptPetType = selectedAcceptPet.value.toString(),
+                userEmail = UserManager.user.value?.userEmail,
+                price = servicePrice.value.toString()
             )
     }
 

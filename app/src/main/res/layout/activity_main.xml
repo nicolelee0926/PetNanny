@@ -25,7 +25,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{((viewModel.currentFragmentType == CurrentFragmentType.HOME_SEARCH_NANNY) || (viewModel.currentFragmentType == CurrentFragmentType.HOME_NANNY_DETAIL)) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{((viewModel.currentFragmentType == CurrentFragmentType.HOME_SEARCH_NANNY) || (viewModel.currentFragmentType == CurrentFragmentType.HOME_NANNY_DETAIL) || (viewModel.currentFragmentType == CurrentFragmentType.LOGIN)) ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/nav_host_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nav_host_fragment"
-            app:menu="@menu/bottom_nav_menu" />
+            app:menu="@menu/bottom_nav_menu"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.LOGIN ? View.GONE : View.VISIBLE}"/>
 
         <fragment
             android:id="@+id/nav_host_fragment"

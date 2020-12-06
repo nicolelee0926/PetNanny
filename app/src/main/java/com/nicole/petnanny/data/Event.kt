@@ -1,22 +1,22 @@
 package com.nicole.petnanny.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Event (
-    var eventID : String = "",
-    var endTime : Int = 0,
-    var eventRating : EventRating,
-    var message : Message,
-    var nannyID : String = "",
-    var petID : String = "",
-    var startTime : Int = 0
-)
+    var eventID : String? = "",
+    var message : List<Message>?,
+    var nannyID : String? = "",
+    var petID : String? = "",
+    var userIDN: String? = ""
+): Parcelable
 
-data class EventRating(
-    var star : Int = 0
-)
-
+@Parcelize
 data class Message(
-    var content : String = "",
-    var isRead : Boolean = false,
-    var sendID : String = "",
-    var time : Int = 0
-)
+    var content : String? = "",
+    var isRead : Boolean? = null,
+    var senderID : String? = "",
+    var messageTime : Long? = -1,
+    var receiverID : String?= ""
+): Parcelable

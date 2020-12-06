@@ -1,15 +1,16 @@
 package com.nicole.petnanny.ui.profile
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
-import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.User
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -50,20 +51,25 @@ class ProfileViewModel(private val repository: PetNannyRepository): ViewModel() 
     }
 
     init {
-        getUserResult()
+        Log.d("@@@@", "@@${UserManager.user.value} ")
+        UserManager.user.value?.userEmail?.let {
+            getUserResult(it)
+        }
     }
 
-    fun getUserResult() {
+    fun getUserResult(userEmail: String) {
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            val result = repository.getUser()
+            val result = repository.getUser(userEmail)
+            Log.d("@@@@", "@@${result} ")
 
             _user.value = when (result) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
+                    Log.d("@@@@", "@@${result.data} ")
                     result.data
                 }
                 is Result.Fail -> {

@@ -14,7 +14,6 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -37,7 +36,7 @@
                     android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/textView49"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_visit"
+                    app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -53,7 +52,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_visit"
+                    app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
                     app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
                 <TextView
@@ -65,11 +64,11 @@
                     android:text="幸福訓練師"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_visit"
+                    app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
                     app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_visit"
+                    android:id="@+id/btn_google_sigh_in"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -186,7 +185,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView22"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName15"
                     app:srcCompat="@drawable/ic_order_note" />
 
                 <TextView
@@ -290,6 +289,26 @@
                     app:layout_constraintStart_toStartOf="@+id/textView54"
                     app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
+                <EditText
+                    android:id="@+id/editTextTextPersonName15"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@color/colorGrayLight"
+                    android:ems="10"
+                    android:gravity="start"
+                    android:hint="請輸入需求地址"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName"
+                    android:paddingHorizontal="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="4dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView53"
+                    app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
                 <View
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
@@ -331,16 +350,17 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="32dp"
                     android:background="@drawable/bg_button_corner"
                     android:text="請求預約"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView56" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView56"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

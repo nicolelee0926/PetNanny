@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="com.nicole.petnanny.ui.login.UserManager"/>
         <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.profile.ProfileViewModel" />
@@ -38,13 +39,14 @@
                     app:srcCompat="@drawable/bg_profile" />
 
                 <TextView
-                    android:id="@+id/textView76"
+                    android:id="@+id/tv_introduction"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="60dp"
                     android:layout_marginEnd="32dp"
-                    android:text="大家養他們就要負起責任喔~不要亂拋棄!請以認養代替購買！我們家可愛的臘腸也是認養的！不要以為認養的都很醜！寵物的外貌是會因為照顧的人而改變的！"
+                    android:text="@{viewModel.user.selfIntroduction}"
+                    tools:text="大家養他們就要負起責任喔~不要亂拋棄!請以認養代替購買！我們家可愛的臘腸也是認養的！不要以為認養的都很醜！寵物的外貌是會因為照顧的人而改變的！"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +72,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/iv_home_s2" />
+                        app:imageUrl="@{UserManager.INSTANCE.user.photo}" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -78,7 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Nicole"
+                    android:text="@{UserManager.INSTANCE.user.userName}"
+                    tools:text="Nicole"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +99,7 @@
                     app:cardBackgroundColor="@color/design_default_color_secondary_variant"
                     app:cardCornerRadius="50dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView76">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_introduction">
 
                     <TextView
                         android:id="@+id/textView34"
@@ -106,9 +109,9 @@
                         android:text="獸醫證照"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/photoCardView_visit"
-                        app:layout_constraintStart_toStartOf="@+id/photoCardView_visit"
-                        app:layout_constraintTop_toTopOf="@+id/photoCardView_visit" />
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintStart_toStartOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in" />
                 </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.card.MaterialCardView

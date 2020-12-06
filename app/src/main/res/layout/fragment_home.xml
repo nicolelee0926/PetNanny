@@ -99,17 +99,16 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_2"
+                    android:id="@+id/btn_home_beauty"
                     android:layout_width="90dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     app:cardCornerRadius="6dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_4"
+                    app:layout_constraintStart_toEndOf="@+id/btn_home_shower"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_home_main">
 
                     <ImageView
@@ -122,16 +121,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_1"
+                    android:id="@+id/btn_walk"
                     android:layout_width="90dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="6dp"
-                    app:layout_constraintEnd_toStartOf="@+id/photoCardView_3"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_5"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_stay"
+                    app:layout_constraintStart_toEndOf="@+id/btn_Home_train"
                     app:layout_constraintTop_toBottomOf="@+id/textView4">
 
                     <ImageView
@@ -144,7 +142,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_3"
+                    android:id="@+id/btn_stay"
                     android:layout_width="90dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -154,7 +152,7 @@
                     android:layout_marginEnd="16dp"
                     app:cardCornerRadius="6dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/photoCardView_1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_walk"
                     app:layout_constraintTop_toBottomOf="@+id/textView5">
 
                     <ImageView
@@ -167,15 +165,14 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_4"
+                    android:id="@+id/btn_home_shower"
                     android:layout_width="90dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="6dp"
-                    app:layout_constraintEnd_toStartOf="@+id/photoCardView_2"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_home_beauty"
                     app:layout_constraintStart_toEndOf="@+id/btn_home_visit"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_home_main">
 
@@ -189,16 +186,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/photoCardView_5"
+                    android:id="@+id/btn_Home_train"
                     android:layout_width="90dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="6dp"
-                    app:layout_constraintEnd_toStartOf="@+id/photoCardView_1"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_walk"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_home_visit">
 
@@ -221,7 +217,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="6dp"
-                    app:layout_constraintEnd_toStartOf="@+id/photoCardView_4"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_home_shower"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_home_main">
 
@@ -254,9 +250,9 @@
                     android:text="@string/service_take_a_bath"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/photoCardView_4"
-                    app:layout_constraintStart_toStartOf="@+id/photoCardView_4"
-                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_4" />
+                    app:layout_constraintEnd_toEndOf="@+id/btn_home_shower"
+                    app:layout_constraintStart_toStartOf="@+id/btn_home_shower"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_home_shower" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -266,9 +262,9 @@
                     android:text="@string/service_beauty"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/photoCardView_2"
-                    app:layout_constraintStart_toStartOf="@+id/photoCardView_2"
-                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_2" />
+                    app:layout_constraintEnd_toEndOf="@+id/btn_home_beauty"
+                    app:layout_constraintStart_toStartOf="@+id/btn_home_beauty"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_home_beauty" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -278,9 +274,9 @@
                     android:text="@string/service_train"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/photoCardView_5"
-                    app:layout_constraintStart_toStartOf="@+id/photoCardView_5"
-                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_5" />
+                    app:layout_constraintEnd_toEndOf="@+id/btn_Home_train"
+                    app:layout_constraintStart_toStartOf="@+id/btn_Home_train"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_Home_train" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -290,9 +286,9 @@
                     android:text="@string/service_walk"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/photoCardView_1"
-                    app:layout_constraintStart_toStartOf="@+id/photoCardView_1"
-                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_1" />
+                    app:layout_constraintEnd_toEndOf="@+id/btn_walk"
+                    app:layout_constraintStart_toStartOf="@+id/btn_walk"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_walk" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -302,9 +298,9 @@
                     android:text="@string/service_stay"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/photoCardView_3"
-                    app:layout_constraintStart_toStartOf="@+id/photoCardView_3"
-                    app:layout_constraintTop_toBottomOf="@+id/photoCardView_3" />
+                    app:layout_constraintEnd_toEndOf="@+id/btn_stay"
+                    app:layout_constraintStart_toStartOf="@+id/btn_stay"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_stay" />
 
                 <TextView
                     android:id="@+id/textView9"

@@ -1,6 +1,7 @@
 package com.nicole.petnanny.ui.profile.service
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentServiceBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.login.UserManager
 import com.nicole.petnanny.ui.profile.ProfileFragmentDirections
 import com.nicole.petnanny.ui.profile.pet.PetViewModel
 
@@ -43,5 +45,14 @@ class ServiceFragment(): Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("!!!!", "!!! ");
+        UserManager.user.value?.userEmail?.let {
+            Log.d("!!!", "$it ");
+            viewModel.getServicesResult()
+        }
     }
 }

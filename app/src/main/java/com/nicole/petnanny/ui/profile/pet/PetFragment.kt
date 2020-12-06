@@ -1,6 +1,7 @@
 package com.nicole.petnanny.ui.profile.pet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentPetBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.login.UserManager
 import com.nicole.petnanny.ui.profile.ProfileFragmentDirections
 
 class PetFragment() : Fragment()  {
@@ -40,6 +42,17 @@ class PetFragment() : Fragment()  {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddPetFragmentL())
         }
 
+
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("!!!!", "!!! ");
+        UserManager.user.value?.userEmail?.let {
+            Log.d("!!!", "$it ");
+            viewModel.getPetsResult()
+        }
     }
 }

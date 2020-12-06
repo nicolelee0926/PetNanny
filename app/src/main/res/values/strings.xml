@@ -47,12 +47,12 @@
 
     <string name="profile_add_nanny_service_array_title">選擇您的服務類別</string>
     <string-array name="profile_add_nanny_service">
-        <item>到府照顧   $ 300 / 次</item>
-        <item>到府洗澡   $ 800 / 次</item>
-        <item>到府美容   $ 1200 / 次</item>
-        <item>到府訓練   $ 1500 / 次</item>
-        <item>遛狗散步   $ 500 / 次</item>
-        <item>住宿託管   $ 1000 / 次</item>
+        <item>到府照顧 </item>
+        <item>到府洗澡 </item>
+        <item>到府美容 </item>
+        <item>到府訓練 </item>
+        <item>遛狗散步 </item>
+        <item>住宿託管 </item>
     </string-array>
 
     <string name="figure_array_title">選擇你的寵物體型</string>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/loginFragment">
 
      <fragment
         android:id="@+id/navigation_home"
@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_navigation_home_to_nannyListFragment"
             app:destination="@id/nannyListFragment" />
-    </fragment>
+     </fragment>
     <fragment
         android:id="@+id/navigation_chat"
         android:name="com.nicole.petnanny.ui.chat.ChatFragment"
@@ -119,6 +119,9 @@
         <action
             android:id="@+id/action_nannyListFragment_to_nannyDetailFragment"
             app:destination="@id/nannyDetailFragment" />
+        <argument
+            android:name="serviceType"
+            app:argType="string" />
     </fragment>
      <dialog
         android:id="@+id/nannyServiceFragment"
@@ -159,5 +162,15 @@
         android:name="com.nicole.petnanny.ui.order.parentorder.MyOrderFragment"
         android:label="MyOrderFragment"
         tools:layout="@layout/fragment_order_my_order"/>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nicole.petnanny.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <action android:id="@+id/action_global_nannyListFragment" app:destination="@id/nannyListFragment" />
 
 </navigation>

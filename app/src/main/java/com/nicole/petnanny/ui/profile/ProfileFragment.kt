@@ -1,6 +1,7 @@
 package com.nicole.petnanny.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nicole.petnanny.databinding.FragmentProfileBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.login.UserManager
 
 class ProfileFragment : Fragment() {
 
@@ -47,5 +49,14 @@ class ProfileFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("!!!!", "!!! ");
+        UserManager.user.value?.userEmail?.let {
+            Log.d("!!!", "$it ");
+            viewModel.getUserResult(it)
+        }
     }
 }
