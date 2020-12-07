@@ -26,14 +26,15 @@
 
         <TextView
             android:id="@+id/tv_userText"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_round_8dp"
             android:ellipsize="end"
             android:gravity="center"
-            android:padding="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="中山區"
             android:textColor="@color/colorDeepGray"
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@+id/photoCardView_other1"

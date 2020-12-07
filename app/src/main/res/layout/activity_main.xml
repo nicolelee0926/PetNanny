@@ -138,7 +138,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nav_host_fragment"
             app:menu="@menu/bottom_nav_menu"
-            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.LOGIN ? View.GONE : View.VISIBLE}"/>
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.LOGIN || viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_DEMAND ? View.GONE : View.VISIBLE}"/>
 
         <fragment
             android:id="@+id/nav_host_fragment"

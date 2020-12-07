@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_chat_to_workFragment"
             app:destination="@id/workFragment" />
+        <action
+            android:id="@+id/action_navigation_chat_to_demandDetailFragment"
+            app:destination="@id/demandDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_order"
@@ -149,11 +152,7 @@
         android:id="@+id/demandFragment"
         android:name="com.nicole.petnanny.ui.chat.demand.DemandFragment"
         android:label="DemandFragment"
-        tools:layout="@layout/fragment_chat_demand">
-        <action
-            android:id="@+id/action_demandFragment_to_demandDetailFragment"
-            app:destination="@id/demandDetailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_chat_demand"/>
     <fragment
         android:id="@+id/workFragment"
         android:name="com.nicole.petnanny.ui.chat.work.WorkFragment"

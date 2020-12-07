@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentChatDemandBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.chat.ChatFragmentDirections
 
 class DemandFragment() : Fragment() {
 
@@ -38,7 +39,7 @@ class DemandFragment() : Fragment() {
 
         viewModel.navigationToChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if(it == true) {
-                findNavController().navigate(DemandFragmentDirections.actionDemandFragmentToDemandDetailFragment())
+                findNavController().navigate(ChatFragmentDirections.actionNavigationChatToDemandDetailFragment())
             }
             if (it != null) {
                 viewModel.displayChatRoomDetailComplete()

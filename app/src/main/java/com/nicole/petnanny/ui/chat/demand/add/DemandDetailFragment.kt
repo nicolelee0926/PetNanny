@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import com.nicole.petnanny.data.Message
+import com.nicole.petnanny.data.User
 import com.nicole.petnanny.data.userTextList
 import com.nicole.petnanny.databinding.FragmentDemandChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
@@ -32,7 +34,37 @@ class DemandDetailFragment: Fragment() {
         val userTextList = userTextList()
         val userText = mutableListOf<Message>()
 
+        val aaa = createMock().toUserTextItem()
+
+        chatRoomDetailAdapter.submitList(aaa)
+
         return binding.root
+    }
+
+    fun createMock() : userTextList{
+        var user1 = Message(
+            content = "明天下午可以過去嗎",
+            sender = User(
+                userEmail = "0"
+            )
+        )
+
+        var user2 = Message(
+            content = "不要",
+            sender = User(
+                userEmail = "1"
+            )
+        )
+        var listText =userTextList()
+        var list = mutableListOf<Message>()
+        list.add(user1)
+        list.add(user2)
+
+
+
+        listText.userText = list
+
+        return listText
     }
 }
 

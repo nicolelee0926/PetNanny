@@ -6,17 +6,14 @@ import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.nicole.petnanny.CurrentFragmentType
-import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.ActivityMainBinding
 import com.nicole.petnanny.ext.getVmFactory
-import com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -76,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nannyDetailFragment -> CurrentFragmentType.HOME_NANNY_DETAIL
                 R.id.nannyListFragment -> CurrentFragmentType.HOME_SEARCH_NANNY
                 R.id.loginFragment -> CurrentFragmentType.LOGIN
+                R.id.demandDetailFragment -> CurrentFragmentType.CHAT_ROOM_DEMAND
                 else -> viewModel.currentFragmentType.value
             }
         }
