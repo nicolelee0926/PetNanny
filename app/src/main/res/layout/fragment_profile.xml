@@ -6,6 +6,9 @@
     <data>
         <import type="com.nicole.petnanny.ui.login.UserManager"/>
         <variable
+            name="data"
+            type="com.nicole.petnanny.data.User" />
+        <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.profile.ProfileViewModel" />
     </data>

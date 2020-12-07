@@ -23,10 +23,10 @@ class NannyListAdapter(val viewModel: NannyListViewModel) : ListAdapter<Nanny, N
 
         fun bind(item : Nanny, viewModel: NannyListViewModel) {
             binding.data = item
-            binding.executePendingBindings()
             binding.root.setOnClickListener {
-                viewModel.navigationToNannyDetail.value = true
+                viewModel._navigationToNannyDetail.value = item
             }
+            binding.executePendingBindings()
         }
 
         companion object{

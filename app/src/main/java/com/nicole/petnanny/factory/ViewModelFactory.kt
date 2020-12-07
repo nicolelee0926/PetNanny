@@ -3,7 +3,10 @@ package app.appworks.school.publisher.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nicole.petnanny.data.source.PetNannyRepository
+import com.nicole.petnanny.ui.chat.demand.DemandViewModel
+import com.nicole.petnanny.ui.chat.demand.add.DemandDetailViewModel
 import com.nicole.petnanny.ui.home.HomeViewModel
+import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
 import com.nicole.petnanny.ui.login.LoginViewModel
 import com.nicole.petnanny.ui.main.MainViewModel
 import com.nicole.petnanny.ui.profile.ProfileViewModel
@@ -52,6 +55,15 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(repository)
+
+                isAssignableFrom(SendDemandViewModel::class.java) ->
+                    SendDemandViewModel(repository)
+
+                isAssignableFrom(DemandViewModel::class.java) ->
+                    DemandViewModel(repository)
+
+                isAssignableFrom(DemandDetailViewModel::class.java) ->
+                    DemandDetailViewModel(repository)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

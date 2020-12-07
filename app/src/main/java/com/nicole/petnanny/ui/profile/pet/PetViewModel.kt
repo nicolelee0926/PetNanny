@@ -20,7 +20,6 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
     val pet: LiveData<List<Pet>>
         get() = _pet
 
-    var livePets = MutableLiveData<List<Pet>>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()

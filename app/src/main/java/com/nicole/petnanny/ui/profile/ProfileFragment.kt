@@ -55,7 +55,7 @@ class ProfileFragment : Fragment() {
         super.onResume()
         Log.d("!!!!", "!!! ");
         UserManager.user.value?.userEmail?.let {
-            Log.d("!!!", "$it ");
+            Log.d("!!!", "$it ")
             viewModel.getUserResult(it)
         }
     }

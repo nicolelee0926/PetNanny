@@ -4,16 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.tabs.TabLayoutMediator
-import com.nicole.petnanny.R
-import com.nicole.petnanny.databinding.FragmentChatBinding
-import com.nicole.petnanny.databinding.FragmentProfileBinding
-import com.nicole.petnanny.ui.profile.ProfilePageAdapter
 
 class ChatFragment : Fragment() {
 
@@ -25,7 +18,7 @@ class ChatFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentChatBinding.inflate(inflater, container, false)
+        val binding = com.nicole.petnanny.databinding.FragmentChatBinding.inflate(inflater, container, false)
         chatViewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
         val pager  = binding.pagerChat

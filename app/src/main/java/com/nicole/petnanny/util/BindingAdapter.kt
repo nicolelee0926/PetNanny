@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicole.petnanny.R
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 
 @BindingAdapter("petAge")
@@ -41,6 +42,13 @@ fun bindImage(imageView: ImageView, url: String?) {
                     .placeholder(R.drawable.ic_chat_nanny_status)
                     .error(R.drawable.ic_launcher_background))
             .into(imageView)
+    }
+}
+
+@BindingAdapter("getServicePrice")
+fun TextView.bindGetServicePrice(price: String) {
+    price?.let {
+        text = "NT$$price 元/次"
     }
 }
 

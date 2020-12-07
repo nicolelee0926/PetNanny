@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.nicole.petnanny.ui.home.nannydetail.NannyDetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -52,7 +54,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="幸福訓練師"
+                        android:text="@{viewModel.nannyDetail.nannyName}"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         tools:text="幸福訓練師" />
@@ -92,7 +94,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/iv_home_s2" />
+                        app:imageUrl="@{viewModel.nannyDetail.nannyPhone}"
+                        tools:src="@drawable/iv_home_s2" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -102,7 +105,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上"
+                    android:text="@{viewModel.nannyDetail.serviceName}"
+                    tools:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -116,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="幸福訓練師"
+                    android:text="@{viewModel.nannyDetail.nannyName}"
+                    tools:text="幸福訓練師"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
@@ -129,7 +134,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:letterSpacing="0.1"
-                    android:text="到府照顧"
+                    android:text="@{viewModel.nannyDetail.serviceType}"
+                    tools:text="到府照顧"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -172,6 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    tools:text="4"
                     android:text="4"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="20sp"
@@ -265,7 +272,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="哈囉，各位！ 因為家中有養寵物，加上也很喜歡動物，之前會去動物之家做義工，前一陣子親戚出國，也幫忙暫時照顧，對於照顧狗狗，我非常願意為他們奉獻，希望能夠看到他們開心幸福的樣子，我就很滿足，能放心交給我的家長，我會把你的寶貝也視為我的寶貝來疼愛，可以接受電話訪談和約面談時間喔～"
+                    android:text="@{viewModel.nannyDetail.nannyIntroduction}"
+                    tools:text="哈囉，各位！ 因為家中有養寵物，加上也很喜歡動物，之前會去動物之家做義工，前一陣子親戚出國，也幫忙暫時照顧，對於照顧狗狗，我非常願意為他們奉獻，希望能夠看到他們開心幸福的樣子，我就很滿足，能放心交給我的家長，我會把你的寶貝也視為我的寶貝來疼愛，可以接受電話訪談和約面談時間喔～"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -299,7 +307,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="內湖區"
+                    tools:text="內湖區"
+                    android:text="@{viewModel.nannyDetail.serviceArea}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView42"
@@ -332,7 +341,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="美容師執照"
+                    tools:text="美容師執照"
+                    android:text="@{viewModel.nannyDetail.license}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView44"
@@ -365,7 +375,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="狗"
+                    tools:text="狗"
+                    android:text="@{viewModel.nannyDetail.acceptPetType}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/textView46"
@@ -398,7 +409,8 @@
             android:textColor="@color/colorDeepGray"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:text="$ 1500 ~ $ 2000 / 次"/>
+            app:getServicePrice="@{viewModel.nannyDetail.price}"
+            tools:text="$ 1500 ~ $ 2000 / 次"/>
 
         <Button
             android:id="@+id/btn_contact_nanny"

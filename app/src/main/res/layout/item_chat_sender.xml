@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="userText"
+            type="com.nicole.petnanny.data.Message" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView102"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="已讀"
+            android:textColor="@color/colorGray"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView121"
+            app:layout_constraintEnd_toStartOf="@+id/tv_userText" />
+
+        <TextView
+            android:id="@+id/tv_userText"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_round_8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/colorDeepGray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/photoCardView_other1"
+            app:layout_constraintTop_toTopOf="@+id/photoCardView_other1"
+            tools:text="中山區" />
+
+        <TextView
+            android:id="@+id/textView121"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_userText"
+            app:layout_constraintEnd_toEndOf="@+id/textView102" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/photoCardView_other1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="50dp"
+            app:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/profile_imageView_other1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iv_home_s2" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

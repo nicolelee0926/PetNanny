@@ -136,6 +136,9 @@
         <action
             android:id="@+id/action_nannyDetailFragment_to_sendDemandFragment"
             app:destination="@id/sendDemandFragment" />
+        <argument
+            android:name="nannyDetail"
+            app:argType="com.nicole.petnanny.data.Nanny" />
     </fragment>
     <fragment
         android:id="@+id/sendDemandFragment"
@@ -146,7 +149,11 @@
         android:id="@+id/demandFragment"
         android:name="com.nicole.petnanny.ui.chat.demand.DemandFragment"
         android:label="DemandFragment"
-        tools:layout="@layout/fragment_chat_demand"/>
+        tools:layout="@layout/fragment_chat_demand">
+        <action
+            android:id="@+id/action_demandFragment_to_demandDetailFragment"
+            app:destination="@id/demandDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/workFragment"
         android:name="com.nicole.petnanny.ui.chat.work.WorkFragment"
@@ -172,5 +179,10 @@
             app:destination="@id/navigation_home" />
     </fragment>
     <action android:id="@+id/action_global_nannyListFragment" app:destination="@id/nannyListFragment" />
+    <fragment
+        android:id="@+id/demandDetailFragment"
+        android:name="com.nicole.petnanny.ui.chat.demand.add.DemandDetailFragment"
+        android:label="DemandDetailFragment"
+        tools:layout="@layout/fragment_demand_chatroom_detail"/>
 
 </navigation>

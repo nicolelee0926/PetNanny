@@ -42,10 +42,8 @@ class NannyListFragment: Fragment() {
 
 //        navigate到nanny detail頁
         viewModel.navigationToNannyDetail.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                findNavController().navigate(NannyListFragmentDirections.actionNannyListFragmentToNannyDetailFragment())
-            }
-            if(it != null) {
+            if(null != it) {
+                findNavController().navigate(NannyListFragmentDirections.actionNannyListFragmentToNannyDetailFragment(it))
                 viewModel.displayNannyDetailsComplete()
             }
         })
