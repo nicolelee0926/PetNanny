@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +34,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
                     android:letterSpacing="0.1"
-                    android:text="到府照顧"
+                    tools:text="到府照顧"
+                    android:text="@{viewModel.nannyData.serviceType}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -47,7 +50,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上"
+                    android:text="@{viewModel.nannyData.serviceName}"
+                    tools:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -62,7 +66,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="幸福訓練師"
+                    tools:text="幸福訓練師"
+                    android:text="@{viewModel.userData.userName}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
@@ -208,7 +213,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName15"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName15679"
                     app:srcCompat="@drawable/ic_order_note" />
 
                 <TextView
@@ -301,6 +306,7 @@
                     android:background="@color/colorGrayLight"
                     android:ems="10"
                     android:gravity="start"
+                    android:text="@={viewModel.orderNote}"
                     android:hint="請輸入保姆需要注意的事項"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
@@ -309,11 +315,12 @@
                     android:paddingBottom="8dp"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView54"
                     app:layout_constraintTop_toBottomOf="@+id/textView54" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName15"
+                    android:id="@+id/editTextTextPersonName15679"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="16dp"
@@ -322,6 +329,7 @@
                     android:ems="10"
                     android:gravity="start"
                     android:hint="請輸入需求地址"
+                    android:text="@={viewModel.orderServiceAddress}"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:paddingHorizontal="8dp"
@@ -342,28 +350,101 @@
                     android:background="#E1E1E1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView133" />
+
+                <TextView
+                    android:id="@+id/textView128"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="單價"
+                    android:textColor="@color/colorGray"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView24"
                     app:layout_constraintTop_toBottomOf="@+id/textView55" />
+
+                <TextView
+                    android:id="@+id/textView131"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:text="$"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView132"
+                    app:layout_constraintEnd_toStartOf="@+id/textView132"
+                    app:layout_constraintTop_toTopOf="@+id/textView132" />
+
+                <TextView
+                    android:id="@+id/textView132"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="1000 "
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView128"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView128" />
+
+                <TextView
+                    android:id="@+id/textView133"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="天數"
+                    android:textColor="@color/colorGray"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView128"
+                    app:layout_constraintTop_toBottomOf="@+id/textView128" />
+
+                <TextView
+                    android:id="@+id/textView135"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="3 "
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView133"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView133" />
 
                 <TextView
                     android:id="@+id/textView57"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="$ 1000 x 3 "
+                    android:layout_marginEnd="4dp"
+                    android:text="x"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imageView24" />
+                    app:layout_constraintBottom_toBottomOf="@+id/textView133"
+                    app:layout_constraintEnd_toStartOf="@+id/textView135"
+                    app:layout_constraintTop_toTopOf="@+id/textView133" />
 
                 <TextView
-                    android:id="@+id/textView58"
+                    android:id="@+id/textView136"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="$ 3000"
+                    android:layout_marginEnd="4dp"
+                    android:text="$"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView137"
+                    app:layout_constraintEnd_toStartOf="@+id/textView137"
+                    app:layout_constraintTop_toTopOf="@+id/textView137" />
+
+                <TextView
+                    android:id="@+id/textView137"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="3000"
+                    android:textColor="@color/colorDeepGray"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/textView56"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView56" />
@@ -373,7 +454,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/bg_button_corner"
@@ -383,7 +464,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView56" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView137" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

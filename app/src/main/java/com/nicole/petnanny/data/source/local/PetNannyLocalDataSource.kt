@@ -47,4 +47,12 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun addDemand(demand: Order): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getMyOrderDataResult(): Result<List<Order>> {
+        TODO("Not yet implemented")
+    }
+
 }

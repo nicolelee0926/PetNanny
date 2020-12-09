@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nannyListFragment -> CurrentFragmentType.HOME_SEARCH_NANNY
                 R.id.loginFragment -> CurrentFragmentType.LOGIN
                 R.id.demandDetailFragment -> CurrentFragmentType.CHAT_ROOM_DEMAND
+                R.id.workDetailFragment -> CurrentFragmentType.CHAT_ROOM_WORK
                 else -> viewModel.currentFragmentType.value
             }
         }

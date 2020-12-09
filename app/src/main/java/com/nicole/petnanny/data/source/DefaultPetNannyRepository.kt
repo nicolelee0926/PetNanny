@@ -48,5 +48,13 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getHomeServiceTypeFilter(serviceType)
     }
 
+    override suspend fun addDemand(demand: Order): Result<Boolean> {
+        return remoteDataSource.addDemand(demand)
+    }
+
+    override suspend fun getMyOrderDataResult(): Result<List<Order>> {
+        return remoteDataSource.getMyOrderDataResult()
+    }
+
 
 }

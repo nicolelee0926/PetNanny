@@ -24,5 +24,9 @@ interface PetNannyRepository {
 
     suspend fun getHomeServiceTypeFilter(serviceType: String): Result<List<Nanny>>
 
+    suspend fun addDemand(demand: Order): Result<Boolean>
+
+    suspend fun getMyOrderDataResult(): Result<List<Order>>
+
 
 }

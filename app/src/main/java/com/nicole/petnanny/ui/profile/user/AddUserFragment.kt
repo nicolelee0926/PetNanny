@@ -39,6 +39,12 @@ class AddUserFragment: Fragment() {
             viewModel.updateUser(it)
         })
 
+        // Preload info if user has already filled in advance
+        viewModel.personalInfo.observe(viewLifecycleOwner, Observer {
+            binding.etUserName.setText(it.userName)
+            binding.etSelfIntroduction.setText(it.selfIntroduction)
+        })
+
         return binding.root
     }
 

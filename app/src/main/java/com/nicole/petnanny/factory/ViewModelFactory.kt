@@ -5,10 +5,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.ui.chat.demand.DemandViewModel
 import com.nicole.petnanny.ui.chat.demand.add.DemandDetailViewModel
+import com.nicole.petnanny.ui.chat.work.WorkViewModel
+import com.nicole.petnanny.ui.chat.work.add.WorkDetailViewModel
 import com.nicole.petnanny.ui.home.HomeViewModel
 import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
 import com.nicole.petnanny.ui.login.LoginViewModel
 import com.nicole.petnanny.ui.main.MainViewModel
+import com.nicole.petnanny.ui.order.nannyorder.MyClientViewModel
+import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
+import com.nicole.petnanny.ui.order.parentorder.MyOrderViewModel
+import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
 import com.nicole.petnanny.ui.profile.ProfileViewModel
 import com.nicole.petnanny.ui.profile.nanny.NannyExamineViewModel
 import com.nicole.petnanny.ui.profile.pet.PetViewModel
@@ -56,14 +62,29 @@ class ViewModelFactory constructor(
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(repository)
 
-                isAssignableFrom(SendDemandViewModel::class.java) ->
-                    SendDemandViewModel(repository)
-
                 isAssignableFrom(DemandViewModel::class.java) ->
                     DemandViewModel(repository)
 
                 isAssignableFrom(DemandDetailViewModel::class.java) ->
                     DemandDetailViewModel(repository)
+
+                isAssignableFrom(WorkDetailViewModel::class.java) ->
+                    WorkDetailViewModel(repository)
+
+                isAssignableFrom(WorkViewModel::class.java) ->
+                    WorkViewModel(repository)
+
+                isAssignableFrom(MyOrderViewModel::class.java) ->
+                    MyOrderViewModel(repository)
+
+                isAssignableFrom(MyClientViewModel::class.java) ->
+                    MyClientViewModel(repository)
+
+                isAssignableFrom(MyOrderDetailViewModel::class.java) ->
+                    MyOrderDetailViewModel(repository)
+
+                isAssignableFrom(MyClientDetailViewModel::class.java) ->
+                    MyClientDetailViewModel(repository)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

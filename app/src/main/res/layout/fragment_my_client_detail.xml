@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel" />
+            type="com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,7 +95,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
                         android:letterSpacing="0.1"
                         android:text="到府照顧"
@@ -103,14 +102,12 @@
                         android:textSize="17sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/textView49"
-                        app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/textView49"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上"
@@ -119,19 +116,18 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintStart_toStartOf="@+id/textView48"
                         app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
                     <TextView
                         android:id="@+id/textView50"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="幸福訓練師"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintStart_toStartOf="@+id/textView49"
                         app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
                     <TextView
@@ -172,18 +168,31 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_cityName5"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
+                    <TextView
+                        android:id="@+id/textView134"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        tools:text="愛寶媽咪"
+                        android:textColor="@color/colorDeepGray"
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in"
+                        app:layout_constraintVertical_bias="0.476" />
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/btn_google_sigh_in"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         app:cardCornerRadius="50dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView50"
-                        app:layout_constraintEnd_toStartOf="@+id/textView33"
+                        app:layout_constraintBottom_toTopOf="@+id/textView48"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView48">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/imageView_pet"
@@ -470,42 +479,40 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
                     <Button
-                        android:id="@+id/btn_send_demand6"
+                        android:id="@+id/btn_send_demand2"
+                        android:layout_width="160dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/bg_button_corner"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="完成"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout563" />
+
+                    <Button
+                        android:id="@+id/btn_send_demand4"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_button_corner"
                         android:ellipsize="end"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="確認完成服務"
+                        android:text="服務完成"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btn_send_demand5" />
-
-                    <Button
-                        android:id="@+id/btn_send_demand5"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@drawable/bg_button_corner"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="完成付款"
-                        android:textSize="13sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout563" />
+                        app:layout_constraintTop_toBottomOf="@+id/btn_send_demand2" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout56"
@@ -520,7 +527,7 @@
                             android:id="@+id/textView1076"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="等待付款"
+                            android:text="付款完成"
                             android:textColor="@color/colorDeepGray"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -551,7 +558,7 @@
                             android:id="@+id/textView107"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="等待保姆同意"
+                            android:text="等待接受"
                             android:textColor="@color/colorDeepGray"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -600,6 +607,26 @@
                             app:srcCompat="@drawable/ic_status_wait" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/tv_cityName52"
+                        android:elevation="10dp"
+                        android:layout_width="160dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/but_reject"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="拒絕"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:textSize="13sp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_send_demand2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout563" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

@@ -44,18 +44,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView37"
+            android:layout_width="18dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView39"
+            app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+            app:srcCompat="@drawable/ic_pet3" />
+
+        <ImageView
+            android:id="@+id/imageView39"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+            app:layout_constraintTop_toTopOf="@+id/textView12"
+            app:srcCompat="@drawable/ic_pet1" />
+
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
+            android:text="@{data.petName}"
             android:textColor="@color/colorDeepGray"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@{data.petName}"
             app:layout_constraintBottom_toTopOf="@+id/textView12"
-            app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+            app:layout_constraintStart_toEndOf="@+id/imageView37"
             app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in"
             tools:text="Oreo" />
 
@@ -67,7 +86,7 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/colorDeepGray"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
+            app:layout_constraintStart_toEndOf="@+id/imageView39"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             app:petAge="@{data.petAge}"
             tools:text="7歲" />
@@ -76,39 +95,26 @@
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorDeepGray"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
             android:text="@{data.gender}"
-            tools:text="母" />
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:textColor="@color/colorDeepGray"
             android:textSize="18sp"
-            android:text="@{data.petFigure}"
-            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintStart_toEndOf="@+id/textView123"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
-            tools:text="小型" />
+            tools:text="母" />
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:text="@{data.petVariety}"
             android:textColor="@color/colorDeepGray"
             android:textSize="18sp"
-            android:text="@{data.petVariety}"
-            app:layout_constraintStart_toEndOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintBottom_toBottomOf="@+id/textView124"
+            app:layout_constraintStart_toEndOf="@+id/textView124"
+            app:layout_constraintTop_toTopOf="@+id/textView124"
             tools:text="貴賓" />
 
         <TextView
@@ -116,12 +122,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{data.petIntroduction}"
             android:textColor="@color/colorDeepGray"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
-            tools:text="身體很健康，有定期打疫苗"
-            android:text="@{data.petIntroduction}"/>
+            tools:text="身體很健康，有定期打疫苗" />
+
+        <TextView
+            android:id="@+id/textView123"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="，"
+            android:textColor="@color/colorDeepGray"
+            app:layout_constraintBottom_toBottomOf="@+id/textView12"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView124"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="，"
+            android:textColor="@color/colorDeepGray"
+            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView14" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

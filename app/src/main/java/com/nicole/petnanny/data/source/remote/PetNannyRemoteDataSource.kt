@@ -1,6 +1,7 @@
 package com.nicole.petnanny.data.source.remote
 
 import android.util.Log
+import com.google.api.LogDescriptor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
@@ -16,6 +17,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
     private const val PATH_PET = "Pet"
     private const val PATH_NANNY = "Nanny"
     private const val PATH_USER = "User"
+    private const val PATH_ORDER = "Order"
 
     override suspend fun addPet(pet: Pet): Result<Boolean> = suspendCoroutine { continuation ->
         val Pet = FirebaseFirestore.getInstance().collection(PATH_PET)
@@ -142,14 +144,13 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
     override suspend fun updateUser(user: User): Result<Boolean> =
         suspendCoroutine { continuation ->
 
-
             FirebaseFirestore.getInstance().collection(PATH_USER)
                 .document("${UserManager.user.value?.userEmail}")
-                .set(user)
+                    .update("selfIntroduction", user.selfIntroduction,
+                            "userName", user.userName)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Log.d("addUser123", "addUser: $user")
-
 
                         continuation.resume(Result.Success(true))
                     } else {
@@ -229,25 +230,23 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
         suspendCoroutine { continuation ->
             var userCollection = FirebaseFirestore.getInstance().collection(PATH_USER)
             var document = userCollection.document(user.userEmail!!)
+//            user.userEmail = document.id
 
-            document
-                .set(user)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d("addUserToFirebase", "addUserToFirebase: $user")
-
-                        continuation.resume(Result.Success(true))
-                    } else {
-                        task.exception?.let {
-
-                            Log.d(
-                                "add_user_exception",
-                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                            )
-                            continuation.resume(Result.Error(it))
-                            return@addOnCompleteListener
+            userCollection.whereEqualTo("userEmail", user.userEmail)
+                .get()
+                .addOnSuccessListener { result ->
+                    if (result.isEmpty) {
+                        document.set(user).
+                            addOnSuccessListener {
+                                Log.d("DocumentSnapshot", "add with userEmail: $userCollection")
                         }
-                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                            .addOnFailureListener { e ->
+                                Log.d("DocumentSnapshot", "Error adding document $e")
+                            }
+                    } else {
+                        for (myDocument in result) {
+                            Log.d("Already initialized", "$result")
+                        }
                     }
                 }
         }
@@ -319,5 +318,64 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     }
                 }
         }
+
+    override suspend fun addDemand(demand: Order): Result<Boolean> = suspendCoroutine { continuation ->
+        val orderCollection = FirebaseFirestore.getInstance().collection(PATH_ORDER)
+        val document = orderCollection.document()
+
+        demand.orderID = document.id
+
+        document
+            .set(demand)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("addDemand", "addDemand: $demand")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "add_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun getMyOrderDataResult(): Result<List<Order>> = suspendCoroutine { continuation ->
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Order>()
+                    for (document in task.result!!) {
+                        Log.d("resultMyOrder", "${document.id} => ${document.data}")
+
+                        val myOrder = document.toObject(Order::class.java)
+                        list.add(myOrder)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "get_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
 
 }

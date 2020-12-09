@@ -41,9 +41,31 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@drawable/iv_home_s3" />
+                app:imageUrl="@{UserManager.INSTANCE.user.photo}" />
 
         </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/et_userName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorGrayLight"
+            android:ems="10"
+            android:gravity="start"
+            android:hint="修改顯示名稱"
+            android:inputType="textMultiLine"
+            android:paddingHorizontal="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@={viewModel.userName}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView75" />
 
         <TextView
             android:id="@+id/textView74"
@@ -55,7 +77,7 @@
             android:textColor="@color/colorGray"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoCardView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/editTextTextPersonName6"
@@ -64,16 +86,29 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
-            android:textSize="16sp"
-            android:textColor="@color/colorDeepGray"
             android:text="@{UserManager.INSTANCE.user.userEmail}"
-            tools:text="nicolelee800926@gamil.com"
+            android:textColor="@color/colorDeepGray"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView74" />
+            app:layout_constraintTop_toBottomOf="@+id/textView74"
+            tools:text="nicolelee800926@gamil.com" />
 
         <TextView
             android:id="@+id/textView75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="顯示名稱"
+            android:textColor="@color/colorGray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+
+        <TextView
+            android:id="@+id/textView138"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -82,10 +117,10 @@
             android:textColor="@color/colorGray"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+            app:layout_constraintTop_toBottomOf="@+id/et_userName" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName9"
+            android:id="@+id/et_selfIntroduction"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -99,12 +134,25 @@
             android:paddingHorizontal="8dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:textSize="14sp"
             android:text="@={viewModel.userIntroduction}"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView75" />
+            app:layout_constraintTop_toBottomOf="@+id/textView138" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{UserManager.INSTANCE.user.userName}"
+            android:textColor="@color/colorDeepGray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photoCardView"
+            tools:text="Nicole" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

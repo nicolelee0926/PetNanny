@@ -56,7 +56,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
     private fun getFakeChatListData() {
         val user1 = User(
-               userName = "美惠姐")
+               userName = "小姐")
 
 //        val serviceType = Nanny(
 //                serviceType = "到府美容")

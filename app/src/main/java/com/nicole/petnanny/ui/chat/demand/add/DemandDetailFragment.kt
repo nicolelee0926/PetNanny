@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import com.nicole.petnanny.data.Message
 import com.nicole.petnanny.data.User
 import com.nicole.petnanny.data.userTextList
 import com.nicole.petnanny.databinding.FragmentDemandChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatRoomDetailAdapter
-import com.nicole.petnanny.ui.chat.demand.DemandAdapter
 
 class DemandDetailFragment: Fragment() {
 

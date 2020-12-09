@@ -16,7 +16,7 @@ class DemandAdapter(val viewModel: DemandViewModel) : ListAdapter<Message, Deman
 
     override fun onBindViewHolder(holder: DemandViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, viewModel)
+        holder.bind(item,viewModel)
     }
 
     class DemandViewHolder  private constructor(private val binding: ItemChatDemandBinding) : RecyclerView.ViewHolder(binding.root) {
