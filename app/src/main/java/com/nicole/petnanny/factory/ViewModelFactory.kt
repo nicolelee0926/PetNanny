@@ -80,9 +80,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(MyClientViewModel::class.java) ->
                     MyClientViewModel(repository)
 
-                isAssignableFrom(MyOrderDetailViewModel::class.java) ->
-                    MyOrderDetailViewModel(repository)
-
                 isAssignableFrom(MyClientDetailViewModel::class.java) ->
                     MyClientDetailViewModel(repository)
                 else ->

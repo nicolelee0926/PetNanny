@@ -87,8 +87,6 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             val Nanny = FirebaseFirestore.getInstance().collection(PATH_NANNY)
             val document = Nanny.document()
 
-            service.nannyID = document.id
-
             document
                 .set(service)
                 .addOnCompleteListener { task ->
@@ -360,6 +358,36 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                         val myOrder = document.toObject(Order::class.java)
                         list.add(myOrder)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "get_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun getMyClientDataResult(): Result<List<Order>> = suspendCoroutine { continuation ->
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Order>()
+                    for (document in task.result!!) {
+                        Log.d("resultMyClient", "${document.id} => ${document.data}")
+
+                        val myClient = document.toObject(Order::class.java)
+                        list.add(myClient)
                     }
                     continuation.resume(Result.Success(list))
                 } else {

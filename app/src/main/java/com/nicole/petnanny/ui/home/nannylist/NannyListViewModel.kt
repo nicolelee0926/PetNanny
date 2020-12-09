@@ -66,10 +66,6 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
 
 
 
-    fun displayNannyDetailsComplete () {
-        _navigationToNannyDetail.value = null
-    }
-
     fun getHomeServiceTypeFilter(serviceType:String) {
         coroutineScope.launch {
 
@@ -104,6 +100,8 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
         }
     }
 
-
+    fun displayNannyDetailsComplete () {
+        _navigationToNannyDetail.value = null
+    }
 
 }

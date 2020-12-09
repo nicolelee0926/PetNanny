@@ -28,5 +28,7 @@ interface PetNannyRepository {
 
     suspend fun getMyOrderDataResult(): Result<List<Order>>
 
+    suspend fun getMyClientDataResult(): Result<List<Order>>
+
 
 }

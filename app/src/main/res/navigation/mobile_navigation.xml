@@ -213,6 +213,10 @@
         android:id="@+id/myOrderDetailFragment"
         android:name="com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailFragment"
         android:label="MyOrderDetailFragment"
-        tools:layout="@layout/fragment_my_order_detail"/><action android:id="@+id/action_global_navigation_order" app:destination="@id/navigation_order"/>
+        tools:layout="@layout/fragment_my_order_detail">
+        <argument
+            android:name="myOrder"
+            app:argType="com.nicole.petnanny.data.Order" />
+    </fragment><action android:id="@+id/action_global_navigation_order" app:destination="@id/navigation_order"/>
 
 </navigation>

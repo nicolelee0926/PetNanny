@@ -4,12 +4,15 @@ import androidx.fragment.app.Fragment
 import app.appworks.school.publisher.factory.ViewModelFactory
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.data.Nanny
+import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.User
+import com.nicole.petnanny.factory.MyOrderDetailViewModelFactory
 import com.nicole.petnanny.factory.NannyDetailViewModelFactory
 import com.nicole.petnanny.factory.NannyListViewModelFactory
 import com.nicole.petnanny.factory.SendDemandViewModelFactory
 import com.nicole.petnanny.ui.home.nannylist.NannyListViewModel
 import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
+import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
 
 
 fun Fragment.getVmFactory(): ViewModelFactory {
@@ -30,5 +33,10 @@ fun Fragment.getVmFactory(arguments: Nanny): NannyDetailViewModelFactory {
 fun Fragment.getVmFactory(argumentsNanny: Nanny, argumentsUser: User): SendDemandViewModelFactory {
     val repository = (requireContext().applicationContext as PetNannyApplication).repository
     return SendDemandViewModelFactory(repository, argumentsNanny,argumentsUser)
+}
+
+fun Fragment.getVmFactory(argumentsMyOrder: Order): MyOrderDetailViewModelFactory {
+    val repository = (requireContext().applicationContext as PetNannyApplication).repository
+    return MyOrderDetailViewModelFactory(repository, argumentsMyOrder)
 }
 

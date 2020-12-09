@@ -21,8 +21,10 @@ class MyOrderViewModel(private val repository: PetNannyRepository): ViewModel() 
     val myOrderList: LiveData<List<Order>>
         get() = _myOrderList
 
-    // to nannyListAdapter viewHolder button set value 用
-    var navigationToMyOrderDetail =  MutableLiveData<Boolean>()
+    // to myOrderAdapter viewHolder button set value 用
+    val _navigationToMyOrderDetail = MutableLiveData<Order>()
+    val navigationToMyOrderDetail: LiveData<Order>
+        get() = _navigationToMyOrderDetail
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -56,7 +58,7 @@ class MyOrderViewModel(private val repository: PetNannyRepository): ViewModel() 
 
     init {
         getMyOrderDataResult()
-//        navigationToMyOrderDetail.value = null
+        _navigationToMyOrderDetail.value = null
     }
 
     fun getMyOrderDataResult() {
@@ -96,7 +98,7 @@ class MyOrderViewModel(private val repository: PetNannyRepository): ViewModel() 
 
 
     fun displayMyOrderDetailsComplete () {
-        navigationToMyOrderDetail.value = null
+        _navigationToMyOrderDetail.value = null
     }
 
 

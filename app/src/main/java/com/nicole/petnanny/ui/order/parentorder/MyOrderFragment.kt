@@ -38,15 +38,13 @@ class MyOrderFragment(): Fragment() {
             myOrderAdapter.submitList(it)
         })
 
-//        //        navigate到MyOrder detail頁
-//        viewModel.navigationToMyOrderDetail.observe(viewLifecycleOwner, Observer {
-//            if(it == true) {
-//                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyOrderDetailFragment())
-//            }
-//            if (it != null) {
-//                viewModel.displayMyOrderDetailsComplete()
-//            }
-//        })
+        //        navigate到MyOrder detail頁
+        viewModel.navigationToMyOrderDetail.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyOrderDetailFragment(it))
+                viewModel.displayMyOrderDetailsComplete()
+            }
+        })
 
         return binding.root
     }

@@ -7,7 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Order(
     var address : String? = "",
     var note : String? = "",
-    var nannyID :String? = "",
     var orderEndTime : Long? = -1,
     var orderID : String? = "",
     var orderStartTime : Long? = -1,

@@ -9,8 +9,6 @@ data class User(
     var photo : String? = "",
     var userName : String? = "",
     var verification : Boolean? = null,
-    var nannyID : String? = "",
-    var userID : String? ="",
     var userEmail : String? ="",
     var petID: String?= ""
 ) : Parcelable

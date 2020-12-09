@@ -56,5 +56,9 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getMyOrderDataResult()
     }
 
+    override suspend fun getMyClientDataResult(): Result<List<Order>> {
+        return remoteDataSource.getMyClientDataResult()
+    }
+
 
 }

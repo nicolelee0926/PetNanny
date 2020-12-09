@@ -27,4 +27,6 @@ interface PetNannyDataSource {
     suspend fun addDemand(demand: Order): Result<Boolean>
 
     suspend fun getMyOrderDataResult(): Result<List<Order>>
+
+    suspend fun getMyClientDataResult(): Result<List<Order>>
 }

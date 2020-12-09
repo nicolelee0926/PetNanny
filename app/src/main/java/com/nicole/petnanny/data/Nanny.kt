@@ -13,7 +13,6 @@ data class Nanny(
     var acceptPetType : String? = "",
     var license : String? = "",
     var nannyBirthday : String? = "",
-    var nannyID : String? = "",
     var nannyIDPhoto : String? = "",
     var nannyIDNumber : String? = "",
     var nannyIntroduction : String? = "",

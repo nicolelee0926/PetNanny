@@ -25,7 +25,7 @@ class MyOrderAdapter(val viewModel: MyOrderViewModel) : ListAdapter<Order, MyOrd
         fun bind(item : Order, viewModel: MyOrderViewModel) {
             binding.data = item
             binding.root.setOnClickListener {
-                viewModel.navigationToMyOrderDetail.value = true
+                viewModel._navigationToMyOrderDetail.value = item
             }
             binding.executePendingBindings()
         }
