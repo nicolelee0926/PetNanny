@@ -90,7 +90,9 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 serviceArea = selectedLocation.value.toString(),
                 acceptPetType = selectedAcceptPet.value.toString(),
                 userEmail = UserManager.user.value?.userEmail,
-                price = servicePrice.value.toString()
+                price = servicePrice.value.toString(),
+                nannyName = UserManager.user.value?.userName,
+                nannyPhoto = UserManager.user.value?.photo.toString()
             )
     }
 

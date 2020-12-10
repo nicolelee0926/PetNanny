@@ -1,9 +1,11 @@
 package com.nicole.petnanny.ui.home.senddemand
 
+import android.icu.util.Calendar
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.data.Nanny
@@ -42,8 +44,6 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
 //    var orderEndTime = MutableLiveData<String>().apply { value = "" }
     var orderServiceAddress = MutableLiveData<String>().apply { value = "" }
     var orderNote = MutableLiveData<String>().apply { value = "" }
-//    var nannyServiceDetail = MutableLiveData<Nanny>()
-//    var userInfo = MutableLiveData<User>()
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -71,10 +71,7 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+
 
     fun addDemand(demand: Order) {
         Log.d("addPet", "hate")
@@ -105,6 +102,7 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
     }
 
 
+
     fun sendDemand() {
         setDemandData.value = Order(
             petID= orderPet.value.toString(),
@@ -119,7 +117,10 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
     }
 
 
-
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 
 
 }

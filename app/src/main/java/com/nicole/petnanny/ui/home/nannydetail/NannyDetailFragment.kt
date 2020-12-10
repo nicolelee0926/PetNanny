@@ -30,7 +30,6 @@ class NannyDetailFragment:Fragment() {
         binding.btnContactNanny.setOnClickListener {
             Log.d("***********", "${viewModel.navigateToDemandNannyData.value}, ${viewModel.user.value}")
                 findNavController().navigate(NannyDetailFragmentDirections.actionNannyDetailFragmentToSendDemandFragment(viewModel.navigateToDemandNannyData.value!!, viewModel.user.value!!))
-
         }
 
         return binding.root

@@ -54,3 +54,5 @@ fun TextView.bindGetServicePrice(price: String) {
 
 
 
+
+

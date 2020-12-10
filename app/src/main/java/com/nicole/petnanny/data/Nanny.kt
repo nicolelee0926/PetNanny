@@ -20,12 +20,8 @@ data class Nanny(
     var nannyPetExperience : String? = "",
     var price : String? = "",
     var serviceArea : String? = "",
-    var nannyPhone : String? = "",
+    var nannyPhoto : String? = "",
     var nannySelfPhoto : String? = "",
     var userEmail: String? = ""
 ) : Parcelable
 
-//@Parcelize
-//data class ListNanny(
-//    var nannyList: List<Nanny>? = null
-//): Parcelable
