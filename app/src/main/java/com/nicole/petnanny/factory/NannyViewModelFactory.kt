@@ -6,11 +6,10 @@ import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.ui.home.nannydetail.NannyDetailViewModel
 import com.nicole.petnanny.ui.home.nannylist.NannyListViewModel
-
-
+import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
 
 @Suppress("UNCHECKED_CAST")
-class NannyDetailViewModelFactory(
+class NannyViewModelFactory(
     private val repository: PetNannyRepository,
     private val arguments: Nanny
 ) : ViewModelProvider.Factory {
@@ -20,6 +19,9 @@ class NannyDetailViewModelFactory(
             when {
                 isAssignableFrom(NannyDetailViewModel::class.java) ->
                     NannyDetailViewModel(repository, arguments)
+
+                isAssignableFrom(SendDemandViewModel::class.java) ->
+                    SendDemandViewModel(repository, arguments)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

@@ -67,7 +67,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     tools:text="幸福訓練師"
-                    android:text="@{viewModel.userData.userName}"
+                    android:text="@{viewModel.nannyData.nannyName}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
@@ -92,7 +92,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/iv_home_s2" />
+                        app:imageUrl="@{viewModel.nannyData.nannyPhoto}"
+                        tools:src="@drawable/iv_home_s2" />
                 </androidx.cardview.widget.CardView>
 
                 <View
@@ -301,18 +302,18 @@
                     android:id="@+id/editTextTextPersonName"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="24dp"
                     android:background="@color/colorGrayLight"
                     android:ems="10"
                     android:gravity="start"
-                    android:text="@={viewModel.orderNote}"
                     android:hint="請輸入保姆需要注意的事項"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:paddingHorizontal="8dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
+                    android:text="@={viewModel.orderNote}"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

@@ -39,7 +39,6 @@ class MyClientFragment(): Fragment() {
         binding.rvOrderMyClient.adapter = myClientAdapter
 
         viewModel.myClientList.observe(viewLifecycleOwner, Observer {
-//            if (verification)
             myClientAdapter.submitList(it)
         })
 
@@ -48,7 +47,7 @@ class MyClientFragment(): Fragment() {
 //            if(it == true) {
 //                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment())
 //                viewModel.displayMyClientDetailsComplete()
-//            }
+//            }x
 //            if (it != null) {
 //                viewModel.displayMyClientDetailsComplete()
 //            }
@@ -62,7 +61,7 @@ class MyClientFragment(): Fragment() {
         Log.d("!!!!", "!!! ");
         UserManager.user.value?.userEmail?.let {
             Log.d("!!!", "$it ")
-            viewModel.getMyClientDataResult()
+            viewModel.getMyClientDataResult(it)
         }
     }
 }

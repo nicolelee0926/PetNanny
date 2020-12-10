@@ -21,5 +21,8 @@ data class Order(
     var userCheckedStatus: Boolean? = false,
     var nannyRejectStatus: Boolean? = false,
     var nannyServiceDetail: Nanny? = null,
-    var userInfo: User? = null
+    var userInfo: User? = null,
+    var nannyEmail:String? = "",
+    var demandDay: String? = "",
+    var totalPrice: String? = "",
 ) : Parcelable

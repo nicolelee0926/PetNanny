@@ -149,10 +149,10 @@
             android:id="@+id/action_nannyDetailFragment_to_sendDemandFragment"
             app:destination="@id/sendDemandFragment" />
         <argument
-            android:name="nannyDetail"
+            android:name="Nanny"
             app:argType="com.nicole.petnanny.data.Nanny" />
     </fragment>
-    <fragment
+     <fragment
         android:id="@+id/sendDemandFragment"
         android:name="com.nicole.petnanny.ui.home.senddemand.SendDemandFragment"
         android:label="SendDemandFragment"
@@ -160,9 +160,6 @@
         <argument
             android:name="Nanny"
             app:argType="com.nicole.petnanny.data.Nanny" />
-        <argument
-            android:name="User"
-            app:argType="com.nicole.petnanny.data.User" />
     </fragment>
     <fragment
         android:id="@+id/demandFragment"

@@ -133,7 +133,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         tools:text="幸福訓練師"
-                        android:text="@{viewModel.myOrderDetail.userInfo.userName}"
+                        android:text="@{viewModel.myOrderDetail.nannyServiceDetail.nannyName}"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
@@ -196,7 +196,8 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/iv_home_s2" />
+                            app:imageUrl="@{viewModel.myOrderDetail.nannyServiceDetail.nannyPhoto}"
+                            tools:src="@drawable/iv_home_s2" />
                     </androidx.cardview.widget.CardView>
 
                     <View

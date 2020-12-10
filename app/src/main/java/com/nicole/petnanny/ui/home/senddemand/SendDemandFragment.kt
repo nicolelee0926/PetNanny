@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat
 
 class SendDemandFragment: Fragment() {
 
-    private val viewModel by viewModels<SendDemandViewModel> { getVmFactory(SendDemandFragmentArgs.fromBundle(requireArguments()).nanny, SendDemandFragmentArgs.fromBundle(requireArguments()).user)  }
+    private val viewModel by viewModels<SendDemandViewModel> { getVmFactory(SendDemandFragmentArgs.fromBundle(requireArguments()).nanny) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +65,7 @@ class SendDemandFragment: Fragment() {
         return binding.root
     }
 
+//    計算總天數
     fun calculationDay(time: Pair<Long, Long>, binding: FragmentSendDemandBinding) {
         val startDay = time.first
         val endDay = time.second
@@ -76,7 +77,12 @@ class SendDemandFragment: Fragment() {
         }
     }
 
+//    計算總價錢
+    fun calculationTotalPrice() {
+
+    }
 
 
 
+// TODO 存livedata的天數和總價 綁定xml
 }

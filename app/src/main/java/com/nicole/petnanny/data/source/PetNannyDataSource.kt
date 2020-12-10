@@ -28,5 +28,5 @@ interface PetNannyDataSource {
 
     suspend fun getMyOrderDataResult(): Result<List<Order>>
 
-    suspend fun getMyClientDataResult(): Result<List<Order>>
+    suspend fun getMyClientDataResult(nannyEmail : String): Result<List<Order>>
 }

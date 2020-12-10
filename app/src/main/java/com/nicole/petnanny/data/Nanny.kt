@@ -21,6 +21,7 @@ data class Nanny(
     var price : String? = "",
     var serviceArea : String? = "",
     var nannyPhoto : String? = "",
+    var nannyPhone: String?= "",
     var nannySelfPhoto : String? = "",
     var userEmail: String? = ""
 ) : Parcelable

@@ -1,5 +1,6 @@
 package com.nicole.petnanny.ui.order.parentorder
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +11,7 @@ import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -59,6 +61,7 @@ class MyOrderViewModel(private val repository: PetNannyRepository): ViewModel() 
     init {
         getMyOrderDataResult()
         _navigationToMyOrderDetail.value = null
+        getUserResult(UserManager.user.value?.userEmail)
     }
 
     fun getMyOrderDataResult() {
@@ -94,6 +97,45 @@ class MyOrderViewModel(private val repository: PetNannyRepository): ViewModel() 
             _refreshStatus.value = false
         }
     }
+
+//    get user data to save userManager for load myClient order
+fun getUserResult(userEmail: String?) {
+    coroutineScope.launch {
+
+        _status.value = LoadApiStatus.LOADING
+
+        userEmail?.let{
+            val result = repository.getUser(it)
+            Log.d("@@@@", "@@${result} ")
+
+            UserManager.user.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    Log.d("@@@@", "@@${result.data} ")
+                    result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
+    }
+}
+
 
 
 

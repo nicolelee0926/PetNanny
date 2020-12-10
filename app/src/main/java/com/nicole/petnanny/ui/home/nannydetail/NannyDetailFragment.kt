@@ -7,17 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentHomeNannyDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
-import com.nicole.petnanny.ui.home.nannylist.NannyListFragmentDirections
-import com.nicole.petnanny.ui.profile.ProfileFragmentDirections
-import kotlin.math.log
 
 class NannyDetailFragment:Fragment() {
 
-    private val viewModel by viewModels<NannyDetailViewModel> { getVmFactory(NannyDetailFragmentArgs.fromBundle(requireArguments()).nannyDetail) }
+    private val viewModel by viewModels<NannyDetailViewModel> { getVmFactory(NannyDetailFragmentArgs.fromBundle(requireArguments()).nanny) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +24,8 @@ class NannyDetailFragment:Fragment() {
         binding.viewModel = viewModel
 
         binding.btnContactNanny.setOnClickListener {
-            Log.d("***********", "${viewModel.navigateToDemandNannyData.value}, ${viewModel.user.value}")
-                findNavController().navigate(NannyDetailFragmentDirections.actionNannyDetailFragmentToSendDemandFragment(viewModel.navigateToDemandNannyData.value!!, viewModel.user.value!!))
+            Log.d("***********", "${viewModel.navigateToDemandNannyData.value}")
+                findNavController().navigate(NannyDetailFragmentDirections.actionNannyDetailFragmentToSendDemandFragment(viewModel.navigateToDemandNannyData.value!!))
         }
 
         return binding.root

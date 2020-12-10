@@ -54,7 +54,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:singleLine="true"
-                        android:text="@{viewModel.user.userName}"
+                        android:text="@{viewModel.nannyDetail.nannyName}"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         tools:text="幸福訓練師" />
@@ -94,7 +94,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
-                        app:imageUrl="@{viewModel.nannyDetail.nannyPhone}"
+                        app:imageUrl="@{viewModel.nannyDetail.nannyPhoto}"
                         tools:src="@drawable/iv_home_s2" />
                 </androidx.cardview.widget.CardView>
 
@@ -120,8 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@{viewModel.user.userName}"
                     tools:text="幸福訓練師"
+                    android:text="@{viewModel.nannyDetail.nannyName}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"

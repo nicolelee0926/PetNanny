@@ -375,10 +375,10 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             }
     }
 
-    override suspend fun getMyClientDataResult(): Result<List<Order>> = suspendCoroutine { continuation ->
+    override suspend fun getMyClientDataResult(nannyEmail : String): Result<List<Order>> = suspendCoroutine { continuation ->
         FirebaseFirestore.getInstance()
             .collection(PATH_ORDER)
-            .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
+            .whereEqualTo("nannyEmail", UserManager.user.value?.userEmail)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

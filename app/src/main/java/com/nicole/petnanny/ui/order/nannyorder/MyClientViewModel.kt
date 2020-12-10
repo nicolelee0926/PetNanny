@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.nicole.petnanny.data.Result
+import com.nicole.petnanny.ui.login.UserManager
 
 class MyClientViewModel(private val repository: PetNannyRepository): ViewModel() {
 
@@ -55,15 +56,21 @@ class MyClientViewModel(private val repository: PetNannyRepository): ViewModel()
 
     init {
 //        navigationToMyClientDetail.value = null
-        getMyClientDataResult()
+        if(UserManager.user.value?.verification == true) {
+//          要傳入自己的email(因為要query自己是保姆的訂單)
+            UserManager.user.value?.userEmail?.let {
+                getMyClientDataResult(it)
+            }
+        }
     }
 
-    fun getMyClientDataResult() {
+//    get myClientOrder時 去query自己的userEmail(存再Order欄位裡的nanny email)
+    fun getMyClientDataResult(nannyEmail : String) {
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            val result = repository.getMyClientDataResult()
+            val result = repository.getMyClientDataResult(nannyEmail)
 
             _myClientList.value = when (result) {
                 is Result.Success -> {
