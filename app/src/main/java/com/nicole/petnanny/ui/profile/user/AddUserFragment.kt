@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.nicole.petnanny.databinding.FragmentProfileAddUserBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.login.UserManager
 import com.nicole.petnanny.ui.main.MainViewModel
 
 class AddUserFragment: Fragment() {

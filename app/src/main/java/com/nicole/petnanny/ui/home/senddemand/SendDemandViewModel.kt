@@ -9,6 +9,7 @@ import com.nicole.petnanny.R
 import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.Result
+import com.nicole.petnanny.data.User
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
 import com.nicole.petnanny.ui.login.UserManager
@@ -32,12 +33,16 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
     }
 
     var orderPet  = MutableLiveData<String>().apply { value = "" }
-    var orderStartTime = MutableLiveData<Long>().apply { value = -1L }
-    var orderEndTime = MutableLiveData<Long>().apply { value = -1L }
+    var orderStartTime = MutableLiveData<String>()
+    var orderEndTime = MutableLiveData<String>()
     var orderServiceAddress = MutableLiveData<String>().apply { value = "" }
     var orderNote = MutableLiveData<String>().apply { value = "" }
-    var demandDay = MutableLiveData<String>().apply { value = "" }
-    var totalPrice = MutableLiveData<String>().apply { value = "" }
+    var demandDay = MutableLiveData<String>()
+    var totalPrice = MutableLiveData<String>()
+//    用liveData存UserManager下單者的資料進去
+    var userInfo = MutableLiveData<User>()
+        get() = UserManager.user
+
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -100,8 +105,8 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
     fun sendDemand() {
         setDemandData.value = Order(
             petID= orderPet.value.toString(),
-            orderStartTime= orderStartTime.value,
-            orderEndTime = orderEndTime.value,
+            orderStartTime= orderStartTime.value.toString(),
+            orderEndTime = orderEndTime.value.toString(),
             address = orderServiceAddress.value.toString(),
             note = orderNote.value.toString(),
             userEmail = UserManager.user.value?.userEmail,
@@ -109,7 +114,8 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
 //            nannyEmail: 存保姆的email(如果是保姆身份 申請服務時多存一個自己的email在nannyEmail 到時訂單query用)
             nannyEmail = nannyDataArgus.value?.userEmail,
             demandDay = demandDay.value.toString(),
-            totalPrice = totalPrice.value.toString()
+            totalPrice = totalPrice.value.toString(),
+            userInfo = userInfo.value
         )
     }
 

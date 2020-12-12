@@ -406,8 +406,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
-                    tools:text="1"
-                    android:text="1"
+                    tools:text="x 1"
+                    android:text=""
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView133"
@@ -415,36 +415,12 @@
                     app:layout_constraintTop_toTopOf="@+id/textView133" />
 
                 <TextView
-                    android:id="@+id/textView57"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="x"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView133"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_totalDay"
-                    app:layout_constraintTop_toTopOf="@+id/textView133" />
-
-                <TextView
-                    android:id="@+id/textView136"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="$"
-                    android:textColor="@color/colorDeepGray"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView137"
-                    app:layout_constraintEnd_toStartOf="@+id/textView137"
-                    app:layout_constraintTop_toTopOf="@+id/textView137" />
-
-                <TextView
-                    android:id="@+id/textView137"
+                    android:id="@+id/tv_total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
-                    android:text="3000"
+                    android:text=""
+                    tools:text="x 3000"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -467,7 +443,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView137" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_price" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

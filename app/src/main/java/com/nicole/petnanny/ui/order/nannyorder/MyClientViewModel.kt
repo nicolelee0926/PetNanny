@@ -22,7 +22,9 @@ class MyClientViewModel(private val repository: PetNannyRepository): ViewModel()
         get() = _myClientList
 
     // to myClientListAdapter viewHolder button set value 用
-    var navigationToMyClientDetail = MutableLiveData<Boolean>()
+    var _navigationToMyClientDetail = MutableLiveData<Order>()
+    val navigationToMyClientDetail: LiveData<Order>
+        get() = _navigationToMyClientDetail
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -102,7 +104,7 @@ class MyClientViewModel(private val repository: PetNannyRepository): ViewModel()
 
 
     fun displayMyClientDetailsComplete () {
-        navigationToMyClientDetail.value = null
+        _navigationToMyClientDetail.value = null
     }
 
 }

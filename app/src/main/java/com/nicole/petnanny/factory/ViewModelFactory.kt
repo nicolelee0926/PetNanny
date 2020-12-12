@@ -80,8 +80,7 @@ class ViewModelFactory constructor(
                 isAssignableFrom(MyClientViewModel::class.java) ->
                     MyClientViewModel(repository)
 
-                isAssignableFrom(MyClientDetailViewModel::class.java) ->
-                    MyClientDetailViewModel(repository)
+
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

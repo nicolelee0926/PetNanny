@@ -57,8 +57,10 @@ class SendDemandFragment: Fragment() {
 
         picker.addOnNegativeButtonClickListener { picker.dismiss() }
         picker.addOnPositiveButtonClickListener {
-            binding.btnStartTime.setText("${SimpleDateFormat("yyyy.MM.dd").format(it.first)}")
-            binding.btnEndTime.setText("${SimpleDateFormat("yyyy.MM.dd").format(it.second)}")
+            binding.btnStartTime.text = ("${SimpleDateFormat("yyyy.MM.dd").format(it.first)}")
+            viewModel.orderStartTime.value = binding.btnStartTime.text.toString()
+            binding.btnEndTime.text = ("${SimpleDateFormat("yyyy.MM.dd").format(it.second)}")
+            viewModel.orderEndTime.value = binding.btnEndTime.text.toString()
             calculationDay(it, binding)
         }
 
@@ -71,16 +73,27 @@ class SendDemandFragment: Fragment() {
         val endDay = time.second
         startDay?.let {
             endDay?.let {
-                val totalTime = (endDay - startDay) / (60*60*1000*24)
-                binding.tvTotalDay.setText("$totalTime")
+                val totalTime = ((endDay - startDay ) / (60*60*1000*24)) +1
+                binding.tvTotalDay.text = "x $totalTime"
+                viewModel.demandDay.value = binding.tvTotalDay.text.toString()
+
+//                計算單價*天數等於總價
+                val price = viewModel.nannyDataArgus.value?.price?.toLong()
+                price?.let {
+                    val totalPrice = totalTime * price
+                    binding.tvTotalPrice.text = "$ $totalPrice"
+                    viewModel.totalPrice.value = binding.tvTotalPrice.text.toString()
+                }
             }
         }
     }
 
-//    計算總價錢
-    fun calculationTotalPrice() {
-
-    }
+////    計算總價錢
+//    fun calculationTotalPrice(binding: FragmentSendDemandBinding) {
+//        val price = viewModel.nannyDataArgus.value?.price?.toLong()
+//        val demandDay =
+//        viewModel.nannyDataArgus.value = binding.tvTotalPrice.text.toString()
+//    }
 
 
 

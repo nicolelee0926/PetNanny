@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.nicole.petnanny.data.*
+import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
+import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
 
 class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource,
                                 private val localDataSource: PetNannyDataSource
@@ -58,6 +60,18 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
 
     override suspend fun getMyClientDataResult(nannyEmail : String): Result<List<Order>> {
         return remoteDataSource.getMyClientDataResult(nannyEmail)
+    }
+
+    override suspend fun updateNannyAcceptStatus(orderID: String, viewModel: MyClientDetailViewModel): Result<Boolean> {
+        return remoteDataSource.updateNannyAcceptStatus(orderID,viewModel)
+    }
+
+    override suspend fun getMyOrderNannyAcceptStatus(orderID: String) : Result<Boolean> {
+        return remoteDataSource.getMyOrderNannyAcceptStatus(orderID)
+    }
+
+    override suspend fun updateParentCheckoutCompleteStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> {
+        return remoteDataSource.updateParentCheckoutCompleteStatus(orderID,viewModel)
     }
 
 

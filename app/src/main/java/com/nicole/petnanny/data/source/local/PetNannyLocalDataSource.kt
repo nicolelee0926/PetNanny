@@ -6,6 +6,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.nicole.petnanny.data.*
 import com.nicole.petnanny.data.source.PetNannyDataSource
+import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
+import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
 
 class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
     override suspend fun addPet(pet: Pet): Result<Boolean>{
@@ -58,5 +60,21 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
     override suspend fun getMyClientDataResult(nannyEmail : String): Result<List<Order>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun updateNannyAcceptStatus(orderID: String,viewModel: MyClientDetailViewModel): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getMyOrderNannyAcceptStatus(orderID: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateParentCheckoutCompleteStatus(
+        orderID: String,
+        viewModel: MyOrderDetailViewModel
+    ): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
 
 }

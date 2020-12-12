@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.nicole.petnanny.data.*
+import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
+import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
 
 interface PetNannyDataSource {
 
@@ -29,4 +31,10 @@ interface PetNannyDataSource {
     suspend fun getMyOrderDataResult(): Result<List<Order>>
 
     suspend fun getMyClientDataResult(nannyEmail : String): Result<List<Order>>
+
+    suspend fun updateNannyAcceptStatus(orderID: String, viewModel: MyClientDetailViewModel) : Result<Boolean>
+
+    suspend fun getMyOrderNannyAcceptStatus(orderID: String) : Result<Boolean>
+
+    suspend fun updateParentCheckoutCompleteStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean>
 }

@@ -205,14 +205,18 @@
         android:id="@+id/myClientDetailFragment"
         android:name="com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailFragment"
         android:label="MyClientDetailFragment"
-        tools:layout="@layout/fragment_my_client_detail"/>
+        tools:layout="@layout/fragment_my_client_detail">
+        <argument
+            android:name="order"
+            app:argType="com.nicole.petnanny.data.Order" />
+    </fragment>
     <fragment
         android:id="@+id/myOrderDetailFragment"
         android:name="com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailFragment"
         android:label="MyOrderDetailFragment"
         tools:layout="@layout/fragment_my_order_detail">
         <argument
-            android:name="myOrder"
+            android:name="order"
             app:argType="com.nicole.petnanny.data.Order" />
     </fragment><action android:id="@+id/action_global_navigation_order" app:destination="@id/navigation_order"/>
 

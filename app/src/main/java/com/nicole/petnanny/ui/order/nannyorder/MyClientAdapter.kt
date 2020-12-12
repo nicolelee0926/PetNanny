@@ -26,7 +26,7 @@ class MyClientAdapter(val viewModel: MyClientViewModel) : ListAdapter<Order, MyC
         fun bind(item : Order, viewModel: MyClientViewModel) {
             binding.data = item
             binding.root.setOnClickListener {
-                viewModel.navigationToMyClientDetail.value = true
+                viewModel._navigationToMyClientDetail.value = item
             }
             binding.executePendingBindings()
         }

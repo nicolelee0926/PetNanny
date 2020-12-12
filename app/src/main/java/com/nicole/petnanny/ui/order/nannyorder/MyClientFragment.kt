@@ -42,16 +42,13 @@ class MyClientFragment(): Fragment() {
             myClientAdapter.submitList(it)
         })
 
-//        //        navigate到MyClient detail頁
-//        viewModel.navigationToMyClientDetail.observe(viewLifecycleOwner, Observer {
-//            if(it == true) {
-//                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment())
-//                viewModel.displayMyClientDetailsComplete()
-//            }x
-//            if (it != null) {
-//                viewModel.displayMyClientDetailsComplete()
-//            }
-//        })
+        //        navigate到MyClient detail頁
+        viewModel.navigationToMyClientDetail.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment(it))
+                viewModel.displayMyClientDetailsComplete()
+            }
+        })
 
         return binding.root
     }

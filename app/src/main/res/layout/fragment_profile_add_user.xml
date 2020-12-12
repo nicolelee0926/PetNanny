@@ -28,7 +28,7 @@
             android:layout_height="90dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             app:cardCornerRadius="50dp"
             app:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,12 +72,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="60dp"
             android:text="Email"
             android:textColor="@color/colorGray"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/photoCardView" />
 
         <TextView
             android:id="@+id/editTextTextPersonName6"
@@ -140,19 +140,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView138" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{UserManager.INSTANCE.user.userName}"
-            android:textColor="@color/colorDeepGray"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoCardView"
-            tools:text="Nicole" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

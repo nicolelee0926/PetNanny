@@ -7,9 +7,9 @@ import kotlinx.android.parcel.Parcelize
 data class Order(
     var address : String? = "",
     var note : String? = "",
-    var orderEndTime : Long? = -1,
+    var orderEndTime : String? = "",
     var orderID : String? = "",
-    var orderStartTime : Long? = -1,
+    var orderStartTime : String? = "",
     var petID : String = "",
     var subPrice : String = "",
     var userEmail: String? = "",
@@ -22,6 +22,7 @@ data class Order(
     var nannyRejectStatus: Boolean? = false,
     var nannyServiceDetail: Nanny? = null,
     var userInfo: User? = null,
+//    nannyEmail: 用來存po服務的保姆的Email (用來query我的酷戶訂單用)
     var nannyEmail:String? = "",
     var demandDay: String? = "",
     var totalPrice: String? = "",

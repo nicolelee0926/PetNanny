@@ -125,7 +125,8 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
         setUserData.value = User(
             userName = userName.value.toString(),
             selfIntroduction = userIntroduction.value.toString(),
-            userEmail = UserManager.user.value?.userEmail
+            userEmail = UserManager.user.value?.userEmail,
+            photo = UserManager.user.value?.photo.toString()
         )
     }
 }

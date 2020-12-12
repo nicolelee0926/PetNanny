@@ -21,10 +21,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <View
+                android:id="@+id/view17"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <ScrollView
                 android:id="@+id/scrollView4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/view17"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:text="@{viewModel.myClientDetail.address}"
                         android:textColor="@color/colorDeepGray"
                         app:layout_constraintStart_toStartOf="@+id/textView53"
                         app:layout_constraintTop_toBottomOf="@+id/textView53"
@@ -62,6 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
+                        android:text="@{viewModel.myClientDetail.note}"
                         android:textColor="@color/colorDeepGray"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView54"
@@ -73,6 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="28dp"
+                        android:text="@{viewModel.myClientDetail.orderEndTime}"
                         android:textColor="@color/colorDeepGray"
                         app:layout_constraintBottom_toBottomOf="@+id/textView3"
                         app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -84,6 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="28dp"
+                        android:text="@{viewModel.myClientDetail.orderStartTime}"
                         android:textColor="@color/colorDeepGray"
                         app:layout_constraintBottom_toBottomOf="@+id/textView52"
                         app:layout_constraintStart_toEndOf="@+id/textView52"
@@ -97,12 +110,13 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="8dp"
                         android:letterSpacing="0.1"
-                        android:text="到府照顧"
+                        android:text="@{viewModel.myClientDetail.nannyServiceDetail.serviceType}"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="17sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/textView49"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="到府照顧" />
 
                     <TextView
                         android:id="@+id/textView49"
@@ -110,25 +124,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上"
+                        android:text="@{viewModel.myClientDetail.nannyServiceDetail.serviceName}"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/textView48"
-                        app:layout_constraintTop_toBottomOf="@+id/textView48" />
-
-                    <TextView
-                        android:id="@+id/textView50"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="幸福訓練師"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="@+id/textView49"
-                        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView48"
+                        tools:text="安心到府服務，溫柔呵護您的寶貝，第一次洗澡就愛上" />
 
                     <TextView
                         android:id="@+id/tv_cityName5"
@@ -173,12 +177,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        tools:text="愛寶媽咪"
+                        android:text="@{viewModel.myClientDetail.userInfo.userName}"
                         android:textColor="@color/colorDeepGray"
-                        app:layout_constraintBottom_toBottomOf="@+id/btn_google_sigh_in"
                         app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
                         app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in"
-                        app:layout_constraintVertical_bias="0.476" />
+                        tools:text="愛寶媽咪" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/btn_google_sigh_in"
@@ -197,10 +200,12 @@
                         <ImageView
                             android:id="@+id/imageView_pet"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="41dp"
                             android:layout_gravity="center_horizontal"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/iv_home_s2" />
+                            app:imageUrl="@{viewModel.myClientDetail.userInfo.photo}"
+                            tools:src="@drawable/iv_home_s2" />
+
                     </androidx.cardview.widget.CardView>
 
                     <View
@@ -213,7 +218,7 @@
                         android:background="#E1E1E1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView50" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
                     <ImageView
                         android:id="@+id/imageView15"
@@ -377,36 +382,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
-                        android:text="3 "
+                        android:text="@{viewModel.myClientDetail.demandDay}"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView115"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView115" />
-
-                    <TextView
-                        android:id="@+id/textView118"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:text="x"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView115"
-                        app:layout_constraintEnd_toStartOf="@+id/textView113"
-                        app:layout_constraintTop_toTopOf="@+id/textView115" />
+                        app:layout_constraintTop_toTopOf="@+id/textView115"
+                        tools:text="x 3" />
 
                     <TextView
                         android:id="@+id/textView114"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
-                        android:text="1000 "
+                        android:text="@{viewModel.myClientDetail.nannyServiceDetail.price}"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView116"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView116" />
+                        app:layout_constraintTop_toTopOf="@+id/textView116"
+                        tools:text="1000 " />
 
                     <TextView
                         android:id="@+id/textView117"
@@ -429,9 +424,9 @@
                         android:textColor="@color/colorDeepGray"
                         android:textSize="16sp"
                         android:textStyle=""
-                        app:layout_constraintBottom_toBottomOf="@+id/textView119"
-                        app:layout_constraintEnd_toStartOf="@+id/textView119"
-                        app:layout_constraintTop_toTopOf="@+id/textView119" />
+                        app:layout_constraintBottom_toBottomOf="@+id/textView58"
+                        app:layout_constraintEnd_toStartOf="@+id/textView58"
+                        app:layout_constraintTop_toTopOf="@+id/textView58" />
 
                     <View
                         android:id="@+id/view22"
@@ -444,31 +439,18 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView115" />
 
                     <TextView
-                        android:id="@+id/textView119"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="4dp"
-                        android:text="$"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView58"
-                        app:layout_constraintEnd_toStartOf="@+id/textView58"
-                        app:layout_constraintTop_toBottomOf="@+id/view22" />
-
-                    <TextView
                         android:id="@+id/textView58"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
-                        android:text="3000"
+                        android:text="@{viewModel.myClientDetail.totalPrice}"
                         android:textColor="@color/colorDeepGray"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view22" />
+                        app:layout_constraintTop_toBottomOf="@+id/view22"
+                        tools:text="$ 3000" />
 
                     <View
                         android:id="@+id/view13"
@@ -479,20 +461,21 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
                     <Button
-                        android:id="@+id/btn_send_demand2"
-                        android:layout_width="160dp"
+                        android:id="@+id/btn_accept_order"
+                        android:layout_width="135dp"
                         android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_button_corner"
                         android:ellipsize="end"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="完成"
+                        android:text="接受"
                         android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout563" />
+                        app:layout_constraintTop_toTopOf="@+id/btn_reject_order" />
 
                     <Button
                         android:id="@+id/btn_send_demand4"
@@ -509,17 +492,21 @@
                         android:padding="5dp"
                         android:text="服務完成"
                         android:textSize="13sp"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btn_send_demand2" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_cityName52"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout56"
+                        android:id="@+id/layout_wait_parent_checkout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
@@ -527,7 +514,7 @@
                             android:id="@+id/textView1076"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="付款完成"
+                            android:text="等待家長付款"
                             android:textColor="@color/colorDeepGray"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -558,7 +545,7 @@
                             android:id="@+id/textView107"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="等待接受"
+                            android:text="等待您的接受"
                             android:textColor="@color/colorDeepGray"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -577,13 +564,14 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout563"
+                        android:id="@+id/layout_service_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout56">
+                        app:layout_constraintTop_toBottomOf="@+id/layout_wait_parent_checkout">
 
                         <TextView
                             android:id="@+id/textView10763"
@@ -609,14 +597,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:id="@+id/tv_cityName52"
-                        android:elevation="10dp"
-                        android:layout_width="160dp"
+                        android:id="@+id/btn_reject_order"
+                        android:layout_width="135dp"
                         android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
                         android:background="@drawable/but_reject"
+                        android:elevation="10dp"
                         android:ellipsize="end"
                         android:gravity="center"
                         android:padding="5dp"
@@ -624,9 +613,9 @@
                         android:textColor="@color/colorPrimaryLight"
                         android:textSize="13sp"
                         android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="@+id/btn_send_demand2"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout563" />
+                        app:layout_constraintTop_toBottomOf="@+id/layout_service_completed" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
