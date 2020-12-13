@@ -28,12 +28,17 @@ class MyOrderDetailViewModel(
         value = argumentsMyOrder
     }
 
-    //    存nannyAcceptStatus用
+    // 用來監聽存nannyAcceptStatus用
     var liveAcceptStatusNanny = MutableLiveData<Boolean>()
 
 //    用來觀察ParentCheckoutStatus欄位結果的liveData  (完成付款後 按鈕消失 出現付款完成的字)
     var liveCheckoutStatusParent = MutableLiveData<Boolean>()
 
+    // 用來監聽存nannyServiceCompletedStatus用
+    var liveServiceCompletedNanny = MutableLiveData<Boolean>()
+
+//    update ParentCheckCompleteServiceStatus變true
+    var liveParentCheckCompleteServiceStatus = MutableLiveData<Boolean>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -60,7 +65,9 @@ class MyOrderDetailViewModel(
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getMyOrderNannyAcceptStatus()
+
+//        getMyOrderNannyAcceptStatus()
+//        getNannyServiceCompletedStatus()
     }
 
     //    get nannyAcceptStatus
@@ -107,6 +114,70 @@ class MyOrderDetailViewModel(
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.updateParentCheckoutCompleteStatus(myOrderDetail.value?.orderID!!, this@MyOrderDetailViewModel)) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
+
+    //    get nannyServiceCompletedStatus
+    fun getNannyServiceCompletedStatus() {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            val result = repository.getNannyServiceCompletedStatus(myOrderDetail.value?.orderID!!)
+
+            liveServiceCompletedNanny.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
+    }
+
+    //    update ParentCheckCompleteServiceStatus變true
+    fun updateParentCheckCompleteServiceStatus() {
+        Log.d("updateNannyCompleteServiceStatus", "hate")
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.updateParentCheckCompleteServiceStatus(myOrderDetail.value?.orderID!!, this@MyOrderDetailViewModel)) {
                 is Result.Success-> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE

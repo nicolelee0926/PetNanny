@@ -76,5 +76,31 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getMyClientParentCheckoutCompleteStatus(orderID: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateNannyCompleteServiceStatus(
+        orderID: String,
+        viewModel: MyClientDetailViewModel
+    ): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getNannyServiceCompletedStatus(orderID: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateParentCheckCompleteServiceStatus(
+        orderID: String,
+        viewModel: MyOrderDetailViewModel
+    ): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
 
 }

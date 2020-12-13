@@ -74,5 +74,23 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.updateParentCheckoutCompleteStatus(orderID,viewModel)
     }
 
+    override suspend fun getMyClientParentCheckoutCompleteStatus(orderID: String): Result<Boolean> {
+        return remoteDataSource.getMyClientParentCheckoutCompleteStatus(orderID)
+    }
 
+    override suspend fun updateNannyCompleteServiceStatus(orderID: String, viewModel: MyClientDetailViewModel): Result<Boolean> {
+        return remoteDataSource.updateNannyCompleteServiceStatus(orderID, viewModel)
+    }
+
+    override suspend fun getNannyServiceCompletedStatus(orderID: String): Result<Boolean> {
+        return remoteDataSource.getNannyServiceCompletedStatus(orderID)
+    }
+
+    override suspend fun updateParentCheckCompleteServiceStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> {
+        return remoteDataSource.updateParentCheckCompleteServiceStatus(orderID, viewModel)
+    }
+
+    override suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean> {
+        return remoteDataSource.getParentCheckServiceCompleteStatus(orderID)
+    }
 }

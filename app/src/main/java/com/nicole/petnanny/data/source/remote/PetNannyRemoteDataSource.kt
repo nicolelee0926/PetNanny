@@ -412,6 +412,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
         }
 
+//    家長提出 保姆update接受狀態為true
     override suspend fun updateNannyAcceptStatus(
         orderID: String,
         viewModel: MyClientDetailViewModel
@@ -434,6 +435,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
     }
 
+//      保姆接受後 家長等待付款
     override suspend fun getMyOrderNannyAcceptStatus(orderID: String) : Result<Boolean> = suspendCoroutine { continuation ->
             var nannyAcceptStatus = false
 
@@ -463,6 +465,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
         }
 
+//    家長等待付款 保姆準備開始服務
     override suspend fun updateParentCheckoutCompleteStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> = suspendCoroutine { continuation ->
 
         val order = FirebaseFirestore.getInstance().collection(PATH_ORDER)
@@ -480,5 +483,132 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 Log.d("Error adding document", "$e ")
             }
 
+    }
+
+//    家長付款完成 保姆收到通知
+    override suspend fun getMyClientParentCheckoutCompleteStatus(orderID: String): Result<Boolean> = suspendCoroutine { continuation ->
+        var userCheckoutStatus = false
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .document(orderID)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    task.result?.data.let {
+                        Log.d("123", "${task.result}")
+                        val order: Order = task.result?.toObject(Order::class.java)!!
+                        userCheckoutStatus = order.userCheckoutStatus!!
+                    }
+                    continuation.resume(Result.Success(userCheckoutStatus))
+                } else {
+                    task.exception?.let {
+                        Log.d(
+                            "get_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    //    保姆完成服務 update完成狀態為true
+    override suspend fun updateNannyCompleteServiceStatus(orderID: String, viewModel: MyClientDetailViewModel): Result<Boolean> = suspendCoroutine { continuation ->
+
+        val order = FirebaseFirestore.getInstance().collection(PATH_ORDER)
+
+        order.document(orderID)
+            .get()
+            .addOnSuccessListener {
+                Log.d("DocumentSnapshot", " $it ")
+                val documentId = order.document(orderID)
+                documentId.update("nannyCompletedStatus", true).addOnSuccessListener {
+                    viewModel.liveNannyCompleteServiceStatus.value = true
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.d("Error adding document", "$e ")
+            }
+
+    }
+
+    override suspend fun getNannyServiceCompletedStatus(orderID: String): Result<Boolean> = suspendCoroutine { continuation ->
+        var nannyServiceCompletedStatus = false
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .document(orderID)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    task.result?.data.let {
+                        Log.d("123", "${task.result}")
+                        val order: Order = task.result?.toObject(Order::class.java)!!
+                        nannyServiceCompletedStatus = order.nannyCompletedStatus!!
+                    }
+                    continuation.resume(Result.Success(nannyServiceCompletedStatus))
+                } else {
+                    task.exception?.let {
+                        Log.d(
+                            "get_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun updateParentCheckCompleteServiceStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> = suspendCoroutine { continuation ->
+
+        val order = FirebaseFirestore.getInstance().collection(PATH_ORDER)
+
+        order.document(orderID)
+            .get()
+            .addOnSuccessListener {
+                Log.d("DocumentSnapshot", " $it ")
+                val documentId = order.document(orderID)
+                documentId.update("userCheckedStatus", true).addOnSuccessListener {
+                    viewModel.liveParentCheckCompleteServiceStatus.value = true
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.d("Error adding document", "$e ")
+            }
+
+    }
+
+    override suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean> = suspendCoroutine { continuation ->
+        var liveCheckServiceCompleteStatus = false
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .document(orderID)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    task.result?.data.let {
+                        Log.d("123", "${task.result}")
+                        val order: Order = task.result?.toObject(Order::class.java)!!
+                        liveCheckServiceCompleteStatus = order.userCheckedStatus!!
+                    }
+                    continuation.resume(Result.Success(liveCheckServiceCompleteStatus))
+                } else {
+                    task.exception?.let {
+                        Log.d(
+                            "get_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
     }
 }

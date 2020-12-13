@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.nicole.petnanny.databinding.FragmentMyClientDetailBinding
 import com.nicole.petnanny.databinding.FragmentMyOrderDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.home.nannydetail.NannyDetailFragmentArgs
 import com.nicole.petnanny.ui.home.nannydetail.NannyDetailViewModel
 
 class MyOrderDetailFragment : Fragment() {
+    lateinit var binding: FragmentMyOrderDetailBinding
 
     private val viewModel by viewModels<MyOrderDetailViewModel> {
         getVmFactory(
@@ -24,16 +26,19 @@ class MyOrderDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMyOrderDetailBinding.inflate(inflater, container, false)
+        binding = FragmentMyOrderDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        setParentWaitCheckoutView(viewModel.myOrderDetail.value?.nannyAcceptStatus)
+        setParentCheckoutCompleteView(viewModel.myOrderDetail.value?.userCheckoutStatus)
+        setParentCheckNannyCompleteService(viewModel.myOrderDetail.value?.nannyCompletedStatus)
+        setCompleteServiceFinally(viewModel.myOrderDetail.value?.userCheckedStatus)
+
+
 //        保姆接受 家長要去完成付款
         viewModel.liveAcceptStatusNanny.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                binding.layoutWaitYourCheckout.visibility = View.VISIBLE
-                binding.btnCheckoutComplete.visibility = View.VISIBLE
-            }
+            setParentWaitCheckoutView(it)
         })
 
 //    update ParentCheckoutCompleteStatus
@@ -42,14 +47,51 @@ class MyOrderDetailFragment : Fragment() {
         }
 //    observe ParentCheckoutCompleteStatus
         viewModel.liveCheckoutStatusParent.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                binding.btnCheckoutComplete.visibility = View.GONE
-                binding.layoutYourCheckoutCompleted.visibility = View.VISIBLE
-            }
+            setParentCheckoutCompleteView(it)
         })
 
+//        保姆完成服務 家長要按確認按鈕
+        viewModel.liveServiceCompletedNanny.observe(viewLifecycleOwner, Observer {
+            setParentCheckNannyCompleteService(it)
+        })
 
+//    update ParentCheckCompleteServiceStatus
+        binding.btnCheckServiceCompleted.setOnClickListener {
+            viewModel.updateParentCheckCompleteServiceStatus()
+        }
+//    家長自己觀察到服務完成欄位變true
+        viewModel.liveParentCheckCompleteServiceStatus.observe(viewLifecycleOwner, Observer {
+            setCompleteServiceFinally(it)
+        })
 
         return binding.root
+    }
+
+    private fun setCompleteServiceFinally(it: Boolean?) {
+        if (it == true) {
+            binding.layoutServiceCompletedFinally.visibility = View.VISIBLE
+            binding.btnCheckServiceCompleted.visibility = View.GONE
+        }
+    }
+
+    private fun setParentCheckNannyCompleteService(it: Boolean?) {
+        if (it == true) {
+            binding.btnCheckServiceCompleted.visibility = View.VISIBLE
+            binding.layoutCheckServiceCompleted.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setParentWaitCheckoutView(it: Boolean?) {
+        if (it == true) {
+            binding.layoutWaitYourCheckout.visibility = View.VISIBLE
+            binding.btnCheckoutComplete.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setParentCheckoutCompleteView(it: Boolean?) {
+        if (it == true) {
+            binding.btnCheckoutComplete.visibility = View.GONE
+            binding.layoutYourCheckoutCompleted.visibility = View.VISIBLE
+        }
     }
 }

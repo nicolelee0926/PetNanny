@@ -466,26 +466,25 @@
                         android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_button_corner"
                         android:ellipsize="end"
                         android:gravity="center"
                         android:padding="5dp"
                         android:text="接受"
                         android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_reject_order"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/btn_reject_order" />
 
                     <Button
-                        android:id="@+id/btn_send_demand4"
+                        android:id="@+id/btn_nanny_checkout_service_completed"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_button_corner"
                         android:ellipsize="end"
                         android:gravity="center"
@@ -493,22 +492,122 @@
                         android:text="服務完成"
                         android:textSize="13sp"
                         android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_cityName52"
-                        app:layout_constraintVertical_bias="0.0" />
+                        app:layout_constraintTop_toBottomOf="@+id/layout_service_completed" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_wait_parent_checkout"
+                        android:id="@+id/layout_service_completed_finally_nanny"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+                        app:layout_constraintTop_toBottomOf="@+id/layout_service_completed_wait_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="此筆訂單已完成"
+                            android:textColor="@color/colorDeepGray"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/imageView46"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:id="@+id/imageView46"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_status_wait" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_service_completed_wait_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_nanny_checkout_service_completed">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="等待保姆確認服務完成"
+                            android:textColor="@color/colorDeepGray"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/imageView44"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageView
+                            android:id="@+id/imageView44"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_status_wait" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_service_completed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_service_start">
+
+                        <TextView
+                            android:id="@+id/textView10763"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="服務完成"
+                            android:textColor="@color/colorDeepGray"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView4163"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/textView10763"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_status_wait" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_wait_parent_checkout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_reject_order">
 
                         <TextView
                             android:id="@+id/textView1076"
@@ -564,7 +663,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_service_completed"
+                        android:id="@+id/layout_service_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
@@ -574,23 +673,24 @@
                         app:layout_constraintTop_toBottomOf="@+id/layout_wait_parent_checkout">
 
                         <TextView
-                            android:id="@+id/textView10763"
+                            android:id="@+id/textView119"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="確認服務完成"
+                            android:layout_marginStart="8dp"
+                            android:text="家長已付款，可以開始服務"
                             android:textColor="@color/colorDeepGray"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView29"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView4163"
+                            android:id="@+id/imageView29"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:layout_marginEnd="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/textView10763"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_status_wait" />
 
@@ -601,9 +701,8 @@
                         android:layout_width="135dp"
                         android:layout_height="40dp"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
                         android:background="@drawable/but_reject"
                         android:elevation="10dp"
                         android:ellipsize="end"
@@ -613,9 +712,8 @@
                         android:textColor="@color/colorPrimaryLight"
                         android:textSize="13sp"
                         android:visibility="visible"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layout_service_completed" />
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

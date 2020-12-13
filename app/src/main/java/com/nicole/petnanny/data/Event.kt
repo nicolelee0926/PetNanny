@@ -10,7 +10,8 @@ data class Event (
     var message : List<Message>?,
     var nannyID : String? = "",
     var orderID : String? = "",
-    var userID: String? = ""
+    var userID: String? = "",
+    var latestTime : Long = -0L
 ): Parcelable
 
 @Parcelize

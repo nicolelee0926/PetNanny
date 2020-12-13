@@ -37,4 +37,14 @@ interface PetNannyDataSource {
     suspend fun getMyOrderNannyAcceptStatus(orderID: String) : Result<Boolean>
 
     suspend fun updateParentCheckoutCompleteStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean>
+
+    suspend fun getMyClientParentCheckoutCompleteStatus(orderID: String): Result<Boolean>
+
+    suspend fun updateNannyCompleteServiceStatus(orderID: String, viewModel: MyClientDetailViewModel): Result<Boolean>
+
+    suspend fun getNannyServiceCompletedStatus(orderID: String): Result<Boolean>
+
+    suspend fun updateParentCheckCompleteServiceStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean>
+
+    suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean>
 }
