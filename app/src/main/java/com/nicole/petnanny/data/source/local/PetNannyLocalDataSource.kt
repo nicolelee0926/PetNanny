@@ -114,5 +114,13 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override fun getLiveDemandOrders(): MutableLiveData<List<Order>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
+        TODO("Not yet implemented")
+    }
+
 
 }

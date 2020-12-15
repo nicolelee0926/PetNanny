@@ -5,17 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.nicole.petnanny.data.Message
-import com.nicole.petnanny.data.User
 import com.nicole.petnanny.databinding.FragmentDemandChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatRoomDetailAdapter
-import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailFragmentArgs
-import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
 
 class DemandDetailFragment: Fragment() {
 
@@ -36,17 +31,18 @@ class DemandDetailFragment: Fragment() {
 //            if (isEmpty()) {
 //                Toast.makeText(requireContext(),"請輸入訊息", Toast.LENGTH_SHORT).show()
 //            } else {
-//                viewModel.setMessage()
+                viewModel.setMessage()
 //            }
         }
 
         viewModel.setMessage.observe(viewLifecycleOwner, Observer {
-//            viewModel.addMessage()
+            Log.d("setMessage", "$it ")
+            viewModel.addMessage(it)
         })
 
-        viewModel.allLiveMessage.observe(viewLifecycleOwner, Observer {
+        viewModel.messages.observe(viewLifecycleOwner, Observer {
             Log.d("getMessageList", "$it ")
-//            chatRoomDetailAdapter.submitList()
+            chatRoomDetailAdapter.submitList(it)
         })
 
 

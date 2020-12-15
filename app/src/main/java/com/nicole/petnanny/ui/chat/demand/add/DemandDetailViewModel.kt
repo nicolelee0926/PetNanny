@@ -8,7 +8,6 @@ import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.data.Message
 import com.nicole.petnanny.data.Order
-import com.nicole.petnanny.data.Pet
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
@@ -28,8 +27,13 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
         value = argumentsDemand
     }
 
-    // All live message
-    var allLiveMessage = MutableLiveData<List<Message>>()
+    // get message
+    private var _messages = MutableLiveData<List<Message>>()
+    val messages: LiveData<List<Message>>
+        get() = _messages
+
+//  snapshot message
+    var livemessages = MutableLiveData<List<Message>>()
 
 //  set Message
     var setMessage = MutableLiveData<Message>()
@@ -67,7 +71,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
     }
 
     init {
-//        getMessage()
+        getMessage()
     }
 
     fun getMessage() {
@@ -79,7 +83,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
             val result = repository.getMessage(demandDetail.value?.orderID)
             Log.d("xxxxxxx", result.toString())
 
-            allLiveMessage.value = when (result) {
+            _messages.value = when (result) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
@@ -105,13 +109,13 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
         }
     }
 
-    fun addMessage() {
+    fun addMessage(setMessage: Message) {
 
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            when (val result = repository.addMessage(demandDetail.value?.orderID!!, demandDetail.value?.lastMessage!!)) {
+            when (val result = repository.addMessage(demandDetail.value?.orderID!!, setMessage)) {
                 is Result.Success-> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
@@ -140,8 +144,13 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
             messageTime = System.currentTimeMillis(),
             senderImage = UserManager.user.value?.photo!!,
             senderEmail = UserManager.user.value?.userEmail!!,
-            id =""
+            id ="",
         )
+    }
+
+    fun getLiveMessagesResult() {
+        livemessages = repository.getLiveMessages(demandDetail.value?.orderID!!)
+        livemessages.value = _messages.value
     }
 
 }

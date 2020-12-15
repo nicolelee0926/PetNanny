@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nicole.petnanny.R
+import com.nicole.petnanny.util.TimeUtil.toDisplayFormat
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 
@@ -52,10 +53,16 @@ fun TextView.bindGetServicePrice(price: String) {
     }
 }
 
-@BindingAdapter("time")
-fun bindTime(textView: TextView, time: Long?){
-    time?.let {textView.text = TimeUtil.stampToTime(time)}
+//@BindingAdapter("time")
+//fun bindTime(textView: TextView, time: Long?){
+//    time?.let {textView.text = TimeUtil.stampToTime(time)}
+//}
+
+@BindingAdapter("timeToDisplayFormat")
+fun bindDisplayFormatTime(textView: TextView, time: Long?) {
+    textView.text = time?.toDisplayFormat()
 }
+
 
 
 

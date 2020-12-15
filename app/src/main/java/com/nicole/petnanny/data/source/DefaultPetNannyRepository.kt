@@ -94,7 +94,7 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getParentCheckServiceCompleteStatus(orderID)
     }
 
-    override suspend fun getDemandOrderChatRoomListResult(): Result<List<Order>> {
+    override suspend fun getDemandChatListResult(): Result<List<Order>> {
         return remoteDataSource.getDemandChatListResult()
     }
 
@@ -104,5 +104,13 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
 
     override suspend fun getMessage(orderID: String?): Result<List<Message>> {
         return remoteDataSource.getMessage(orderID)
+    }
+
+    override fun getLiveDemandOrders(): MutableLiveData<List<Order>> {
+        return remoteDataSource.getLiveDemandOrders()
+    }
+
+    override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
+        return remoteDataSource.getLiveMessages(orderID)
     }
 }

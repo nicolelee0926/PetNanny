@@ -44,6 +44,11 @@ class DemandFragment() : Fragment() {
             demandAdapter.submitList(it)
         })
 
+//      get live demand order snapshot
+        viewModel.liveOrders.observe(viewLifecycleOwner, Observer {
+            viewModel.getLiveArticlesResult()
+        })
+
 //        navigate到demand chat room detail頁
         viewModel.navigationToDemandChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
@@ -56,14 +61,14 @@ class DemandFragment() : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("!!!!", "!!! ");
-        UserManager.user.value?.userEmail?.let {
-            Log.d("!!!", "$it ")
+//    override fun onResume() {
+//        super.onResume()
+//        Log.d("!!!!", "!!! ");
+//        UserManager.user.value?.userEmail?.let {
+//            Log.d("!!!", "$it ")
 //            viewModel.getDemandOrderChatRoomListResult()
-        }
-    }
+//        }
+//    }
 
 
 }

@@ -71,7 +71,7 @@
             android:layout_marginStart="4dp"
             tools:text="15:05"
             android:textSize="10sp"
-            app:time = "@{data.messageTime}"
+            app:timeToDisplayFormat = "@{data.messageTime}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_userText"
             app:layout_constraintStart_toEndOf="@+id/tv_userText" />
 

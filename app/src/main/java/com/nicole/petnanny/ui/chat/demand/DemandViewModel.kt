@@ -26,6 +26,8 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     val navigationToDemandChatRoomDetail: LiveData<Order>
         get() = _navigationToDemandChatRoomDetail
 
+//    snapshot
+    var liveOrders = MutableLiveData<List<Order>>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -57,8 +59,8 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     }
 
     init {
-//        getDemandOrderChatRoomListResult()
-//        getUserResult(UserManager.user.value?.userEmail)
+        getDemandOrderChatRoomListResult()
+        getUserResult(UserManager.user.value?.userEmail)
     }
 
     fun getDemandOrderChatRoomListResult() {
@@ -66,7 +68,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
             _status.value = LoadApiStatus.LOADING
 
-            val result = repository.getDemandOrderChatRoomListResult()
+            val result = repository.getDemandChatListResult()
 
             demandOrderChatRoomList.value = when (result) {
                 is Result.Success -> {
@@ -138,6 +140,11 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
     fun displayChatRoomDetailComplete() {
         _navigationToDemandChatRoomDetail.value = null
+    }
+
+    fun getLiveArticlesResult() {
+        liveOrders = repository.getLiveDemandOrders()
+        demandOrderChatRoomList.value = liveOrders.value
     }
 
 }

@@ -46,9 +46,13 @@ interface PetNannyRepository {
 
     suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean>
 
-    suspend fun getDemandOrderChatRoomListResult(): Result<List<Order>>
+    suspend fun getDemandChatListResult(): Result<List<Order>>
 
     suspend fun addMessage(userEmails: String, message: Message): Result<Boolean>
 
     suspend fun getMessage(orderID: String?): Result<List<Message>>
+
+    fun getLiveDemandOrders(): MutableLiveData<List<Order>>
+
+    fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>>
 }
