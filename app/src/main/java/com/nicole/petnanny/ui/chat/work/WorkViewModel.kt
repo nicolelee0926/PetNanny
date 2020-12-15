@@ -51,25 +51,25 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
 
 
     init {
-//        getFakeChatListData()
+        getFakeChatListData()
 
     }
 
-//    private fun getFakeChatListData() {
-//        val user1 = User(
-//            userName = "小姐")
-//
-////        val serviceType = Nanny(
-////                serviceType = "到府美容")
-//
-//        val chatRoom = mutableListOf(
-//            Message(
-//                receiver = user1,
-//                content = "明天下午可以過去嗎",
-//            )
-//        )
-//        _chatList.value = chatRoom
-//    }
+    private fun getFakeChatListData() {
+        val user1 = User(
+            userName = "小姐")
+
+//        val serviceType = Nanny(
+//                serviceType = "到府美容")
+
+        val chatRoom = mutableListOf(
+            Message(
+//                senderName = user1,
+                content = "明天下午可以過去嗎",
+            )
+        )
+        _chatList.value = chatRoom
+    }
 
     fun displayChatRoomDetailComplete() {
         navigationToChatRoomDetail.value = null

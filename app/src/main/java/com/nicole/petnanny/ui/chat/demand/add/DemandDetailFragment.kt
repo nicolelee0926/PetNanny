@@ -46,7 +46,7 @@ class DemandDetailFragment: Fragment() {
 
         viewModel.allLiveMessage.observe(viewLifecycleOwner, Observer {
             Log.d("getMessageList", "$it ")
-            chatRoomDetailAdapter.submitList(it)
+//            chatRoomDetailAdapter.submitList()
         })
 
 

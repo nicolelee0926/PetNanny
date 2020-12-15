@@ -67,7 +67,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
     }
 
     init {
-        getMessage()
+//        getMessage()
     }
 
     fun getMessage() {

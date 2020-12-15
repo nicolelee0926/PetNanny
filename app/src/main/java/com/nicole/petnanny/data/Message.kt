@@ -17,22 +17,22 @@ data class Message(
     var senderName :String? = ""
 ): Parcelable
 
-//@Parcelize
-//data class MessageList(
-//    var messageText: List<Message>? = null
-//): Parcelable{
-//    fun toMessageListItem(): List<ChatRoomDetailAdapter.Meesaage>{
-//        val items = mutableListOf<ChatRoomDetailAdapter.Meesaage>()
-//        messageText?.let {
-//            for (item in it){
-//                if (item.senderEmail == "me" ){
-//                    items.add(ChatRoomDetailAdapter.Meesaage.Received(item))
-//                }
-//                else{
-//                    items.add(ChatRoomDetailAdapter.Meesaage.Send(item))
-//                }
-//            }
-//        }
-//        return items
-//    }
-//}
+@Parcelize
+data class MessageList(
+    var messageText: List<Message>? = null
+): Parcelable{
+    fun toMessageListItem(): List<ChatRoomDetailAdapter.CRText>{
+        val items = mutableListOf<ChatRoomDetailAdapter.CRText>()
+        messageText?.let {
+            for (item in it){
+                if (item.senderEmail == "me" ){
+                    items.add(ChatRoomDetailAdapter.CRText.Received(item))
+                }
+                else{
+                    items.add(ChatRoomDetailAdapter.CRText.Send(item))
+                }
+            }
+        }
+        return items
+    }
+}

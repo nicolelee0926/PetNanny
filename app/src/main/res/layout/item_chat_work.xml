@@ -48,7 +48,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/photoCardView"
             tools:layout_editor_absoluteY="9dp"
-            tools:text="美惠姐" />
+            android:text="美惠姐" />
 <!--        android:text="@{data.receiver.userName}"-->
 
         <TextView
@@ -58,7 +58,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            tools:text="你好，需要我的幫忙嗎？"
+            android:text="你好，需要我的幫忙嗎？"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/photoCardView"
             app:layout_constraintTop_toBottomOf="@+id/tv_userName"
