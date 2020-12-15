@@ -1,21 +1,25 @@
 package com.nicole.petnanny.ui.chat.demand.add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.nicole.petnanny.data.Message
 import com.nicole.petnanny.data.User
-import com.nicole.petnanny.data.userTextList
 import com.nicole.petnanny.databinding.FragmentDemandChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatRoomDetailAdapter
+import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailFragmentArgs
+import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
 
 class DemandDetailFragment: Fragment() {
 
-    private val viewModel by viewModels<DemandDetailViewModel> { getVmFactory() }
+    private val viewModel by viewModels<DemandDetailViewModel> { getVmFactory(DemandDetailFragmentArgs.fromBundle(requireArguments()).order) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,41 +32,36 @@ class DemandDetailFragment: Fragment() {
         val chatRoomDetailAdapter = ChatRoomDetailAdapter()
         binding.rvDemandChatContent.adapter = chatRoomDetailAdapter
 
-        //一進來監聽之前聊天內容
-        val userTextList = userTextList()
-        val userText = mutableListOf<Message>()
+        binding.btnSendMessage.setOnClickListener {
+//            if (isEmpty()) {
+//                Toast.makeText(requireContext(),"請輸入訊息", Toast.LENGTH_SHORT).show()
+//            } else {
+//                viewModel.setMessage()
+//            }
+        }
 
-        val aaa = createMock().toUserTextItem()
+        viewModel.setMessage.observe(viewLifecycleOwner, Observer {
+//            viewModel.addMessage()
+        })
 
-        chatRoomDetailAdapter.submitList(aaa)
+        viewModel.allLiveMessage.observe(viewLifecycleOwner, Observer {
+            Log.d("getMessageList", "$it ")
+            chatRoomDetailAdapter.submitList(it)
+        })
+
+
 
         return binding.root
     }
 
-    fun createMock() : userTextList{
-        var user1 = Message(
-            content = "明天下午可以過去嗎",
-            sender = User(
-                userEmail = "0"
-            )
-        )
-
-        var user2 = Message(
-            content = "不要",
-            sender = User(
-                userEmail = "1"
-            )
-        )
-        var listText =userTextList()
-        var list = mutableListOf<Message>()
-        list.add(user1)
-        list.add(user2)
+//    fun isEmpty(): Boolean {
+//        return when (viewModel.enterMessage.value) {
+//            null -> true
+//            else -> false
+//        }
+//    }
 
 
-
-        listText.userText = list
-
-        return listText
-    }
 }
+
 

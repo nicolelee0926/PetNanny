@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="userText"
+            name="data"
             type="com.nicole.petnanny.data.Message" />
     </data>
 
@@ -24,7 +24,7 @@
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="下午兩點"
+            android:text="@{data.content}"
             android:textColor="@color/colorDeepGray"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/photo_nanny"
@@ -50,7 +50,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@drawable/iv_home_s2" />
+                app:imageUrl="@{data.senderImage}"
+                tools:src="@drawable/iv_home_s2" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -68,8 +69,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="15:05"
+            tools:text="15:05"
             android:textSize="10sp"
+            app:time = "@{data.messageTime}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_userText"
             app:layout_constraintStart_toEndOf="@+id/tv_userText" />
 

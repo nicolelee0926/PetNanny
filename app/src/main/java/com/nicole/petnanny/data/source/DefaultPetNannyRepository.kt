@@ -93,4 +93,16 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     override suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean> {
         return remoteDataSource.getParentCheckServiceCompleteStatus(orderID)
     }
+
+    override suspend fun getDemandOrderChatRoomListResult(): Result<List<Order>> {
+        return remoteDataSource.getDemandChatListResult()
+    }
+
+    override suspend fun addMessage(userEmails: String, message: Message): Result<Boolean> {
+        return remoteDataSource.addMessage(userEmails, message)
+    }
+
+    override suspend fun getMessage(orderID: String?): Result<List<Message>> {
+        return remoteDataSource.getMessage(orderID)
+    }
 }

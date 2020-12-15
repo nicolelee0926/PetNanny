@@ -52,6 +52,11 @@ fun TextView.bindGetServicePrice(price: String) {
     }
 }
 
+@BindingAdapter("time")
+fun bindTime(textView: TextView, time: Long?){
+    time?.let {textView.text = TimeUtil.stampToTime(time)}
+}
+
 
 
 

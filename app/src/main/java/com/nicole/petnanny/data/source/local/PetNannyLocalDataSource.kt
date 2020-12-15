@@ -102,5 +102,17 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getDemandChatListResult(): Result<List<Order>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addMessage(userEmails: String, message: Message): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getMessage(orderID: String?): Result<List<Message>> {
+        TODO("Not yet implemented")
+    }
+
 
 }

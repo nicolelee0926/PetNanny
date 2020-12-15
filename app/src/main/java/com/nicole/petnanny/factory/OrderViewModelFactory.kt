@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.source.PetNannyRepository
+import com.nicole.petnanny.ui.chat.demand.add.DemandDetailViewModel
 import com.nicole.petnanny.ui.home.nannydetail.NannyDetailViewModel
 import com.nicole.petnanny.ui.home.nannylist.NannyListViewModel
 import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
@@ -25,6 +26,9 @@ class OrderViewModelFactory(
 
                 isAssignableFrom(MyClientDetailViewModel::class.java) ->
                     MyClientDetailViewModel(repository, arguments)
+
+                isAssignableFrom(DemandDetailViewModel::class.java) ->
+                    DemandDetailViewModel(repository, arguments)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

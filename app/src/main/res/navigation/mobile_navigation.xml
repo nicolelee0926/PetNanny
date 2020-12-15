@@ -195,7 +195,11 @@
         android:id="@+id/demandDetailFragment"
         android:name="com.nicole.petnanny.ui.chat.demand.add.DemandDetailFragment"
         android:label="DemandDetailFragment"
-        tools:layout="@layout/fragment_demand_chatroom_detail"/>
+        tools:layout="@layout/fragment_demand_chatroom_detail">
+        <argument
+            android:name="order"
+            app:argType="com.nicole.petnanny.data.Order" />
+    </fragment>
     <fragment
         android:id="@+id/workDetailFragment"
         android:name="com.nicole.petnanny.ui.chat.work.add.WorkDetailFragment"

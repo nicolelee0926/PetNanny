@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.nicole.petnanny.data.Message
+import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.databinding.ItemChatDemandBinding
 
 
-class DemandAdapter(val viewModel: DemandViewModel) : ListAdapter<Message, DemandAdapter.DemandViewHolder>(DemandDiffCallback()) {
+class DemandAdapter(val viewModel: DemandViewModel) : ListAdapter<Order, DemandAdapter.DemandViewHolder>(DemandDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemandViewHolder {
         return DemandViewHolder.from(parent)
     }
@@ -20,10 +20,10 @@ class DemandAdapter(val viewModel: DemandViewModel) : ListAdapter<Message, Deman
     }
 
     class DemandViewHolder  private constructor(private val binding: ItemChatDemandBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : Message, viewModel: DemandViewModel) {
+        fun bind(item : Order, viewModel: DemandViewModel) {
             binding.data = item
             binding.root.setOnClickListener {
-                viewModel.navigationToChatRoomDetail.value = true
+                viewModel._navigationToDemandChatRoomDetail.value = item
             }
             binding.executePendingBindings()
         }
@@ -38,12 +38,12 @@ class DemandAdapter(val viewModel: DemandViewModel) : ListAdapter<Message, Deman
     }
 }
 
-class DemandDiffCallback : DiffUtil.ItemCallback<Message>()  {
-    override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
+class DemandDiffCallback : DiffUtil.ItemCallback<Order>()  {
+    override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean {
         return oldItem === newItem
     }
 
-    override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
+    override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean {
         return oldItem == newItem
     }
 }

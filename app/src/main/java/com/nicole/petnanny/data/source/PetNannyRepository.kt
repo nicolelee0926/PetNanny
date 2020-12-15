@@ -45,4 +45,10 @@ interface PetNannyRepository {
     suspend fun updateParentCheckCompleteServiceStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean>
 
     suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean>
+
+    suspend fun getDemandOrderChatRoomListResult(): Result<List<Order>>
+
+    suspend fun addMessage(userEmails: String, message: Message): Result<Boolean>
+
+    suspend fun getMessage(orderID: String?): Result<List<Message>>
 }

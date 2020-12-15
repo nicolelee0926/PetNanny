@@ -1,23 +1,30 @@
 package com.nicole.petnanny.ui.chat.demand
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nicole.petnanny.data.Message
-import com.nicole.petnanny.data.User
+import com.nicole.petnanny.PetNannyApplication
+import com.nicole.petnanny.R
+import com.nicole.petnanny.data.Order
+import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
-    private var _chatList = MutableLiveData<List<Message>>()
-    val chatList: LiveData<List<Message>>
-        get() = _chatList
+//    chatRoom和Order合併
+    var demandOrderChatRoomList = MutableLiveData<List<Order>>()
 
-    var navigationToChatRoomDetail = MutableLiveData<Boolean>()
+//    to demandAdapter viewHolder button set value 用
+    var _navigationToDemandChatRoomDetail = MutableLiveData<Order>()
+    val navigationToDemandChatRoomDetail: LiveData<Order>
+        get() = _navigationToDemandChatRoomDetail
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -50,28 +57,87 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     }
 
     init {
-        getFakeChatListData()
-
+//        getDemandOrderChatRoomListResult()
+//        getUserResult(UserManager.user.value?.userEmail)
     }
 
-    private fun getFakeChatListData() {
-        val user1 = User(
-               userName = "小姐")
+    fun getDemandOrderChatRoomListResult() {
+        coroutineScope.launch {
 
-//        val serviceType = Nanny(
-//                serviceType = "到府美容")
+            _status.value = LoadApiStatus.LOADING
 
-        val chatRoom = mutableListOf(
-            Message(
-                receiver = user1,
-                content = "明天下午可以過去嗎",
-                )
-        )
-        _chatList.value = chatRoom
+            val result = repository.getDemandOrderChatRoomListResult()
+
+            demandOrderChatRoomList.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
     }
+
+    //    get user data to save userManager for load myClient order (這時get下來是用存是否認證的欄位資料, 存在userManager, 方便給my client去query)
+    fun getUserResult(userEmail: String?) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            userEmail?.let {
+                val result = repository.getUser(it)
+                Log.d("@@@@", "@@${result} ")
+
+                UserManager.user.value = when (result) {
+                    is Result.Success -> {
+                        _error.value = null
+                        _status.value = LoadApiStatus.DONE
+                        Log.d("@@@@", "@@${result.data} ")
+                        result.data
+                    }
+                    is Result.Fail -> {
+                        _error.value = result.error
+                        _status.value = LoadApiStatus.ERROR
+                        null
+                    }
+                    is Result.Error -> {
+                        _error.value = result.exception.toString()
+                        _status.value = LoadApiStatus.ERROR
+                        null
+                    }
+                    else -> {
+                        _error.value =
+                            PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                        _status.value = LoadApiStatus.ERROR
+                        null
+                    }
+                }
+                _refreshStatus.value = false
+            }
+        }
+    }
+
+
 
     fun displayChatRoomDetailComplete() {
-        navigationToChatRoomDetail.value = null
+        _navigationToDemandChatRoomDetail.value = null
     }
 
 }

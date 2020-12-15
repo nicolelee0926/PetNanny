@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="userText"
+            name="data"
             type="com.nicole.petnanny.data.Message" />
     </data>
 
@@ -28,49 +28,31 @@
             android:id="@+id/tv_userText"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/bg_round_8dp"
             android:ellipsize="end"
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="中山區"
+            android:text="@{data.content}"
             android:textColor="@color/colorDeepGray"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/photoCardView_other1"
-            app:layout_constraintTop_toTopOf="@+id/photoCardView_other1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="中山區" />
 
         <TextView
             android:id="@+id/textView121"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12:00"
+            tools:text="12:00"
+            app:time = "@{data.messageTime}"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_userText"
             app:layout_constraintEnd_toEndOf="@+id/textView102" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/photoCardView_other1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="50dp"
-            app:elevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/profile_imageView_other1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="centerCrop"
-                android:src="@drawable/iv_home_s2" />
-        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
