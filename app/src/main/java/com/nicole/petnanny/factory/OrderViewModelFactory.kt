@@ -6,6 +6,7 @@ import com.nicole.petnanny.data.Nanny
 import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.ui.chat.demand.add.DemandDetailViewModel
+import com.nicole.petnanny.ui.chat.work.add.WorkDetailViewModel
 import com.nicole.petnanny.ui.home.nannydetail.NannyDetailViewModel
 import com.nicole.petnanny.ui.home.nannylist.NannyListViewModel
 import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
@@ -29,6 +30,9 @@ class OrderViewModelFactory(
 
                 isAssignableFrom(DemandDetailViewModel::class.java) ->
                     DemandDetailViewModel(repository, arguments)
+
+                isAssignableFrom(WorkDetailViewModel::class.java) ->
+                    WorkDetailViewModel(repository, arguments)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

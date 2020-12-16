@@ -1,18 +1,20 @@
 package com.nicole.petnanny.ui.chat.work.add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.nicole.petnanny.databinding.FragmentWorkChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatRoomDetailAdapter
 
 class WorkDetailFragment : Fragment() {
 
-    private val viewModel by viewModels<WorkDetailViewModel> { getVmFactory() }
+    private val viewModel by viewModels<WorkDetailViewModel> { getVmFactory(WorkDetailFragmentArgs.fromBundle(requireArguments()).order) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,37 +27,36 @@ class WorkDetailFragment : Fragment() {
         val chatRoomDetailAdapter = ChatRoomDetailAdapter()
         binding.rvWorkChatContent.adapter = chatRoomDetailAdapter
 
-//        //一進來監聽之前聊天內容
-//        var userTextList = MessageList()
-//        val userText = mutableListOf<Message>()
-//
-//        val aaa = createMock().toMessageListItem()
-//
-//        chatRoomDetailAdapter.submitList(aaa)
+
+        binding.btnSendMessage.setOnClickListener {
+            viewModel.setWorkMessage()
+        }
+
+        viewModel.setWorkMessage.observe(viewLifecycleOwner, Observer {
+            Log.d("setMessage", "$it ")
+            viewModel.addWorkMessage(it)
+        })
+
+        viewModel.workMessages.observe(viewLifecycleOwner, Observer {
+            Log.d("getMessageList", "$it ")
+            chatRoomDetailAdapter.submitList(it)
+        })
+
+//        snapshot
+        viewModel.liveWorkMessages.observe(viewLifecycleOwner, Observer {
+            Log.d("uuuuu", "$it ")
+            viewModel.getLiveMessage()
+        })
+
+        binding.btnChatNannyStatus.setOnClickListener {
+            if (binding.viewChatNannyStatus.visibility == View.GONE) {
+                binding.viewChatNannyStatus.visibility = View.VISIBLE
+            } else {
+                binding.viewChatNannyStatus.visibility = View.GONE
+            }
+        }
 
 
         return binding.root
     }
-
-//    fun createMock() : MessageList{
-//        var user1 = Message(
-//            content = "明天下午可以過去嗎?",
-//
-//        )
-//
-//        var user2 = Message(
-//            content = "不要?",
-//
-//        )
-//        var listText =MessageList()
-//        var list = mutableListOf<Message>()
-//        list.add(user1)
-//        list.add(user2)
-//
-//
-//
-//        listText.messageText = list
-
-//        return listText
-//    }
 }

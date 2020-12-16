@@ -865,4 +865,146 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             }
     }
 
+    override suspend fun getWorkMessage(orderID: String?): Result<List<Message>> = suspendCoroutine { continuation ->
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .document(orderID!!)
+            .collection(PATH_MESSAGE)
+            .orderBy("messageTime",Query.Direction.ASCENDING)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Message>()
+                    for (document in task.result!!) {
+                        Log.d("getMessage", "${document.id} => ${document.data}")
+
+                        val message = document.toObject(Message::class.java)
+                        list.add(message)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    task.exception?.let {
+
+                        Log.d("add_pet_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean> = suspendCoroutine { continuation ->
+        Log.d("orderID", "$orderID, $workMessage " )
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .document(orderID)
+            .collection(PATH_MESSAGE)
+            .add(workMessage)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("addMessage", "addPet: $workMessage")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "add_pet_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override fun getLiveWorkMessages(orderID: String?): MutableLiveData<List<Message>> {
+        Log.d("startMessage", "ppppp")
+
+        val liveData = MutableLiveData<List<Message>>()
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .document(orderID as String)
+            .collection(PATH_MESSAGE)
+            .orderBy("messageTime", Query.Direction.ASCENDING)
+            .addSnapshotListener { snapshot, exception ->
+                exception?.let {
+                    Log.d(
+                        "get_service_exception",
+                        "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                    )}
+
+                val list = mutableListOf<Message>()
+                for (document in snapshot!!) {
+                    Log.d("resultMyDemandMessage", "${document.id} => ${document.data}")
+
+                    val message = document.toObject(Message::class.java)
+                    list.add(message)
+                }
+                liveData.value = list
+                Log.d("vvvvvv", "$list ")
+//                    list.sortBy { message -> message.messageTime }
+
+            }
+        return liveData
+    }
+
+    override fun getLiveWorkOrders(): MutableLiveData<List<Order>> {
+
+        val liveData = MutableLiveData<List<Order>>()
+
+        Log.d("getLiveDemandOrders", "getLiveDemandOrders ")
+
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .addSnapshotListener { snapshot, exception ->
+
+                exception?.let {
+                    Log.d(
+                        "get_service_exception",
+                        "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                    )
+                }
+
+                val list = mutableListOf<Order>()
+                for (document in snapshot!!) {
+                    Log.d("getLiveDemandOrders111", "${document.id} => ${document.data}")
+
+                    val order = document.toObject(Order::class.java)
+                    Log.d("jjjjjjj", "$order ")
+                    list.add(order)
+                }
+
+                var count = 0
+
+                list.forEach { data ->
+                    data.orderID?.let {
+                        FirebaseFirestore.getInstance()
+                            .collection(PATH_ORDER)
+                            .document(it).collection(PATH_MESSAGE)
+                            .orderBy("messageTime", Query.Direction.DESCENDING)
+                            .addSnapshotListener { item, error ->
+                                Log.d("data~~~~~~~~~~`", "$data ")
+                                val message = item?.toObjects(Message::class.java)
+                                data.lastMessage = message?.get(0)
+
+                                count += 1
+
+                                if (count == list.size) {
+                                    liveData.value = list
+                                }
+                            }
+                    }
+
+                }
+
+            }
+        return liveData
+    }
+
 }

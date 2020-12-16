@@ -65,9 +65,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(DemandViewModel::class.java) ->
                     DemandViewModel(repository)
 
-                isAssignableFrom(WorkDetailViewModel::class.java) ->
-                    WorkDetailViewModel(repository)
-
                 isAssignableFrom(WorkViewModel::class.java) ->
                     WorkViewModel(repository)
 

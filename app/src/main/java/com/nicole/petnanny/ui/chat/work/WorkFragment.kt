@@ -36,6 +36,11 @@ class WorkFragment(): Fragment() {
             workAdapter.submitList(it)
         })
 
+        //      get live work order snapshot
+        viewModel.liveWorkOrderChatRoomList.observe(viewLifecycleOwner, Observer {
+            viewModel.getLiveWorkOrder()
+        })
+
 //        navigate到work chat room detail頁
         viewModel.navigationToWorkChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if(null != it) {

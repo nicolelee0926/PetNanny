@@ -59,4 +59,12 @@ interface PetNannyDataSource {
     fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>>
 
     suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>>
+
+    suspend fun getWorkMessage(orderID: String?): Result<List<Message>>
+
+    suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean>
+
+    fun getLiveWorkMessages(orderID: String?): MutableLiveData<List<Message>>
+
+    fun getLiveWorkOrders(): MutableLiveData<List<Order>>
 }

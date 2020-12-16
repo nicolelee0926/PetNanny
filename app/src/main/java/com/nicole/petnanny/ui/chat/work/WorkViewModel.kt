@@ -68,7 +68,7 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
                 getWorkOrderChatRoomListResult(it)
             }
         }
-
+        getLiveWorkOrdersResult()
     }
 
     //    get workOrderChatRoom時 去query自己的userEmail(存再Order欄位裡的nanny email)
@@ -107,8 +107,15 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
     }
 
 
-
     fun displayChatRoomDetailComplete() {
         _navigationToWorkChatRoomDetail.value = null
+    }
+
+    fun getLiveWorkOrdersResult() {
+        liveWorkOrderChatRoomList = repository.getLiveWorkOrders()
+    }
+
+    fun getLiveWorkOrder() {
+        workOrderChatRoomList.value = liveWorkOrderChatRoomList.value
     }
 }

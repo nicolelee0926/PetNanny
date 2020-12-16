@@ -67,7 +67,6 @@
                     android:text="@{data.orderStartTime}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView30"
                     app:layout_constraintStart_toEndOf="@+id/imageView30"
                     app:layout_constraintTop_toTopOf="@+id/imageView30" />
@@ -81,7 +80,6 @@
                     android:text="@{data.orderEndTime}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView30"
                     app:layout_constraintStart_toEndOf="@+id/textView120"
                     app:layout_constraintTop_toTopOf="@+id/imageView30" />
@@ -94,7 +92,6 @@
                     android:text="~"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView30"
                     app:layout_constraintStart_toEndOf="@+id/textView95"
                     app:layout_constraintTop_toTopOf="@+id/imageView30" />
