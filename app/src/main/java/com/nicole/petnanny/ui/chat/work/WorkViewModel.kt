@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.data.Message
-import com.nicole.petnanny.data.User
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
@@ -51,25 +50,11 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
 
 
     init {
-        getFakeChatListData()
+
 
     }
 
-    private fun getFakeChatListData() {
-        val user1 = User(
-            userName = "小姐")
 
-//        val serviceType = Nanny(
-//                serviceType = "到府美容")
-
-        val chatRoom = mutableListOf(
-            Message(
-//                senderName = user1,
-                content = "明天下午可以過去嗎",
-            )
-        )
-        _chatList.value = chatRoom
-    }
 
     fun displayChatRoomDetailComplete() {
         navigationToChatRoomDetail.value = null

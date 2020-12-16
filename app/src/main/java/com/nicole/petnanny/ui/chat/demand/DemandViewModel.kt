@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
+import com.nicole.petnanny.data.Message
 import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
@@ -18,7 +19,6 @@ import kotlinx.coroutines.launch
 
 class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
-//    chatRoom和Order合併
     var demandOrderChatRoomList = MutableLiveData<List<Order>>()
 
 //    to demandAdapter viewHolder button set value 用
@@ -28,6 +28,9 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
 //    snapshot
     var liveOrders = MutableLiveData<List<Order>>()
+
+//    setFirstMessage
+    var getFirstMessage = MutableLiveData<Message>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -136,7 +139,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
             }
         }
     }
-
 
 
     fun displayChatRoomDetailComplete() {
