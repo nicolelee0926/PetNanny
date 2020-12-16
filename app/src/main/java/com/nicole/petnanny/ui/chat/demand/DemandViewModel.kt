@@ -61,6 +61,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     init {
         getDemandOrderChatRoomListResult()
         getUserResult(UserManager.user.value?.userEmail)
+        getLiveDemandOrdersResult()
     }
 
     fun getDemandOrderChatRoomListResult() {
@@ -142,8 +143,11 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
         _navigationToDemandChatRoomDetail.value = null
     }
 
-    fun getLiveArticlesResult() {
+    fun getLiveDemandOrdersResult() {
         liveOrders = repository.getLiveDemandOrders()
+    }
+
+    fun getLiveDemandOrder() {
         demandOrderChatRoomList.value = liveOrders.value
     }
 

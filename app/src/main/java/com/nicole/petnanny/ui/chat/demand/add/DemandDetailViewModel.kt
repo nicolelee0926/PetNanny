@@ -72,6 +72,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
 
     init {
         getMessage()
+        getLiveMessagesResult()
     }
 
     fun getMessage() {
@@ -149,8 +150,12 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
     }
 
     fun getLiveMessagesResult() {
-        livemessages = repository.getLiveMessages(demandDetail.value?.orderID!!)
-        livemessages.value = _messages.value
+        Log.d("rrrrrr", "${demandDetail.value?.orderID} ")
+        livemessages = repository.getLiveMessages(demandDetail.value?.orderID)
+    }
+
+    fun getLiveMessage() {
+        _messages.value = livemessages.value
     }
 
 }

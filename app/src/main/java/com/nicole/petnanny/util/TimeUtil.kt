@@ -11,6 +11,7 @@ object TimeUtil {
 //    }
 
     fun Long.toDisplayFormat(): String {
-        return android.icu.text.SimpleDateFormat("yyyy.MM.dd hh:mm", Locale.TAIWAN).format(this)
+        return android.icu.text.SimpleDateFormat("hh:mm", Locale.TAIWAN).format(this)
+//        return android.icu.text.SimpleDateFormat("yyyy.MM.dd hh:mm", Locale.TAIWAN).format(this)
     }
 }

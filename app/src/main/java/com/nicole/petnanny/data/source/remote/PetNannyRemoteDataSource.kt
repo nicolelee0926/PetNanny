@@ -636,14 +636,15 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                             FirebaseFirestore.getInstance()
                                 .collection(PATH_ORDER)
                                 .document(it).collection(PATH_MESSAGE).orderBy("messageTime",Query.Direction.DESCENDING).get().addOnSuccessListener { item ->
-                                    val a = item.toObjects(Message::class.java)
                                     val message = item.toObjects(Message::class.java)
+                                    data.lastMessage = message[0]
 
-                                    val lastMessage = message.filter { it ->
-                                        it.senderEmail != UserManager.user.value?.userEmail
-                                    }
-                                    Log.d("fffffff", "$lastMessage ");
-                                    data.lastMessage = lastMessage[0]
+//                                    如果抓最新的是對方的 要用filter
+//                                    val lastMessage = message.filter { it ->
+//                                        it.senderEmail != UserManager.user.value?.userEmail
+//                                    }
+//                                    Log.d("fffffff", "$lastMessage ");
+//                                    data.lastMessage = lastMessage[0]
 
                                     count += 1
 
@@ -729,6 +730,8 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
         val liveData = MutableLiveData<List<Order>>()
 
+        Log.d("getLiveDemandOrders", "getLiveDemandOrders ");
+
         FirebaseFirestore.getInstance()
             .collection(PATH_ORDER)
             .addSnapshotListener { snapshot, exception ->
@@ -742,11 +745,13 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                 val list = mutableListOf<Order>()
                 for (document in snapshot!!) {
-                    Log.d("resultMyOrder", "${document.id} => ${document.data}")
+                    Log.d("getLiveDemandOrders111", "${document.id} => ${document.data}")
 
                     val order = document.toObject(Order::class.java)
+                    Log.d("jjjjjjj", "$order ")
                     list.add(order)
                 }
+
                 var count = 0
 
                 list.forEach { data ->
@@ -754,15 +759,17 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                         FirebaseFirestore.getInstance()
                             .collection(PATH_ORDER)
                             .document(it).collection(PATH_MESSAGE)
-                            .orderBy("messageTime", Query.Direction.DESCENDING).get()
-                            .addOnSuccessListener { item ->
-                                val message = item.toObjects(Message::class.java)
+                            .orderBy("messageTime", Query.Direction.DESCENDING)
+                            .addSnapshotListener { item, error ->
+                                Log.d("data~~~~~~~~~~`", "$data ")
+                                val message = item?.toObjects(Message::class.java)
+                                data.lastMessage = message?.get(0)
 
-                                val lastMessage = message.filter { it ->
-                                    it.senderEmail != UserManager.user.value?.userEmail
-                                }
-                                Log.d("fffffff", "$lastMessage ");
-                                data.lastMessage = lastMessage[0]
+//                                val lastMessage = message.filter { it ->
+//                                    it.senderEmail != UserManager.user.value?.userEmail
+//                                }
+//                                Log.d("fffffff", "$lastMessage ");
+//                                data.lastMessage = lastMessage[0]
 
                                 count += 1
 
@@ -779,12 +786,13 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
     }
 
     override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
+        Log.d("startMessage", "ppppp")
 
         val liveData = MutableLiveData<List<Message>>()
 
         FirebaseFirestore.getInstance()
             .collection(PATH_ORDER)
-            .document(orderID!!)
+            .document(orderID as String)
             .collection(PATH_MESSAGE)
             .orderBy("messageTime", Query.Direction.ASCENDING)
             .addSnapshotListener { snapshot, exception ->
@@ -792,7 +800,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     Log.d(
                         "get_service_exception",
                         "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                    )
+                    )}
 
                     val list = mutableListOf<Message>()
                     for (document in snapshot!!) {
@@ -802,7 +810,9 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                         list.add(message)
                     }
                     liveData.value = list
-                }
+                    Log.d("vvvvvv", "$list ")
+//                    list.sortBy { message -> message.messageTime }
+
             }
         return liveData
     }
