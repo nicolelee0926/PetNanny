@@ -21,13 +21,14 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
     var demandOrderChatRoomList = MutableLiveData<List<Order>>()
 
+
 //    to demandAdapter viewHolder button set value 用
     var _navigationToDemandChatRoomDetail = MutableLiveData<Order>()
     val navigationToDemandChatRoomDetail: LiveData<Order>
         get() = _navigationToDemandChatRoomDetail
 
 //    snapshot
-    var liveOrders = MutableLiveData<List<Order>>()
+    var liveDemandOrderChatRoomList = MutableLiveData<List<Order>>()
 
 //    setFirstMessage
     var getFirstMessage = MutableLiveData<Message>()
@@ -64,7 +65,8 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     init {
         getDemandOrderChatRoomListResult()
         getUserResult(UserManager.user.value?.userEmail)
-        getLiveDemandOrdersResult()
+
+
     }
 
     fun getDemandOrderChatRoomListResult() {
@@ -135,6 +137,13 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                         null
                     }
                 }
+
+                //  因為登入後認證欄位還是null 所以要在這邊再存回UserManager一次 認證狀態才會被儲存 這時再執行snapshot時就有認證狀態了
+                //  才不會因為還沒存入狀態前就snapshot了
+                if (UserManager.user.value?.verification == null) {
+                    getLiveDemandOrdersResult()
+                }
+
                 _refreshStatus.value = false
             }
         }
@@ -146,11 +155,11 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     }
 
     fun getLiveDemandOrdersResult() {
-        liveOrders = repository.getLiveDemandOrders()
+        liveDemandOrderChatRoomList = repository.getLiveDemandOrders()
     }
 
     fun getLiveDemandOrder() {
-        demandOrderChatRoomList.value = liveOrders.value
+        demandOrderChatRoomList.value = liveDemandOrderChatRoomList.value
     }
 
 }

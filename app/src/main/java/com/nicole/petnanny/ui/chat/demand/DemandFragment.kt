@@ -42,7 +42,7 @@ class DemandFragment() : Fragment() {
         })
 
 //      get live demand order snapshot
-        viewModel.liveOrders.observe(viewLifecycleOwner, Observer {
+        viewModel.liveDemandOrderChatRoomList.observe(viewLifecycleOwner, Observer {
             viewModel.getLiveDemandOrder()
         })
 
@@ -58,14 +58,7 @@ class DemandFragment() : Fragment() {
         return binding.root
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        Log.d("!!!!", "!!! ");
-//        UserManager.user.value?.userEmail?.let {
-//            Log.d("!!!", "$it ")
-//            viewModel.getDemandOrderChatRoomListResult()
-//        }
-//    }
+
 
 
 }

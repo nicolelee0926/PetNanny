@@ -113,4 +113,8 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
         return remoteDataSource.getLiveMessages(orderID)
     }
+
+    override suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>> {
+        return remoteDataSource.getWorkChatListResult(nannyEmail)
+    }
 }

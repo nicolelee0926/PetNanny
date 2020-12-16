@@ -32,15 +32,14 @@ class WorkFragment(): Fragment() {
         val workAdapter = WorkAdapter(viewModel)
         binding.rvChatWork.adapter = workAdapter
 
-        viewModel.chatList.observe(viewLifecycleOwner, Observer {
+        viewModel.workOrderChatRoomList.observe(viewLifecycleOwner, Observer {
             workAdapter.submitList(it)
         })
 
-        viewModel.navigationToChatRoomDetail.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                findNavController().navigate(ChatFragmentDirections.actionNavigationChatToWorkDetailFragment())
-            }
-            if (it != null) {
+//        navigate到work chat room detail頁
+        viewModel.navigationToWorkChatRoomDetail.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                findNavController().navigate(ChatFragmentDirections.actionNavigationChatToWorkDetailFragment(it))
                 viewModel.displayChatRoomDetailComplete()
             }
         })

@@ -55,4 +55,6 @@ interface PetNannyRepository {
     fun getLiveDemandOrders(): MutableLiveData<List<Order>>
 
     fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>>
+
+    suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>>
 }

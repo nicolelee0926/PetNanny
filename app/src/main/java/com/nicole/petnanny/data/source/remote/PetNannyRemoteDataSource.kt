@@ -616,6 +616,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
 
     override suspend fun getDemandChatListResult(): Result<List<Order>> = suspendCoroutine { continuation ->
+        Log.d("userEmailyyyyyyyy", "${UserManager.user.value?.userEmail}" )
         FirebaseFirestore.getInstance()
             .collection(PATH_ORDER)
             .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
@@ -815,6 +816,53 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
             }
         return liveData
+    }
+
+    override suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>> = suspendCoroutine { continuation ->
+        FirebaseFirestore.getInstance()
+            .collection(PATH_ORDER)
+            .whereEqualTo("nannyEmail", UserManager.user.value?.userEmail)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Order>()
+                    for (document in task.result!!) {
+                        Log.d("resultMyOrder@@@@@", "${document.id} => ${document.data}")
+
+                        val myOrder = document.toObject(Order::class.java)
+                        list.add(myOrder)
+                    }
+                    var count = 0
+
+                    list.forEach { data ->
+                        data.orderID?.let {
+                            FirebaseFirestore.getInstance()
+                                .collection(PATH_ORDER)
+                                .document(it).collection(PATH_MESSAGE).orderBy("messageTime",Query.Direction.DESCENDING).get().addOnSuccessListener { item ->
+                                    val message = item.toObjects(Message::class.java)
+                                    data.lastMessage = message[0]
+
+                                    count += 1
+
+                                    if(count == list.size) {
+                                        continuation.resume(Result.Success(list))
+                                    }
+                                }
+                        }
+                    }
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "get_service_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
     }
 
 }
