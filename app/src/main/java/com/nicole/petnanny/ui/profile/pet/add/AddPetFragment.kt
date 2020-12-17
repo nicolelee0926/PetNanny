@@ -30,7 +30,7 @@ class AddPetFragment : Fragment() {
 
     private val viewModel by viewModels<AddPetViewModel> { getVmFactory() }
 
-    private val REQUEST_EXTERNAL_STORAGE = 10
+    private val PET_REQUEST_EXTERNAL_STORAGE = 10
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -113,9 +113,6 @@ class AddPetFragment : Fragment() {
 //        checkPhotoPermission
         binding.btnAddPetPhoto.setOnClickListener {
             checkPermission()
-
-//            再一次開啟相機
-//            getLocalImg()
         }
 
 //        observe real URL Path
@@ -132,7 +129,7 @@ class AddPetFragment : Fragment() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            REQUEST_EXTERNAL_STORAGE -> {
+            PET_REQUEST_EXTERNAL_STORAGE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLocalImg()
                 } else {
@@ -146,7 +143,7 @@ class AddPetFragment : Fragment() {
         val permission = activity?.let { ContextCompat.checkSelfPermission(it, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) }
         if (permission != PackageManager.PERMISSION_GRANTED) {
             //未取得權限，向使用者要求允許權限
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), PET_REQUEST_EXTERNAL_STORAGE)
         } else {
             getLocalImg()
         }

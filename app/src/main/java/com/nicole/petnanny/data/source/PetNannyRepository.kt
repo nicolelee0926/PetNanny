@@ -67,4 +67,6 @@ interface PetNannyRepository {
     fun getLiveWorkOrders(): MutableLiveData<List<Order>>
 
     suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String>
+
+    suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String>
 }

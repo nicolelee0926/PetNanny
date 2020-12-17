@@ -30,6 +30,8 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
     var selectedLocation = MutableLiveData<String>().apply { value = "" }
     var selectedAcceptPet = MutableLiveData<String>().apply { value = "" }
     var servicePrice = MutableLiveData<String>().apply { value = "" }
+    //    firebase photo local path
+    val servicePhotoRealPath = MutableLiveData<String>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -93,8 +95,38 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 price = servicePrice.value.toString(),
                 nannyName = UserManager.user.value?.userName,
                 nannyPhoto = UserManager.user.value?.photo.toString(),
-                createTime = System.currentTimeMillis()
+                createTime = System.currentTimeMillis(),
+                servicePhoto = servicePhotoRealPath.value.toString()
             )
+    }
+
+    //    upload servicePhoto
+    fun uploadServicePhoto(servicePhotoLocalPath: String) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+            val result = repository.uploadServicePhoto(servicePhotoLocalPath)
+
+            when (result) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    servicePhotoRealPath.value = result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
     }
 
 }

@@ -40,7 +40,7 @@ fun bindImage(imageView: ImageView, url: String?) {
             .load(url)
             .apply(
                 RequestOptions()
-                    .placeholder(R.drawable.ic_chat_nanny_status)
+//                    .placeholder(R.drawable.ic_chat_nanny_status)
                     .error(R.drawable.ic_launcher_background))
             .into(imageView)
     }
