@@ -97,5 +97,5 @@ class SendDemandFragment: Fragment() {
 
 
 
-// TODO 存livedata的天數和總價 綁定xml
+
 }

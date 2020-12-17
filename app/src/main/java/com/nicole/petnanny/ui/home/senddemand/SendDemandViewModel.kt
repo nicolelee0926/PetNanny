@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
-import com.nicole.petnanny.data.Nanny
-import com.nicole.petnanny.data.Order
-import com.nicole.petnanny.data.Result
-import com.nicole.petnanny.data.User
+import com.nicole.petnanny.data.*
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
 import com.nicole.petnanny.ui.login.UserManager
@@ -42,6 +39,7 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
 //    用liveData存UserManager下單者的資料進去
     var userInfo = MutableLiveData<User>()
         get() = UserManager.user
+
 
 
 

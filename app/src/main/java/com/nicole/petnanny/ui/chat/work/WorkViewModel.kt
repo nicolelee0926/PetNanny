@@ -66,9 +66,9 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
 //          要傳入自己的email(因為要query自己是保姆的訂單)
             UserManager.user.value?.userEmail?.let {
                 getWorkOrderChatRoomListResult(it)
+                getLiveWorkOrdersResult()
             }
         }
-        getLiveWorkOrdersResult()
     }
 
     //    get workOrderChatRoom時 去query自己的userEmail(存再Order欄位裡的nanny email)

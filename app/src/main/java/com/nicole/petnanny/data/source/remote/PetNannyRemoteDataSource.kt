@@ -336,6 +336,35 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     if (task.isSuccessful) {
                         Log.d("addDemand", "addDemand: $demand")
 
+
+                        val messageNanny = demand.nannyEmail?.let {
+                            Message(
+                                senderName = demand.nannyServiceDetail?.nannyName,
+                                senderImage = demand.nannyServiceDetail?.nannyPhoto.toString(),
+                                senderEmail = it,
+                                messageTime = System.currentTimeMillis(),
+                                isRead = false,
+                                content = "你好，需要什麼服務呢？"
+                            )
+                        }
+
+                        val messageParent = demand.userEmail?.let {
+                            Message(
+                                senderName = demand.userInfo?.userName,
+                                senderImage = demand.userInfo?.photo.toString(),
+                                senderEmail = it,
+                                messageTime = System.currentTimeMillis(),
+                                isRead = false,
+                                content = "你好～～～"
+                            )
+                        }
+
+                        FirebaseFirestore.getInstance().collection(PATH_ORDER).document(document.id)
+                            .collection(PATH_MESSAGE).add(messageNanny!!)
+
+                        FirebaseFirestore.getInstance().collection(PATH_ORDER).document(document.id)
+                            .collection(PATH_MESSAGE).add(messageParent!!)
+
                         continuation.resume(Result.Success(true))
                     } else {
                         task.exception?.let {
@@ -414,7 +443,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
         }
 
-//    家長提出 保姆update接受狀態為true
+    //    家長提出 保姆update接受狀態為true
     override suspend fun updateNannyAcceptStatus(
         orderID: String,
         viewModel: MyClientDetailViewModel
@@ -437,8 +466,9 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
     }
 
-//      保姆接受後 家長等待付款
-    override suspend fun getMyOrderNannyAcceptStatus(orderID: String) : Result<Boolean> = suspendCoroutine { continuation ->
+    //      保姆接受後 家長等待付款
+    override suspend fun getMyOrderNannyAcceptStatus(orderID: String): Result<Boolean> =
+        suspendCoroutine { continuation ->
             var nannyAcceptStatus = false
 
             FirebaseFirestore.getInstance()
@@ -467,8 +497,11 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
         }
 
-//    家長等待付款 保姆準備開始服務
-    override suspend fun updateParentCheckoutCompleteStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> = suspendCoroutine { continuation ->
+    //    家長等待付款 保姆準備開始服務
+    override suspend fun updateParentCheckoutCompleteStatus(
+        orderID: String,
+        viewModel: MyOrderDetailViewModel
+    ): Result<Boolean> = suspendCoroutine { continuation ->
 
         val order = FirebaseFirestore.getInstance().collection(PATH_ORDER)
 
@@ -487,38 +520,42 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
     }
 
-//    家長付款完成 保姆收到通知
-    override suspend fun getMyClientParentCheckoutCompleteStatus(orderID: String): Result<Boolean> = suspendCoroutine { continuation ->
-        var userCheckoutStatus = false
+    //    家長付款完成 保姆收到通知
+    override suspend fun getMyClientParentCheckoutCompleteStatus(orderID: String): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            var userCheckoutStatus = false
 
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    task.result?.data.let {
-                        Log.d("123", "${task.result}")
-                        val order: Order = task.result?.toObject(Order::class.java)!!
-                        userCheckoutStatus = order.userCheckoutStatus!!
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        task.result?.data.let {
+                            Log.d("123", "${task.result}")
+                            val order: Order = task.result?.toObject(Order::class.java)!!
+                            userCheckoutStatus = order.userCheckoutStatus!!
+                        }
+                        continuation.resume(Result.Success(userCheckoutStatus))
+                    } else {
+                        task.exception?.let {
+                            Log.d(
+                                "get_service_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Success(userCheckoutStatus))
-                } else {
-                    task.exception?.let {
-                        Log.d(
-                            "get_service_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
-                    }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
     //    保姆完成服務 update完成狀態為true
-    override suspend fun updateNannyCompleteServiceStatus(orderID: String, viewModel: MyClientDetailViewModel): Result<Boolean> = suspendCoroutine { continuation ->
+    override suspend fun updateNannyCompleteServiceStatus(
+        orderID: String,
+        viewModel: MyClientDetailViewModel
+    ): Result<Boolean> = suspendCoroutine { continuation ->
 
         val order = FirebaseFirestore.getInstance().collection(PATH_ORDER)
 
@@ -537,36 +574,40 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
     }
 
-    override suspend fun getNannyServiceCompletedStatus(orderID: String): Result<Boolean> = suspendCoroutine { continuation ->
-        var nannyServiceCompletedStatus = false
+    override suspend fun getNannyServiceCompletedStatus(orderID: String): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            var nannyServiceCompletedStatus = false
 
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    task.result?.data.let {
-                        Log.d("123", "${task.result}")
-                        val order: Order = task.result?.toObject(Order::class.java)!!
-                        nannyServiceCompletedStatus = order.nannyCompletedStatus!!
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        task.result?.data.let {
+                            Log.d("123", "${task.result}")
+                            val order: Order = task.result?.toObject(Order::class.java)!!
+                            nannyServiceCompletedStatus = order.nannyCompletedStatus!!
+                        }
+                        continuation.resume(Result.Success(nannyServiceCompletedStatus))
+                    } else {
+                        task.exception?.let {
+                            Log.d(
+                                "get_service_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Success(nannyServiceCompletedStatus))
-                } else {
-                    task.exception?.let {
-                        Log.d(
-                            "get_service_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
-                    }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
-    override suspend fun updateParentCheckCompleteServiceStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> = suspendCoroutine { continuation ->
+    override suspend fun updateParentCheckCompleteServiceStatus(
+        orderID: String,
+        viewModel: MyOrderDetailViewModel
+    ): Result<Boolean> = suspendCoroutine { continuation ->
 
         val order = FirebaseFirestore.getInstance().collection(PATH_ORDER)
 
@@ -585,60 +626,72 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
     }
 
-    override suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean> = suspendCoroutine { continuation ->
-        var liveCheckServiceCompleteStatus = false
+    override suspend fun getParentCheckServiceCompleteStatus(orderID: String): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            var liveCheckServiceCompleteStatus = false
 
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    task.result?.data.let {
-                        Log.d("123", "${task.result}")
-                        val order: Order = task.result?.toObject(Order::class.java)!!
-                        liveCheckServiceCompleteStatus = order.userCheckedStatus!!
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        task.result?.data.let {
+                            Log.d("123", "${task.result}")
+                            val order: Order = task.result?.toObject(Order::class.java)!!
+                            liveCheckServiceCompleteStatus = order.userCheckedStatus!!
+                        }
+                        continuation.resume(Result.Success(liveCheckServiceCompleteStatus))
+                    } else {
+                        task.exception?.let {
+                            Log.d(
+                                "get_service_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Success(liveCheckServiceCompleteStatus))
-                } else {
-                    task.exception?.let {
-                        Log.d(
-                            "get_service_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
-                    }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
 
-    override suspend fun getDemandChatListResult(): Result<List<Order>> = suspendCoroutine { continuation ->
-        Log.d("userEmailyyyyyyyy", "${UserManager.user.value?.userEmail}" )
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Order>()
-                    for (document in task.result!!) {
-                        Log.d("resultMyOrder@@@@@", "${document.id} => ${document.data}")
+    override suspend fun getDemandChatListResult(): Result<List<Order>> =
+        suspendCoroutine { continuation ->
+            Log.d("userEmailyyyyyyyy", "${UserManager.user.value?.userEmail}")
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Order>()
+                        for (document in task.result!!) {
+                            Log.d("resultMyOrder@@@@@", "${document.id} => ${document.data}")
 
-                        val myOrder = document.toObject(Order::class.java)
-                        list.add(myOrder)
-                    }
-                    var count = 0
+                            val myOrder = document.toObject(Order::class.java)
+                            list.add(myOrder)
+                        }
+                        var count = 0
 
-                    list.forEach { data ->
-                        data.orderID?.let {
-                            FirebaseFirestore.getInstance()
-                                .collection(PATH_ORDER)
-                                .document(it).collection(PATH_MESSAGE).orderBy("messageTime",Query.Direction.DESCENDING).get().addOnSuccessListener { item ->
-                                    val message = item.toObjects(Message::class.java)
-                                    data.lastMessage = message[0]
+                        list.forEach { data ->
+                            data.orderID?.let {
+                                FirebaseFirestore.getInstance()
+                                    .collection(PATH_ORDER)
+                                    .document(it).collection(PATH_MESSAGE)
+                                    .orderBy("messageTime", Query.Direction.DESCENDING).get()
+                                    .addOnSuccessListener { item ->
+                                        val message = item.toObjects(Message::class.java)
+                                        if (message.isNotEmpty()) {
+
+                                            data.lastMessage = message[0]
+                                            count += 1
+
+                                            if (count == list.size) {
+                                                continuation.resume(Result.Success(list))
+                                            }
+                                        }
 
 //                                    如果抓最新的是對方的 要用filter
 //                                    val lastMessage = message.filter { it ->
@@ -647,85 +700,86 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 //                                    Log.d("fffffff", "$lastMessage ");
 //                                    data.lastMessage = lastMessage[0]
 
-                                    count += 1
 
-                                    if(count == list.size) {
-                                        continuation.resume(Result.Success(list))
                                     }
-                                }
+                            }
                         }
-                    }
-                } else {
-                    task.exception?.let {
+                    } else {
+                        task.exception?.let {
 
-                        Log.d(
-                            "get_service_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                            Log.d(
+                                "get_service_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
-    override suspend fun addMessage(orderID: String, message: Message): Result<Boolean> = suspendCoroutine { continuation ->
-        Log.d("orderID", "$orderID, $message " )
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID)
-            .collection(PATH_MESSAGE)
-            .add(message)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("addMessage", "addPet: $message")
+    override suspend fun addMessage(orderID: String, message: Message): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            Log.d("orderID", "$orderID, $message ")
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID)
+                .collection(PATH_MESSAGE)
+                .add(message)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("addMessage", "addPet: $message")
 
-                    continuation.resume(Result.Success(true))
-                } else {
-                    task.exception?.let {
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
 
-                        Log.d(
-                            "add_pet_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                            Log.d(
+                                "add_pet_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
-    override suspend fun getMessage(orderID: String?): Result<List<Message>> = suspendCoroutine { continuation ->
+    override suspend fun getMessage(orderID: String?): Result<List<Message>> =
+        suspendCoroutine { continuation ->
 
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID!!)
-            .collection(PATH_MESSAGE)
-            .orderBy("messageTime",Query.Direction.ASCENDING)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Message>()
-                    for (document in task.result!!) {
-                        Log.d("getMessage", "${document.id} => ${document.data}")
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID!!)
+                .collection(PATH_MESSAGE)
+                .orderBy("messageTime", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Message>()
+                        for (document in task.result!!) {
+                            Log.d("getMessage", "${document.id} => ${document.data}")
 
-                        val message = document.toObject(Message::class.java)
-                        list.add(message)
+                            val message = document.toObject(Message::class.java)
+                            list.add(message)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
+
+                            Log.d(
+                                "add_pet_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Success(list))
-                } else {
-                    task.exception?.let {
-
-                        Log.d("add_pet_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
-                    }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
     override fun getLiveDemandOrders(): MutableLiveData<List<Order>> {
 
@@ -752,39 +806,30 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     Log.d("jjjjjjj", "$order ")
                     list.add(order)
                 }
-
-                var count = 0
+                Log.d("laaaaaaauuuuuuuuuuu", "$list ")
 
                 list.forEach { data ->
                     data.orderID?.let {
                         FirebaseFirestore.getInstance()
                             .collection(PATH_ORDER)
-                            .document(it).collection(PATH_MESSAGE)
+                            .document(it)
+                            .collection(PATH_MESSAGE)
                             .orderBy("messageTime", Query.Direction.DESCENDING)
                             .addSnapshotListener { item, error ->
                                 Log.d("data~~~~~~~~~~`", "$data ")
                                 val message = item?.toObjects(Message::class.java)
-                                data.lastMessage = message?.get(0)
+                                if (!message.isNullOrEmpty()) {
+                                    data.lastMessage = message.get(0)
 
-//                                val lastMessage = message.filter { it ->
-//                                    it.senderEmail != UserManager.user.value?.userEmail
-//                                }
-//                                Log.d("fffffff", "$lastMessage ");
-//                                data.lastMessage = lastMessage[0]
-
-                                count += 1
-
-                                if (count == list.size) {
-                                    liveData.value = list
                                 }
                             }
                     }
-
                 }
-
+                liveData.value = list
             }
         return liveData
     }
+
 
     override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
         Log.d("startMessage", "ppppp")
@@ -801,126 +846,137 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     Log.d(
                         "get_service_exception",
                         "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                    )}
+                    )
+                }
 
-                    val list = mutableListOf<Message>()
-                    for (document in snapshot!!) {
-                        Log.d("resultMyDemandMessage", "${document.id} => ${document.data}")
+                val list = mutableListOf<Message>()
+                for (document in snapshot!!) {
+                    Log.d("resultMyDemandMessage", "${document.id} => ${document.data}")
 
-                        val message = document.toObject(Message::class.java)
-                        list.add(message)
-                    }
-                    liveData.value = list
-                    Log.d("vvvvvv", "$list ")
+                    val message = document.toObject(Message::class.java)
+                    list.add(message)
+                }
+                liveData.value = list
+                Log.d("vvvvvv", "$list ")
 //                    list.sortBy { message -> message.messageTime }
 
             }
         return liveData
     }
 
-    override suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>> = suspendCoroutine { continuation ->
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .whereEqualTo("nannyEmail", UserManager.user.value?.userEmail)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Order>()
-                    for (document in task.result!!) {
-                        Log.d("resultMyOrder@@@@@", "${document.id} => ${document.data}")
+    override suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>> =
+        suspendCoroutine { continuation ->
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .whereEqualTo("nannyEmail", UserManager.user.value?.userEmail)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Order>()
+                        for (document in task.result!!) {
+                            Log.d("resultMyOrder@@@@@", "${document.id} => ${document.data}")
 
-                        val myOrder = document.toObject(Order::class.java)
-                        list.add(myOrder)
-                    }
-                    var count = 0
-
-                    list.forEach { data ->
-                        data.orderID?.let {
-                            FirebaseFirestore.getInstance()
-                                .collection(PATH_ORDER)
-                                .document(it).collection(PATH_MESSAGE).orderBy("messageTime",Query.Direction.DESCENDING).get().addOnSuccessListener { item ->
-                                    val message = item.toObjects(Message::class.java)
-                                    data.lastMessage = message[0]
-
-                                    count += 1
-
-                                    if(count == list.size) {
-                                        continuation.resume(Result.Success(list))
-                                    }
-                                }
+                            val myOrder = document.toObject(Order::class.java)
+                            list.add(myOrder)
                         }
-                    }
-                } else {
-                    task.exception?.let {
+                        var count = 0
 
-                        Log.d(
-                            "get_service_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                        list.forEach { data ->
+                            data.orderID?.let {
+                                FirebaseFirestore.getInstance()
+                                    .collection(PATH_ORDER)
+                                    .document(it).collection(PATH_MESSAGE)
+                                    .orderBy("messageTime", Query.Direction.DESCENDING).get()
+                                    .addOnSuccessListener { item ->
+                                        val message = item.toObjects(Message::class.java)
+                                        if (message.isNotEmpty()) {
+                                            data.lastMessage = message[0]
+
+                                            count += 1
+
+                                            if (count == list.size) {
+                                                continuation.resume(Result.Success(list))
+                                            }
+                                        }
+                                    }
+                            }
+                        }
+                    } else {
+                        task.exception?.let {
+
+                            Log.d(
+                                "get_service_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
-    override suspend fun getWorkMessage(orderID: String?): Result<List<Message>> = suspendCoroutine { continuation ->
+    override suspend fun getWorkMessage(orderID: String?): Result<List<Message>> =
+        suspendCoroutine { continuation ->
 
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID!!)
-            .collection(PATH_MESSAGE)
-            .orderBy("messageTime",Query.Direction.ASCENDING)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Message>()
-                    for (document in task.result!!) {
-                        Log.d("getMessage", "${document.id} => ${document.data}")
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID!!)
+                .collection(PATH_MESSAGE)
+                .orderBy("messageTime", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Message>()
+                        for (document in task.result!!) {
+                            Log.d("getMessage", "${document.id} => ${document.data}")
 
-                        val message = document.toObject(Message::class.java)
-                        list.add(message)
+                            val message = document.toObject(Message::class.java)
+                            list.add(message)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
+
+                            Log.d(
+                                "add_pet_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Success(list))
-                } else {
-                    task.exception?.let {
-
-                        Log.d("add_pet_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
-                    }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
-    override suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean> = suspendCoroutine { continuation ->
-        Log.d("orderID", "$orderID, $workMessage " )
-        FirebaseFirestore.getInstance()
-            .collection(PATH_ORDER)
-            .document(orderID)
-            .collection(PATH_MESSAGE)
-            .add(workMessage)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("addMessage", "addPet: $workMessage")
+    override suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean> =
+        suspendCoroutine { continuation ->
+            Log.d("orderID", "$orderID, $workMessage ")
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER)
+                .document(orderID)
+                .collection(PATH_MESSAGE)
+                .add(workMessage)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("addMessage", "addPet: $workMessage")
 
-                    continuation.resume(Result.Success(true))
-                } else {
-                    task.exception?.let {
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
 
-                        Log.d(
-                            "add_pet_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                            Log.d(
+                                "add_pet_exception",
+                                "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                            )
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                     }
-                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
-            }
-    }
+        }
 
     override fun getLiveWorkMessages(orderID: String?): MutableLiveData<List<Message>> {
         Log.d("startMessage", "ppppp")
@@ -937,7 +993,8 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     Log.d(
                         "get_service_exception",
                         "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                    )}
+                    )
+                }
 
                 val list = mutableListOf<Message>()
                 for (document in snapshot!!) {
@@ -980,7 +1037,6 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     list.add(order)
                 }
 
-                var count = 0
 
                 list.forEach { data ->
                     data.orderID?.let {
@@ -991,18 +1047,13 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                             .addSnapshotListener { item, error ->
                                 Log.d("data~~~~~~~~~~`", "$data ")
                                 val message = item?.toObjects(Message::class.java)
-                                data.lastMessage = message?.get(0)
-
-                                count += 1
-
-                                if (count == list.size) {
-                                    liveData.value = list
+                                if (!message.isNullOrEmpty()) {
+                                    data.lastMessage = message.get(0)
                                 }
                             }
                     }
-
                 }
-
+                liveData.value = list
             }
         return liveData
     }

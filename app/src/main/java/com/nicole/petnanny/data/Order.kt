@@ -26,6 +26,6 @@ data class Order(
     var nannyEmail:String? = "",
     var demandDay: String? = "",
     var totalPrice: String? = "",
-    var lastMessage: Message? = null,
+    var lastMessage: Message?= null,
 ) : Parcelable
 

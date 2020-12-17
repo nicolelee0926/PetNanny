@@ -30,8 +30,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 //    snapshot
     var liveDemandOrderChatRoomList = MutableLiveData<List<Order>>()
 
-//    setFirstMessage
-    var getFirstMessage = MutableLiveData<Message>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()

@@ -200,7 +200,7 @@
                 app:srcCompat="@drawable/ic_chat_camera" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName14"
+                android:id="@+id/et_message_content"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -222,16 +222,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/btn_send_message"
                 app:layout_constraintStart_toEndOf="@+id/imageView34"
                 app:layout_constraintTop_toTopOf="@+id/view15" />
-
-            <ImageView
-                android:id="@+id/imageView36"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName14"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName14"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName14"
-                app:srcCompat="@drawable/ic_chat_nanny_status" />
 
             <ImageView
                 android:id="@+id/btn_send_message"

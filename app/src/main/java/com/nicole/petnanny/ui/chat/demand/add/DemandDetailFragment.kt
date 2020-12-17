@@ -33,6 +33,7 @@ class DemandDetailFragment: Fragment() {
 //            } else {
                 viewModel.setMessage()
 //            }
+            binding.etMessageContent.setText("")
         }
 
         viewModel.setMessage.observe(viewLifecycleOwner, Observer {

@@ -110,6 +110,7 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
         }
     }
 
+
     fun addWorkMessage(setWorkMessage: Message) {
 
         coroutineScope.launch {

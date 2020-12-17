@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentChatDemandBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatFragmentDirections
+import com.nicole.petnanny.ui.login.UserManager
 
 class DemandFragment() : Fragment() {
 
@@ -40,6 +41,17 @@ class DemandFragment() : Fragment() {
             Log.d("testDemandMessage", "$it ")
             demandAdapter.submitList(it)
         })
+
+//        observe userManager nanny認證狀態
+//        UserManager.user.observe(viewLifecycleOwner, Observer {
+//            Log.d("impossible", "${UserManager.user.value?.verification} ")
+//            //  因為登入後認證欄位還是null 所以要在這邊再存回UserManager一次 認證狀態才會被儲存 這時再執行snapshot時就有認證狀態了
+//            //  才不會因為還沒存入狀態前就snapshot了
+//            if (it.verification == null) {
+//                viewModel.getDemandOrderChatRoomListResult()
+//                viewModel.getLiveDemandOrdersResult()
+//            }
+//        })
 
 //      get live demand order snapshot
         viewModel.liveDemandOrderChatRoomList.observe(viewLifecycleOwner, Observer {

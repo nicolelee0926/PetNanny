@@ -30,6 +30,7 @@ class WorkDetailFragment : Fragment() {
 
         binding.btnSendMessage.setOnClickListener {
             viewModel.setWorkMessage()
+            binding.etMessageContent.setText("")
         }
 
         viewModel.setWorkMessage.observe(viewLifecycleOwner, Observer {
