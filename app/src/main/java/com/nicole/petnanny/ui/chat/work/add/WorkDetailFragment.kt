@@ -49,15 +49,19 @@ class WorkDetailFragment : Fragment() {
             viewModel.getLiveMessage()
         })
 
+//        控制status View
         binding.btnChatNannyStatus.setOnClickListener {
             if (binding.viewChatNannyStatus.visibility == View.GONE) {
                 binding.viewChatNannyStatus.visibility = View.VISIBLE
+                binding.viewDeco.visibility = View.VISIBLE
             } else {
                 binding.viewChatNannyStatus.visibility = View.GONE
+                binding.viewDeco.visibility = View.GONE
             }
         }
 
-
         return binding.root
     }
+
+
 }

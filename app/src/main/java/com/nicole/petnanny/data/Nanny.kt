@@ -25,6 +25,7 @@ data class Nanny(
     var nannyPhoto : String? = "",
     var nannyPhone: String?= "",
     var nannySelfPhoto : String? = "",
-    var userEmail: String? = ""
+    var userEmail: String? = "",
+    var createTime: Long = System.currentTimeMillis()
 ) : Parcelable
 

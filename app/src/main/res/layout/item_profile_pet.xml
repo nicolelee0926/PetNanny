@@ -31,7 +31,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@drawable/iv_home_s2" />
+                tools:src="@drawable/iv_home_s2"
+                app:imageUrl="@{data.petPhoto}"/>
         </androidx.cardview.widget.CardView>
 
         <View

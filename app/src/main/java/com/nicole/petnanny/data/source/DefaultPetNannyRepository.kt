@@ -133,4 +133,8 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     override fun getLiveWorkOrders(): MutableLiveData<List<Order>> {
         return remoteDataSource.getLiveWorkOrders()
     }
+
+    override suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String> {
+        return remoteDataSource.uploadPetPhoto(petPhotoLocalPath)
+    }
 }

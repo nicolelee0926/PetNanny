@@ -27,5 +27,6 @@ data class Order(
     var demandDay: String? = "",
     var totalPrice: String? = "",
     var lastMessage: Message?= null,
+    var createTime: Long = System.currentTimeMillis()
 ) : Parcelable
 

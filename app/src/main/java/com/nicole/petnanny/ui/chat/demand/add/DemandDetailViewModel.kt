@@ -145,7 +145,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
             messageTime = System.currentTimeMillis(),
             senderImage = UserManager.user.value?.photo!!,
             senderEmail = UserManager.user.value?.userEmail!!,
-            id ="",
+            id =""
         )
     }
 

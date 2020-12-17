@@ -46,7 +46,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tv_status_shower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -62,8 +62,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/tv_status_eating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -76,11 +77,11 @@
                     android:paddingEnd="12dp"
                     android:text="餵食中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_shower"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView92"
+                    android:id="@+id/tv_status_walk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -93,11 +94,11 @@
                     android:paddingEnd="12dp"
                     android:text="遛狗中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_eating"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView125"
+                    android:id="@+id/tv_beauty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -110,11 +111,11 @@
                     android:paddingEnd="12dp"
                     android:text="剪毛中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView92"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_walk"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView126"
+                    android:id="@+id/tv_status_training"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -125,13 +126,13 @@
                     android:padding="5dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="散步中"
+                    android:text="訓練中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView125"
+                    app:layout_constraintStart_toEndOf="@+id/tv_beauty"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView127"
+                    android:id="@+id/tv_status_stay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -143,21 +144,21 @@
                     android:padding="5dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="散步中"
+                    android:text="託管中"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView126"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_training"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </HorizontalScrollView>
 
         <View
-            android:id="@+id/view14"
+            android:id="@+id/view_deco"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="1dp"
             android:background="#E1E1E1"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

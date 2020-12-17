@@ -22,6 +22,7 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
     val setPetData = MutableLiveData<Pet>()
 
     var petName  = MutableLiveData<String>().apply { value = "" }
+
     var petIntroduction = MutableLiveData<String>().apply { value = "" }
     var petVariety = MutableLiveData<String>().apply { value = "" }
     var petChipNumber = MutableLiveData<String>().apply { value = "" }
@@ -29,6 +30,8 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
     var selectedLigation = MutableLiveData<String>().apply { value = "" }
     var selectedType  = MutableLiveData<String>().apply { value = "" }
     var selectedAge = MutableLiveData<String>().apply { value = "" }
+    //    firebase photo local path
+    val petPhotoRealPath = MutableLiveData<String>()
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -95,7 +98,9 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
                 petLigation = selectedLigation.value.toString(),
                 petType = selectedType.value.toString(),
                 petAge = selectedAge.value.toString(),
-                userEmail = UserManager.user.value?.userEmail
+                userEmail = UserManager.user.value?.userEmail,
+                petPhoto = petPhotoRealPath.value.toString(),
+                createTime = System.currentTimeMillis()
         )
     }
 
@@ -105,6 +110,35 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
 
     fun setLigation(ligation: String) {
         selectedLigation.value = ligation
+    }
+
+//    upload petPhoto
+    fun uploadPetPhoto(petPhotoLocalPath: String) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+            val result = repository.uploadPetPhoto(petPhotoLocalPath)
+
+            when (result) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    petPhotoRealPath.value = result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
     }
 
 }

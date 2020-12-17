@@ -92,7 +92,8 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 userEmail = UserManager.user.value?.userEmail,
                 price = servicePrice.value.toString(),
                 nannyName = UserManager.user.value?.userName,
-                nannyPhoto = UserManager.user.value?.photo.toString()
+                nannyPhoto = UserManager.user.value?.photo.toString(),
+                createTime = System.currentTimeMillis()
             )
     }
 

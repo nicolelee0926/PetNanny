@@ -113,7 +113,8 @@ class SendDemandViewModel(private val repository: PetNannyRepository, private va
             nannyEmail = nannyDataArgus.value?.userEmail,
             demandDay = demandDay.value.toString(),
             totalPrice = totalPrice.value.toString(),
-            userInfo = userInfo.value
+            userInfo = userInfo.value,
+            createTime = System.currentTimeMillis()
         )
     }
 

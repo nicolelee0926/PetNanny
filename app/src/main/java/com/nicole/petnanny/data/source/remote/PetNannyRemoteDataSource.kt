@@ -1,9 +1,11 @@
 package com.nicole.petnanny.data.source.remote
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.data.*
@@ -13,6 +15,7 @@ import kotlin.coroutines.suspendCoroutine
 import com.nicole.petnanny.ui.login.UserManager
 import com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailViewModel
 import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
+import java.io.File
 
 object PetNannyRemoteDataSource : PetNannyDataSource {
 
@@ -56,7 +59,6 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
         FirebaseFirestore.getInstance()
             .collection(PATH_PET)
             .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
-//            .orderBy("createTime",Query.Direction.DESCENDING)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -67,6 +69,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                         val pet = document.toObject(Pet::class.java)
                         list.add(pet)
+                        list.sortBy { it.createTime }
                     }
                     continuation.resume(Result.Success(list))
                 } else {
@@ -126,6 +129,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                         val service = document.toObject(Nanny::class.java)
                         list.add(service)
+                        list.sortBy { it.createTime }
                     }
                     continuation.resume(Result.Success(list))
                 } else {
@@ -395,6 +399,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                             val myOrder = document.toObject(Order::class.java)
                             list.add(myOrder)
+                            list.sortByDescending { it.createTime }
                         }
                         continuation.resume(Result.Success(list))
                     } else {
@@ -426,6 +431,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                             val myClient = document.toObject(Order::class.java)
                             list.add(myClient)
+                            list.sortByDescending { it.createTime }
                         }
                         continuation.resume(Result.Success(list))
                     } else {
@@ -1056,6 +1062,40 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 liveData.value = list
             }
         return liveData
+    }
+
+    override suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String> = suspendCoroutine {continuation ->
+        // Create a storage reference from our app
+        var storageRef = FirebaseStorage.getInstance().reference
+
+        // Create a reference to "lastPathSegment.jpg"
+        var file = Uri.fromFile(File(petPhotoLocalPath))
+
+        // Create a reference to 'images/lastPathSegment.jpg'
+        var imagesRef= storageRef.child("images/${file.lastPathSegment}")
+
+        val uploadTask = imagesRef.putFile(file)
+
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask
+            .addOnSuccessListener { taskSnapshot ->
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                val storagePath = taskSnapshot.metadata?.path as String
+
+                storageRef.child(storagePath).downloadUrl
+                    .addOnSuccessListener {
+                        val uri = it
+                        Log.d("Firebase", "picture uri $uri")
+                        continuation.resume(Result.Success(uri.toString()))
+                    }
+                    .addOnFailureListener {
+                        continuation.resume(Result.Error(it))
+                    }
+            }
+            .addOnFailureListener {
+                // Handle unsuccessful uploads
+                continuation.resume(Result.Error(it))
+            }
     }
 
 }
