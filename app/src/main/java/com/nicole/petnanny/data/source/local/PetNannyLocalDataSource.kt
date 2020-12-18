@@ -150,5 +150,9 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getUserPetsResult(): Result<List<Pet>> {
+        TODO("Not yet implemented")
+    }
+
 
 }

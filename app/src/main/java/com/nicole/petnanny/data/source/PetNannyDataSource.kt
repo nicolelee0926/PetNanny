@@ -71,4 +71,6 @@ interface PetNannyDataSource {
     suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String>
 
     suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String>
+
+    suspend fun getUserPetsResult(): Result<List<Pet>>
 }

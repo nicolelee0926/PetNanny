@@ -3,6 +3,7 @@ package com.nicole.petnanny.data.source.remote
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
@@ -38,16 +39,27 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 if (task.isSuccessful) {
                     Log.d("addPet", "addPet: $pet")
 
-                    continuation.resume(Result.Success(true))
+//              add new pet to user
+                    pet.userEmail?.let {
+                        FirebaseFirestore.getInstance().collection(PATH_USER).document(it)
+                            .update("petIdList", FieldValue.arrayUnion(pet.petID))
+                            .addOnCompleteListener { task2 ->
+                                if (task2.isSuccessful) {
+                                    Log.d("add pet to user", "${pet.petID}")
+                                    continuation.resume(Result.Success(true))
+                                } else {
+                                    task2.exception?.let { e ->
+                                        Log.d("get_pet_exception", "[${this::class.simpleName}] Error getting documents. ${e.message}")
+                                        continuation.resume(Result.Error(e))
+                                    }
+                                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                                }
+                            }
+                    }
                 } else {
-                    task.exception?.let {
-
-                        Log.d(
-                            "add_pet_exception",
-                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
-                        )
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                    task.exception?.let { e ->
+                        Log.d("get_pet_exception", "[${this::class.simpleName}] Error getting documents. ${e.message}")
+                        continuation.resume(Result.Error(e))
                     }
                     continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
                 }
@@ -1064,71 +1076,107 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
         return liveData
     }
 
-    override suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String> = suspendCoroutine {continuation ->
-        // Create a storage reference from our app
-        var storageRef = FirebaseStorage.getInstance().reference
+    override suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String> =
+        suspendCoroutine { continuation ->
+            // Create a storage reference from our app
+            var storageRef = FirebaseStorage.getInstance().reference
 
-        // Create a reference to "lastPathSegment.jpg"
-        var file = Uri.fromFile(File(petPhotoLocalPath))
+            // Create a reference to "lastPathSegment.jpg"
+            var file = Uri.fromFile(File(petPhotoLocalPath))
 
-        // Create a reference to 'images/lastPathSegment.jpg'
-        var imagesRef= storageRef.child("images/${file.lastPathSegment}")
+            // Create a reference to 'images/lastPathSegment.jpg'
+            var imagesRef = storageRef.child("images/${file.lastPathSegment}")
 
-        val uploadTask = imagesRef.putFile(file)
+            val uploadTask = imagesRef.putFile(file)
 
-        // Register observers to listen for when the download is done or if it fails
-        uploadTask
-            .addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                val storagePath = taskSnapshot.metadata?.path as String
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask
+                .addOnSuccessListener { taskSnapshot ->
+                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                    val storagePath = taskSnapshot.metadata?.path as String
 
-                storageRef.child(storagePath).downloadUrl
-                    .addOnSuccessListener {
-                        val uri = it
-                        Log.d("Firebase", "picture uri $uri")
-                        continuation.resume(Result.Success(uri.toString()))
+                    storageRef.child(storagePath).downloadUrl
+                        .addOnSuccessListener {
+                            val uri = it
+                            Log.d("Firebase", "picture uri $uri")
+                            continuation.resume(Result.Success(uri.toString()))
+                        }
+                        .addOnFailureListener {
+                            continuation.resume(Result.Error(it))
+                        }
+                }
+                .addOnFailureListener {
+                    // Handle unsuccessful uploads
+                    continuation.resume(Result.Error(it))
+                }
+        }
+
+    override suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String> =
+        suspendCoroutine { continuation ->
+            // Create a storage reference from our app
+            var storageRef = FirebaseStorage.getInstance().reference
+
+            // Create a reference to "lastPathSegment.jpg"
+            var file = Uri.fromFile(File(servicePhotoLocalPath))
+
+            // Create a reference to 'images/lastPathSegment.jpg'
+            var imagesRef = storageRef.child("images/${file.lastPathSegment}")
+
+            val uploadTask = imagesRef.putFile(file)
+
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask
+                .addOnSuccessListener { taskSnapshot ->
+                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                    val storagePath = taskSnapshot.metadata?.path as String
+
+                    storageRef.child(storagePath).downloadUrl
+                        .addOnSuccessListener {
+                            val uri = it
+                            Log.d("Firebase", "picture uri $uri")
+                            continuation.resume(Result.Success(uri.toString()))
+                        }
+                        .addOnFailureListener {
+                            continuation.resume(Result.Error(it))
+                        }
+                }
+                .addOnFailureListener {
+                    // Handle unsuccessful uploads
+                    continuation.resume(Result.Error(it))
+                }
+        }
+
+    override suspend fun getUserPetsResult(): Result<List<Pet>> = suspendCoroutine { continuation ->
+
+        Log.d("userEmail", UserManager.user.value?.userEmail!!)
+        FirebaseFirestore.getInstance()
+            .collection(PATH_PET)
+            .whereEqualTo("userEmail", UserManager.user.value?.userEmail)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("userPetList", "$task.result ")
+                    val list = mutableListOf<Pet>()
+                    for (document in task.result!!) {
+                        Log.d("userPetList2", "${document.id} => ${document.data}")
+
+                        val pet = document.toObject(Pet::class.java)
+                        list.add(pet)
                     }
-                    .addOnFailureListener {
+                    continuation.resume(Result.Success(list))
+                } else {
+                    Log.d("userEmail3", "${task.result} ")
+                    task.exception?.let {
+
+                        Log.d(
+                            "get_pet_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
                         continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
                     }
-            }
-            .addOnFailureListener {
-                // Handle unsuccessful uploads
-                continuation.resume(Result.Error(it))
-            }
-    }
-
-    override suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String> = suspendCoroutine {continuation ->
-        // Create a storage reference from our app
-        var storageRef = FirebaseStorage.getInstance().reference
-
-        // Create a reference to "lastPathSegment.jpg"
-        var file = Uri.fromFile(File(servicePhotoLocalPath))
-
-        // Create a reference to 'images/lastPathSegment.jpg'
-        var imagesRef= storageRef.child("images/${file.lastPathSegment}")
-
-        val uploadTask = imagesRef.putFile(file)
-
-        // Register observers to listen for when the download is done or if it fails
-        uploadTask
-            .addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-                val storagePath = taskSnapshot.metadata?.path as String
-
-                storageRef.child(storagePath).downloadUrl
-                    .addOnSuccessListener {
-                        val uri = it
-                        Log.d("Firebase", "picture uri $uri")
-                        continuation.resume(Result.Success(uri.toString()))
-                    }
-                    .addOnFailureListener {
-                        continuation.resume(Result.Error(it))
-                    }
-            }
-            .addOnFailureListener {
-                // Handle unsuccessful uploads
-                continuation.resume(Result.Error(it))
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
             }
     }
 

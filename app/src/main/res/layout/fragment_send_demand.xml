@@ -130,6 +130,52 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView15"
                     app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
+                <TextView
+                    android:id="@+id/btn_choice_user_pet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="請選擇寵物"
+                    android:textColor="@color/colorDeepGray"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView51"
+                    app:layout_constraintStart_toEndOf="@+id/textView52"
+                    app:layout_constraintTop_toTopOf="@+id/textView51" />
+
+
+                <TextView
+                    android:id="@+id/tv_user_pet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Oreo"
+                    android:textColor="@color/colorDeepGray"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_user_pet_photo"
+                    app:layout_constraintStart_toEndOf="@+id/card_user_pet_photo"
+                    app:layout_constraintTop_toTopOf="@+id/card_user_pet_photo" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_user_pet_photo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView51"
+                    app:layout_constraintStart_toStartOf="@+id/btn_choice_user_pet"
+                    app:layout_constraintTop_toTopOf="@+id/textView51">
+
+                    <ImageView
+                        android:id="@+id/iv_user_pet_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/iv_home_s2" />
+                </androidx.cardview.widget.CardView>
+
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="24dp"
@@ -262,19 +308,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView24"
                     app:layout_constraintStart_toEndOf="@+id/imageView24"
                     app:layout_constraintTop_toTopOf="@+id/imageView24" />
-
-                <Spinner
-                    android:id="@+id/spinner_type"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:entries="@array/pet_array"
-                    android:prompt="@string/pet_array_title"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView52"
-                    app:layout_constraintTop_toTopOf="@+id/textView51" />
 
                 <ImageView
                     android:id="@+id/imageView25"

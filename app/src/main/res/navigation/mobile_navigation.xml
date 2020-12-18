@@ -160,7 +160,10 @@
         <argument
             android:name="Nanny"
             app:argType="com.nicole.petnanny.data.Nanny" />
-    </fragment>
+         <action
+             android:id="@+id/action_sendDemandFragment_to_selectUserPetDialog"
+             app:destination="@id/selectUserPetDialog" />
+     </fragment>
     <fragment
         android:id="@+id/demandFragment"
         android:name="com.nicole.petnanny.ui.chat.demand.DemandFragment"
@@ -227,5 +230,9 @@
             android:name="order"
             app:argType="com.nicole.petnanny.data.Order" />
     </fragment><action android:id="@+id/action_global_navigation_order" app:destination="@id/navigation_order"/>
+    <dialog
+        android:id="@+id/selectUserPetDialog"
+        android:name="com.nicole.petnanny.ui.home.senddemand.SelectUserPetDialog"
+        android:label="SelectUserPetDialog" />
 
 </navigation>

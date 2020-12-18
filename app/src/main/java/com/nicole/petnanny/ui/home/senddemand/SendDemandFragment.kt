@@ -54,7 +54,7 @@ class SendDemandFragment: Fragment() {
             picker.show(activity?.supportFragmentManager!!, picker.toString())
         }
 
-
+//      set picker binding
         picker.addOnNegativeButtonClickListener { picker.dismiss() }
         picker.addOnPositiveButtonClickListener {
             binding.btnStartTime.text = ("${SimpleDateFormat("yyyy.MM.dd").format(it.first)}")
@@ -62,6 +62,11 @@ class SendDemandFragment: Fragment() {
             binding.btnEndTime.text = ("${SimpleDateFormat("yyyy.MM.dd").format(it.second)}")
             viewModel.orderEndTime.value = binding.btnEndTime.text.toString()
             calculationDay(it, binding)
+        }
+
+//      set choice pet button
+        binding.btnChoiceUserPet.setOnClickListener {
+            findNavController().navigate(SendDemandFragmentDirections.actionSendDemandFragmentToSelectUserPetDialog())
         }
 
         return binding.root
@@ -87,15 +92,6 @@ class SendDemandFragment: Fragment() {
             }
         }
     }
-
-////    計算總價錢
-//    fun calculationTotalPrice(binding: FragmentSendDemandBinding) {
-//        val price = viewModel.nannyDataArgus.value?.price?.toLong()
-//        val demandDay =
-//        viewModel.nannyDataArgus.value = binding.tvTotalPrice.text.toString()
-//    }
-
-
-
+    
 
 }

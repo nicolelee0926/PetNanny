@@ -10,6 +10,6 @@ data class User(
     var userName : String? = "",
     var verification : Boolean? = null,
     var userEmail : String? ="",
-    var petID: String?= ""
+    var petIdList: List<String>? = null
 ) : Parcelable
 
