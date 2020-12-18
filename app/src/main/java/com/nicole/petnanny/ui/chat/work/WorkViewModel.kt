@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
+class WorkViewModel(private val repository: PetNannyRepository) : ViewModel() {
 
     var workOrderChatRoomList = MutableLiveData<List<Order>>()
 
@@ -28,8 +28,8 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
     //    snapshot
     var liveWorkOrderChatRoomList = MutableLiveData<List<Order>>()
 
-    //    setFirstMessage
-    var getFirstMessage = MutableLiveData<Message>()
+    //    如果沒有訊息顯示無聊天訊息的字＆圖
+    var noWorkMessage = MutableLiveData<Boolean>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -62,17 +62,23 @@ class WorkViewModel(private val repository: PetNannyRepository): ViewModel() {
 
 
     init {
-        if(UserManager.user.value?.verification == true) {
+        if (UserManager.user.value?.verification == true) {
 //          要傳入自己的email(因為要query自己是保姆的訂單)
             UserManager.user.value?.userEmail?.let {
+//          如果是保姆 假設狀態是no message是true 再去fragment observe
+                noWorkMessage.value = true
                 getWorkOrderChatRoomListResult(it)
                 getLiveWorkOrdersResult()
             }
+        } else if (UserManager.user.value?.verification == null) {
+//          如果是保姆 假設狀態是no message是false 再去fragment observe
+            noWorkMessage.value = false
         }
     }
 
+
     //    get workOrderChatRoom時 去query自己的userEmail(存再Order欄位裡的nanny email)
-    fun getWorkOrderChatRoomListResult(nannyEmail : String) {
+    fun getWorkOrderChatRoomListResult(nannyEmail: String) {
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING

@@ -27,7 +27,7 @@ fun bindServicePrice(textView: TextView, int: Int) {
 
 @BindingAdapter("intToString")
 fun bindIntToSting(textView: TextView, int: Int) {
-    int?.let{
+    int?.let {
         textView.text = int.toString()
     }
 }
@@ -41,7 +41,8 @@ fun bindImage(imageView: ImageView, url: String?) {
             .apply(
                 RequestOptions()
 //                    .placeholder(R.drawable.ic_chat_nanny_status)
-                    .error(R.drawable.ic_launcher_background))
+                    .error(R.drawable.ic_launcher_background)
+            )
             .into(imageView)
     }
 }

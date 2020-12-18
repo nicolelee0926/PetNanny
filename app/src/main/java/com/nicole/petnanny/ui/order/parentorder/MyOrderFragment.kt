@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.FragmentOrderMyOrderBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.login.UserManager
@@ -35,7 +36,12 @@ class MyOrderFragment(): Fragment() {
         binding.rvOrderMyOrder.adapter = myOrderAdapter
 
         viewModel.myOrderList.observe(viewLifecycleOwner, Observer {
-            myOrderAdapter.submitList(it)
+            if (it.isEmpty()) {
+                binding.tvParentNoOrder.text = "您目前沒有任何需求訂單喔"
+                binding.ivParentNoOrder.setImageDrawable(resources.getDrawable(R.drawable.ic_no_order))
+            } else {
+                myOrderAdapter.submitList(it)
+            }
         })
 
         //        navigate到MyOrder detail頁

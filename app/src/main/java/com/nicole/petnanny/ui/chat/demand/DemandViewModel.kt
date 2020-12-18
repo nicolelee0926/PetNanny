@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
-import com.nicole.petnanny.data.Message
 import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
@@ -30,6 +29,8 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 //    snapshot
     var liveDemandOrderChatRoomList = MutableLiveData<List<Order>>()
 
+//    如果沒有訊息顯示無聊天訊息的字＆圖
+    var noDemandMessage = MutableLiveData<Boolean>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -63,8 +64,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     init {
         getDemandOrderChatRoomListResult()
         getUserResult(UserManager.user.value?.userEmail)
-
-
     }
 
     fun getDemandOrderChatRoomListResult() {
@@ -78,6 +77,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
+                    Log.d("first", "${result.data} ")
                     result.data
 
                 }
@@ -139,7 +139,12 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                 //  因為登入後認證欄位還是null 所以要在這邊再存回UserManager一次 認證狀態才會被儲存 這時再執行snapshot時就有認證狀態了
                 //  才不會因為還沒存入狀態前就snapshot了
                 if (UserManager.user.value?.verification == null) {
+//                    如果是家長 假設no message狀態是是true 再去fragment observe
+                    noDemandMessage.value = true
                     getLiveDemandOrdersResult()
+                } else if(UserManager.user.value?.verification == true) {
+//                    如果是保姆 假設狀態是no message是false 再去fragment observe
+                    noDemandMessage.value = false
                 }
 
                 _refreshStatus.value = false

@@ -18,11 +18,12 @@ import com.nicole.petnanny.ui.order.parentorder.MyOrderAdapter
 import com.nicole.petnanny.ui.order.parentorder.MyOrderViewModel
 import kotlinx.android.synthetic.main.fragment_order_my_client.*
 
-class MyClientFragment(): Fragment() {
+class MyClientFragment() : Fragment() {
 
 
-    var type : Int = 0
-    constructor(int : Int) : this() {
+    var type: Int = 0
+
+    constructor(int: Int) : this() {
         this.type = int
     }
 
@@ -41,26 +42,29 @@ class MyClientFragment(): Fragment() {
         binding.rvOrderMyClient.adapter = myClientAdapter
 
         viewModel.myClientList.observe(viewLifecycleOwner, Observer {
-            myClientAdapter.submitList(it)
+            if (it.isEmpty()) {
+                binding.tvClientNoOrder.text = "您目前沒有任何工作訂單喔"
+                binding.ivClientNoOrder.setImageDrawable(resources.getDrawable(R.drawable.ic_no_order))
+            } else {
+//
+                myClientAdapter.submitList(it)
+            }
         })
 
 
         //        navigate到MyClient detail頁
         viewModel.navigationToMyClientDetail.observe(viewLifecycleOwner, Observer {
-            if(null != it) {
-                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment(it))
+            if (null != it) {
+                findNavController().navigate(
+                    OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment(
+                        it
+                    )
+                )
                 viewModel.displayMyClientDetailsComplete()
             }
         })
 
-//        if (it.isEmpty()) {
-//            binding.tvParentNoOrder.text = ""
-//            binding.ivParentNoOrder.setImageDrawable(null)
-//        } else {
-//            binding.tvParentNoOrder.text = "您目前沒有任何工作訂單喔"
-//            binding.ivParentNoOrder.setImageDrawable(resources.getDrawable(R.drawable.ic_no_order))
-//            myClientAdapter.submitList(it)
-//        }
+
 
         return binding.root
     }
