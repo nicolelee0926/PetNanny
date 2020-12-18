@@ -66,8 +66,19 @@ class SendDemandFragment: Fragment() {
 
 //      set choice pet button
         binding.btnChoiceUserPet.setOnClickListener {
-            findNavController().navigate(SendDemandFragmentDirections.actionSendDemandFragmentToSelectUserPetDialog())
+            viewModel.userPetList.value?.let { it1 -> fragmentManager?.let { it2 ->
+                SelectUserPetDialog(it1, viewModel).show(
+                    it2, "")
+            } }
         }
+
+
+//       observe selected pet then change pet raw view
+        viewModel.selectedPet.observe(viewLifecycleOwner, Observer {
+            binding.tvUserPetName.visibility = View.VISIBLE
+            binding.cardUserPetPhoto.visibility = View.VISIBLE
+            binding.btnChoiceUserPet.visibility = View.GONE
+        })
 
         return binding.root
     }
@@ -92,6 +103,6 @@ class SendDemandFragment: Fragment() {
             }
         }
     }
-    
+
 
 }

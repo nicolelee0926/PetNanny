@@ -49,6 +49,9 @@ class SendDemandViewModel(
     val userPetList: LiveData<List<Pet>>
         get() = _userPetList
 
+//    存被選到的pet
+    var selectedPet = MutableLiveData<Pet>()
+
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -144,7 +147,6 @@ class SendDemandViewModel(
 
     fun sendDemand() {
         setDemandData.value = Order(
-            petID = orderPet.value.toString(),
             orderStartTime = orderStartTime.value.toString(),
             orderEndTime = orderEndTime.value.toString(),
             address = orderServiceAddress.value.toString(),
@@ -157,7 +159,7 @@ class SendDemandViewModel(
             totalPrice = totalPrice.value.toString(),
             userInfo = userInfo.value,
             createTime = System.currentTimeMillis(),
-
+            selectedPet = selectedPet.value
             )
     }
 

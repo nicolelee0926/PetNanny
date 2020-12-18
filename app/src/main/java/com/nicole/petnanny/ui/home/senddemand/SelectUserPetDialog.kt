@@ -3,6 +3,7 @@ package com.nicole.petnanny.ui.home.senddemand
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.nicole.petnanny.data.Pet
@@ -25,22 +26,22 @@ class SelectUserPetDialog(val userPetList: List<Pet>, val viewModel: SendDemandV
             // add a radio button list
             val arrayList = userPetList.map { it?.petName }.toTypedArray()
             val selectedItems = ArrayList<Int>() //we selected item position
+            viewModel.selectedPet.value = userPetList[0]
 
-            builder.setSingleChoiceItems(arrayList, 0,
-                DialogInterface.OnClickListener { dialog, which ->
+            builder.setSingleChoiceItems(arrayList, 0) { dialog, which ->
                     // user checked an item
-                    selectedItems.add(which)
-                })
+                Log.d("which2", "$which ")
+                viewModel.selectedPet.value = userPetList[which]
+                }
 
             // add OK and Cancel buttons
-            builder.setPositiveButton("確定") { dialog, which ->
-                // user clicked OK
-                val selectPets = mutableListOf<Pet>()
-                for (item in selectedItems) {
-                    selectPets.add(userPetList[item])
-                }
-                viewModel._userPetList.value = selectPets
-            }
+            builder.setPositiveButton("確定", null)
+//            { dialog, which ->
+//                // user clicked OK
+//                Log.d("which", "$which ")
+//                Log.d("userPetListvvvvv", "$userPetList ")
+//
+//            }
             builder.setNegativeButton("取消", null)
 
             // Create the AlertDialog object and return it

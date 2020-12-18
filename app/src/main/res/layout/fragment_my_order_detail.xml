@@ -48,12 +48,37 @@
                         android:id="@+id/textView106"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp"
+                        android:layout_marginStart="16dp"
                         android:textColor="@color/colorDeepGray"
+                        android:text="@{viewModel.myOrderDetail.selectedPet.petName}"
                         app:layout_constraintBottom_toBottomOf="@+id/textView51"
-                        app:layout_constraintStart_toEndOf="@+id/textView51"
+                        app:layout_constraintStart_toEndOf="@+id/card_user_pet_photo"
                         app:layout_constraintTop_toTopOf="@+id/textView51"
                         tools:text="Oreo" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_user_pet_photo"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible"
+                        app:cardCornerRadius="50dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView51"
+                        app:layout_constraintStart_toStartOf="@+id/textView111"
+                        app:layout_constraintTop_toTopOf="@+id/textView51">
+
+                        <ImageView
+                            android:id="@+id/iv_user_pet_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:scaleType="centerCrop"
+                            app:imageUrl="@{viewModel.myOrderDetail.selectedPet.petPhoto}"
+                            tools:src="@drawable/iv_home_s2" />
+                    </androidx.cardview.widget.CardView>
+
 
                     <TextView
                         android:id="@+id/textView109"

@@ -113,7 +113,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view13"
                     app:srcCompat="@drawable/ic_order_pet" />
@@ -147,7 +147,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Oreo"
+                    tools:text="Oreo"
+                    android:text="@{viewModel.selectedPet.petName}"
                     android:textColor="@color/colorDeepGray"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/card_user_pet_photo"
@@ -156,15 +157,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_user_pet_photo"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:visibility="gone"
                     app:cardCornerRadius="50dp"
                     app:cardElevation="0dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/textView51"
-                    app:layout_constraintStart_toStartOf="@+id/btn_choice_user_pet"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start_time"
                     app:layout_constraintTop_toTopOf="@+id/textView51">
 
                     <ImageView
@@ -173,6 +174,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
+                        app:imageUrl="@{viewModel.selectedPet.petPhoto}"
                         tools:src="@drawable/iv_home_s2" />
                 </androidx.cardview.widget.CardView>
 
@@ -181,7 +183,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView15"
                     app:srcCompat="@drawable/ic_order_time" />
