@@ -49,16 +49,28 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                                     continuation.resume(Result.Success(true))
                                 } else {
                                     task2.exception?.let { e ->
-                                        Log.d("get_pet_exception", "[${this::class.simpleName}] Error getting documents. ${e.message}")
+                                        Log.d(
+                                            "get_pet_exception",
+                                            "[${this::class.simpleName}] Error getting documents. ${e.message}"
+                                        )
                                         continuation.resume(Result.Error(e))
                                     }
-                                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                                    continuation.resume(
+                                        Result.Fail(
+                                            PetNannyApplication.instance.getString(
+                                                R.string.you_know_nothing
+                                            )
+                                        )
+                                    )
                                 }
                             }
                     }
                 } else {
                     task.exception?.let { e ->
-                        Log.d("get_pet_exception", "[${this::class.simpleName}] Error getting documents. ${e.message}")
+                        Log.d(
+                            "get_pet_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${e.message}"
+                        )
                         continuation.resume(Result.Error(e))
                     }
                     continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
@@ -1162,6 +1174,42 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                         val pet = document.toObject(Pet::class.java)
                         list.add(pet)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    Log.d("userEmail3", "${task.result} ")
+                    task.exception?.let {
+
+                        Log.d(
+                            "get_pet_exception",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
+    override suspend fun getThreeSelectedList(serviceType: String, petType: String, location: String): Result<List<Nanny>> = suspendCoroutine { continuation ->
+
+        var query = FirebaseFirestore.getInstance().collection(PATH_NANNY).whereEqualTo("serviceType", serviceType)
+
+//        query = query.whereEqualTo("acceptPetType", petType) 要把第二次抓的也賦值回去第一次 搜尋結果才會累加變成第一次加第二次
+        if (petType.isNotEmpty()) query = query.whereEqualTo("acceptPetType", petType)
+        if (location.isNotEmpty()) query = query.whereEqualTo("serviceArea", location)
+
+        query.get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("searchNannyList", "$task.result ")
+                    val list = mutableListOf<Nanny>()
+                    for (document in task.result!!) {
+                        Log.d("searchNannyList1", "${document.id} => ${document.data}")
+
+                        val nanny = document.toObject(Nanny::class.java)
+                        list.add(nanny)
                     }
                     continuation.resume(Result.Success(list))
                 } else {

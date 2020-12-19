@@ -154,5 +154,13 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getThreeSelectedList(
+        serviceType: String,
+        petType: String,
+        location: String
+    ): Result<List<Nanny>> {
+        TODO("Not yet implemented")
+    }
+
 
 }
