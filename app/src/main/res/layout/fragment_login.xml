@@ -15,7 +15,7 @@
             android:id="@+id/imageView38"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bg_logo_text" />
@@ -25,11 +25,26 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_marginBottom="83dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/btn_google_sigh_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_login" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/ani_login_walk" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_google_sigh_in"

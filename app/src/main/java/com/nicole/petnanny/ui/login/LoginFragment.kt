@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -50,6 +51,9 @@ class LoginFragment: Fragment() {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
             }
         })
+
+        //    set LottieAnimationView
+
         return binding.root
     }
 
