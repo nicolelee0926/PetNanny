@@ -7,22 +7,26 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.databinding.ItemHomeNannyBinding
 import com.nicole.petnanny.data.Nanny
+import com.nicole.petnanny.ui.home.nannylist.NannyListViewModel
 
-class HomeAdapter : ListAdapter<Nanny, HomeAdapter.HomeViewHolder>(HomeDiffCallback()) {
+class HomeAdapter(val viewModel: HomeViewModel) : ListAdapter<Nanny, HomeAdapter.HomeViewHolder>(HomeDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         return HomeViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, viewModel)
     }
 
     class HomeViewHolder  private constructor(private val binding: ItemHomeNannyBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : Nanny) {
+        fun bind(item : Nanny, viewModel: HomeViewModel) {
             binding.data = item
+            binding.root.setOnClickListener {
+                viewModel._navigationToNannyDetail.value = item
+            }
             binding.executePendingBindings()
         }
 

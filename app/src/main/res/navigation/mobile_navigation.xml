@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_nannyListFragment"
             app:destination="@id/nannyListFragment" />
+         <action
+             android:id="@+id/action_navigation_home_to_nannyDetailFragment"
+             app:destination="@id/nannyDetailFragment" />
      </fragment>
     <fragment
         android:id="@+id/navigation_chat"
