@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.FragmentMyClientDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 
@@ -46,12 +48,14 @@ class MyClientDetailFragment : Fragment() {
 //     家長付款完成 服務即將開始
         viewModel.liveCheckoutCompleteStatusParent.observe(viewLifecycleOwner, Observer {
             setCheckoutCompleteStatusParent(it)
+            binding.ivServiceCompleted.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         })
 
 //    updateNannyCompleteServiceStatus
         binding.btnNannyCheckoutServiceCompleted.setOnClickListener {
             viewModel.updateNannyCompleteServiceStatus()
         }
+
 //    observe NannyCompleteServiceStatus後 元件做變化
         viewModel.liveNannyCompleteServiceStatus.observe(viewLifecycleOwner, Observer {
             setNannyCompleteServiceView(it)
@@ -60,7 +64,9 @@ class MyClientDetailFragment : Fragment() {
 //    observe parentCheckServiceCompleteStatus後 元件做變化
         viewModel.liveCheckServiceCompleteStatus.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+                binding.ivServiceCompletedWaitParent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
                 binding.layoutServiceCompletedFinallyNanny.visibility = View.VISIBLE
+                binding.ivServiceCompletedFinallyNanny.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
             }
         })
 
@@ -72,6 +78,7 @@ class MyClientDetailFragment : Fragment() {
         if (it == true) {
             binding.btnNannyCheckoutServiceCompleted.visibility = View.GONE
             binding.layoutServiceCompletedWaitParent.visibility = View.VISIBLE
+            binding.ivNannyServiceStart.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
 
@@ -80,6 +87,7 @@ class MyClientDetailFragment : Fragment() {
             binding.layoutServiceStart.visibility = View.VISIBLE
             binding.btnNannyCheckoutServiceCompleted.visibility = View.VISIBLE
             binding.layoutWaitParentCheckout.visibility = View.VISIBLE
+            binding.ivWaitParentCheckout.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
 
@@ -88,6 +96,7 @@ class MyClientDetailFragment : Fragment() {
             binding.btnRejectOrder.visibility = View.GONE
             binding.btnAcceptOrder.visibility = View.GONE
             binding.layoutWaitParentCheckout.visibility = View.VISIBLE
+            binding.ivNannyAcceptStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
 

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.FragmentMyClientDetailBinding
 import com.nicole.petnanny.databinding.FragmentMyOrderDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
@@ -44,6 +46,7 @@ class MyOrderDetailFragment : Fragment() {
 //    update ParentCheckoutCompleteStatus
         binding.btnCheckoutComplete.setOnClickListener {
             viewModel.updateParentCheckoutCompleteStatus()
+
         }
 //    observe ParentCheckoutCompleteStatus
         viewModel.liveCheckoutStatusParent.observe(viewLifecycleOwner, Observer {
@@ -58,6 +61,7 @@ class MyOrderDetailFragment : Fragment() {
 //    update ParentCheckCompleteServiceStatus
         binding.btnCheckServiceCompleted.setOnClickListener {
             viewModel.updateParentCheckCompleteServiceStatus()
+
         }
 //    家長自己觀察到服務完成欄位變true
         viewModel.liveParentCheckCompleteServiceStatus.observe(viewLifecycleOwner, Observer {
@@ -71,6 +75,8 @@ class MyOrderDetailFragment : Fragment() {
         if (it == true) {
             binding.layoutServiceCompletedFinally.visibility = View.VISIBLE
             binding.btnCheckServiceCompleted.visibility = View.GONE
+            binding.ivCheckServiceCompleted.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
+            binding.ivServiceCompletedFinally.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
 
@@ -85,6 +91,7 @@ class MyOrderDetailFragment : Fragment() {
         if (it == true) {
             binding.layoutWaitYourCheckout.visibility = View.VISIBLE
             binding.btnCheckoutComplete.visibility = View.VISIBLE
+            binding.ivWaitNannyAccept.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
 
@@ -92,6 +99,8 @@ class MyOrderDetailFragment : Fragment() {
         if (it == true) {
             binding.btnCheckoutComplete.visibility = View.GONE
             binding.layoutYourCheckoutCompleted.visibility = View.VISIBLE
+            binding.ivWaitYourCheckout.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
+            binding.ivYourCheckoutCompleted.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
 }

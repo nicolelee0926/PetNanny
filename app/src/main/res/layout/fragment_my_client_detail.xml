@@ -541,12 +541,12 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/imageView46"
+                            app:layout_constraintStart_toEndOf="@+id/iv_service_completed_finally_nanny"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
-                            android:id="@+id/imageView46"
+                            android:id="@+id/iv_service_completed_finally_nanny"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -570,18 +570,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="等待保姆確認服務完成"
+                            android:text="等待家長確認服務完成"
                             android:textColor="@color/colorDeepGray"
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/imageView44"
+                            app:layout_constraintStart_toEndOf="@+id/iv_service_completed_wait_parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
-                            android:id="@+id/imageView44"
+                            android:id="@+id/iv_service_completed_wait_parent"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -613,7 +613,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView4163"
+                            android:id="@+id/iv_service_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -645,7 +645,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView416"
+                            android:id="@+id/iv_wait_parent_checkout"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -676,7 +676,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView41"
+                            android:id="@+id/iv_nanny_accept_status"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -706,11 +706,11 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView29"
+                            app:layout_constraintStart_toEndOf="@+id/iv_nanny_service_start"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView29"
+                            android:id="@+id/iv_nanny_service_start"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"

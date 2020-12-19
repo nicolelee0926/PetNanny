@@ -44,6 +44,7 @@ class DemandDetailFragment: Fragment() {
         viewModel.messages.observe(viewLifecycleOwner, Observer {
             Log.d("getMessageList", "$it ")
             chatRoomDetailAdapter.submitList(it)
+            binding.rvDemandChatContent.post { binding.rvDemandChatContent.scrollToPosition(it.size - 1) }
         })
 
 //        snapshot

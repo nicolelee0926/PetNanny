@@ -41,6 +41,7 @@ class WorkDetailFragment : Fragment() {
         viewModel.workMessages.observe(viewLifecycleOwner, Observer {
             Log.d("getMessageList", "$it ")
             chatRoomDetailAdapter.submitList(it)
+            binding.rvWorkChatContent.post { binding.rvWorkChatContent.scrollToPosition(it.size - 1) }
         })
 
 //        snapshot

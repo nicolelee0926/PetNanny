@@ -528,12 +528,12 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView424"
+                            app:layout_constraintStart_toEndOf="@+id/iv_check_service_completed"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
-                            android:id="@+id/imageView424"
+                            android:id="@+id/iv_check_service_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="4dp"
@@ -583,11 +583,11 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView45"
+                            app:layout_constraintStart_toEndOf="@+id/iv_service_completed_finally"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView45"
+                            android:id="@+id/iv_service_completed_finally"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -619,7 +619,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView416"
+                            android:id="@+id/iv_wait_your_checkout"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -649,12 +649,12 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView42"
+                            app:layout_constraintStart_toEndOf="@+id/iv_your_checkout_completed"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
-                            android:id="@+id/imageView42"
+                            android:id="@+id/iv_your_checkout_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="4dp"
@@ -686,7 +686,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView41"
+                            android:id="@+id/iv_wait_nanny_accept"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -718,7 +718,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView4163"
+                            android:id="@+id/iv_checkout_service_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
