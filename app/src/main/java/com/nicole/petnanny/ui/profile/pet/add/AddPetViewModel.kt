@@ -62,6 +62,9 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
         viewModelJob.cancel()
     }
 
+    init {
+        _submitDataFinished.value = null
+    }
 
     fun addPet(pet: Pet) {
         Log.d("addPet", "hate")
@@ -89,6 +92,7 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
                 }
             }
         }
+        _submitDataFinished.value = true
     }
 
 
@@ -156,6 +160,10 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
                  petChipNumber.value == null ||
                  selectedLigation.value == null ||
                  selectedType.value == null)
+    }
+
+    fun submitToFireStoreFinished() {
+        _submitDataFinished.value = null
     }
 }
 

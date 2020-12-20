@@ -16,10 +16,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.nicole.petnanny.databinding.FragmentProfileAddServiceBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
+import com.nicole.petnanny.ui.profile.pet.add.AddPetFragmentDirections
 import com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel
 
 class AddServiceFragment: Fragment() {
@@ -52,6 +54,15 @@ class AddServiceFragment: Fragment() {
         viewModel.setServiceData.observe(viewLifecycleOwner, Observer {
             Log.d("serviceEditText", "$it ")
             viewModel.addService(it)
+        })
+
+        //        新增成功回到profile頁
+        viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(AddServiceFragmentDirections.actionAddServiceFragmentToNavigationProfile())
+                viewModel.submitToFireStoreFinished()
+            }
         })
 
         binding.spinnerAcceptType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

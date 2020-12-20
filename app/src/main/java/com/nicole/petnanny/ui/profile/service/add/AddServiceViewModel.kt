@@ -33,6 +33,11 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
     //    firebase photo local path
     val servicePhotoRealPath = MutableLiveData<String>()
 
+    //  傳送成功flag
+    private val _submitDataFinished = MutableLiveData<Boolean>()
+    val submitDataFinished: LiveData<Boolean>
+        get() = _submitDataFinished
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -50,6 +55,10 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    init {
+        _submitDataFinished.value = null
+    }
 
     fun addService(service: Nanny) {
         Log.d("addService", "hate")
@@ -127,6 +136,7 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 }
             }
         }
+        _submitDataFinished.value = true
     }
 
     //    check info completed
@@ -138,6 +148,10 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 selectedLocation.value == null ||
                 servicePhotoRealPath.value == null ||
                 selectedAcceptPet.value == null)
+    }
+
+    fun submitToFireStoreFinished() {
+        _submitDataFinished.value = null
     }
 
 }

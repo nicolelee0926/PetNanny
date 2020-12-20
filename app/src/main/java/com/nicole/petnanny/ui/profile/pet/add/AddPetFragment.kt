@@ -64,6 +64,7 @@ class AddPetFragment : Fragment() {
             if (it == true) {
                 Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(AddPetFragmentDirections.actionAddPetFragmentLToNavigationProfile())
+                viewModel.submitToFireStoreFinished()
             }
         })
 
