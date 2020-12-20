@@ -55,11 +55,7 @@ class MyClientFragment() : Fragment() {
         //        navigate到MyClient detail頁
         viewModel.navigationToMyClientDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
-                findNavController().navigate(
-                    OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment(
-                        it
-                    )
-                )
+                findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment(it))
                 viewModel.displayMyClientDetailsComplete()
             }
         })

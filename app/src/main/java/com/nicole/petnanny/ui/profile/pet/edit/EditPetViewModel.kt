@@ -1,39 +1,24 @@
-package com.nicole.petnanny.ui.home.nannydetail
+package com.nicole.petnanny.ui.profile.pet.edit
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nicole.petnanny.PetNannyApplication
-import com.nicole.petnanny.R
-import com.nicole.petnanny.data.Nanny
-import com.nicole.petnanny.data.Result
-import com.nicole.petnanny.data.User
+import com.nicole.petnanny.data.Pet
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
-import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
-class NannyDetailViewModel(
-    private val repository: PetNannyRepository,
-    private val arguments: Nanny
-) : ViewModel() {
+class EditPetViewModel(private val repository: PetNannyRepository, private val arguments: Pet): ViewModel() {
 
-    //    第一行給xml綁資料用 第二行將argus值指定給nannyDetail
-    val nannyDetail: LiveData<Nanny>
-        get() = nannyDetailArgus
+    //    第一行給xml綁資料用 第二行將argus值指定給petDetail
+    val petDetail: LiveData<Pet>
+        get() = petDetailArgus
 
-    var nannyDetailArgus = MutableLiveData<Nanny>().apply {
+    var petDetailArgus = MutableLiveData<Pet>().apply {
         value = arguments
     }
-
-    //    給按聯繫保姆按鈕後到demand頁面用的live data
-    private val _navigateToDemandNannyData = MutableLiveData<Nanny>()
-    val navigateToDemandNannyData: LiveData<Nanny>
-        get() = _navigateToDemandNannyData
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -64,11 +49,11 @@ class NannyDetailViewModel(
         viewModelJob.cancel()
     }
 
-    init {
-//        一開始先賦值給要帶過去的data
-        _navigateToDemandNannyData.value = nannyDetailArgus.value
-        Log.d("&&&&&&&&&", "${_navigateToDemandNannyData.value}")
-    }
+
+
+
+
+
 
 
 }

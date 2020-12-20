@@ -31,7 +31,7 @@ class PetFragment() : Fragment()  {
 
         binding.viewModel = viewModel
 
-        val petAdapter = PetAdapter()
+        val petAdapter = PetAdapter(viewModel)
         binding.rvPet.adapter = petAdapter
 
         viewModel.pet.observe(viewLifecycleOwner, Observer {
@@ -42,6 +42,13 @@ class PetFragment() : Fragment()  {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddPetFragmentL())
         }
 
+//        navigate to edit pet detail page
+        viewModel.navigationToEditPetDetail.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditPetFragment(it))
+                viewModel.displayEditPetDetailsComplete()
+            }
+        })
 
 
         return binding.root

@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_addUserFragment"
             app:destination="@id/addUserFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editPetFragment"
+            app:destination="@id/editPetFragment" />
     </fragment>
     <fragment
         android:id="@+id/serviceFragment"
@@ -249,5 +252,14 @@
         android:id="@+id/selectUserPetDialog"
         android:name="com.nicole.petnanny.ui.home.senddemand.SelectUserPetDialog"
         android:label="SelectUserPetDialog" />
+    <fragment
+        android:id="@+id/editPetFragment"
+        android:name="com.nicole.petnanny.ui.profile.pet.edit.EditPetFragment"
+        android:label="EditPetFragment"
+        tools:layout="@layout/fragment_profile_edit_pet_detail">
+        <argument
+            android:name="pet"
+            app:argType="com.nicole.petnanny.data.Pet" />
+    </fragment>
 
 </navigation>

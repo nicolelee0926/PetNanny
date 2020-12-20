@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
+import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.Pet
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
@@ -20,6 +21,10 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
     val pet: LiveData<List<Pet>>
         get() = _pet
 
+    // to petAdapter viewHolder button set value 用
+    var _navigationToEditPetDetail = MutableLiveData<Pet>()
+    val navigationToEditPetDetail: LiveData<Pet>
+        get() = _navigationToEditPetDetail
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -94,9 +99,7 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
         }
     }
 
-//    private fun getLivePetsResult() {
-//        livePets = repository.getLivePets()
-//        _status.value = LoadApiStatus.DONE
-//        _refreshStatus.value = false
-//    }
+    fun displayEditPetDetailsComplete () {
+        _navigationToEditPetDetail.value = null
+    }
 }
