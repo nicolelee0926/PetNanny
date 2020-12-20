@@ -80,7 +80,11 @@
         android:id="@+id/addServiceFragment"
         android:name="com.nicole.petnanny.ui.profile.service.add.AddServiceFragment"
         android:label="AddServiceFragment"
-        tools:layout="@layout/fragment_profile_add_service"/>
+        tools:layout="@layout/fragment_profile_add_service">
+        <action
+            android:id="@+id/action_addServiceFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/petFragment"
         android:name="com.nicole.petnanny.ui.profile.pet.PetFragment"
@@ -107,7 +111,11 @@
         android:id="@+id/addPetFragmentL"
         android:name="com.nicole.petnanny.ui.profile.pet.add.AddPetFragment"
         android:label="AddPetFragmentL"
-        tools:layout="@layout/fragment_profile_add_pet"/>
+        tools:layout="@layout/fragment_profile_add_pet">
+        <action
+            android:id="@+id/action_addPetFragmentL_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nannyExamineFragment"
         android:name="com.nicole.petnanny.ui.profile.nanny.NannyExamineFragment"

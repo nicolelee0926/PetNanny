@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -29,7 +30,11 @@ class SendDemandFragment: Fragment() {
         binding.viewModel = viewModel
 
         binding.btnSendDemand.setOnClickListener {
+            if (viewModel.checkInfoComplete()) {
                 viewModel.sendDemand()
+            } else {
+                Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.setDemandData.observe(viewLifecycleOwner, Observer {

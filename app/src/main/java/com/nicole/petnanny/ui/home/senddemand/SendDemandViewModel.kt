@@ -32,7 +32,6 @@ class SendDemandViewModel(
         value = arguments
     }
 
-    var orderPet = MutableLiveData<String>().apply { value = "" }
     var orderStartTime = MutableLiveData<String>()
     var orderEndTime = MutableLiveData<String>()
     var orderServiceAddress = MutableLiveData<String>().apply { value = "" }
@@ -169,5 +168,13 @@ class SendDemandViewModel(
         viewModelJob.cancel()
     }
 
+    //    check info completed
+    fun checkInfoComplete(): Boolean {
+        return !(_userPetList.value == null ||
+                orderStartTime.value == null ||
+                orderEndTime.value == null ||
+                orderServiceAddress.value == null ||
+                orderNote.value == null)
+    }
 
 }

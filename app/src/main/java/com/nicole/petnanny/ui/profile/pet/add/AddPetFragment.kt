@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.storage.FirebaseStorage
@@ -44,8 +45,12 @@ class AddPetFragment : Fragment() {
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.addPetFlag.observe(viewLifecycleOwner, Observer {
             if(it == true){
-                viewModel.setPet()
-                mainViewModel.changePetStatusFalse()
+                if (viewModel.checkInfoComplete()){
+                    viewModel.setPet()
+                    mainViewModel.changePetStatusFalse()
+                } else {
+                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+                }
             }
         })
 
@@ -54,7 +59,13 @@ class AddPetFragment : Fragment() {
             viewModel.addPet(it)
         })
 
-
+//        新增成功回到profile頁
+        viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(AddPetFragmentDirections.actionAddPetFragmentLToNavigationProfile())
+            }
+        })
 
         binding.radioGender.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
@@ -175,4 +186,6 @@ class AddPetFragment : Fragment() {
             }
         }
     }
+
+
 }

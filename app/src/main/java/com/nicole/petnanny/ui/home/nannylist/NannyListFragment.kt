@@ -44,7 +44,7 @@ class NannyListFragment : Fragment() {
 
 //        load出首頁所選擇的類別後的list
         viewModel.nannyList.observe(viewLifecycleOwner, Observer {
-//            第一次只load出serviceType 其他兩次不執行
+//            第一次只load出serviceType 其他兩種條件篩選不執行
             isAlreadyFetch = true
             Log.d("pppppppppppppp", "${it.toString()} ")
             nannyListAdapter.submitList(it)
@@ -62,7 +62,7 @@ class NannyListFragment : Fragment() {
             }
         })
 
-//        搜尋用 選擇寵物型態 記得加position==0(全部為空值)的判斷
+//        搜尋用 選擇寵物型態 記得加position==0(全部為空字串)的判斷
         binding.spinnerTypeNannyList.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
@@ -75,7 +75,7 @@ class NannyListFragment : Fragment() {
                 }
             }
 
-//        搜尋用 選擇地區 記得加position==0(全部為空值)的判斷
+//        搜尋用 選擇地區 記得加position==0(全部為空字串)的判斷
         binding.spinnerLocationNannyList.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                     Log.d("spinnerLocation", "${parent?.selectedItem}")

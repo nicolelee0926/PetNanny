@@ -107,7 +107,6 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
                     null
                 }
             }
-
             _refreshStatus.value = false
         }
     }

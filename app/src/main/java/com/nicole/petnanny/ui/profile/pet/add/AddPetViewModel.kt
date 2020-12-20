@@ -33,6 +33,10 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
     //    firebase photo local path
     val petPhotoRealPath = MutableLiveData<String>()
 
+//  傳送成功flag
+    private val _submitDataFinished = MutableLiveData<Boolean>()
+    val submitDataFinished: LiveData<Boolean>
+        get() = _submitDataFinished
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -141,4 +145,18 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
         }
     }
 
+//    check info completed
+    fun checkInfoComplete(): Boolean {
+        return !(petPhotoRealPath.value == null ||
+                 petName.value == null ||
+                 selectedAge.value == null ||
+                 selectedGender.value == null ||
+                 petVariety.value == null ||
+                 petIntroduction.value == null ||
+                 petChipNumber.value == null ||
+                 selectedLigation.value == null ||
+                 selectedType.value == null)
+    }
 }
+
+
