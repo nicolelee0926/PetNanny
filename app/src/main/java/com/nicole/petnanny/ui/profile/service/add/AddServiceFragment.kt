@@ -155,7 +155,7 @@ class AddServiceFragment: Fragment() {
                 if (filePath.isNotEmpty()) {
                     val imgPath = filePath
 
-//                   拿到本地端URL後去call拿到新的URL function 把舊的串進去換新的
+//                   拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
                     viewModel.uploadServicePhoto(imgPath)
                     Log.d("imgPath", "$imgPath ")
                 } else {

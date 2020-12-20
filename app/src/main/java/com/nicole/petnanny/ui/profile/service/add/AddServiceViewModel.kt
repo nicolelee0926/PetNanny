@@ -86,6 +86,7 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 }
             }
         }
+        _submitDataFinished.value = true
     }
 
     override fun onCleared() {
@@ -136,7 +137,6 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
                 }
             }
         }
-        _submitDataFinished.value = true
     }
 
     //    check info completed

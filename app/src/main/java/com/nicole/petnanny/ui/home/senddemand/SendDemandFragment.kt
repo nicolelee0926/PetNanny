@@ -39,6 +39,7 @@ class SendDemandFragment: Fragment() {
 
         viewModel.setDemandData.observe(viewLifecycleOwner, Observer {
             viewModel.addDemand(it)
+            Toast.makeText(requireContext(), "需求單新增成功", Toast.LENGTH_SHORT).show()
             findNavController().navigate(MobileNavigationDirections.actionGlobalNavigationOrder())
         })
 

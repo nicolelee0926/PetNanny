@@ -5,14 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentProfileAddUserBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.login.UserManager
 import com.nicole.petnanny.ui.main.MainViewModel
+import com.nicole.petnanny.ui.profile.pet.add.AddPetFragmentDirections
 
 class AddUserFragment: Fragment() {
 
@@ -35,9 +38,21 @@ class AddUserFragment: Fragment() {
             }
         })
 
+//        update modified profile data
         viewModel.setUserData.observe(viewLifecycleOwner, Observer {
             Log.d("userEditText", "$it ")
             viewModel.updateUser(it)
+        })
+
+        //        新增成功回到profile頁
+        viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                if(viewModel.userIntroduction.value != "" && viewModel.userName.value != "") {
+                    Toast.makeText(requireContext(), "更新資料成功", Toast.LENGTH_SHORT).show()
+                }
+                findNavController().navigate(AddUserFragmentDirections.actionAddUserFragmentToNavigationProfile())
+                viewModel.submitToFireStoreFinished()
+            }
         })
 
         // Preload info if user has already filled in advance

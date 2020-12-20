@@ -68,7 +68,7 @@
                         android:layout_gravity="center"
                         android:layout_marginEnd="16dp"
                         android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_USER_EDIT ? View.VISIBLE : View.GONE}"
-                        android:text="新增"
+                        android:text="更新"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"

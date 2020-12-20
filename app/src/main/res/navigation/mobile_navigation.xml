@@ -130,7 +130,11 @@
         android:id="@+id/addUserFragment"
         android:name="com.nicole.petnanny.ui.profile.user.AddUserFragment"
         android:label="AddUserFragment"
-        tools:layout="@layout/fragment_profile_add_user"/>
+        tools:layout="@layout/fragment_profile_add_user">
+        <action
+            android:id="@+id/action_addUserFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nannyListFragment"
         android:name="com.nicole.petnanny.ui.home.nannylist.NannyListFragment"
