@@ -116,7 +116,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView94"
+                    app:layout_constraintStart_toStartOf="@+id/btn_google_sigh_in"
                     app:layout_constraintTop_toBottomOf="@+id/textView94"
                     app:srcCompat="@drawable/ic_order_time" />
 
