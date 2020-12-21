@@ -120,6 +120,21 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="建立" />
+
+                    <TextView
+                        android:id="@+id/text_toolbar_edit_pet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_EDIT_PET ? View.VISIBLE : View.GONE}"
+                        android:text="更新"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="更新" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -15,5 +15,6 @@ enum class CurrentFragmentType(val value: String) {
     PROFILE_NANNY_CENTER_LICENSE("專業證照"),
     LOGIN(""),
     CHAT_ROOM_DEMAND("聊天室"),
-    CHAT_ROOM_WORK("聊天室")
+    CHAT_ROOM_WORK("聊天室"),
+    PROFILE_EDIT_PET("更新寵物資料")
 }

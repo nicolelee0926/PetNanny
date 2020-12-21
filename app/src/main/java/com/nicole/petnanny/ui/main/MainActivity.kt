@@ -55,6 +55,13 @@ class MainActivity : AppCompatActivity() {
             Log.d("hiya_user", "hiya ")
             viewModel.changeNannyExamineStatusTrue()
         }
+
+        binding.textToolbarEditPet.setOnClickListener {
+            Log.d("hiya_user", "hiya ")
+            viewModel.changeEditPetStatusTrue()
+        }
+
+
     }
 
     private fun setupNavController(){
@@ -75,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> CurrentFragmentType.LOGIN
                 R.id.demandDetailFragment -> CurrentFragmentType.CHAT_ROOM_DEMAND
                 R.id.workDetailFragment -> CurrentFragmentType.CHAT_ROOM_WORK
+                R.id.editPetFragment -> CurrentFragmentType.PROFILE_EDIT_PET
                 else -> viewModel.currentFragmentType.value
             }
         }

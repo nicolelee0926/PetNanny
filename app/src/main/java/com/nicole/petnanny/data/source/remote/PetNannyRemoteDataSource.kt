@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
@@ -1228,5 +1229,42 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
             }
     }
+
+    override suspend fun updatePet(pet: Pet): Result<Boolean> = suspendCoroutine { continuation ->
+        Log.d("123", "123rrrrr ")
+        Log.d("123pet", "$pet ")
+
+
+        FirebaseFirestore.getInstance().collection(PATH_PET).document(pet.petID!!).update(
+            "petPhoto", pet.petPhoto,
+            "petName", pet.petName,
+            "petType", pet.petType,
+            "petVariety", pet.petVaccine,
+            "gender", pet.gender,
+            "petAge", pet.petAge,
+            "petIntroduction", pet.petIntroduction,
+            "petLigation", pet.petLigation,
+            "chipNumber", pet.chipNumber)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("editPet", "editPet: $pet")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "add_service_exception!!!!!",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+        }
+
+
 
 }

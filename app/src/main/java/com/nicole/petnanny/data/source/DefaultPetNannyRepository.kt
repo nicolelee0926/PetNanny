@@ -149,4 +149,8 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     override suspend fun getThreeSelectedList(serviceType: String,petType: String, location: String): Result<List<Nanny>> {
         return remoteDataSource.getThreeSelectedList(serviceType,petType,location)
     }
+
+    override suspend fun updatePet(pet: Pet): Result<Boolean> {
+        return remoteDataSource.updatePet(pet)
+    }
 }
