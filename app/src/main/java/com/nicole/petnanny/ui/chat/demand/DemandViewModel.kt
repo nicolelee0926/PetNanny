@@ -32,6 +32,9 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 //    如果沒有訊息顯示無聊天訊息的字＆圖
     var noDemandMessage = MutableLiveData<Boolean>()
 
+//    first no message
+    var firstNoMessage = MutableLiveData<Boolean>()
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -99,6 +102,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
             }
             _refreshStatus.value = false
         }
+
     }
 
     //    get user data to save userManager for load myClient order (這時get下來是用存是否認證的欄位資料, 存在userManager, 方便給my client去query)
@@ -146,7 +150,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 //                    如果是保姆 假設狀態是no message是false 再去fragment observe
                     noDemandMessage.value = false
                 }
-
                 _refreshStatus.value = false
             }
         }

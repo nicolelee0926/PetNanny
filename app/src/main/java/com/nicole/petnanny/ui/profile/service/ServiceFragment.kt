@@ -33,7 +33,7 @@ class ServiceFragment(): Fragment() {
 
         binding.viewModel = viewModel
 
-        val serviceAdapter = ServiceAdapter()
+        val serviceAdapter = ServiceAdapter(viewModel)
         binding.rvNanny.adapter = serviceAdapter
 
         viewModel.service.observe(viewLifecycleOwner, Observer {
@@ -43,6 +43,14 @@ class ServiceFragment(): Fragment() {
         binding.btnAddService.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddServiceFragment())
         }
+
+        //        navigate to edit service detail page
+        viewModel.navigationToEditSerciveDetail.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditServiceFragment(it))
+                viewModel.displayEditServiceDetailsComplete()
+            }
+        })
 
         return binding.root
     }

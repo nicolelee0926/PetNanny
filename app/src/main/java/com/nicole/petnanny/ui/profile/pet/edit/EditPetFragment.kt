@@ -1,6 +1,7 @@
 package com.nicole.petnanny.ui.profile.pet.edit
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +41,18 @@ class EditPetFragment: Fragment() {
             }
 
             // Preload figure
-            
+            when (binding.spinnerType.selectedItemPosition) {
+
+            }
         })
 
         return binding.root
     }
+
+//    fun setSpinnerType(pos: Int, binding: FragmentProfileEditPetDetailBinding) {
+//        binding.spinnerType.adapter = when (pos) {
+//            1 -> R.array.pet_array
+//            else ->
+//        }
+//    }
 }

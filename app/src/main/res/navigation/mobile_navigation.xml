@@ -73,6 +73,12 @@
         <action
             android:id="@+id/action_navigation_profile_to_editPetFragment"
             app:destination="@id/editPetFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_addServiceFragment2"
+            app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editServiceFragment"
+            app:destination="@id/editServiceFragment" />
     </fragment>
     <fragment
         android:id="@+id/serviceFragment"
@@ -260,6 +266,15 @@
         <argument
             android:name="pet"
             app:argType="com.nicole.petnanny.data.Pet" />
+    </fragment>
+    <fragment
+        android:id="@+id/editServiceFragment"
+        android:name="com.nicole.petnanny.ui.profile.service.edit.EditServiceFragment"
+        android:label="EditServiceFragment"
+        tools:layout="@layout/fragment_profile_edit_service_detail">
+        <argument
+            android:name="nanny"
+            app:argType="com.nicole.petnanny.data.Nanny" />
     </fragment>
 
 </navigation>

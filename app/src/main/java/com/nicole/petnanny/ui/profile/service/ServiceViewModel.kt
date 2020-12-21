@@ -22,7 +22,10 @@ class ServiceViewModel(private val repository: PetNannyRepository): ViewModel() 
     val service: LiveData<List<Nanny>>
         get() = _service
 
-
+    // to serviceAdapter viewHolder button set value 用
+    var _navigationToEditSerciveDetail = MutableLiveData<Nanny>()
+    val navigationToEditSerciveDetail: LiveData<Nanny>
+        get() = _navigationToEditSerciveDetail
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -90,7 +93,9 @@ class ServiceViewModel(private val repository: PetNannyRepository): ViewModel() 
         }
     }
 
-
+    fun displayEditServiceDetailsComplete () {
+        _navigationToEditSerciveDetail.value = null
+    }
 
 
 }

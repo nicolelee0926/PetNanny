@@ -7,22 +7,26 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.databinding.ItemProfileServiceBinding
 import com.nicole.petnanny.data.Nanny
+import com.nicole.petnanny.ui.profile.pet.PetViewModel
 
-class ServiceAdapter : ListAdapter<Nanny, ServiceAdapter.ServiceViewHolder>(ServiceDiffCallback()) {
+class ServiceAdapter(val viewModel: ServiceViewModel) : ListAdapter<Nanny, ServiceAdapter.ServiceViewHolder>(ServiceDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
         return ServiceViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, viewModel)
     }
 
     class ServiceViewHolder  private constructor(private val binding: ItemProfileServiceBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : Nanny) {
+        fun bind(item : Nanny, viewModel: ServiceViewModel) {
             binding.data = item
+            binding.root.setOnClickListener {
+                viewModel._navigationToEditSerciveDetail.value = item
+            }
             binding.executePendingBindings()
         }
 
