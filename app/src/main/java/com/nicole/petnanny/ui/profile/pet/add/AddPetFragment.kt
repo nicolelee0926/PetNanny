@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,13 +18,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
-import com.google.firebase.storage.FirebaseStorage
 import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.FragmentProfileAddPetBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
+
 
 class AddPetFragment : Fragment() {
 
@@ -44,8 +42,8 @@ class AddPetFragment : Fragment() {
 
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.addPetFlag.observe(viewLifecycleOwner, Observer {
-            if(it == true){
-                if (viewModel.checkInfoComplete()){
+            if (it == true) {
+                if (viewModel.checkInfoComplete()) {
                     viewModel.setPet()
                     mainViewModel.changePetStatusFalse()
                 } else {
@@ -73,11 +71,11 @@ class AddPetFragment : Fragment() {
                 when (checkedId) {
                     R.id.radio_female -> {
                         viewModel.setGender("母")
-                        Toast.makeText(requireContext(),"你選了母",Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了母",Toast.LENGTH_SHORT).show()
                     }
                     R.id.radio_male -> {
                         viewModel.setGender("公")
-                        Toast.makeText(requireContext(),"你選了公",Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了公",Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -87,11 +85,11 @@ class AddPetFragment : Fragment() {
                 when (checkedId) {
                     R.id.radio_yes -> {
                         viewModel.setLigation("是")
-                        Toast.makeText(requireContext(),"你選了是",Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了是",Toast.LENGTH_SHORT).show()
                     }
                     R.id.radio_no -> {
                         viewModel.setLigation("否")
-                        Toast.makeText(requireContext(),"你選了否",Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了否",Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -100,7 +98,6 @@ class AddPetFragment : Fragment() {
         binding.spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                viewModel.selectedType.value = parent?.selectedItem.toString()
-
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -108,6 +105,8 @@ class AddPetFragment : Fragment() {
             }
 
         }
+
+
 
 
         binding.spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -134,6 +133,10 @@ class AddPetFragment : Fragment() {
 
 
 
+
+
+
+
         return binding.root
     }
 
@@ -145,7 +148,7 @@ class AddPetFragment : Fragment() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLocalImg()
                 } else {
-                    Toast.makeText(requireContext(),"請重新嘗試", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "請重新嘗試", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -155,7 +158,11 @@ class AddPetFragment : Fragment() {
         val permission = activity?.let { ContextCompat.checkSelfPermission(it, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) }
         if (permission != PackageManager.PERMISSION_GRANTED) {
             //未取得權限，向使用者要求允許權限
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), PET_REQUEST_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                PET_REQUEST_EXTERNAL_STORAGE
+            )
         } else {
             getLocalImg()
         }

@@ -35,14 +35,14 @@ class EditPetFragment: Fragment() {
             when (it.gender.toString()) {
                 "公" -> binding.radioGender.check(R.id.radio_male)
                 "母" -> binding.radioGender.check(R.id.radio_female)
-                else -> binding.radioGender.clearCheck()
+//                else -> binding.radioGender.clearCheck()
             }
 
             // Preload petLigation
             when (it.petLigation.toString()) {
                 "是" -> binding.radioLigation.check(R.id.radio_yes)
                 "否" -> binding.radioLigation.check(R.id.radio_no)
-                else -> binding.radioLigation.clearCheck()
+//                else -> binding.radioLigation.clearCheck()
             }
 
             // Preload figure
@@ -61,6 +61,7 @@ class EditPetFragment: Fragment() {
 
             // Preload chip number
             binding.etPetChipNumber.setText(it.chipNumber)
+
         })
 
 //        send to firebase update data
@@ -85,11 +86,11 @@ class EditPetFragment: Fragment() {
                 when (checkedId) {
                     R.id.radio_female -> {
                         viewModel.setEditGender("母")
-                        Toast.makeText(requireContext(),"你選了母", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了母", Toast.LENGTH_SHORT).show()
                     }
                     R.id.radio_male -> {
                         viewModel.setEditGender("公")
-                        Toast.makeText(requireContext(),"你選了公", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了公", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -99,11 +100,11 @@ class EditPetFragment: Fragment() {
                 when (checkedId) {
                     R.id.radio_yes -> {
                         viewModel.setEditLigation("是")
-                        Toast.makeText(requireContext(),"你選了是", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了是", Toast.LENGTH_SHORT).show()
                     }
                     R.id.radio_no -> {
                         viewModel.setEditLigation("否")
-                        Toast.makeText(requireContext(),"你選了否", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(),"你選了否", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
