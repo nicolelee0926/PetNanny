@@ -23,7 +23,6 @@ class SelectUserPetDialog(val userPetList: List<Pet>, val viewModel: SendDemandV
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("請選擇您的寵物")
 
-            // add a radio button list
             val arrayList = userPetList.map { it?.petName }.toTypedArray()
             val selectedItems = ArrayList<Int>() //we selected item position
             viewModel.selectedPet.value = userPetList[0]
@@ -34,14 +33,8 @@ class SelectUserPetDialog(val userPetList: List<Pet>, val viewModel: SendDemandV
                 viewModel.selectedPet.value = userPetList[which]
                 }
 
-            // add OK and Cancel buttons
             builder.setPositiveButton("確定", null)
-//            { dialog, which ->
-//                // user clicked OK
-//                Log.d("which", "$which ")
-//                Log.d("userPetListvvvvv", "$userPetList ")
-//
-//            }
+
             builder.setNegativeButton("取消", null)
 
             // Create the AlertDialog object and return it

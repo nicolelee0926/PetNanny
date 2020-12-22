@@ -72,10 +72,14 @@ class SendDemandFragment: Fragment() {
 
 //      set choice pet button
         binding.btnChoiceUserPet.setOnClickListener {
-            viewModel.userPetList.value?.let { it1 -> fragmentManager?.let { it2 ->
-                SelectUserPetDialog(it1, viewModel).show(
-                    it2, "")
-            } }
+            if(viewModel.userPetList.value?.size != 0 ){
+                viewModel.userPetList.value?.let { it1 -> fragmentManager?.let { it2 ->
+                    SelectUserPetDialog(it1, viewModel).show(
+                        it2, "")
+                } }
+            } else {
+                Toast.makeText(requireContext(), "您目前沒有寵物，請先去新增！", Toast.LENGTH_LONG).show()
+            }
         }
 
 
