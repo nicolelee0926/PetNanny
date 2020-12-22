@@ -153,4 +153,9 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     override suspend fun updatePet(pet: Pet): Result<Boolean> {
         return remoteDataSource.updatePet(pet)
     }
+
+    override suspend fun updateService(service: Nanny): Result<Boolean> {
+        return remoteDataSource.updateService(service)
+    }
+
 }

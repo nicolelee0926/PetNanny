@@ -119,6 +119,8 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             val Nanny = FirebaseFirestore.getInstance().collection(PATH_NANNY)
             val document = Nanny.document()
 
+            service.ID = document.id
+
             document
                 .set(service)
                 .addOnCompleteListener { task ->
@@ -1239,7 +1241,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             "petPhoto", pet.petPhoto,
             "petName", pet.petName,
             "petType", pet.petType,
-            "petVariety", pet.petVaccine,
+            "petVariety", pet.petVariety,
             "gender", pet.gender,
             "petAge", pet.petAge,
             "petIntroduction", pet.petIntroduction,
@@ -1265,6 +1267,31 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             }
         }
 
+    override suspend fun updateService(service: Nanny): Result<Boolean> = suspendCoroutine { continuation ->
+
+        FirebaseFirestore.getInstance().collection(PATH_NANNY).document(service.ID!!).update(
+            "price",service.price,
+            "serviceName", service.serviceName,
+            "nannyIntroduction", service.nannyIntroduction)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("editService", "editService: $service")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Log.d(
+                            "add_service_exception!!!!!",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(PetNannyApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
 
 
 }

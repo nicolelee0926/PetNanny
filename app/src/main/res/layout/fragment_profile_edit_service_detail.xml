@@ -72,16 +72,16 @@
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/editTextNumber" />
+                    app:layout_constraintTop_toTopOf="@+id/edit_service_price" />
 
                 <EditText
-                    android:id="@+id/editTextNumber"
+                    android:id="@+id/edit_service_price"
                     android:layout_width="75dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:ems="10"
-                    android:text="@{viewModel.serviceDetail.price}"
+                    android:text="@={viewModel.editServicePrice}"
                     android:inputType="number"
                     app:layout_constraintStart_toEndOf="@+id/textView23"
                     app:layout_constraintTop_toBottomOf="@+id/textView59" />
@@ -92,8 +92,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
                     android:text="元 / 次"
-                    app:layout_constraintStart_toEndOf="@+id/editTextNumber"
-                    app:layout_constraintTop_toTopOf="@+id/editTextNumber" />
+                    app:layout_constraintStart_toEndOf="@+id/edit_service_price"
+                    app:layout_constraintTop_toTopOf="@+id/edit_service_price" />
 
                 <View
                     android:id="@+id/view13"
@@ -121,7 +121,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/view13" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/ed_service_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -135,7 +135,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:textSize="14sp"
-                    android:text="@{viewModel.serviceDetail.serviceName}"
+                    android:text="@={viewModel.editServiceName}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView60"
                     app:layout_constraintTop_toTopOf="@+id/textView60" />
@@ -150,10 +150,10 @@
                     android:textColor="@color/colorGray"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                    app:layout_constraintTop_toBottomOf="@+id/ed_service_name" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/ed_service_introduction"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -161,7 +161,7 @@
                     android:background="@color/colorGrayLight"
                     android:ems="10"
                     android:gravity="start"
-                    android:text="@{viewModel.serviceDetail.nannyIntroduction}"
+                    android:text="@={viewModel.editServiceIntroduction}"
                     android:hint="請輸入您的服務簡介，例如：前置作業包含剃腳底毛、清耳朵，可以先聊聊想美容的樣子唷"
                     android:inputType="textMultiLine"
                     android:paddingHorizontal="8dp"
@@ -183,7 +183,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+                    app:layout_constraintTop_toBottomOf="@+id/ed_service_introduction" />
 
                 <TextView
                     android:id="@+id/textView62"

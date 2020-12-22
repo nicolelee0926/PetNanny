@@ -77,4 +77,7 @@ interface PetNannyDataSource {
     suspend fun getThreeSelectedList(serviceType: String, petType: String, location: String): Result<List<Nanny>>
 
     suspend fun updatePet(pet: Pet): Result<Boolean>
+
+    suspend fun updateService(service: Nanny): Result<Boolean>
+
 }
