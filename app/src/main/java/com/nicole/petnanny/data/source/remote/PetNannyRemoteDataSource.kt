@@ -1272,7 +1272,10 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
         FirebaseFirestore.getInstance().collection(PATH_NANNY).document(service.ID!!).update(
             "price",service.price,
             "serviceName", service.serviceName,
-            "nannyIntroduction", service.nannyIntroduction)
+            "nannyIntroduction", service.nannyIntroduction,
+            "serviceType", service.serviceType,
+            "serviceArea", service.serviceArea,
+             "acceptPetType", service.acceptPetType)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("editService", "editService: $service")

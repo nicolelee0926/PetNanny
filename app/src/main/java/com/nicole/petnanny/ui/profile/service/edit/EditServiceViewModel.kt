@@ -27,12 +27,12 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
     //    edit service data 修該過後的整包service
     val setEditServiceData = MutableLiveData<Nanny>()
 
-    var editServiceType  = MutableLiveData<String>().apply { value = "" }
+    var editSelectedServiceType  = MutableLiveData<String>().apply { value = "" }
     var editServicePrice = MutableLiveData<String>().apply { value = "" }
     var editServiceName = MutableLiveData<String>().apply { value = "" }
     var editServiceIntroduction = MutableLiveData<String>().apply { value = "" }
-    var editServiceLocation = MutableLiveData<String>().apply { value = "" }
-    var editAcceptPet = MutableLiveData<String>().apply { value = "" }
+    var editSelectedServiceLocation = MutableLiveData<String>().apply { value = "" }
+    var editSelectedAcceptPet = MutableLiveData<String>().apply { value = "" }
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -90,13 +90,16 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
         }
     }
 
-    fun setEditPet() {
+    fun setEditService() {
 //        把之前帶過來的data先存起來
         val previousServiceData = serviceDetail.value
 //        再把新修改過的存到剛剛的liveData
         previousServiceData?.price = editServicePrice.value
         previousServiceData?.serviceName = editServiceName.value
         previousServiceData?.nannyIntroduction = editServiceIntroduction.value
+        previousServiceData?.serviceType = editSelectedServiceType.value
+        previousServiceData?.serviceArea = editSelectedServiceLocation.value
+        previousServiceData?.acceptPetType = editSelectedAcceptPet.value
 
         setEditServiceData.value = previousServiceData
     }

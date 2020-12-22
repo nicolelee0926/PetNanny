@@ -61,6 +61,11 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeEditPetStatusTrue()
         }
 
+        binding.textToolbarEditService.setOnClickListener {
+            Log.d("hiya_user", "hiya ")
+            viewModel.changeEditServiceStatusTrue()
+        }
+
 
     }
 
@@ -83,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.demandDetailFragment -> CurrentFragmentType.CHAT_ROOM_DEMAND
                 R.id.workDetailFragment -> CurrentFragmentType.CHAT_ROOM_WORK
                 R.id.editPetFragment -> CurrentFragmentType.PROFILE_EDIT_PET
+                R.id.editServiceFragment -> CurrentFragmentType.PROFILE_EDIT_SERVICE
                 else -> viewModel.currentFragmentType.value
             }
         }
