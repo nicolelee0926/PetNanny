@@ -43,11 +43,6 @@ class PetFragment() : Fragment()  {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddPetFragmentL())
         }
 
-//        點加號後跳到新增寵物頁面
-        binding.btnAddPet1.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddPetFragmentL())
-        }
-
 //        navigate to edit pet detail page
         viewModel.navigationToEditPetDetail.observe(viewLifecycleOwner, Observer {
             if(null != it) {
