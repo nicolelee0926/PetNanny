@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -26,10 +27,15 @@ class NannyExamineFragment: Fragment() {
         binding.viewModel = viewModel
 
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+
         mainViewModel.addNannyExamineFlag.observe(viewLifecycleOwner, Observer {
             if(it == true){
-                viewModel.setNannyExamine()
-                mainViewModel.changeNannyExamineStatusFalse()
+                if(viewModel.checkInfoComplete()){
+                    viewModel.setNannyExamine()
+                    mainViewModel.changeNannyExamineStatusFalse()
+                } else {
+                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+                }
             }
         })
 

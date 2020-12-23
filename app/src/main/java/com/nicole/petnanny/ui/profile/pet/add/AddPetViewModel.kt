@@ -22,7 +22,6 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
     val setPetData = MutableLiveData<Pet>()
 
     var petName  = MutableLiveData<String>().apply { value = "" }
-
     var petIntroduction = MutableLiveData<String>().apply { value = "" }
     var petVariety = MutableLiveData<String>().apply { value = "" }
     var petChipNumber = MutableLiveData<String>().apply { value = "" }

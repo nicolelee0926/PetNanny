@@ -27,6 +27,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
     private const val PATH_USER = "User"
     private const val PATH_ORDER = "Order"
     private const val PATH_MESSAGE = "Message"
+    private const val PATH_NANNY_EXAMINE = "NannyExamine"
 
     override suspend fun addPet(pet: Pet): Result<Boolean> = suspendCoroutine { continuation ->
         val Pet = FirebaseFirestore.getInstance().collection(PATH_PET)
@@ -235,9 +236,9 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
         }
 
 
-    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> =
+    override suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean> =
         suspendCoroutine { continuation ->
-            val Nanny = FirebaseFirestore.getInstance().collection(PATH_NANNY)
+            val Nanny = FirebaseFirestore.getInstance().collection(PATH_NANNY_EXAMINE)
             val document = Nanny.document()
 
             document

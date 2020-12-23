@@ -18,7 +18,7 @@ interface PetNannyDataSource {
     suspend fun updateUser(user: User): Result<Boolean>
     suspend fun getUser(userEmail: String): Result<User>
 
-    suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean>
+    suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean>
 
     suspend fun addUserToFirebase(user: User): Result<Boolean>
 

@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.data.Nanny
+import com.nicole.petnanny.data.NannyExamine
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,11 +19,7 @@ import kotlinx.coroutines.launch
 
 class NannyExamineViewModel(private val repository: PetNannyRepository): ViewModel() {
 
-    private val _nannyExamine= MutableLiveData<Nanny>()
-    val nannyExamine: LiveData<Nanny>
-        get() = _nannyExamine
-
-    val setNannyExamineData = MutableLiveData<Nanny>()
+    val setNannyExamineData = MutableLiveData<NannyExamine>()
 
     var nannyBirthday  = MutableLiveData<String>().apply { value = "" }
     var nannyName  = MutableLiveData<String>().apply { value = "" }
@@ -47,7 +45,9 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun addNannyExamine(nannyExamine: Nanny) {
+
+
+    fun addNannyExamine(nannyExamine: NannyExamine) {
         Log.d("addNannyExamine", "hate")
 
         coroutineScope.launch {
@@ -81,12 +81,22 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
     }
 
     fun setNannyExamine() {
-        setNannyExamineData.value = Nanny(
+        setNannyExamineData.value = NannyExamine(
             nannyBirthday = nannyBirthday.value.toString(),
             nannyPhone = nannyPhone.value.toString(),
             nannyIDNumber = nannyIDNumber.value.toString(),
             nannyPetExperience = nannyPetExperience.value.toString(),
-            nannyName = nannyName.value.toString()
+            nannyRealName = nannyName.value.toString(),
+            userEmail = UserManager.user.value?.userEmail
         )
+    }
+
+    //    check info completed
+    fun checkInfoComplete(): Boolean {
+        return !(nannyBirthday.value == null ||
+                nannyPhone.value == null ||
+                nannyIDNumber.value == null ||
+                nannyPetExperience.value == null ||
+                nannyName.value == null)
     }
 }

@@ -45,7 +45,7 @@ class AddPetFragment : Fragment() {
 //            if (it == true) {
 //                if (viewModel.checkInfoComplete()) {
                     viewModel.setPet()
-//                    mainViewModel.changePetStatusFalse()
+                    mainViewModel.changePetStatusFalse()
 //                } else {
 //                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
 //                }

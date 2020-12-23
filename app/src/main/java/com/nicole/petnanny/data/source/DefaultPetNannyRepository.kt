@@ -34,7 +34,7 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getUser(userEmail)
     }
 
-    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> {
+    override suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean> {
         return remoteDataSource.addNannyExamine(nannyExamine)
     }
 

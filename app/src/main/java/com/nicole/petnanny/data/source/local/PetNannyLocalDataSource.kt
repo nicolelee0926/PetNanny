@@ -33,7 +33,7 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> {
+    override suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
