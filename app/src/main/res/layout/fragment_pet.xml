@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/btn_add_pet1"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="24dp"
@@ -33,7 +33,7 @@
             android:text="新增您的毛寶貝"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/btn_add_pet1"
             app:layout_constraintTop_toTopOf="parent" />
 
 

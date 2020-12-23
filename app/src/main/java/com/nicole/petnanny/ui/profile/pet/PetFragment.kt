@@ -38,7 +38,13 @@ class PetFragment() : Fragment()  {
                 petAdapter.submitList(it)
         })
 
+//        點新增毛寶貝後跳到新增寵物頁面
         binding.btnAddPet.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddPetFragmentL())
+        }
+
+//        點加號後跳到新增寵物頁面
+        binding.btnAddPet1.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddPetFragmentL())
         }
 

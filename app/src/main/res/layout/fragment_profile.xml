@@ -32,11 +32,10 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="238dp"
-                    android:scaleType="fitStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/bg_profile" />
@@ -60,14 +59,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:text="@{viewModel.user.selfIntroduction}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_userName"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
                     tools:text="大家養他們就要負起責任喔~不要亂拋棄!請以認養代替購買！我們家可愛的臘腸也是認養的！不要以為認養的都很醜！寵物的外貌是會因為照顧的人而改變的！" />
 
                 <androidx.cardview.widget.CardView
@@ -76,7 +75,7 @@
                     android:layout_height="90dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     app:cardCornerRadius="50dp"
                     app:elevation="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
