@@ -28,9 +28,17 @@ class MyClientAdapter(val viewModel: MyClientViewModel) : ListAdapter<Order, MyC
             binding.root.setOnClickListener {
                 viewModel._navigationToMyClientDetail.value = item
             }
-            if (item.nannyAcceptStatus == true) {
 
+            if (item.userCheckedStatus == true) {
+                binding.tvClientStatus.setText("此筆訂單完成")
+            } else if (item.nannyCompletedStatus == true) {
+                binding.tvClientStatus.setText("等待家長確認結束")
+            } else if (item.userCheckoutStatus == true) {
+                binding.tvClientStatus.setText("服務即將開始")
+            } else if (item.nannyAcceptStatus == true) {
+                binding.tvClientStatus.setText("等待家長的付款")
             }
+
             binding.executePendingBindings()
         }
 

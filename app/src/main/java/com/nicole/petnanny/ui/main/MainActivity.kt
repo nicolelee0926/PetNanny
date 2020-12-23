@@ -10,6 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.nicole.petnanny.CurrentFragmentType
 import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.ActivityMainBinding
@@ -18,6 +21,8 @@ import com.nicole.petnanny.ext.getVmFactory
 class MainActivity : AppCompatActivity() {
 
     val viewModel by viewModels<MainViewModel> { getVmFactory() }
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +71,9 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeEditServiceStatusTrue()
         }
 
-
+        // Obtain the FirebaseAnalytics instance.
+        firebaseAnalytics = Firebase.analytics
+        
     }
 
     private fun setupNavController(){
