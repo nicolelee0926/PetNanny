@@ -28,6 +28,9 @@ class MyClientAdapter(val viewModel: MyClientViewModel) : ListAdapter<Order, MyC
             binding.root.setOnClickListener {
                 viewModel._navigationToMyClientDetail.value = item
             }
+            if (item.nannyAcceptStatus == true) {
+
+            }
             binding.executePendingBindings()
         }
 
