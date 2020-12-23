@@ -129,7 +129,11 @@
         android:id="@+id/nannyExamineFragment"
         android:name="com.nicole.petnanny.ui.profile.nanny.NannyExamineFragment"
         android:label="NannyExamineFragment"
-        tools:layout="@layout/fragment_profile_nanny_examine"/>
+        tools:layout="@layout/fragment_profile_nanny_examine">
+        <action
+            android:id="@+id/action_nannyExamineFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nannyLicense"
         android:name="com.nicole.petnanny.ui.profile.nanny.NannyLicense"

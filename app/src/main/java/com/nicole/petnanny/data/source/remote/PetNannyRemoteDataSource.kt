@@ -246,7 +246,6 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Log.d("addNannyExamine", "addNannyExamine: $nannyExamine")
-
                         continuation.resume(Result.Success(true))
                     } else {
                         task.exception?.let {
