@@ -32,7 +32,7 @@ class MyClientAdapter(val viewModel: MyClientViewModel) : ListAdapter<Order, MyC
             if (item.userCheckedStatus == true) {
                 binding.tvClientStatus.setText("此筆訂單完成")
             } else if (item.nannyCompletedStatus == true) {
-                binding.tvClientStatus.setText("等待家長確認結束")
+                binding.tvClientStatus.setText("等待家長最後確認")
             } else if (item.userCheckoutStatus == true) {
                 binding.tvClientStatus.setText("服務即將開始")
             } else if (item.nannyAcceptStatus == true) {

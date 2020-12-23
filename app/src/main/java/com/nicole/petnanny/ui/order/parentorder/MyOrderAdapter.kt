@@ -27,6 +27,16 @@ class MyOrderAdapter(val viewModel: MyOrderViewModel) : ListAdapter<Order, MyOrd
             binding.root.setOnClickListener {
                 viewModel._navigationToMyOrderDetail.value = item
             }
+
+            if (item.userCheckedStatus == true) {
+                binding.tvMyOrderStatus.setText("此筆訂單完成")
+            } else if (item.nannyCompletedStatus == true) {
+                binding.tvMyOrderStatus.setText("等待您的確認")
+            } else if (item.userCheckoutStatus == true) {
+                binding.tvMyOrderStatus.setText("等待服務開始")
+            } else if (item.nannyAcceptStatus == true) {
+                binding.tvMyOrderStatus.setText("等待您的付款")
+            }
             binding.executePendingBindings()
         }
 
