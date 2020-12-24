@@ -141,13 +141,13 @@ class AddServiceViewModel(private val repository: PetNannyRepository): ViewModel
 
     //    check info completed
     fun checkInfoComplete(): Boolean {
-        return !(selectedServiceType.value == null ||
-                servicePrice.value == null ||
-                serviceName.value == null ||
-                serviceIntroduction.value == null ||
-                selectedLocation.value == null ||
-                servicePhotoRealPath.value == null ||
-                selectedAcceptPet.value == null)
+        return (selectedServiceType.value != "" &&
+                servicePrice.value != "" &&
+                serviceName.value != "" &&
+                serviceIntroduction.value != "" &&
+                selectedLocation.value != "" &&
+                servicePhotoRealPath.value != "" &&
+                selectedAcceptPet.value != "")
     }
 
     fun submitToFireStoreFinished() {

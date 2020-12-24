@@ -170,11 +170,11 @@ class SendDemandViewModel(
 
     //    check info completed
     fun checkInfoComplete(): Boolean {
-        return !(_userPetList.value == null ||
-                orderStartTime.value == null ||
-                orderEndTime.value == null ||
-                orderServiceAddress.value == null ||
-                orderNote.value == null)
+        return (_userPetList.value != null &&
+                orderStartTime.value != "" &&
+                orderEndTime.value != "" &&
+                orderServiceAddress.value != "" &&
+                orderNote.value != "")
     }
 
 }

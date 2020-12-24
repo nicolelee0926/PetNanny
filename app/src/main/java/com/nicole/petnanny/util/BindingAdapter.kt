@@ -50,7 +50,7 @@ fun bindImage(imageView: ImageView, url: String?) {
 @BindingAdapter("getServicePrice")
 fun TextView.bindGetServicePrice(price: String) {
     price?.let {
-        text = "NT$$price 元/次"
+        text = "NT $ $price 元 / 次"
     }
 }
 

@@ -150,15 +150,15 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
 
 //    check info completed
     fun checkInfoComplete(): Boolean {
-        return !(petPhotoRealPath.value == null ||
-                 petName.value == null ||
-                 selectedAge.value == null ||
-                 selectedGender.value == null ||
-                 petVariety.value == null ||
-                 petIntroduction.value == null ||
-                 petChipNumber.value == null ||
-                 selectedLigation.value == null ||
-                 selectedType.value == null)
+        return (petPhotoRealPath.value != "" &&
+                 petName.value != "" &&
+                 selectedAge.value != "" &&
+                 selectedGender.value != "" &&
+                 petVariety.value != "" &&
+                 petIntroduction.value != "" &&
+                 petChipNumber.value != "" &&
+                 selectedLigation.value != "" &&
+                 selectedType.value != "")
     }
 
     fun submitToFireStoreFinished() {

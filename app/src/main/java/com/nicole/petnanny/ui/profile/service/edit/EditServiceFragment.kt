@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentProfileEditServiceDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
+import com.nicole.petnanny.ui.profile.pet.edit.EditPetFragmentDirections
 
 class EditServiceFragment : Fragment() {
 
@@ -92,6 +94,15 @@ class EditServiceFragment : Fragment() {
             }
 
         }
+
+        //        修改成功回到profile頁
+        viewModel.modifyDataFinished.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                Toast.makeText(requireContext(), "修改資料成功", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(EditServiceFragmentDirections.actionEditServiceFragmentToNavigationProfile())
+                viewModel.modifyDataFinished()
+            }
+        })
 
 
         return binding.root

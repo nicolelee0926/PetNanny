@@ -413,7 +413,7 @@
             android:layout_marginStart="16dp"
             android:textColor="@color/colorDeepGray"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:getServicePrice="@{viewModel.nannyDetail.price}"
             tools:text="$ 1500 ~ $ 2000 / 次"/>
 

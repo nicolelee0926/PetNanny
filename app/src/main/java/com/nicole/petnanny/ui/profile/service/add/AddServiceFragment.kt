@@ -44,12 +44,12 @@ class AddServiceFragment: Fragment() {
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.addServiceFlag.observe(viewLifecycleOwner, Observer {
             if(it == true){
-//                if (viewModel.checkInfoComplete()) {
+                if (viewModel.checkInfoComplete()) {
                     viewModel.setService()
                     mainViewModel.changeServiceStatusFalse()
-//                } else {
-//                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
-//                }
+                } else {
+                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+                }
             }
         })
 

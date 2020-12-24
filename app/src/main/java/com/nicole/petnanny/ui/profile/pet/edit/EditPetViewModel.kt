@@ -39,6 +39,10 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
     var editSelectedType  = MutableLiveData<String>().apply { value = "" }
     var editSelectedAge = MutableLiveData<String>().apply { value = "" }
 
+    //  修改成功flag
+    private val _modifyDataFinished = MutableLiveData<Boolean>()
+    val modifyDataFinished: LiveData<Boolean>
+        get() = _modifyDataFinished
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -69,7 +73,9 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
         viewModelJob.cancel()
     }
 
-
+    init {
+        _modifyDataFinished.value = null
+    }
 
     fun updatePet(pet: Pet) {
 
@@ -96,6 +102,7 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
                 }
             }
         }
+        _modifyDataFinished.value = true
     }
 
     fun setEditPet() {
@@ -122,6 +129,8 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
         editSelectedLigation.value = ligation
     }
 
-
+    fun modifyDataFinished() {
+        _modifyDataFinished.value = null
+    }
 
 }

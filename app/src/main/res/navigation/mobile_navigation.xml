@@ -270,6 +270,9 @@
         <argument
             android:name="pet"
             app:argType="com.nicole.petnanny.data.Pet" />
+        <action
+            android:id="@+id/action_editPetFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
     </fragment>
     <fragment
         android:id="@+id/editServiceFragment"
@@ -279,6 +282,9 @@
         <argument
             android:name="nanny"
             app:argType="com.nicole.petnanny.data.Nanny" />
+        <action
+            android:id="@+id/action_editServiceFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
     </fragment>
 
 </navigation>

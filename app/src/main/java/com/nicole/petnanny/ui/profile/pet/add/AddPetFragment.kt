@@ -43,12 +43,12 @@ class AddPetFragment : Fragment() {
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.addPetFlag.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-//                if (viewModel.checkInfoComplete()) {
+                if (viewModel.checkInfoComplete()) {
                     viewModel.setPet()
                     mainViewModel.changePetStatusFalse()
-//                } else {
-//                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
-//                }
+                } else {
+                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+                }
             }
         })
 
@@ -65,6 +65,8 @@ class AddPetFragment : Fragment() {
                 viewModel.submitToFireStoreFinished()
             }
         })
+
+
 
         binding.radioGender.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->

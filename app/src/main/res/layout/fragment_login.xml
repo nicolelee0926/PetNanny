@@ -9,14 +9,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login">
 
         <ImageView
             android:id="@+id/imageView38"
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="100dp"
             android:layout_marginTop="80dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/bg_logo_text" />
 
@@ -44,6 +46,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
+            app:lottie_speed="0.5"
             app:lottie_rawRes="@raw/ani_login_walk" />
 
         <androidx.cardview.widget.CardView

@@ -62,6 +62,8 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:text="@{viewModel.user.selfIntroduction}"
+                    android:maxLines="4"
+                    android:ellipsize="end"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"

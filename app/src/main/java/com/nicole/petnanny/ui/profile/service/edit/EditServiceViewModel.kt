@@ -34,6 +34,11 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
     var editSelectedServiceLocation = MutableLiveData<String>().apply { value = "" }
     var editSelectedAcceptPet = MutableLiveData<String>().apply { value = "" }
 
+    //  修改成功flag
+    private val _modifyDataFinished = MutableLiveData<Boolean>()
+    val modifyDataFinished: LiveData<Boolean>
+        get() = _modifyDataFinished
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -63,6 +68,10 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
         viewModelJob.cancel()
     }
 
+    init {
+        _modifyDataFinished.value = null
+    }
+
     fun updateService(service: Nanny) {
 
         coroutineScope.launch {
@@ -88,6 +97,7 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
                 }
             }
         }
+        _modifyDataFinished.value = true
     }
 
     fun setEditService() {
@@ -102,5 +112,9 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
         previousServiceData?.acceptPetType = editSelectedAcceptPet.value
 
         setEditServiceData.value = previousServiceData
+    }
+
+    fun modifyDataFinished() {
+        _modifyDataFinished.value = null
     }
 }
