@@ -19,7 +19,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.nicole.petnanny.MobileNavigationDirections
 import com.nicole.petnanny.R
+import com.nicole.petnanny.SuccessSubmitDialog
 import com.nicole.petnanny.databinding.FragmentProfileAddPetBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
@@ -61,8 +63,9 @@ class AddPetFragment : Fragment() {
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(AddPetFragmentDirections.actionAddPetFragmentLToNavigationProfile())
+                findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog())
                 viewModel.submitToFireStoreFinished()
+//                fragmentManager?.let { it1 -> SuccessSubmitDialog().show(it1,"addPet") }
             }
         })
 

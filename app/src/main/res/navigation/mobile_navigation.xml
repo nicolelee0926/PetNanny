@@ -286,5 +286,13 @@
             android:id="@+id/action_editServiceFragment_to_navigation_profile"
             app:destination="@id/navigation_profile" />
     </fragment>
+    <dialog
+        android:id="@+id/successSubmitDialog"
+        android:name="com.nicole.petnanny.SuccessSubmitDialog"
+        android:label="SuccessSubmitDialog" >
+        <action
+            android:id="@+id/action_successSubmitDialog_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </dialog><action android:id="@+id/action_global_successSubmitDialog" app:destination="@id/successSubmitDialog"/>
 
 </navigation>
