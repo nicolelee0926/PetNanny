@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
 import com.nicole.petnanny.ui.profile.pet.add.AddPetFragmentDirections
 import com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel
+import java.util.*
 
 class AddServiceFragment: Fragment() {
 
@@ -41,14 +43,14 @@ class AddServiceFragment: Fragment() {
 
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.addServiceFlag.observe(viewLifecycleOwner, Observer {
-//            if(it == true){
+            if(it == true){
 //                if (viewModel.checkInfoComplete()) {
                     viewModel.setService()
-//                    mainViewModel.changeServiceStatusFalse()
+                    mainViewModel.changeServiceStatusFalse()
 //                } else {
 //                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
 //                }
-//            }
+            }
         })
 
         viewModel.setServiceData.observe(viewLifecycleOwner, Observer {
@@ -56,7 +58,7 @@ class AddServiceFragment: Fragment() {
             viewModel.addService(it)
         })
 
-        //        新增成功回到profile頁
+//                新增成功回到profile頁
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
@@ -164,4 +166,5 @@ class AddServiceFragment: Fragment() {
             }
         }
     }
+
 }

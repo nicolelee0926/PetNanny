@@ -33,15 +33,11 @@ class NannyExamineFragment: Fragment() {
         binding.viewModel = viewModel
 
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-
         mainViewModel.addNannyExamineFlag.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 if (viewModel.checkInfoComplete()) {
                     viewModel.setNannyExamine()
                     mainViewModel.changeNannyExamineStatusFalse()
-                    setDialog().apply {
-                        findNavController().navigate(NannyExamineFragmentDirections.actionNannyExamineFragmentToNavigationProfile())
-                    }
                 } else {
                     Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
                 }
@@ -51,7 +47,6 @@ class NannyExamineFragment: Fragment() {
         viewModel.setNannyExamineData.observe(viewLifecycleOwner, Observer {
             Log.d("nannyExamineEditText", "$it ")
             viewModel.addNannyExamine(it)
-
             setDialog()
         })
 
@@ -71,6 +66,7 @@ class NannyExamineFragment: Fragment() {
             override fun run() {
                 dlg.dismiss()
                 t.cancel()
+                findNavController().navigate(NannyExamineFragmentDirections.actionNannyExamineFragmentToNavigationProfile())
             }
         }, 3000)
     }

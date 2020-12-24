@@ -17,12 +17,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class NannyExamineViewModel(private val repository: PetNannyRepository): ViewModel() {
+class NannyExamineViewModel(private val repository: PetNannyRepository) : ViewModel() {
 
     val setNannyExamineData = MutableLiveData<NannyExamine>()
 
-    var nannyBirthday  = MutableLiveData<String>().apply { value = "" }
-    var nannyName  = MutableLiveData<String>().apply { value = "" }
+    var nannyBirthday = MutableLiveData<String>().apply { value = "" }
+    var nannyName = MutableLiveData<String>().apply { value = "" }
     var nannyPhone = MutableLiveData<String>().apply { value = "" }
     var nannyIDNumber = MutableLiveData<String>().apply { value = "" }
     var nannyPetExperience = MutableLiveData<String>().apply { value = "" }
@@ -39,12 +39,17 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
     val error: LiveData<String>
         get() = _error
 
+    // status for the loading icon of swl
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
 
 
     fun addNannyExamine(nannyExamine: NannyExamine) {
@@ -55,7 +60,7 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.addNannyExamine(nannyExamine)) {
-                is Result.Success-> {
+                is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
                 }
@@ -91,12 +96,13 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
         )
     }
 
+
     //    check info completed
     fun checkInfoComplete(): Boolean {
-        return !(nannyBirthday.value == null ||
-                nannyPhone.value == null ||
-                nannyIDNumber.value == null ||
-                nannyPetExperience.value == null ||
-                nannyName.value == null)
+        return (nannyBirthday.value != "" &&
+                nannyPhone.value != "" &&
+                nannyIDNumber.value != "" &&
+                nannyPetExperience.value != "" &&
+                nannyName.value != "")
     }
 }
