@@ -1,5 +1,6 @@
 package com.nicole.petnanny.ui.chat.demand
 
+import android.animation.Animator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.R
+import com.nicole.petnanny.SuccessSubmitDialog
+import com.nicole.petnanny.SuccessSubmitDialogDirections
 import com.nicole.petnanny.databinding.FragmentChatDemandBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatFragmentDirections
@@ -79,6 +82,25 @@ class DemandFragment() : Fragment() {
 //                binding.ivDemandNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
 //            }
 //        })
+
+
+//      loading
+        binding.lottieLoading.addAnimatorListener( object : Animator.AnimatorListener{
+            override fun onAnimationStart(p0: Animator?) {
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.lottieLoading.visibility = View.GONE
+
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+
+        })
 
 
         return binding.root

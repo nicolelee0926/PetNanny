@@ -1,5 +1,6 @@
 package com.nicole.petnanny.ui.chat.work
 
+import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,13 +54,32 @@ class WorkFragment(): Fragment() {
             }
         })
 
-//        navigate到work chat room detail頁
         viewModel.navigationToWorkChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if(null != it) {
                 findNavController().navigate(ChatFragmentDirections.actionNavigationChatToWorkDetailFragment(it))
                 viewModel.displayChatRoomDetailComplete()
             }
         })
+
+
+//        loading
+        binding.lottieLoading.addAnimatorListener( object : Animator.AnimatorListener{
+            override fun onAnimationStart(p0: Animator?) {
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.lottieLoading.visibility = View.GONE
+
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+
+        })
+
         return binding.root
     }
 }

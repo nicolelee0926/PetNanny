@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="com.nicole.petnanny.network.LoadApiStatus"/>
         <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.home.nannylist.NannyListViewModel" />
@@ -105,6 +107,20 @@
                 app:layout_constraintStart_toEndOf="@+id/spinner_type_nanny_list"
                 app:layout_constraintTop_toBottomOf="@+id/btn_choice_service" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:visibility="@{viewModel.status == LoadApiStatus.LOADING ? View.VISIBLE : View.GONE }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_circle_many"
+            app:lottie_speed="4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
