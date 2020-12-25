@@ -53,9 +53,7 @@ class DemandFragment() : Fragment() {
         viewModel.navigationToDemandChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 findNavController().navigate(
-                    ChatFragmentDirections.actionNavigationChatToDemandDetailFragment(
-                        it
-                    )
+                    ChatFragmentDirections.actionNavigationChatToDemandDetailFragment(it)
                 )
                 viewModel.displayChatRoomDetailComplete()
             }

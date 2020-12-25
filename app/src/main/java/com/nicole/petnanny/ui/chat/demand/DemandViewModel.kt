@@ -82,7 +82,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                     _status.value = LoadApiStatus.DONE
                     Log.d("first", "${result.data} ")
                     result.data
-
                 }
                 is Result.Fail -> {
                     _error.value = result.error
@@ -143,7 +142,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                 //  因為登入後認證欄位還是null 所以要在這邊再存回UserManager一次 認證狀態才會被儲存 這時再執行snapshot時就有認證狀態了
                 //  才不會因為還沒存入狀態前就snapshot了
                 if (UserManager.user.value?.verification == null) {
-//                    如果是家長 假設no message狀態是是true 再去fragment observe
+//                  如果是家長 假設no message狀態是是true 再去fragment observe
                     noDemandMessage.value = true
                     getLiveDemandOrdersResult()
                 } else if(UserManager.user.value?.verification == true) {

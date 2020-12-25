@@ -828,6 +828,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                     Log.d(
                         "get_service_exception",
                         "[${this::class.simpleName}] Error getting documents. ${it.message}"
+
                     )
                 }
 
@@ -837,6 +838,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                     val order = document.toObject(Order::class.java)
                     Log.d("jjjjjjj", "$order ")
+
                     list.add(order)
                 }
                 Log.d("laaaaaaauuuuuuuuuuu", "$list ")
@@ -909,9 +911,11 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                         val list = mutableListOf<Order>()
                         for (document in task.result!!) {
                             Log.d("resultMyOrder@@@@@", "${document.id} => ${document.data}")
-
                             val myOrder = document.toObject(Order::class.java)
-                            list.add(myOrder)
+//                    判斷同時是保姆又是家長
+                            if (myOrder.userEmail != UserManager.user.value?.userEmail) {
+                                list.add(myOrder)
+                            }
                         }
                         var count = 0
 
@@ -1068,7 +1072,11 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
 
                     val order = document.toObject(Order::class.java)
                     Log.d("jjjjjjj", "$order ")
-                    list.add(order)
+
+//                    判斷同時是保姆又是家長
+                    if (order.userEmail != UserManager.user.value?.userEmail) {
+                        list.add(order)
+                    }
                 }
 
 

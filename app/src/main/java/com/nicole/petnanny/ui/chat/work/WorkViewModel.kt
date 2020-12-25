@@ -62,18 +62,19 @@ class WorkViewModel(private val repository: PetNannyRepository) : ViewModel() {
 
 
     init {
+        UserManager.user.value?.userEmail?.let { getWorkOrderChatRoomListResult(it) }
         if (UserManager.user.value?.verification == true) {
 //          要傳入自己的email(因為要query自己是保姆的訂單)
             UserManager.user.value?.userEmail?.let {
 //          如果是保姆 假設狀態是no message是true 再去fragment observe
                 noWorkMessage.value = true
-                getWorkOrderChatRoomListResult(it)
                 getLiveWorkOrdersResult()
             }
         } else if (UserManager.user.value?.verification == null) {
 //          如果是保姆 假設狀態是no message是false 再去fragment observe
             noWorkMessage.value = false
         }
+
     }
 
 
