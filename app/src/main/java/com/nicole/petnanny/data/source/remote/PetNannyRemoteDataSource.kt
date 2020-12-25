@@ -1275,7 +1275,7 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
             "nannyIntroduction", service.nannyIntroduction,
             "serviceType", service.serviceType,
             "serviceArea", service.serviceArea,
-             "acceptPetType", service.acceptPetType)
+            "acceptPetType", service.acceptPetType)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("editService", "editService: $service")
@@ -1295,6 +1295,41 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
             }
     }
+
+    override suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String> =
+        suspendCoroutine { continuation ->
+            // Create a storage reference from our app
+            var storageRef = FirebaseStorage.getInstance().reference
+
+            // Create a reference to "lastPathSegment.jpg"
+            var file = Uri.fromFile(File(editPetPhotoLocalPath))
+
+            // Create a reference to 'images/lastPathSegment.jpg'
+            var imagesRef = storageRef.child("images/${file.lastPathSegment}")
+
+            val uploadTask = imagesRef.putFile(file)
+
+            // Register observers to listen for when the download is done or if it fails
+            uploadTask
+                .addOnSuccessListener { taskSnapshot ->
+                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                    val storagePath = taskSnapshot.metadata?.path as String
+
+                    storageRef.child(storagePath).downloadUrl
+                        .addOnSuccessListener {
+                            val uri = it
+                            Log.d("Firebase", "picture uri $uri")
+                            continuation.resume(Result.Success(uri.toString()))
+                        }
+                        .addOnFailureListener {
+                            continuation.resume(Result.Error(it))
+                        }
+                }
+                .addOnFailureListener {
+                    // Handle unsuccessful uploads
+                    continuation.resume(Result.Error(it))
+                }
+        }
 
 
 }

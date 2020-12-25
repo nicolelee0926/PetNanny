@@ -158,4 +158,8 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.updateService(service)
     }
 
+    override suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String> {
+        return remoteDataSource.uploadEditPetPhoto(editPetPhotoLocalPath)
+    }
+
 }

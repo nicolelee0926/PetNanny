@@ -170,5 +170,9 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String> {
+        TODO("Not yet implemented")
+    }
+
 
 }

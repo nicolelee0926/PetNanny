@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nicole.petnanny.databinding.FragmentSuccessSubmitBinding
-import com.nicole.petnanny.ui.profile.pet.add.AddPetFragmentDirections
 
 class SuccessSubmitDialog: DialogFragment() {
 
@@ -21,12 +21,16 @@ class SuccessSubmitDialog: DialogFragment() {
 
         val binding = FragmentSuccessSubmitBinding.inflate(inflater, container, false)
 
+
         binding.lottieSuccessSubmit.addAnimatorListener( object : Animator.AnimatorListener{
             override fun onAnimationStart(p0: Animator?) {
             }
 
             override fun onAnimationEnd(p0: Animator?) {
                 dismiss()
+//                when (page) {
+//
+//                }
                 findNavController().navigate(SuccessSubmitDialogDirections.actionSuccessSubmitDialogToNavigationProfile())
             }
 
@@ -38,9 +42,29 @@ class SuccessSubmitDialog: DialogFragment() {
 
         })
 
+
+
         binding.lottieSuccessSubmit.playAnimation()
 
         return binding.root
+    }
+
+    enum class AddSuccessPage(val value: PageType) {
+        ADD_PET(PageType()),
+        ADD_SERVICE(PageType()),
+        ADD_NANNY_EXAMINE(PageType()),
+        ADD_DEMAND(PageType())
+    }
+
+    interface IPageType {
+        var type: Int
+    }
+
+    class PageType : IPageType {
+        private var _type = 0
+        override var type: Int
+            get() = _type
+            set(value) { _type = value }
     }
 
 }

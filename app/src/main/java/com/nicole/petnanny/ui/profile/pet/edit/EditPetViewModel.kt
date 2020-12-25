@@ -38,6 +38,8 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
     var editSelectedLigation = MutableLiveData<String>().apply { value = "" }
     var editSelectedType  = MutableLiveData<String>().apply { value = "" }
     var editSelectedAge = MutableLiveData<String>().apply { value = "" }
+    //    firebase photo local path
+    val editPetPhotoRealPath = MutableLiveData<String>()
 
     //  修改成功flag
     private val _modifyDataFinished = MutableLiveData<Boolean>()
@@ -117,6 +119,7 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
         previousPetData?.petIntroduction = editPetIntroduction.value
         previousPetData?.petLigation = editSelectedLigation.value
         previousPetData?.chipNumber = editPetChipNumber.value
+        previousPetData?.petPhoto = editPetPhotoRealPath.value
 
         setEditPetData.value = previousPetData
     }
@@ -131,6 +134,35 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
 
     fun modifyDataFinished() {
         _modifyDataFinished.value = null
+    }
+
+    //    upload editPetPhoto
+    fun uploadEditPetPhoto(editPetPhotoLocalPath: String) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+            val result = repository.uploadEditPetPhoto(editPetPhotoLocalPath)
+
+            when (result) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    editPetPhotoRealPath.value = result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
     }
 
 }

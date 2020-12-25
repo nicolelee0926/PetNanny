@@ -77,4 +77,6 @@ interface PetNannyRepository {
     suspend fun updatePet(pet: Pet): Result<Boolean>
 
     suspend fun updateService(service: Nanny): Result<Boolean>
+
+    suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String>
 }
