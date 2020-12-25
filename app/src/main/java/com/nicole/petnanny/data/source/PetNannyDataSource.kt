@@ -81,4 +81,6 @@ interface PetNannyDataSource {
     suspend fun updateService(service: Nanny): Result<Boolean>
 
     suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String>
+
+    suspend fun uploadEditServicePhoto(editServicePhotoLocalPath: String): Result<String>
 }

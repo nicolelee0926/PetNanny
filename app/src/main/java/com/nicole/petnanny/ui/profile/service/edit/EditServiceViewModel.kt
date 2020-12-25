@@ -33,6 +33,8 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
     var editServiceIntroduction = MutableLiveData<String>().apply { value = "" }
     var editSelectedServiceLocation = MutableLiveData<String>().apply { value = "" }
     var editSelectedAcceptPet = MutableLiveData<String>().apply { value = "" }
+    //    firebase photo local path
+    val editServicePhotoRealPath = MutableLiveData<String>()
 
     //  修改成功flag
     private val _modifyDataFinished = MutableLiveData<Boolean>()
@@ -110,8 +112,38 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
         previousServiceData?.serviceType = editSelectedServiceType.value
         previousServiceData?.serviceArea = editSelectedServiceLocation.value
         previousServiceData?.acceptPetType = editSelectedAcceptPet.value
+        previousServiceData?.servicePhoto = editServicePhotoRealPath.value
 
         setEditServiceData.value = previousServiceData
+    }
+
+    //    upload editServicePhoto
+    fun uploadEditServicePhoto(editServicePhotoLocalPath: String) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+            val result = repository.uploadEditServicePhoto(editServicePhotoLocalPath)
+
+            when (result) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    editServicePhotoRealPath.value = result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
     }
 
     fun modifyDataFinished() {

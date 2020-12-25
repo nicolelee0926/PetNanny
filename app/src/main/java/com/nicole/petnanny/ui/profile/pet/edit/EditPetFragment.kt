@@ -160,13 +160,10 @@ class EditPetFragment: Fragment() {
 
 //        observe real URL Path
         viewModel.editPetPhotoRealPath.observe(viewLifecycleOwner, Observer {
+            viewModel.setEditPet()
             Log.d("editPetPhotoRealPath", " $it ")
         })
 
-//        observe petPhoto update
-        viewModel.editPetPhotoRealPath.observe(viewLifecycleOwner, Observer {
-            viewModel.setEditPet()
-        })
 
         return binding.root
     }
