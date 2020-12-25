@@ -1,6 +1,7 @@
 package com.nicole.petnanny.ui.order.nannyorder
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -31,6 +32,8 @@ class MyClientAdapter(val viewModel: MyClientViewModel) : ListAdapter<Order, MyC
 
             if (item.userCheckedStatus == true) {
                 binding.tvClientStatus.setText("此筆訂單完成")
+                binding.ivOrderChecked.visibility = View.VISIBLE
+                binding.ivOrderUndone.visibility = View.GONE
             } else if (item.nannyCompletedStatus == true) {
                 binding.tvClientStatus.setText("等待家長最後確認")
             } else if (item.userCheckoutStatus == true) {
