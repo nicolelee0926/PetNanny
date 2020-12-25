@@ -293,6 +293,10 @@
         <action
             android:id="@+id/action_successSubmitDialog_to_navigation_profile"
             app:destination="@id/navigation_profile" />
-    </dialog><action android:id="@+id/action_global_successSubmitDialog" app:destination="@id/successSubmitDialog"/>
+        <argument
+            android:name="pageTypeKey"
+            app:argType="com.nicole.petnanny.SuccessSubmitDialog$AddSuccessPage" />
+    </dialog>
+    <action android:id="@+id/action_global_successSubmitDialog" app:destination="@id/successSubmitDialog" />
 
 </navigation>

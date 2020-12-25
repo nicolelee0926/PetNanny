@@ -13,6 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.nicole.petnanny.MobileNavigationDirections
+import com.nicole.petnanny.SuccessSubmitDialog
 import com.nicole.petnanny.databinding.FragmentProfileNannyExamineBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
@@ -46,8 +48,9 @@ class NannyExamineFragment: Fragment() {
 
         viewModel.setNannyExamineData.observe(viewLifecycleOwner, Observer {
             Log.d("nannyExamineEditText", "$it ")
+            findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(SuccessSubmitDialog.AddSuccessPage.ADD_NANNY_EXAMINE))
             viewModel.addNannyExamine(it)
-            setDialog()
+//            setDialog()
         })
 
 

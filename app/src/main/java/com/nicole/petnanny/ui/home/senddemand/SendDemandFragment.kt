@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.nicole.petnanny.MobileNavigationDirections
+import com.nicole.petnanny.SuccessSubmitDialog
 import com.nicole.petnanny.databinding.FragmentSendDemandBinding
 import com.nicole.petnanny.ext.getVmFactory
 import java.text.SimpleDateFormat
@@ -39,8 +40,8 @@ class SendDemandFragment: Fragment() {
 
         viewModel.setDemandData.observe(viewLifecycleOwner, Observer {
             viewModel.addDemand(it)
-            Toast.makeText(requireContext(), "需求單新增成功", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(MobileNavigationDirections.actionGlobalNavigationOrder())
+            findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(SuccessSubmitDialog.AddSuccessPage.ADD_DEMAND))
+//            findNavController().navigate(MobileNavigationDirections.actionGlobalNavigationOrder())
         })
 
         //set data picker

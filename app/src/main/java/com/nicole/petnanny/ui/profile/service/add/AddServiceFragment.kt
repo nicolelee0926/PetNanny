@@ -19,6 +19,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.nicole.petnanny.MobileNavigationDirections
+import com.nicole.petnanny.SuccessSubmitDialog
+import com.nicole.petnanny.SuccessSubmitDialog.AddSuccessPage
 import com.nicole.petnanny.databinding.FragmentProfileAddServiceBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
@@ -61,8 +64,8 @@ class AddServiceFragment: Fragment() {
 //                新增成功回到profile頁
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(AddServiceFragmentDirections.actionAddServiceFragmentToNavigationProfile())
+//                Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(AddSuccessPage.ADD_SERVICE))
                 viewModel.submitToFireStoreFinished()
             }
         })
