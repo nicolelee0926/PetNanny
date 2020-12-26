@@ -166,4 +166,8 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.uploadEditServicePhoto(editServicePhotoLocalPath)
     }
 
+    override fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order> {
+        return remoteDataSource.getLiveOneDemandOrder(orderID)
+    }
+
 }

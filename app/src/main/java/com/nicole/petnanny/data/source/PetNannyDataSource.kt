@@ -83,4 +83,7 @@ interface PetNannyDataSource {
     suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String>
 
     suspend fun uploadEditServicePhoto(editServicePhotoLocalPath: String): Result<String>
+
+    fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order>
+
 }

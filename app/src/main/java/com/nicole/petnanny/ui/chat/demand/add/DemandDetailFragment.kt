@@ -53,6 +53,20 @@ class DemandDetailFragment: Fragment() {
             viewModel.getLiveMessage()
         })
 
+//        snapshot demandOrder
+        viewModel.livaDemandOrderChatRoom.observe(viewLifecycleOwner, Observer {
+            if (it.userCheckedStatus == true) {
+                binding.tvDemandOrderStatus.setText("此筆訂單完成")
+                binding.ivClientChecked.visibility = View.VISIBLE
+                binding.ivClientUndone.visibility = View.GONE
+            } else if (it.nannyCompletedStatus == true) {
+                binding.tvDemandOrderStatus.setText("等待您的確認")
+            } else if (it.userCheckoutStatus == true) {
+                binding.tvDemandOrderStatus.setText("等待服務開始")
+            } else if (it.nannyAcceptStatus == true) {
+                binding.tvDemandOrderStatus.setText("等待您的付款")
+            }
+        })
 
 
         return binding.root

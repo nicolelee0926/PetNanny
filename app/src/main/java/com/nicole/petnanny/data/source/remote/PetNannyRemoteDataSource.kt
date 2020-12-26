@@ -1375,5 +1375,23 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
                 }
         }
 
+    override fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order> {
+
+        val liveData = MutableLiveData<Order>()
+
+        orderID?.let {
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER).document(it)
+                .addSnapshotListener { snapshot, exception ->
+                    exception?.let {
+                        Log.d("get_demand_order_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    }
+                    val demandOrder = snapshot?.toObject(Order::class.java)
+                    liveData.value = demandOrder
+                }
+        }
+        return liveData
+    }
+
 
 }
