@@ -11,7 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.nicole.petnanny.MobileNavigationDirections
 import com.nicole.petnanny.databinding.FragmentProfileAddUserBinding
+import com.nicole.petnanny.dialog.SuccessEditDialog
+import com.nicole.petnanny.dialog.SuccessSubmitDialog
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.login.UserManager
 import com.nicole.petnanny.ui.main.MainViewModel
@@ -48,9 +51,8 @@ class AddUserFragment: Fragment() {
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 if(viewModel.userIntroduction.value != "" && viewModel.userName.value != "") {
-                    Toast.makeText(requireContext(), "更新資料成功", Toast.LENGTH_SHORT).show()
                 }
-                findNavController().navigate(AddUserFragmentDirections.actionAddUserFragmentToNavigationProfile())
+                findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessEditDialog(SuccessEditDialog.EditSuccessPage.EDIT_PROFILE))
                 viewModel.submitToFireStoreFinished()
             }
         })

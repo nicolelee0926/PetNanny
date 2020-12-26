@@ -1,4 +1,4 @@
-package com.nicole.petnanny
+package com.nicole.petnanny.dialog
 
 import android.animation.Animator
 import android.os.Bundle
@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.FragmentSuccessSubmitBinding
-import com.nicole.petnanny.ui.main.MainViewModel
 
 class SuccessSubmitDialog: DialogFragment() {
 

@@ -64,15 +64,16 @@ class WorkDetailFragment : Fragment() {
 //        snapshot workOrder
         viewModel.livaWorkOrderChatRoom.observe(viewLifecycleOwner, Observer {
             if (it.userCheckedStatus == true) {
-                binding.tvWorkOrderStatus.setText("此筆訂單完成")
+                binding.tvWorkOrderStatus.text = "此筆訂單完成"
                 binding.ivClientChecked.visibility = View.VISIBLE
                 binding.ivClientUndone.visibility = View.GONE
             } else if (it.nannyCompletedStatus == true) {
-                binding.tvWorkOrderStatus.setText("等待家長最後確認")
+                binding.tvWorkOrderStatus.text = "等待家長最後確認"
             } else if (it.userCheckoutStatus == true) {
-                binding.tvWorkOrderStatus.setText("服務即將開始")
+                binding.tvWorkOrderStatus.text = "服務即將開始"
             } else if (it.nannyAcceptStatus == true) {
-                binding.tvWorkOrderStatus.setText("等待家長的付款")
+                binding.tvWorkOrderStatus.
+                text = "等待家長的付款"
             }
         })
 

@@ -1,6 +1,5 @@
 package com.nicole.petnanny.ui.profile.nanny
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,11 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.MobileNavigationDirections
-import com.nicole.petnanny.SuccessSubmitDialog
+import com.nicole.petnanny.dialog.SuccessSubmitDialog
 import com.nicole.petnanny.databinding.FragmentProfileNannyExamineBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
-import com.nicole.petnanny.ui.profile.ProfileFragmentDirections
 import java.util.*
 
 

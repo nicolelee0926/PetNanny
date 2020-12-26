@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -20,14 +19,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.nicole.petnanny.MobileNavigationDirections
-import com.nicole.petnanny.SuccessSubmitDialog
-import com.nicole.petnanny.SuccessSubmitDialog.AddSuccessPage
+import com.nicole.petnanny.dialog.SuccessSubmitDialog.AddSuccessPage
 import com.nicole.petnanny.databinding.FragmentProfileAddServiceBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
-import com.nicole.petnanny.ui.profile.pet.add.AddPetFragmentDirections
-import com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel
-import java.util.*
 
 class AddServiceFragment: Fragment() {
 

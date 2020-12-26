@@ -1,12 +1,12 @@
-package com.nicole.petnanny.ui.home.senddemand
+package com.nicole.petnanny.dialog
 
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.nicole.petnanny.data.Pet
+import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
 
 
 class SelectUserPetDialog(val userPetList: List<Pet>, val viewModel: SendDemandViewModel): DialogFragment() {

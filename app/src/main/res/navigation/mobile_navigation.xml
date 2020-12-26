@@ -260,7 +260,7 @@
     </fragment><action android:id="@+id/action_global_navigation_order" app:destination="@id/navigation_order"/>
     <dialog
         android:id="@+id/selectUserPetDialog"
-        android:name="com.nicole.petnanny.ui.home.senddemand.SelectUserPetDialog"
+        android:name="com.nicole.petnanny.dialog.SelectUserPetDialog"
         android:label="SelectUserPetDialog" />
     <fragment
         android:id="@+id/editPetFragment"
@@ -288,15 +288,27 @@
     </fragment>
     <dialog
         android:id="@+id/successSubmitDialog"
-        android:name="com.nicole.petnanny.SuccessSubmitDialog"
+        android:name="com.nicole.petnanny.dialog.SuccessSubmitDialog"
         android:label="SuccessSubmitDialog" >
         <action
             android:id="@+id/action_successSubmitDialog_to_navigation_profile"
             app:destination="@id/navigation_profile" />
         <argument
             android:name="pageTypeKey"
-            app:argType="com.nicole.petnanny.SuccessSubmitDialog$AddSuccessPage" />
+            app:argType="com.nicole.petnanny.dialog.SuccessSubmitDialog$AddSuccessPage" />
     </dialog>
     <action android:id="@+id/action_global_successSubmitDialog" app:destination="@id/successSubmitDialog" />
+    <dialog
+        android:id="@+id/successEditDialog"
+        android:name="com.nicole.petnanny.dialog.SuccessEditDialog"
+        android:label="SuccessEditDialog" >
+        <argument
+            android:name="editPageTypeKey"
+            app:argType="com.nicole.petnanny.dialog.SuccessEditDialog$EditSuccessPage" />
+        <action
+            android:id="@+id/action_successEditDialog_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </dialog>
+    <action android:id="@+id/action_global_successEditDialog" app:destination="@id/successEditDialog" />
 
 </navigation>

@@ -13,8 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.nicole.petnanny.MobileNavigationDirections
-import com.nicole.petnanny.SuccessSubmitDialog
+import com.nicole.petnanny.dialog.SuccessSubmitDialog
 import com.nicole.petnanny.databinding.FragmentSendDemandBinding
+import com.nicole.petnanny.dialog.SelectUserPetDialog
 import com.nicole.petnanny.ext.getVmFactory
 import java.text.SimpleDateFormat
 
@@ -41,7 +42,6 @@ class SendDemandFragment: Fragment() {
         viewModel.setDemandData.observe(viewLifecycleOwner, Observer {
             viewModel.addDemand(it)
             findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(SuccessSubmitDialog.AddSuccessPage.ADD_DEMAND))
-//            findNavController().navigate(MobileNavigationDirections.actionGlobalNavigationOrder())
         })
 
         //set data picker
