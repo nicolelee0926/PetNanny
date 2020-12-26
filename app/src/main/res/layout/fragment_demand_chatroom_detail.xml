@@ -235,7 +235,7 @@
                 tools:text="幸福訓練師" />
 
             <ImageView
-                android:id="@+id/iv_client_Checked"
+                android:id="@+id/iv_parent_Checked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -245,7 +245,7 @@
                 app:srcCompat="@drawable/ic_order_checked" />
 
             <ImageView
-                android:id="@+id/iv_client_undone"
+                android:id="@+id/iv_parent_undone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

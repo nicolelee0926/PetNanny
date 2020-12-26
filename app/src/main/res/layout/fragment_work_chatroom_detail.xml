@@ -271,15 +271,15 @@
                 android:id="@+id/textView96"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                tools:text="NT$ 500"
+                android:layout_marginBottom="16dp"
                 android:text="@{viewModel.workDetail.totalPrice}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:text="NT$ 500" />
 
             <TextView
                 android:id="@+id/textView95"
@@ -321,15 +321,15 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/textView98"
+                android:id="@+id/tv_work_order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="等待保姆同意"
-                android:textSize="15sp"
+                android:text="等待家長的付款"
                 android:textColor="@color/colorDeepGray"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+                app:layout_constraintTop_toTopOf="@+id/textView94" />
 
             <ImageView
                 android:id="@+id/imageView30"
@@ -354,14 +354,25 @@
                 tools:text="幸福訓練師" />
 
             <ImageView
-                android:id="@+id/imageView31"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:id="@+id/iv_client_Checked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView98"
-                app:layout_constraintEnd_toStartOf="@+id/textView98"
-                app:layout_constraintTop_toTopOf="@+id/textView98"
-                app:srcCompat="@drawable/ic_status_wait" />
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_work_order_status"
+                app:layout_constraintEnd_toStartOf="@+id/tv_work_order_status"
+                app:layout_constraintTop_toTopOf="@+id/tv_work_order_status"
+                app:srcCompat="@drawable/ic_order_checked" />
+
+            <ImageView
+                android:id="@+id/iv_client_undone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_work_order_status"
+                app:layout_constraintEnd_toStartOf="@+id/tv_work_order_status"
+                app:layout_constraintTop_toTopOf="@+id/tv_work_order_status"
+                app:srcCompat="@drawable/ic_order_list_status" />
 
             <TextView
                 android:id="@+id/textView93"

@@ -83,4 +83,6 @@ interface PetNannyRepository {
     suspend fun uploadEditServicePhoto(editServicePhotoLocalPath: String): Result<String>
 
     fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order>
+
+    fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order>
 }

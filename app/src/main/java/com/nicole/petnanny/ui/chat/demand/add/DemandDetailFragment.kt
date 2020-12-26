@@ -57,8 +57,8 @@ class DemandDetailFragment: Fragment() {
         viewModel.livaDemandOrderChatRoom.observe(viewLifecycleOwner, Observer {
             if (it.userCheckedStatus == true) {
                 binding.tvDemandOrderStatus.setText("此筆訂單完成")
-                binding.ivClientChecked.visibility = View.VISIBLE
-                binding.ivClientUndone.visibility = View.GONE
+                binding.ivParentChecked.visibility = View.VISIBLE
+                binding.ivParentUndone.visibility = View.GONE
             } else if (it.nannyCompletedStatus == true) {
                 binding.tvDemandOrderStatus.setText("等待您的確認")
             } else if (it.userCheckoutStatus == true) {

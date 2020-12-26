@@ -1393,5 +1393,22 @@ object PetNannyRemoteDataSource : PetNannyDataSource {
         return liveData
     }
 
+    override fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order> {
+        val liveData = MutableLiveData<Order>()
+
+        orderID?.let {
+            FirebaseFirestore.getInstance()
+                .collection(PATH_ORDER).document(it)
+                .addSnapshotListener { snapshot, exception ->
+                    exception?.let {
+                        Log.d("get_demand_order_exception", "[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    }
+                    val workOrder = snapshot?.toObject(Order::class.java)
+                    liveData.value = workOrder
+                }
+        }
+        return liveData
+    }
+
 
 }

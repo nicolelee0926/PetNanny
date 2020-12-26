@@ -86,4 +86,6 @@ interface PetNannyDataSource {
 
     fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order>
 
+    fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order>
+
 }

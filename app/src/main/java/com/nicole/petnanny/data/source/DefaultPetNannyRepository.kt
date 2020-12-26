@@ -170,4 +170,8 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getLiveOneDemandOrder(orderID)
     }
 
+    override fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order> {
+        return remoteDataSource.getLiveOneWorkOrder(orderID)
+    }
+
 }

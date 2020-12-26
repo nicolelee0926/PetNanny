@@ -27,6 +27,9 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
         value = argumentsWork
     }
 
+    //    snapshot 某筆訂單
+    var livaWorkOrderChatRoom = MutableLiveData<Order>()
+
     // get message
     private var _workMessages = MutableLiveData<List<Message>>()
     val workMessages: LiveData<List<Message>>
@@ -73,6 +76,7 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
     init {
         getWorkMessage()
         getLiveWorkMessagesResult()
+        getLiveOneWorkOrderResult()
     }
 
     fun getWorkMessage() {
@@ -157,5 +161,9 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
 
     fun getLiveMessage() {
         _workMessages.value = liveWorkMessages.value
+    }
+
+    fun getLiveOneWorkOrderResult() {
+        livaWorkOrderChatRoom = repository.getLiveOneWorkOrder(workDetail.value?.orderID)
     }
 }
