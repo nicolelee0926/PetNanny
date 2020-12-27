@@ -57,7 +57,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerCrop"
-                        app:imageUrl="@{viewModel.petDetail.petPhoto}"
+                        app:imageUrl="@{viewModel.editPetPhotoRealPath}"
                         tools:src="@drawable/ic_chat_nanny_status" />
                 </androidx.cardview.widget.CardView>
 

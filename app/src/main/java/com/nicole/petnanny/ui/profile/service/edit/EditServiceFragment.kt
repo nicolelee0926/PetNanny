@@ -49,6 +49,8 @@ class EditServiceFragment : Fragment() {
 
             // Preload price
             binding.editServicePrice.setText(it.price)
+
+            viewModel.preloadPic()
         })
 
 //        send to firebase update data
@@ -56,7 +58,7 @@ class EditServiceFragment : Fragment() {
         mainViewModel.editServiceFlag.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 viewModel.setEditService()
-                Toast.makeText(requireContext(), "修改服務資料成功", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "修改服務資料成功", Toast.LENGTH_SHORT).show()
                 mainViewModel.changeEditServiceStatusFalse()
             }
         })
@@ -107,6 +109,7 @@ class EditServiceFragment : Fragment() {
         //        修改成功回到profile頁
         viewModel.modifyDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+//                Toast.makeText(requireContext(), "修改資料成功", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessEditDialog(SuccessEditDialog.EditSuccessPage.EDIT_SERVICE))
                 viewModel.modifyDataFinished()
             }
@@ -120,7 +123,7 @@ class EditServiceFragment : Fragment() {
 
         //        observe real URL Path
         viewModel.editServicePhotoRealPath.observe(viewLifecycleOwner, Observer {
-            viewModel.setEditService()
+//            viewModel.setEditService()
             Log.d("editPetPhotoRealPath", " $it ")
         })
 

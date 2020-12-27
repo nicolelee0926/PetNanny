@@ -73,6 +73,8 @@ class EditPetFragment: Fragment() {
             // Preload chip number
             binding.etPetChipNumber.setText(it.chipNumber)
 
+            viewModel.preloadPic()
+
         })
 
 //        send to firebase update data
@@ -80,7 +82,7 @@ class EditPetFragment: Fragment() {
         mainViewModel.editPetFlag.observe(viewLifecycleOwner, Observer {
             if(it == true){
                 viewModel.setEditPet()
-                Toast.makeText(requireContext(), "修改寵物資料成功", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "修改寵物資料成功", Toast.LENGTH_SHORT).show()
                 mainViewModel.changeEditPetStatusFalse()
             }
         })
@@ -149,6 +151,7 @@ class EditPetFragment: Fragment() {
         //        修改成功回到profile頁
         viewModel.modifyDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+//                Toast.makeText(requireContext(), "修改資料成功", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessEditDialog(SuccessEditDialog.EditSuccessPage.EDIT_PET))
                 viewModel.modifyDataFinished()
             }
@@ -161,7 +164,7 @@ class EditPetFragment: Fragment() {
 
 //        observe real URL Path
         viewModel.editPetPhotoRealPath.observe(viewLifecycleOwner, Observer {
-            viewModel.setEditPet()
+//            viewModel.setEditPet()
             Log.d("editPetPhotoRealPath", " $it ")
         })
 

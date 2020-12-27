@@ -34,7 +34,7 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
     var editSelectedServiceLocation = MutableLiveData<String>().apply { value = "" }
     var editSelectedAcceptPet = MutableLiveData<String>().apply { value = "" }
     //    firebase photo local path
-    val editServicePhotoRealPath = MutableLiveData<String>()
+    var editServicePhotoRealPath = MutableLiveData<String>()
 
     //  修改成功flag
     private val _modifyDataFinished = MutableLiveData<Boolean>()
@@ -72,6 +72,7 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
 
     init {
         _modifyDataFinished.value = null
+
     }
 
     fun updateService(service: Nanny) {
@@ -145,6 +146,12 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
             }
         }
     }
+
+//    preload pic
+    fun preloadPic() {
+        editServicePhotoRealPath.value = serviceDetail.value?.servicePhoto
+}
+
 
     fun modifyDataFinished() {
         _modifyDataFinished.value = null

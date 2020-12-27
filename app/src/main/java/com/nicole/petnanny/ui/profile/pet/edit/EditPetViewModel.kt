@@ -39,7 +39,7 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
     var editSelectedType  = MutableLiveData<String>().apply { value = "" }
     var editSelectedAge = MutableLiveData<String>().apply { value = "" }
     //    firebase photo local path
-    val editPetPhotoRealPath = MutableLiveData<String>()
+    var editPetPhotoRealPath = MutableLiveData<String>()
 
     //  修改成功flag
     private val _modifyDataFinished = MutableLiveData<Boolean>()
@@ -163,6 +163,11 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
                 }
             }
         }
+    }
+
+    //    preload pic
+    fun preloadPic() {
+        editPetPhotoRealPath.value = petDetail.value?.petPhoto
     }
 
 }
