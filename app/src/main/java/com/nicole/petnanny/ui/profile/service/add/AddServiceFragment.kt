@@ -43,10 +43,16 @@ class AddServiceFragment: Fragment() {
         mainViewModel.addServiceFlag.observe(viewLifecycleOwner, Observer {
             if(it == true){
                 if (viewModel.checkInfoComplete()) {
-                    viewModel.setService()
-                    mainViewModel.changeServiceStatusFalse()
+                    if (viewModel.selectedLocation.value == "全部") {
+                        Toast.makeText(requireContext(), "請選擇服務區域", Toast.LENGTH_SHORT).show()
+                    } else if (viewModel.selectedAcceptPet.value == "全部") {
+                        Toast.makeText(requireContext(), "請選擇可接受的寵物類型", Toast.LENGTH_SHORT).show()
+                    } else {
+                        viewModel.setService()
+                        mainViewModel.changeServiceStatusFalse()
+                    }
                 } else {
-                    Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
                 }
             }
         })

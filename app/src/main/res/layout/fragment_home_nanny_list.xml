@@ -45,7 +45,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="16dp"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,13 +60,13 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="24dp"
                     android:letterSpacing="0.05"
-                    tools:text="到府照顧"
                     android:text="@{viewModel.serviceType}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_choice_service"
                     app:layout_constraintStart_toStartOf="@+id/btn_choice_service"
-                    app:layout_constraintTop_toTopOf="@+id/btn_choice_service" />
+                    app:layout_constraintTop_toTopOf="@+id/btn_choice_service"
+                    tools:text="到府照顧" />
             </androidx.cardview.widget.CardView>
 
 
