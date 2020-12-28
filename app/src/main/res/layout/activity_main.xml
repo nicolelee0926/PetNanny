@@ -161,7 +161,7 @@
             android:layout_height="56dp"
             android:animateLayoutChanges="false"
             android:background="?android:attr/windowBackground"
-            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.LOGIN || viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_DEMAND || viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_WORK ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.LOGIN || viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_DEMAND || viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_WORK || viewModel.currentFragmentType == CurrentFragmentType.HOME_NANNY_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.HOME_NANNY_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.MY_CLIENT_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.MY_ORDER_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_USER_EDIT || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_NANNY_CENTER_EXAMINE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_NANNY_CENTER_LICENSE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_PET || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_SERVICE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_EDIT_PET || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_EDIT_SERVICE ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

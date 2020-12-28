@@ -43,16 +43,16 @@ class WorkFragment(): Fragment() {
                 viewModel.getLiveWorkOrder()
         })
 
-//        observe no message status
-        viewModel.noWorkMessage.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                binding.tvWorkNoMessage.visibility = View.GONE
-                binding.ivWorkNoMessage.visibility = View.GONE
-            } else  {
-                binding.tvWorkNoMessage.text = "您目前沒有任何需求訊息喔"
-                binding.ivWorkNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
-            }
-        })
+////        observe no message status
+//        viewModel.noWorkMessage.observe(viewLifecycleOwner, Observer {
+//            if(it == true) {
+//                binding.tvWorkNoMessage.visibility = View.GONE
+//                binding.ivWorkNoMessage.visibility = View.GONE
+//            } else  {
+//                binding.tvWorkNoMessage.text = "您目前沒有任何需求訊息喔"
+//                binding.ivWorkNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
+//            }
+//        })
 
         viewModel.navigationToWorkChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if(null != it) {

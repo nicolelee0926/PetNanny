@@ -37,9 +37,12 @@ class NannyExamineFragment: Fragment() {
             if (it == true) {
                 if (viewModel.checkInfoComplete()) {
                     viewModel.setNannyExamine()
-                    mainViewModel.changeNannyExamineStatusFalse()
+//                    mainViewModel.changeNannyExamineStatusFalse()
                 } else {
                     Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+                      mainViewModel.changeNannyExamineStatusFalse()
+
+
                 }
             }
         })

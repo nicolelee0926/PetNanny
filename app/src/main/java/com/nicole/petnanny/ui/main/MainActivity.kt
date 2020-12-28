@@ -95,6 +95,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.workDetailFragment -> CurrentFragmentType.CHAT_ROOM_WORK
                 R.id.editPetFragment -> CurrentFragmentType.PROFILE_EDIT_PET
                 R.id.editServiceFragment -> CurrentFragmentType.PROFILE_EDIT_SERVICE
+                R.id.myOrderDetailFragment -> CurrentFragmentType.MY_ORDER_DETAIL
+                R.id.myClientDetailFragment -> CurrentFragmentType.MY_CLIENT_DETAIL
                 else -> viewModel.currentFragmentType.value
             }
         }

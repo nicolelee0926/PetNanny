@@ -60,16 +60,16 @@ class DemandFragment() : Fragment() {
             }
         })
 
-//        observe no message status
-        viewModel.noDemandMessage.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                binding.tvDemandNoMessage.visibility = View.GONE
-                binding.ivDemandNoMessage.visibility = View.GONE
-            } else  {
-                binding.tvDemandNoMessage.text = "您目前沒有任何需求訊息喔"
-                binding.ivDemandNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
-            }
-        })
+////        observe no message status
+//        viewModel.noDemandMessage.observe(viewLifecycleOwner, Observer {
+//            if(it == true) {
+//                binding.tvDemandNoMessage.visibility = View.GONE
+//                binding.ivDemandNoMessage.visibility = View.GONE
+//            } else  {
+//                binding.tvDemandNoMessage.text = "您目前沒有任何需求訊息喔"
+//                binding.ivDemandNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
+//            }
+//        })
 
 //        viewModel.firstNoMessage.observe(viewLifecycleOwner, Observer {
 //            if (it == true) {

@@ -94,14 +94,14 @@ class NannyListFragment : Fragment() {
 
 //        選擇寵物類型
         viewModel.selectedPetType.observe(viewLifecycleOwner, Observer {
-//            isAlreadyFetch= false 被選擇後執行
+//      被選擇後執行 isAlreadyFetch = false
             if (isAlreadyFetch)
                 viewModel.getThreeSelectedList(serviceType = viewModel.serviceType.value.toString(), petType = it, location = viewModel.selectedLocation.value.toString())
         })
 
 //        選擇地區
         viewModel.selectedLocation.observe(viewLifecycleOwner, Observer {
-//            isAlreadyFetch= false 被選擇後執行
+//       被選擇後執行 isAlreadyFetch = false
             if (isAlreadyFetch)
                 viewModel.getThreeSelectedList(serviceType = viewModel.serviceType.value.toString(), petType = viewModel.selectedPetType.value.toString(), location = it)
         })
