@@ -57,7 +57,6 @@ class MyClientViewModel(private val repository: PetNannyRepository): ViewModel()
     }
 
     init {
-//        navigationToMyClientDetail.value = null
         if(UserManager.user.value?.verification == true) {
 //          要傳入自己的email(因為要query自己是保姆的訂單)
             UserManager.user.value?.userEmail?.let {

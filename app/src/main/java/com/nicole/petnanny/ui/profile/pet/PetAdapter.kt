@@ -7,22 +7,26 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.databinding.ItemProfilePetBinding
 import com.nicole.petnanny.data.Pet
+import com.nicole.petnanny.ui.profile.pet.edit.EditPetViewModel
 
-class PetAdapter : ListAdapter<Pet, PetAdapter.PetViewHolder>(PetDiffCallback()) {
+class PetAdapter(val viewModel: PetViewModel) : ListAdapter<Pet, PetAdapter.PetViewHolder>(PetDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
         return PetViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, viewModel)
     }
 
     class PetViewHolder  private constructor(private val binding: ItemProfilePetBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : Pet) {
+        fun bind(item : Pet, viewModel: PetViewModel) {
             binding.data = item
+            binding.root.setOnClickListener {
+                viewModel._navigationToEditPetDetail.value = item
+            }
             binding.executePendingBindings()
         }
 

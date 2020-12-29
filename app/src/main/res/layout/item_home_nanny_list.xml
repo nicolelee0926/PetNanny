@@ -42,7 +42,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/iv_home_s6" />
+                    app:imageUrl="@{data.servicePhoto}"
+                    tools:srcCompat="@drawable/iv_home_s6" />
 
                 <TextView
                     android:id="@+id/tv_cityName"
@@ -72,6 +73,8 @@
                     android:text="@{data.nannyIntroduction}"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView14"
                     app:layout_constraintTop_toTopOf="parent"
@@ -79,12 +82,16 @@
 
                 <TextView
                     android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{data.serviceName}"
                     android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView14"
                     app:layout_constraintTop_toBottomOf="@+id/textView19"
                     tools:text="胖小喵的窩" />
@@ -153,12 +160,12 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/photoCardView_visit1"
                     android:layout_width="80dp"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="#FFD6A2"
+                    app:cardBackgroundColor="@color/design_default_color_secondary_variant"
                     app:cardCornerRadius="50dp"
                     app:layout_constraintStart_toEndOf="@+id/textView21"
                     app:layout_constraintTop_toBottomOf="@+id/textView20">
@@ -168,13 +175,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@{data.license}"
-                        android:textColor="@color/colorDeepGray"
-                        android:textSize="14sp"
+                        android:text="寵膳食育師"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="12sp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/btn_google_sigh_in"
                         app:layout_constraintStart_toStartOf="@+id/btn_google_sigh_in"
                         app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in"
-                        tools:text="獸醫證照" />
+                        tools:text="寵膳食育師" />
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

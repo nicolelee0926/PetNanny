@@ -1,5 +1,6 @@
 package com.nicole.petnanny.ui.chat.demand
 
+import android.animation.Animator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.FragmentChatDemandBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatFragmentDirections
@@ -38,34 +40,69 @@ class DemandFragment() : Fragment() {
 
         viewModel.demandOrderChatRoomList.observe(viewLifecycleOwner, Observer {
             Log.d("testDemandMessage", "$it ")
-            demandAdapter.submitList(it)
+                demandAdapter.submitList(it)
         })
 
+
 //      get live demand order snapshot
-        viewModel.liveOrders.observe(viewLifecycleOwner, Observer {
-            viewModel.getLiveDemandOrder()
+        viewModel.liveDemandOrderChatRoomList.observe(viewLifecycleOwner, Observer {
+            Log.d("isEmpty", " ${it.isEmpty()} ")
+                viewModel.getLiveDemandOrder()
         })
 
 //        navigate到demand chat room detail頁
         viewModel.navigationToDemandChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
-                findNavController().navigate(ChatFragmentDirections.actionNavigationChatToDemandDetailFragment(it))
+                findNavController().navigate(
+                    ChatFragmentDirections.actionNavigationChatToDemandDetailFragment(it)
+                )
                 viewModel.displayChatRoomDetailComplete()
             }
+        })
+
+////        observe no message status
+//        viewModel.noDemandMessage.observe(viewLifecycleOwner, Observer {
+//            if(it == true) {
+//                binding.tvDemandNoMessage.visibility = View.GONE
+//                binding.ivDemandNoMessage.visibility = View.GONE
+//            } else  {
+//                binding.tvDemandNoMessage.text = "您目前沒有任何需求訊息喔"
+//                binding.ivDemandNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
+//            }
+//        })
+
+//        viewModel.firstNoMessage.observe(viewLifecycleOwner, Observer {
+//            if (it == true) {
+//                binding.tvDemandNoMessage.visibility = View.GONE
+//                binding.ivDemandNoMessage.visibility = View.GONE
+//            } else {
+//                binding.tvDemandNoMessage.text = "您目前沒有任何需求訊息喔"
+//                binding.ivDemandNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
+//            }
+//        })
+
+
+//      loading
+        binding.lottieLoading.addAnimatorListener( object : Animator.AnimatorListener{
+            override fun onAnimationStart(p0: Animator?) {
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.lottieLoading.visibility = View.GONE
+
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+
         })
 
 
         return binding.root
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        Log.d("!!!!", "!!! ");
-//        UserManager.user.value?.userEmail?.let {
-//            Log.d("!!!", "$it ")
-//            viewModel.getDemandOrderChatRoomListResult()
-//        }
-//    }
 
 
 }

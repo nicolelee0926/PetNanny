@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -32,9 +32,12 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_work_chat_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_work_chat_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -43,7 +46,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tv_status_shower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -59,8 +62,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/tv_status_eating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -73,11 +77,11 @@
                     android:paddingEnd="12dp"
                     android:text="餵食中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_shower"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView92"
+                    android:id="@+id/tv_status_walk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -90,11 +94,11 @@
                     android:paddingEnd="12dp"
                     android:text="遛狗中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_eating"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView125"
+                    android:id="@+id/tv_beauty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -107,11 +111,11 @@
                     android:paddingEnd="12dp"
                     android:text="剪毛中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView92"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_walk"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView126"
+                    android:id="@+id/tv_status_training"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -122,13 +126,13 @@
                     android:padding="5dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="散步中"
+                    android:text="訓練中"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView125"
+                    app:layout_constraintStart_toEndOf="@+id/tv_beauty"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView127"
+                    android:id="@+id/tv_status_stay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -140,24 +144,98 @@
                     android:padding="5dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:text="散步中"
+                    android:text="託管中"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView126"
+                    app:layout_constraintStart_toEndOf="@+id/tv_status_training"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </HorizontalScrollView>
 
         <View
-            android:id="@+id/view14"
+            android:id="@+id/view_deco"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="1dp"
             android:background="#E1E1E1"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintBottom_toTopOf="@+id/rv_work_chat_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+
+            <TextView
+                android:id="@+id/textView100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="洗澡中"
+                android:textColor="@color/colorDeepGray"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView130"
+                app:layout_constraintTop_toTopOf="@+id/textView99" />
+
+            <TextView
+                android:id="@+id/textView99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="你的毛寶貝"
+                android:textColor="@color/colorDeepGray"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView32"
+                app:layout_constraintStart_toEndOf="@+id/imageView32"
+                app:layout_constraintTop_toTopOf="@+id/imageView32" />
+
+            <TextView
+                android:id="@+id/textView130"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="正在—"
+                android:textColor="@color/colorDeepGray"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView32"
+                app:layout_constraintStart_toEndOf="@+id/textView129"
+                app:layout_constraintTop_toTopOf="@+id/imageView32" />
+
+            <TextView
+                android:id="@+id/textView129"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                tools:text="Oreo"
+                android:text="@{viewModel.workDetail.selectedPet.petName}"
+                android:textColor="@color/colorDeepGray"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView32"
+                app:layout_constraintStart_toEndOf="@+id/textView99"
+                app:layout_constraintTop_toTopOf="@+id/imageView32"
+                app:layout_constraintVertical_bias="0.4" />
+
+            <ImageView
+                android:id="@+id/imageView32"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_chat_status" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
@@ -185,28 +263,31 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/iv_home_s2" />
+                    app:imageUrl="@{viewModel.workDetail.userInfo.photo}"
+                    tools:src="@drawable/iv_home_s2" />
             </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView96"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="NT$ 500"
+                android:layout_marginBottom="16dp"
+                android:text="@{viewModel.workDetail.totalPrice}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:text="NT$ 500" />
 
             <TextView
                 android:id="@+id/textView95"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="10/10 ~ 10/13"
+                tools:text="10/10"
+                android:text="@{viewModel.workDetail.orderStartTime}"
                 android:textColor="@color/colorDeepGray"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView30"
@@ -214,146 +295,97 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView30" />
 
             <TextView
-                android:id="@+id/textView98"
+                android:id="@+id/textView136"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="~"
+                android:textColor="@color/colorDeepGray"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                app:layout_constraintStart_toEndOf="@+id/textView95"
+                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+
+            <TextView
+                android:id="@+id/textView139"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                tools:text="10/10"
+                android:text="@{viewModel.workDetail.orderEndTime}"
+                android:textColor="@color/colorDeepGray"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+                app:layout_constraintStart_toEndOf="@+id/textView136"
+                app:layout_constraintTop_toTopOf="@+id/imageView30"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tv_work_order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="等待保姆同意"
+                android:text="等待家長的付款"
                 android:textColor="@color/colorDeepGray"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+                app:layout_constraintTop_toTopOf="@+id/textView94" />
 
             <ImageView
                 android:id="@+id/imageView30"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/textView94"
-                app:layout_constraintTop_toBottomOf="@+id/textView94"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView93"
+                app:layout_constraintTop_toBottomOf="@+id/textView93"
                 app:srcCompat="@drawable/ic_order_time" />
 
             <TextView
                 android:id="@+id/textView94"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="幸福訓練師"
+                android:layout_marginStart="8dp"
+                android:text="@{viewModel.workDetail.userInfo.userName}"
                 android:textColor="@color/colorDeepGray"
                 app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
-                app:layout_constraintTop_toBottomOf="@+id/textView93" />
+                app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in"
+                tools:text="幸福訓練師" />
 
             <ImageView
-                android:id="@+id/imageView31"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:id="@+id/iv_client_Checked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView98"
-                app:layout_constraintEnd_toStartOf="@+id/textView98"
-                app:layout_constraintTop_toTopOf="@+id/textView98"
-                app:srcCompat="@drawable/ic_status_wait" />
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_work_order_status"
+                app:layout_constraintEnd_toStartOf="@+id/tv_work_order_status"
+                app:layout_constraintTop_toTopOf="@+id/tv_work_order_status"
+                app:srcCompat="@drawable/ic_order_checked" />
+
+            <ImageView
+                android:id="@+id/iv_client_undone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_work_order_status"
+                app:layout_constraintEnd_toStartOf="@+id/tv_work_order_status"
+                app:layout_constraintTop_toTopOf="@+id/tv_work_order_status"
+                app:srcCompat="@drawable/ic_order_list_status" />
 
             <TextView
                 android:id="@+id/textView93"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="散步遛狗"
+                android:text="@{viewModel.workDetail.nannyServiceDetail.serviceType}"
                 android:textColor="@color/colorDeepGray"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/btn_google_sigh_in"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView30">
-
-                <TextView
-                    android:id="@+id/textView100"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="洗澡中"
-                    android:textColor="@color/colorDeepGray"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/textView130"
-                    app:layout_constraintTop_toTopOf="@+id/textView99" />
-
-                <ImageView
-                    android:id="@+id/imageView35"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="24dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView32"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imageView32"
-                    app:srcCompat="@drawable/ic_chat_see_status" />
-
-                <TextView
-                    android:id="@+id/textView99"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="你的毛寶貝"
-                    android:textColor="@color/colorDeepGray"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView32"
-                    app:layout_constraintStart_toEndOf="@+id/imageView32"
-                    app:layout_constraintTop_toTopOf="@+id/imageView32" />
-
-                <TextView
-                    android:id="@+id/textView130"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="正在—"
-                    android:textColor="@color/colorDeepGray"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView32"
-                    app:layout_constraintStart_toEndOf="@+id/textView129"
-                    app:layout_constraintTop_toTopOf="@+id/imageView32" />
-
-                <TextView
-                    android:id="@+id/textView129"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="Oreo"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorDeepGray"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView32"
-                    app:layout_constraintStart_toEndOf="@+id/textView99"
-                    app:layout_constraintTop_toTopOf="@+id/imageView32"
-                    app:layout_constraintVertical_bias="0.4" />
-
-                <ImageView
-                    android:id="@+id/imageView32"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view4"
-                    app:srcCompat="@drawable/ic_chat_status" />
-
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E1E1E1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toStartOf="@+id/btn_google_sigh_in"
+                app:layout_constraintTop_toBottomOf="@+id/btn_google_sigh_in"
+                tools:text="散步遛狗" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -380,6 +412,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -390,13 +423,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView33"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_chat_camera" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName14"
+                android:id="@+id/et_message_content"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -406,6 +440,7 @@
                 android:background="@drawable/bg_chat_text"
                 android:ems="10"
                 android:gravity="start"
+                android:text="@={viewModel.enterWorkMessage}"
                 android:hint="你想說什麼..."
                 android:inputType="textMultiLine"
                 android:paddingHorizontal="8dp"
@@ -423,9 +458,10 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName14"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName14"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName14"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/et_message_content"
+                app:layout_constraintEnd_toEndOf="@+id/et_message_content"
+                app:layout_constraintTop_toTopOf="@+id/et_message_content"
                 app:srcCompat="@drawable/ic_chat_nanny_status" />
 
             <ImageView

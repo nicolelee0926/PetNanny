@@ -17,6 +17,7 @@
     <!--  spinner  -->
     <string name="type_array_title">寵物類型</string>
     <string-array name="type_array">
+        <item>全部</item>
         <item>狗</item>
         <item>貓</item>
         <item>兔</item>
@@ -31,6 +32,7 @@
 
     <string name="location_array_title">服務區域</string>
     <string-array name="location_array">
+        <item>全部</item>
         <item>中正區</item>
         <item>萬華區</item>
         <item>中山區</item>

@@ -9,7 +9,7 @@
             type="com.nicole.petnanny.ui.chat.work.WorkViewModel" />
         <variable
             name="data"
-            type="com.nicole.petnanny.data.Message" />
+            type="com.nicole.petnanny.data.Order" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,8 @@
             app:cardCornerRadius="50dp"
             app:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_content"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_userName">
 
             <ImageView
                 android:id="@+id/profile_imageView"
@@ -34,8 +35,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@drawable/iv_home_s6" />
-            <!--            app:imageUrl="@{data.receiver.photo}"-->
+                android:src="@drawable/iv_home_s6"
+                app:imageUrl="@{data.userInfo.photo}" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -43,13 +44,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="@{data.userInfo.userName}"
             android:textColor="@color/colorDeepGray"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/photoCardView"
-            tools:layout_editor_absoluteY="9dp"
-            android:text="美惠姐" />
-<!--        android:text="@{data.receiver.userName}"-->
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="美惠姐" />
+
 
         <TextView
             android:id="@+id/tv_content"
@@ -58,12 +61,13 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="你好，需要我的幫忙嗎？"
+            tools:text="你好，需要我的幫忙嗎？"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/photoCardView"
             app:layout_constraintTop_toBottomOf="@+id/tv_userName"
-            app:layout_constraintVertical_bias="0.0" />
-<!--        android:text="@{data.content}"-->
+            app:layout_constraintVertical_bias="0.0"
+            android:text="@{data.lastMessage.content}"/>
+
 
         <TextView
             android:id="@+id/tv_serviceType"
@@ -76,11 +80,14 @@
             android:gravity="center"
             android:maxLines="1"
             android:padding="5dp"
-            android:text="到府美容"
+            android:text="@{data.nannyServiceDetail.serviceType}"
             android:textColor="@color/colorWhite"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_userName"
             tools:text="到府美容" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

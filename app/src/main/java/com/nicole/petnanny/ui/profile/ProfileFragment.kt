@@ -1,5 +1,6 @@
 package com.nicole.petnanny.ui.profile
 
+import android.animation.Animator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -47,6 +48,24 @@ class ProfileFragment : Fragment() {
         binding.btnNannyCenter.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToNannyCenterFragment())
         }
+
+        //      loading
+        binding.lottieLoading.addAnimatorListener( object : Animator.AnimatorListener{
+            override fun onAnimationStart(p0: Animator?) {
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.lottieLoading.visibility = View.GONE
+
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+
+        })
 
         return binding.root
     }

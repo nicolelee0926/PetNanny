@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_nannyListFragment"
             app:destination="@id/nannyListFragment" />
+         <action
+             android:id="@+id/action_navigation_home_to_nannyDetailFragment"
+             app:destination="@id/nannyDetailFragment" />
      </fragment>
     <fragment
         android:id="@+id/navigation_chat"
@@ -67,6 +70,15 @@
         <action
             android:id="@+id/action_navigation_profile_to_addUserFragment"
             app:destination="@id/addUserFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editPetFragment"
+            app:destination="@id/editPetFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_addServiceFragment2"
+            app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editServiceFragment"
+            app:destination="@id/editServiceFragment" />
     </fragment>
     <fragment
         android:id="@+id/serviceFragment"
@@ -77,7 +89,11 @@
         android:id="@+id/addServiceFragment"
         android:name="com.nicole.petnanny.ui.profile.service.add.AddServiceFragment"
         android:label="AddServiceFragment"
-        tools:layout="@layout/fragment_profile_add_service"/>
+        tools:layout="@layout/fragment_profile_add_service">
+        <action
+            android:id="@+id/action_addServiceFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/petFragment"
         android:name="com.nicole.petnanny.ui.profile.pet.PetFragment"
@@ -104,12 +120,20 @@
         android:id="@+id/addPetFragmentL"
         android:name="com.nicole.petnanny.ui.profile.pet.add.AddPetFragment"
         android:label="AddPetFragmentL"
-        tools:layout="@layout/fragment_profile_add_pet"/>
+        tools:layout="@layout/fragment_profile_add_pet">
+        <action
+            android:id="@+id/action_addPetFragmentL_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nannyExamineFragment"
         android:name="com.nicole.petnanny.ui.profile.nanny.NannyExamineFragment"
         android:label="NannyExamineFragment"
-        tools:layout="@layout/fragment_profile_nanny_examine"/>
+        tools:layout="@layout/fragment_profile_nanny_examine">
+        <action
+            android:id="@+id/action_nannyExamineFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nannyLicense"
         android:name="com.nicole.petnanny.ui.profile.nanny.NannyLicense"
@@ -119,7 +143,11 @@
         android:id="@+id/addUserFragment"
         android:name="com.nicole.petnanny.ui.profile.user.AddUserFragment"
         android:label="AddUserFragment"
-        tools:layout="@layout/fragment_profile_add_user"/>
+        tools:layout="@layout/fragment_profile_add_user">
+        <action
+            android:id="@+id/action_addUserFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nannyListFragment"
         android:name="com.nicole.petnanny.ui.home.nannylist.NannyListFragment"
@@ -160,7 +188,10 @@
         <argument
             android:name="Nanny"
             app:argType="com.nicole.petnanny.data.Nanny" />
-    </fragment>
+         <action
+             android:id="@+id/action_sendDemandFragment_to_selectUserPetDialog"
+             app:destination="@id/selectUserPetDialog" />
+     </fragment>
     <fragment
         android:id="@+id/demandFragment"
         android:name="com.nicole.petnanny.ui.chat.demand.DemandFragment"
@@ -204,7 +235,11 @@
         android:id="@+id/workDetailFragment"
         android:name="com.nicole.petnanny.ui.chat.work.add.WorkDetailFragment"
         android:label="WorkDetailFragment"
-        tools:layout="@layout/fragment_work_chatroom_detail"/>
+        tools:layout="@layout/fragment_work_chatroom_detail">
+        <argument
+            android:name="order"
+            app:argType="com.nicole.petnanny.data.Order" />
+    </fragment>
     <fragment
         android:id="@+id/myClientDetailFragment"
         android:name="com.nicole.petnanny.ui.order.nannyorder.detail.MyClientDetailFragment"
@@ -223,5 +258,57 @@
             android:name="order"
             app:argType="com.nicole.petnanny.data.Order" />
     </fragment><action android:id="@+id/action_global_navigation_order" app:destination="@id/navigation_order"/>
+    <dialog
+        android:id="@+id/selectUserPetDialog"
+        android:name="com.nicole.petnanny.dialog.SelectUserPetDialog"
+        android:label="SelectUserPetDialog" />
+    <fragment
+        android:id="@+id/editPetFragment"
+        android:name="com.nicole.petnanny.ui.profile.pet.edit.EditPetFragment"
+        android:label="EditPetFragment"
+        tools:layout="@layout/fragment_profile_edit_pet_detail">
+        <argument
+            android:name="pet"
+            app:argType="com.nicole.petnanny.data.Pet" />
+        <action
+            android:id="@+id/action_editPetFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/editServiceFragment"
+        android:name="com.nicole.petnanny.ui.profile.service.edit.EditServiceFragment"
+        android:label="EditServiceFragment"
+        tools:layout="@layout/fragment_profile_edit_service_detail">
+        <argument
+            android:name="nanny"
+            app:argType="com.nicole.petnanny.data.Nanny" />
+        <action
+            android:id="@+id/action_editServiceFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <dialog
+        android:id="@+id/successSubmitDialog"
+        android:name="com.nicole.petnanny.dialog.SuccessSubmitDialog"
+        android:label="SuccessSubmitDialog" >
+        <action
+            android:id="@+id/action_successSubmitDialog_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <argument
+            android:name="pageTypeKey"
+            app:argType="com.nicole.petnanny.dialog.SuccessSubmitDialog$AddSuccessPage" />
+    </dialog>
+    <action android:id="@+id/action_global_successSubmitDialog" app:destination="@id/successSubmitDialog" />
+    <dialog
+        android:id="@+id/successEditDialog"
+        android:name="com.nicole.petnanny.dialog.SuccessEditDialog"
+        android:label="SuccessEditDialog" >
+        <argument
+            android:name="editPageTypeKey"
+            app:argType="com.nicole.petnanny.dialog.SuccessEditDialog$EditSuccessPage" />
+        <action
+            android:id="@+id/action_successEditDialog_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </dialog>
+    <action android:id="@+id/action_global_successEditDialog" app:destination="@id/successEditDialog" />
 
 </navigation>

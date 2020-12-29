@@ -18,7 +18,7 @@ interface PetNannyDataSource {
     suspend fun updateUser(user: User): Result<Boolean>
     suspend fun getUser(userEmail: String): Result<User>
 
-    suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean>
+    suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean>
 
     suspend fun addUserToFirebase(user: User): Result<Boolean>
 
@@ -57,4 +57,35 @@ interface PetNannyDataSource {
     fun getLiveDemandOrders(): MutableLiveData<List<Order>>
 
     fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>>
+
+    suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>>
+
+    suspend fun getWorkMessage(orderID: String?): Result<List<Message>>
+
+    suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean>
+
+    fun getLiveWorkMessages(orderID: String?): MutableLiveData<List<Message>>
+
+    fun getLiveWorkOrders(): MutableLiveData<List<Order>>
+
+    suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String>
+
+    suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String>
+
+    suspend fun getUserPetsResult(): Result<List<Pet>>
+
+    suspend fun getThreeSelectedList(serviceType: String, petType: String, location: String): Result<List<Nanny>>
+
+    suspend fun updatePet(pet: Pet): Result<Boolean>
+
+    suspend fun updateService(service: Nanny): Result<Boolean>
+
+    suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String>
+
+    suspend fun uploadEditServicePhoto(editServicePhotoLocalPath: String): Result<String>
+
+    fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order>
+
+    fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order>
+
 }

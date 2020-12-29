@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 
 class NannyListViewModel(private val repository: PetNannyRepository, private val arguments: String): ViewModel() {
 
+//    首頁選到類別後傳進來的字串 與 list頁面點dialog類別後要傳出去的字串共用livaData (外面選了後 裡面可以再選一次)
     var serviceType = MutableLiveData<String>().apply {
         value = arguments
     }
@@ -28,6 +29,13 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
     val _navigationToNannyDetail = MutableLiveData<Nanny>()
     val navigationToNannyDetail: LiveData<Nanny>
         get() = _navigationToNannyDetail
+
+//    搜尋用 選擇寵物型態
+    var selectedPetType  = MutableLiveData<String>().apply { value = "" }
+
+//    搜尋用 選擇地區
+    var selectedLocation  = MutableLiveData<String>().apply { value = "" }
+
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -54,6 +62,12 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    // Handle leave detail
+    private val _leaveDetail = MutableLiveData<Boolean>()
+
+    val leaveDetail: LiveData<Boolean>
+        get() = _leaveDetail
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -61,17 +75,14 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
 
     init {
         _navigationToNannyDetail.value = null
-        getHomeServiceTypeFilter(serviceType.value!!)
     }
 
-
-
-    fun getHomeServiceTypeFilter(serviceType:String) {
+    fun getThreeSelectedList(serviceType: String, petType: String, location: String) {
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            val result = repository.getHomeServiceTypeFilter(serviceType)
+            val result = repository.getThreeSelectedList(serviceType, petType, location)
 
             _nannyList.value = when (result) {
                 is Result.Success -> {
@@ -102,6 +113,10 @@ class NannyListViewModel(private val repository: PetNannyRepository, private val
 
     fun displayNannyDetailsComplete () {
         _navigationToNannyDetail.value = null
+    }
+
+    fun leaveDetail() {
+        _leaveDetail.value = true
     }
 
 }

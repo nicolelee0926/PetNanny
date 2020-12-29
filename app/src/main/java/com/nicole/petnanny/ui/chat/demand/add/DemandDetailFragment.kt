@@ -33,6 +33,7 @@ class DemandDetailFragment: Fragment() {
 //            } else {
                 viewModel.setMessage()
 //            }
+            binding.etMessageContent.setText("")
         }
 
         viewModel.setMessage.observe(viewLifecycleOwner, Observer {
@@ -43,6 +44,7 @@ class DemandDetailFragment: Fragment() {
         viewModel.messages.observe(viewLifecycleOwner, Observer {
             Log.d("getMessageList", "$it ")
             chatRoomDetailAdapter.submitList(it)
+            binding.rvDemandChatContent.smoothScrollToPosition(chatRoomDetailAdapter.itemCount)
         })
 
 //        snapshot
@@ -51,6 +53,20 @@ class DemandDetailFragment: Fragment() {
             viewModel.getLiveMessage()
         })
 
+//        snapshot demandOrder
+        viewModel.livaDemandOrderChatRoom.observe(viewLifecycleOwner, Observer {
+            if (it.userCheckedStatus == true) {
+                binding.tvDemandOrderStatus.setText("此筆訂單完成")
+                binding.ivParentChecked.visibility = View.VISIBLE
+                binding.ivParentUndone.visibility = View.GONE
+            } else if (it.nannyCompletedStatus == true) {
+                binding.tvDemandOrderStatus.setText("等待您的確認")
+            } else if (it.userCheckoutStatus == true) {
+                binding.tvDemandOrderStatus.setText("等待服務開始")
+            } else if (it.nannyAcceptStatus == true) {
+                binding.tvDemandOrderStatus.setText("等待您的付款")
+            }
+        })
 
 
         return binding.root

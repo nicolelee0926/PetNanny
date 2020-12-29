@@ -19,6 +19,7 @@ import com.nicole.petnanny.ui.profile.ProfileViewModel
 import com.nicole.petnanny.ui.profile.nanny.NannyExamineViewModel
 import com.nicole.petnanny.ui.profile.pet.PetViewModel
 import com.nicole.petnanny.ui.profile.pet.add.AddPetViewModel
+import com.nicole.petnanny.ui.profile.pet.edit.EditPetViewModel
 import com.nicole.petnanny.ui.profile.service.ServiceViewModel
 import com.nicole.petnanny.ui.profile.service.add.AddServiceViewModel
 import com.nicole.petnanny.ui.profile.user.AddUserViewModel
@@ -64,9 +65,6 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(DemandViewModel::class.java) ->
                     DemandViewModel(repository)
-
-                isAssignableFrom(WorkDetailViewModel::class.java) ->
-                    WorkDetailViewModel(repository)
 
                 isAssignableFrom(WorkViewModel::class.java) ->
                     WorkViewModel(repository)

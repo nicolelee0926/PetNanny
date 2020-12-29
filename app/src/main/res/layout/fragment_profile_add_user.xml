@@ -14,14 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView27"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/photoCardView"
-            app:layout_constraintStart_toEndOf="@+id/photoCardView"
-            app:srcCompat="@drawable/ic_add_photo" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/photoCardView"
             android:layout_width="90dp"

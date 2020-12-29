@@ -27,7 +27,7 @@ fun bindServicePrice(textView: TextView, int: Int) {
 
 @BindingAdapter("intToString")
 fun bindIntToSting(textView: TextView, int: Int) {
-    int?.let{
+    int?.let {
         textView.text = int.toString()
     }
 }
@@ -40,8 +40,9 @@ fun bindImage(imageView: ImageView, url: String?) {
             .load(url)
             .apply(
                 RequestOptions()
-                    .placeholder(R.drawable.ic_chat_nanny_status)
-                    .error(R.drawable.ic_launcher_background))
+//                    .placeholder(R.drawable.ic_chat_nanny_status)
+                    .error(R.drawable.ic_launcher_background)
+            )
             .into(imageView)
     }
 }
@@ -49,7 +50,7 @@ fun bindImage(imageView: ImageView, url: String?) {
 @BindingAdapter("getServicePrice")
 fun TextView.bindGetServicePrice(price: String) {
     price?.let {
-        text = "NT$$price 元/次"
+        text = "NT $ $price 元 / 次"
     }
 }
 

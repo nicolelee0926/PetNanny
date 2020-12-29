@@ -10,7 +10,7 @@ data class Order(
     var orderEndTime : String? = "",
     var orderID : String? = "",
     var orderStartTime : String? = "",
-    var petID : String = "",
+    var selectedPet : Pet? = null,
     var subPrice : String = "",
     var userEmail: String? = "",
     var price: String? = "",
@@ -26,6 +26,7 @@ data class Order(
     var nannyEmail:String? = "",
     var demandDay: String? = "",
     var totalPrice: String? = "",
-    var lastMessage: Message? = null,
+    var lastMessage: Message?= null,
+    var createTime: Long = System.currentTimeMillis()
 ) : Parcelable
 

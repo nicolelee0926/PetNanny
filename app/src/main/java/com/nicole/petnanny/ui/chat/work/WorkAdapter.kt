@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nicole.petnanny.data.Message
+import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.databinding.ItemChatWorkBinding
 
 
-class WorkAdapter(val viewModel: WorkViewModel) : ListAdapter<Message, WorkAdapter.WorkViewHolder>(WorkDiffCallback()) {
+class WorkAdapter(val viewModel: WorkViewModel) : ListAdapter<Order, WorkAdapter.WorkViewHolder>(WorkDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkViewHolder {
         return WorkViewHolder.from(parent)
     }
@@ -20,10 +21,10 @@ class WorkAdapter(val viewModel: WorkViewModel) : ListAdapter<Message, WorkAdapt
     }
 
     class WorkViewHolder  private constructor(private val binding: ItemChatWorkBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : Message, viewModel: WorkViewModel) {
+        fun bind(item : Order, viewModel: WorkViewModel) {
             binding.data = item
             binding.root.setOnClickListener {
-               viewModel.navigationToChatRoomDetail.value = true
+               viewModel._navigationToWorkChatRoomDetail.value = item
             }
             binding.executePendingBindings()
         }
@@ -38,12 +39,12 @@ class WorkAdapter(val viewModel: WorkViewModel) : ListAdapter<Message, WorkAdapt
     }
 }
 
-class WorkDiffCallback : DiffUtil.ItemCallback<Message>()  {
-    override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
+class WorkDiffCallback : DiffUtil.ItemCallback<Order>()  {
+    override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean {
         return oldItem === newItem
     }
 
-    override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
+    override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean {
         return oldItem == newItem
     }
 }

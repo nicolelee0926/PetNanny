@@ -113,7 +113,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view13"
                     app:srcCompat="@drawable/ic_order_pet" />
@@ -130,12 +130,62 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView15"
                     app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
+                <TextView
+                    android:id="@+id/btn_choice_user_pet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="請選擇寵物"
+                    android:padding="5dp"
+                    android:background="@drawable/bg_all_round_orage_8dp"
+                    android:textColor="@color/colorDeepGray"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView51"
+                    app:layout_constraintStart_toEndOf="@+id/textView52"
+                    app:layout_constraintTop_toTopOf="@+id/textView51" />
+
+
+                <TextView
+                    android:id="@+id/tv_user_pet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    tools:text="Oreo"
+                    android:text="@{viewModel.selectedPet.petName}"
+                    android:textColor="@color/colorDeepGray"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_user_pet_photo"
+                    app:layout_constraintStart_toEndOf="@+id/card_user_pet_photo"
+                    app:layout_constraintTop_toTopOf="@+id/card_user_pet_photo" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_user_pet_photo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView51"
+                    app:layout_constraintStart_toStartOf="@+id/btn_start_time"
+                    app:layout_constraintTop_toTopOf="@+id/textView51">
+
+                    <ImageView
+                        android:id="@+id/iv_user_pet_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{viewModel.selectedPet.petPhoto}"
+                        tools:src="@drawable/iv_home_s2" />
+                </androidx.cardview.widget.CardView>
+
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView15"
                     app:srcCompat="@drawable/ic_order_time" />
@@ -158,6 +208,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="請選擇開始日期"
+                    android:padding="5dp"
+                    android:background="@drawable/bg_all_round_orage_8dp"
                     android:textColor="@color/colorDeepGray"
                     app:layout_constraintBottom_toBottomOf="@+id/textView52"
                     app:layout_constraintStart_toEndOf="@+id/textView52"
@@ -169,6 +221,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:text="請選擇結束日期"
+                    android:padding="5dp"
+                    android:background="@drawable/bg_all_round_orage_8dp"
                     android:textColor="@color/colorDeepGray"
                     app:layout_constraintBottom_toBottomOf="@+id/textView3"
                     app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -262,19 +316,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView24"
                     app:layout_constraintStart_toEndOf="@+id/imageView24"
                     app:layout_constraintTop_toTopOf="@+id/imageView24" />
-
-                <Spinner
-                    android:id="@+id/spinner_type"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:entries="@array/pet_array"
-                    android:prompt="@string/pet_array_title"
-                    android:spinnerMode="dialog"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView52"
-                    app:layout_constraintTop_toTopOf="@+id/textView51" />
 
                 <ImageView
                     android:id="@+id/imageView25"

@@ -48,20 +48,47 @@
                         android:id="@+id/textView106"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="60dp"
+                        android:layout_marginStart="16dp"
                         android:textColor="@color/colorDeepGray"
+                        android:text="@{viewModel.myOrderDetail.selectedPet.petName}"
                         app:layout_constraintBottom_toBottomOf="@+id/textView51"
-                        app:layout_constraintStart_toEndOf="@+id/textView51"
+                        app:layout_constraintStart_toEndOf="@+id/card_user_pet_photo"
                         app:layout_constraintTop_toTopOf="@+id/textView51"
                         tools:text="Oreo" />
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_user_pet_photo"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible"
+                        app:cardCornerRadius="50dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView51"
+                        app:layout_constraintStart_toStartOf="@+id/textView111"
+                        app:layout_constraintTop_toTopOf="@+id/textView51">
+
+                        <ImageView
+                            android:id="@+id/iv_user_pet_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:scaleType="centerCrop"
+                            app:imageUrl="@{viewModel.myOrderDetail.selectedPet.petPhoto}"
+                            tools:src="@drawable/iv_home_s2" />
+                    </androidx.cardview.widget.CardView>
+
+
                     <TextView
                         android:id="@+id/textView109"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
                         android:text="@{viewModel.myOrderDetail.address}"
                         android:textColor="@color/colorDeepGray"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView53"
                         app:layout_constraintTop_toBottomOf="@+id/textView53"
                         tools:text="新北市中正街123號10樓" />
@@ -503,12 +530,12 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView424"
+                            app:layout_constraintStart_toEndOf="@+id/iv_check_service_completed"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
-                            android:id="@+id/imageView424"
+                            android:id="@+id/iv_check_service_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="4dp"
@@ -558,11 +585,11 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView45"
+                            app:layout_constraintStart_toEndOf="@+id/iv_service_completed_finally"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView45"
+                            android:id="@+id/iv_service_completed_finally"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -594,7 +621,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView416"
+                            android:id="@+id/iv_wait_your_checkout"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -624,12 +651,12 @@
                             android:textSize="16sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView42"
+                            app:layout_constraintStart_toEndOf="@+id/iv_your_checkout_completed"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
 
                         <ImageView
-                            android:id="@+id/imageView42"
+                            android:id="@+id/iv_your_checkout_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="4dp"
@@ -661,7 +688,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView41"
+                            android:id="@+id/iv_wait_nanny_accept"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"
@@ -693,7 +720,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView4163"
+                            android:id="@+id/iv_checkout_service_completed"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
                             android:layout_marginEnd="8dp"

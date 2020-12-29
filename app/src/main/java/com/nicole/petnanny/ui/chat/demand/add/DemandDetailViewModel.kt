@@ -27,6 +27,9 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
         value = argumentsDemand
     }
 
+    //    snapshot 某筆訂單
+    var livaDemandOrderChatRoom = MutableLiveData<Order>()
+
     // get message
     private var _messages = MutableLiveData<List<Message>>()
     val messages: LiveData<List<Message>>
@@ -73,6 +76,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
     init {
         getMessage()
         getLiveMessagesResult()
+        getLiveOneDemandOrderResult()
     }
 
     fun getMessage() {
@@ -145,7 +149,7 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
             messageTime = System.currentTimeMillis(),
             senderImage = UserManager.user.value?.photo!!,
             senderEmail = UserManager.user.value?.userEmail!!,
-            id ="",
+            id =""
         )
     }
 
@@ -156,6 +160,10 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
 
     fun getLiveMessage() {
         _messages.value = livemessages.value
+    }
+
+    fun getLiveOneDemandOrderResult() {
+        livaDemandOrderChatRoom = repository.getLiveOneDemandOrder(demandDetail.value?.orderID)
     }
 
 }

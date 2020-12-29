@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
-import com.nicole.petnanny.data.Message
 import com.nicole.petnanny.data.Order
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
@@ -21,16 +20,20 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
 
     var demandOrderChatRoomList = MutableLiveData<List<Order>>()
 
+
 //    to demandAdapter viewHolder button set value 用
     var _navigationToDemandChatRoomDetail = MutableLiveData<Order>()
     val navigationToDemandChatRoomDetail: LiveData<Order>
         get() = _navigationToDemandChatRoomDetail
 
 //    snapshot
-    var liveOrders = MutableLiveData<List<Order>>()
+    var liveDemandOrderChatRoomList = MutableLiveData<List<Order>>()
 
-//    setFirstMessage
-    var getFirstMessage = MutableLiveData<Message>()
+//    如果沒有訊息顯示無聊天訊息的字＆圖
+    var noDemandMessage = MutableLiveData<Boolean>()
+
+//    first no message
+    var firstNoMessage = MutableLiveData<Boolean>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -64,7 +67,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     init {
         getDemandOrderChatRoomListResult()
         getUserResult(UserManager.user.value?.userEmail)
-        getLiveDemandOrdersResult()
     }
 
     fun getDemandOrderChatRoomListResult() {
@@ -78,8 +80,8 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
+                    Log.d("first", "${result.data} ")
                     result.data
-
                 }
                 is Result.Fail -> {
                     _error.value = result.error
@@ -99,6 +101,7 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
             }
             _refreshStatus.value = false
         }
+
     }
 
     //    get user data to save userManager for load myClient order (這時get下來是用存是否認證的欄位資料, 存在userManager, 方便給my client去query)
@@ -135,6 +138,17 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
                         null
                     }
                 }
+
+                //  因為登入後認證欄位還是null 所以要在這邊再存回UserManager一次 認證狀態才會被儲存 這時再執行snapshot時就有認證狀態了
+                //  才不會因為還沒存入狀態前就snapshot了
+                if (UserManager.user.value?.verification == null) {
+//                  如果是家長 假設no message狀態是是true 再去fragment observe
+                    noDemandMessage.value = true
+                    getLiveDemandOrdersResult()
+                } else if(UserManager.user.value?.verification == true) {
+//                    如果是保姆 假設狀態是no message是false 再去fragment observe
+                    noDemandMessage.value = false
+                }
                 _refreshStatus.value = false
             }
         }
@@ -146,11 +160,13 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     }
 
     fun getLiveDemandOrdersResult() {
-        liveOrders = repository.getLiveDemandOrders()
+        liveDemandOrderChatRoomList = repository.getLiveDemandOrders()
     }
 
     fun getLiveDemandOrder() {
-        demandOrderChatRoomList.value = liveOrders.value
+        demandOrderChatRoomList.value = liveDemandOrderChatRoomList.value
     }
+
+
 
 }

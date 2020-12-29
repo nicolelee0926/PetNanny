@@ -7,24 +7,22 @@ import androidx.lifecycle.ViewModel
 import com.nicole.petnanny.PetNannyApplication
 import com.nicole.petnanny.R
 import com.nicole.petnanny.data.Nanny
+import com.nicole.petnanny.data.NannyExamine
 import com.nicole.petnanny.data.Result
 import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.network.LoadApiStatus
+import com.nicole.petnanny.ui.login.UserManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class NannyExamineViewModel(private val repository: PetNannyRepository): ViewModel() {
+class NannyExamineViewModel(private val repository: PetNannyRepository) : ViewModel() {
 
-    private val _nannyExamine= MutableLiveData<Nanny>()
-    val nannyExamine: LiveData<Nanny>
-        get() = _nannyExamine
+    val setNannyExamineData = MutableLiveData<NannyExamine>()
 
-    val setNannyExamineData = MutableLiveData<Nanny>()
-
-    var nannyBirthday  = MutableLiveData<String>().apply { value = "" }
-    var nannyName  = MutableLiveData<String>().apply { value = "" }
+    var nannyBirthday = MutableLiveData<String>().apply { value = "" }
+    var nannyName = MutableLiveData<String>().apply { value = "" }
     var nannyPhone = MutableLiveData<String>().apply { value = "" }
     var nannyIDNumber = MutableLiveData<String>().apply { value = "" }
     var nannyPetExperience = MutableLiveData<String>().apply { value = "" }
@@ -41,13 +39,20 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
     val error: LiveData<String>
         get() = _error
 
+    // status for the loading icon of swl
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    fun addNannyExamine(nannyExamine: Nanny) {
+
+    fun addNannyExamine(nannyExamine: NannyExamine) {
         Log.d("addNannyExamine", "hate")
 
         coroutineScope.launch {
@@ -55,7 +60,7 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.addNannyExamine(nannyExamine)) {
-                is Result.Success-> {
+                is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
                 }
@@ -81,12 +86,23 @@ class NannyExamineViewModel(private val repository: PetNannyRepository): ViewMod
     }
 
     fun setNannyExamine() {
-        setNannyExamineData.value = Nanny(
+        setNannyExamineData.value = NannyExamine(
             nannyBirthday = nannyBirthday.value.toString(),
             nannyPhone = nannyPhone.value.toString(),
             nannyIDNumber = nannyIDNumber.value.toString(),
             nannyPetExperience = nannyPetExperience.value.toString(),
-            nannyName = nannyName.value.toString()
+            nannyRealName = nannyName.value.toString(),
+            userEmail = UserManager.user.value?.userEmail
         )
+    }
+
+
+    //    check info completed
+    fun checkInfoComplete(): Boolean {
+        return (nannyBirthday.value != "" &&
+                nannyPhone.value != "" &&
+                nannyIDNumber.value != "" &&
+                nannyPetExperience.value != "" &&
+                nannyName.value != "")
     }
 }

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentHomeBinding
 import com.nicole.petnanny.ext.getVmFactory
+import com.nicole.petnanny.ui.home.nannylist.NannyListFragmentDirections
 
 class HomeFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        val homeAdapter = HomeAdapter()
+        val homeAdapter = HomeAdapter(viewModel)
         binding.rvHomeNanny.adapter = homeAdapter
 
 //拿到首頁 nanny list隨機保姆服務
@@ -76,6 +77,13 @@ class HomeFragment : Fragment() {
                 HomeFragmentDirections.actionNavigationHomeToNannyListFragment("遛狗散步")
             )
         }
+
+        viewModel.navigationToNannyDetail.observe(viewLifecycleOwner, Observer {
+            if(null != it) {
+                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToNannyDetailFragment(it))
+                viewModel.displayNannyDetailsComplete()
+            }
+        })
 
         return binding.root
     }

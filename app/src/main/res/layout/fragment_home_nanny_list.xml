@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="com.nicole.petnanny.network.LoadApiStatus"/>
         <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.home.nannylist.NannyListViewModel" />
@@ -43,11 +45,11 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="16dp"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintStart_toEndOf="@+id/btn_leave"
                 app:layout_constraintTop_toTopOf="parent">
 
 
@@ -58,17 +60,18 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="24dp"
                     android:letterSpacing="0.05"
-                    android:text="到府照顧"
+                    android:text="@{viewModel.serviceType}"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_choice_service"
                     app:layout_constraintStart_toStartOf="@+id/btn_choice_service"
-                    app:layout_constraintTop_toTopOf="@+id/btn_choice_service" />
+                    app:layout_constraintTop_toTopOf="@+id/btn_choice_service"
+                    tools:text="到府照顧" />
             </androidx.cardview.widget.CardView>
 
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/btn_leave"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -79,7 +82,7 @@
                 app:srcCompat="@drawable/ic_back" />
 
             <Spinner
-                android:id="@+id/spinner_type"
+                android:id="@+id/spinner_type_nanny_list"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
@@ -91,7 +94,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_choice_service" />
 
             <Spinner
-                android:id="@+id/spinner_location"
+                android:id="@+id/spinner_location_nanny_list"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
@@ -101,9 +104,23 @@
                 android:entries="@array/location_array"
                 android:prompt="@string/location_array_title"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/spinner_type"
+                app:layout_constraintStart_toEndOf="@+id/spinner_type_nanny_list"
                 app:layout_constraintTop_toBottomOf="@+id/btn_choice_service" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:visibility="@{viewModel.status == LoadApiStatus.LOADING ? View.VISIBLE : View.GONE }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_circle_many"
+            app:lottie_speed="4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

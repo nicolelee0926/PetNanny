@@ -11,6 +11,8 @@
         <variable
             name="viewModel"
             type="com.nicole.petnanny.ui.profile.ProfileViewModel" />
+        <import type="android.view.View"/>
+        <import type="com.nicole.petnanny.network.LoadApiStatus"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,11 +34,10 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="238dp"
-                    android:scaleType="fitStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/bg_profile" />
@@ -60,14 +61,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:text="@{viewModel.user.selfIntroduction}"
+                    android:maxLines="4"
+                    android:ellipsize="end"
                     android:textColor="@color/colorDeepGray"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_userName"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
                     tools:text="大家養他們就要負起責任喔~不要亂拋棄!請以認養代替購買！我們家可愛的臘腸也是認養的！不要以為認養的都很醜！寵物的外貌是會因為照顧的人而改變的！" />
 
                 <androidx.cardview.widget.CardView
@@ -76,7 +79,7 @@
                     android:layout_height="90dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     app:cardCornerRadius="50dp"
                     app:elevation="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +97,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/photoCardView_visit1"
-                    android:layout_width="80dp"
+                    android:layout_width="90dp"
                     android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
@@ -110,9 +113,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="獸醫證照"
+                        android:text="寵膳食育師"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/btn_google_sigh_in"
                         app:layout_constraintStart_toStartOf="@+id/btn_google_sigh_in"
                         app:layout_constraintTop_toTopOf="@+id/btn_google_sigh_in" />
@@ -213,6 +218,20 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/lottie_circle_many"
+            app:lottie_speed="4" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

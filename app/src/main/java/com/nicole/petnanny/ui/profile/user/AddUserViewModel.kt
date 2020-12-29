@@ -31,6 +31,11 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
     var userIntroduction = MutableLiveData<String>().apply { value = "" }
     var userName = MutableLiveData<String>().apply { value = "" }
 
+    //  傳送成功flag
+    private val _submitDataFinished = MutableLiveData<Boolean>()
+    val submitDataFinished: LiveData<Boolean>
+        get() = _submitDataFinished
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -48,6 +53,10 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    init {
+        _submitDataFinished.value = null
+    }
 
     fun updateUser(user: User) {
         Log.d("addUser", "hate")
@@ -75,6 +84,7 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
                 }
             }
         }
+        _submitDataFinished.value = true
     }
 
     init {
@@ -128,5 +138,9 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
             userEmail = UserManager.user.value?.userEmail,
             photo = UserManager.user.value?.photo.toString()
         )
+    }
+
+    fun submitToFireStoreFinished() {
+        _submitDataFinished.value = null
     }
 }

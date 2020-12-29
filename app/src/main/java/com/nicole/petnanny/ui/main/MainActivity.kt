@@ -10,6 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.nicole.petnanny.CurrentFragmentType
 import com.nicole.petnanny.R
 import com.nicole.petnanny.databinding.ActivityMainBinding
@@ -19,18 +22,19 @@ class MainActivity : AppCompatActivity() {
 
     val viewModel by viewModels<MainViewModel> { getVmFactory() }
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
-            R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.lifecycleOwner = this
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
 
-        viewModel
+
         binding.viewModel = viewModel
 
         setupNavController()
@@ -55,6 +59,20 @@ class MainActivity : AppCompatActivity() {
             Log.d("hiya_user", "hiya ")
             viewModel.changeNannyExamineStatusTrue()
         }
+
+        binding.textToolbarEditPet.setOnClickListener {
+            Log.d("hiya_user", "hiya ")
+            viewModel.changeEditPetStatusTrue()
+        }
+
+        binding.textToolbarEditService.setOnClickListener {
+            Log.d("hiya_user", "hiya ")
+            viewModel.changeEditServiceStatusTrue()
+        }
+
+        // Obtain the FirebaseAnalytics instance.
+        firebaseAnalytics = Firebase.analytics
+        
     }
 
     private fun setupNavController(){
@@ -75,6 +93,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> CurrentFragmentType.LOGIN
                 R.id.demandDetailFragment -> CurrentFragmentType.CHAT_ROOM_DEMAND
                 R.id.workDetailFragment -> CurrentFragmentType.CHAT_ROOM_WORK
+                R.id.editPetFragment -> CurrentFragmentType.PROFILE_EDIT_PET
+                R.id.editServiceFragment -> CurrentFragmentType.PROFILE_EDIT_SERVICE
+                R.id.myOrderDetailFragment -> CurrentFragmentType.MY_ORDER_DETAIL
+                R.id.myClientDetailFragment -> CurrentFragmentType.MY_CLIENT_DETAIL
                 else -> viewModel.currentFragmentType.value
             }
         }

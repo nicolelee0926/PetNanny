@@ -30,7 +30,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@drawable/iv_home_s3" />
+                app:imageUrl="@{data.servicePhoto}"
+                tools:src="@drawable/iv_home_s3" />
         </androidx.cardview.widget.CardView>
 
         <View
@@ -64,7 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:singleLine="false"
+            android:ellipsize="end"
+            android:lines="1"
             android:text="@{data.serviceName}"
             android:textColor="@color/colorDeepGray"
             android:textSize="16sp"
@@ -72,20 +74,23 @@
             app:layout_constraintBottom_toTopOf="@+id/textView16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
             tools:text="專業寵物保姆，值得您的信賴，呵護極致呵護極致" />
 
         <TextView
             android:id="@+id/textView16"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:maxLines="5"
             android:text="@{data.nannyIntroduction}"
             android:textColor="@color/colorDeepGray"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
             tools:text="身體很健康，有定期打疫苗" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

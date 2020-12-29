@@ -21,6 +21,10 @@ class HomeViewModel(private val repository: PetNannyRepository) : ViewModel() {
     val nannyList: LiveData<List<Nanny>>
         get() = _nannyList
 
+    // to homeAdapter viewHolder button set value 用
+    val _navigationToNannyDetail = MutableLiveData<Nanny>()
+    val navigationToNannyDetail: LiveData<Nanny>
+        get() = _navigationToNannyDetail
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -54,6 +58,7 @@ class HomeViewModel(private val repository: PetNannyRepository) : ViewModel() {
     init {
         Log.d("~~~~~~~~`", "~~~~ ")
         getServicesForHomePage()
+        _navigationToNannyDetail.value = null
     }
 
     fun getServicesForHomePage() {
@@ -89,6 +94,10 @@ class HomeViewModel(private val repository: PetNannyRepository) : ViewModel() {
             }
             _refreshStatus.value = false
         }
+    }
+
+    fun displayNannyDetailsComplete () {
+        _navigationToNannyDetail.value = null
     }
 
 }

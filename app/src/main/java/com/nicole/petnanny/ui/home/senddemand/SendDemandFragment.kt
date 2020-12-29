@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,7 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.nicole.petnanny.MobileNavigationDirections
+import com.nicole.petnanny.dialog.SuccessSubmitDialog
 import com.nicole.petnanny.databinding.FragmentSendDemandBinding
+import com.nicole.petnanny.dialog.SelectUserPetDialog
 import com.nicole.petnanny.ext.getVmFactory
 import java.text.SimpleDateFormat
 
@@ -29,12 +32,16 @@ class SendDemandFragment: Fragment() {
         binding.viewModel = viewModel
 
         binding.btnSendDemand.setOnClickListener {
+            if (viewModel.checkInfoComplete()) {
                 viewModel.sendDemand()
+            } else {
+                Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
+            }
         }
 
         viewModel.setDemandData.observe(viewLifecycleOwner, Observer {
             viewModel.addDemand(it)
-            findNavController().navigate(MobileNavigationDirections.actionGlobalNavigationOrder())
+            findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(SuccessSubmitDialog.AddSuccessPage.ADD_DEMAND))
         })
 
         //set data picker
@@ -54,7 +61,7 @@ class SendDemandFragment: Fragment() {
             picker.show(activity?.supportFragmentManager!!, picker.toString())
         }
 
-
+//      set picker binding
         picker.addOnNegativeButtonClickListener { picker.dismiss() }
         picker.addOnPositiveButtonClickListener {
             binding.btnStartTime.text = ("${SimpleDateFormat("yyyy.MM.dd").format(it.first)}")
@@ -63,6 +70,26 @@ class SendDemandFragment: Fragment() {
             viewModel.orderEndTime.value = binding.btnEndTime.text.toString()
             calculationDay(it, binding)
         }
+
+//      set choice pet button
+        binding.btnChoiceUserPet.setOnClickListener {
+            if(viewModel.userPetList.value?.size != 0 ){
+                viewModel.userPetList.value?.let { it1 -> fragmentManager?.let { it2 ->
+                    SelectUserPetDialog(it1, viewModel).show(
+                        it2, "")
+                } }
+            } else {
+                Toast.makeText(requireContext(), "您目前沒有寵物，請先去新增！", Toast.LENGTH_LONG).show()
+            }
+        }
+
+
+//       observe selected pet then change pet raw view
+        viewModel.selectedPet.observe(viewLifecycleOwner, Observer {
+            binding.tvUserPetName.visibility = View.VISIBLE
+            binding.cardUserPetPhoto.visibility = View.VISIBLE
+            binding.btnChoiceUserPet.visibility = View.GONE
+        })
 
         return binding.root
     }
@@ -88,14 +115,5 @@ class SendDemandFragment: Fragment() {
         }
     }
 
-////    計算總價錢
-//    fun calculationTotalPrice(binding: FragmentSendDemandBinding) {
-//        val price = viewModel.nannyDataArgus.value?.price?.toLong()
-//        val demandDay =
-//        viewModel.nannyDataArgus.value = binding.tvTotalPrice.text.toString()
-//    }
 
-
-
-// TODO 存livedata的天數和總價 綁定xml
 }

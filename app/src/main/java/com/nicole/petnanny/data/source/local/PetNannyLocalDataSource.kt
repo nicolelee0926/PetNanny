@@ -33,7 +33,7 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> {
+    override suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
@@ -119,6 +119,70 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
     }
 
     override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getWorkMessage(orderID: String?): Result<List<Message>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLiveWorkMessages(orderID: String?): MutableLiveData<List<Message>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLiveWorkOrders(): MutableLiveData<List<Order>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserPetsResult(): Result<List<Pet>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getThreeSelectedList(
+        serviceType: String,
+        petType: String,
+        location: String
+    ): Result<List<Nanny>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updatePet(pet: Pet): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateService(service: Nanny): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadEditServicePhoto(editServicePhotoLocalPath: String): Result<String> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order> {
         TODO("Not yet implemented")
     }
 

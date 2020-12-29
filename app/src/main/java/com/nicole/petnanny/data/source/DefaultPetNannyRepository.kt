@@ -34,7 +34,7 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getUser(userEmail)
     }
 
-    override suspend fun addNannyExamine(nannyExamine: Nanny): Result<Boolean> {
+    override suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean> {
         return remoteDataSource.addNannyExamine(nannyExamine)
     }
 
@@ -113,4 +113,65 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
     override fun getLiveMessages(orderID: String?): MutableLiveData<List<Message>> {
         return remoteDataSource.getLiveMessages(orderID)
     }
+
+    override suspend fun getWorkChatListResult(nannyEmail: String): Result<List<Order>> {
+        return remoteDataSource.getWorkChatListResult(nannyEmail)
+    }
+
+    override suspend fun getWorkMessage(orderID: String?): Result<List<Message>> {
+        return remoteDataSource.getWorkMessage(orderID)
+    }
+
+    override suspend fun addWorkMessage(orderID: String, workMessage: Message): Result<Boolean> {
+        return remoteDataSource.addWorkMessage(orderID, workMessage)
+    }
+
+    override fun getLiveWorkMessages(orderID: String?): MutableLiveData<List<Message>> {
+        return remoteDataSource.getLiveWorkMessages(orderID)
+    }
+
+    override fun getLiveWorkOrders(): MutableLiveData<List<Order>> {
+        return remoteDataSource.getLiveWorkOrders()
+    }
+
+    override suspend fun uploadPetPhoto(petPhotoLocalPath: String): Result<String> {
+        return remoteDataSource.uploadPetPhoto(petPhotoLocalPath)
+    }
+
+    override suspend fun uploadServicePhoto(servicePhotoLocalPath: String): Result<String> {
+        return remoteDataSource.uploadServicePhoto(servicePhotoLocalPath)
+    }
+
+    override suspend fun getUserPetsResult(): Result<List<Pet>> {
+        return remoteDataSource.getUserPetsResult()
+    }
+
+    override suspend fun getThreeSelectedList(serviceType: String,petType: String, location: String): Result<List<Nanny>> {
+        return remoteDataSource.getThreeSelectedList(serviceType,petType,location)
+    }
+
+    override suspend fun updatePet(pet: Pet): Result<Boolean> {
+        return remoteDataSource.updatePet(pet)
+    }
+
+    override suspend fun updateService(service: Nanny): Result<Boolean> {
+        return remoteDataSource.updateService(service)
+    }
+
+    override suspend fun uploadEditPetPhoto(editPetPhotoLocalPath: String): Result<String> {
+        return remoteDataSource.uploadEditPetPhoto(editPetPhotoLocalPath)
+    }
+
+    override suspend fun uploadEditServicePhoto(editServicePhotoLocalPath: String): Result<String> {
+        return remoteDataSource.uploadEditServicePhoto(editServicePhotoLocalPath)
+    }
+
+    override fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order> {
+        return remoteDataSource.getLiveOneDemandOrder(orderID)
+    }
+
+    override fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order> {
+        return remoteDataSource.getLiveOneWorkOrder(orderID)
+    }
+
 }
