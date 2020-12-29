@@ -80,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeEditServiceStatusTrue()
         }
 
+//        以下是返回鍵操作
+        binding.btnMainLeave.setOnClickListener {
+            viewModel.changeLeaveDemandChatRoomStatusTrue()
+        }
+
         // Obtain the FirebaseAnalytics instance.
         firebaseAnalytics = Firebase.analytics
         

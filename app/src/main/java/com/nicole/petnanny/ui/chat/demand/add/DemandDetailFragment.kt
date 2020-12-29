@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.CurrentFragmentType
 import com.nicole.petnanny.databinding.FragmentDemandChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
@@ -77,6 +79,19 @@ class DemandDetailFragment: Fragment() {
         chatRoomName.value = viewModel.demandDetail.value?.nannyServiceDetail?.nannyName.toString()
         mainViewModel.currentFragmentType.value = chatRoomName
 
+//          add leave button
+        mainViewModel.leaveDemandChatRoomFlag.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                    viewModel.leaveDetail()
+                    mainViewModel.changeLeaveDemandChatRoomStatusFalse()
+            }
+        })
+
+        viewModel.leaveDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) findNavController().popBackStack()
+            }
+        })
 
         return binding.root
     }
