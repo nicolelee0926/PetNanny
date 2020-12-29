@@ -82,7 +82,7 @@ class WorkDetailFragment : Fragment() {
 
 //          改chat room 型態
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        val chatRoomName = CurrentFragmentType.CHAT_ROOM_DEMAND_NANNY_NAME
+        val chatRoomName = CurrentFragmentType.CHAT_ROOM_WORK_USER_NAME
         chatRoomName.value = viewModel.workDetail.value?.userInfo?.userName.toString()
         mainViewModel.currentFragmentType.value = chatRoomName
 

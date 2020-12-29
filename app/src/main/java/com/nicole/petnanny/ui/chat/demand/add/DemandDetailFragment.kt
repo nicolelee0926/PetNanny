@@ -81,14 +81,6 @@ class DemandDetailFragment: Fragment() {
         return binding.root
     }
 
-//    fun isEmpty(): Boolean {
-//        return when (viewModel.enterMessage.value) {
-//            null -> true
-//            else -> false
-//        }
-//    }
-
-
 }
 
 
