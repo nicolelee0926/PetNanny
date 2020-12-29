@@ -105,7 +105,6 @@ class AddPetFragment : Fragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }
@@ -120,7 +119,6 @@ class AddPetFragment : Fragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }

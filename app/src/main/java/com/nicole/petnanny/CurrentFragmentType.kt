@@ -1,6 +1,6 @@
 package com.nicole.petnanny
 
-enum class CurrentFragmentType(val value: String) {
+enum class CurrentFragmentType(var value: String) {
     HOME("寵物保姆"),
     CHAT("聊天室"),
     ORDER("訂單"),
@@ -20,4 +20,8 @@ enum class CurrentFragmentType(val value: String) {
     PROFILE_EDIT_SERVICE("更新服務資料"),
     MY_ORDER_DETAIL("我的需求訂單"),
     MY_CLIENT_DETAIL("我的客戶訂單"),
+    CHAT_ROOM_DEMAND_NANNY_NAME(""),
+    CHAT_ROOM_WORK_USER_NAME(""),
 }
+
+
