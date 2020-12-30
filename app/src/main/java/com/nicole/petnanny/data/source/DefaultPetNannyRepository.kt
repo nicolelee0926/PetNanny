@@ -174,4 +174,12 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getLiveOneWorkOrder(orderID)
     }
 
+    override suspend fun deletePet(petID: String): Result<Boolean> {
+        return remoteDataSource.deletePet(petID)
+    }
+
+    override suspend fun deleteService(id: String): Result<Boolean> {
+        return remoteDataSource.deleteService(id)
+    }
+
 }

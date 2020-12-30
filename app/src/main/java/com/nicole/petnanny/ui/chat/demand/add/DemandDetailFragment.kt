@@ -5,12 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.nicole.petnanny.CurrentFragmentType
 import com.nicole.petnanny.databinding.FragmentDemandChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.chat.ChatRoomDetailAdapter
+import com.nicole.petnanny.ui.main.MainViewModel
 
 class DemandDetailFragment: Fragment() {
 
@@ -68,17 +73,15 @@ class DemandDetailFragment: Fragment() {
             }
         })
 
+//          改chat room 型態
+        val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        val chatRoomName = CurrentFragmentType.CHAT_ROOM_DEMAND_NANNY_NAME
+        chatRoomName.value = viewModel.demandDetail.value?.nannyServiceDetail?.nannyName.toString()
+        mainViewModel.currentFragmentType.value = chatRoomName
+
 
         return binding.root
     }
-
-//    fun isEmpty(): Boolean {
-//        return when (viewModel.enterMessage.value) {
-//            null -> true
-//            else -> false
-//        }
-//    }
-
 
 }
 

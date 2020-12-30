@@ -19,7 +19,7 @@ import com.nicole.petnanny.ui.login.UserManager
 
 class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
 
-    private var _pet = MutableLiveData<List<Pet>>()
+    var _pet = MutableLiveData<List<Pet>>()
     val pet: LiveData<List<Pet>>
         get() = _pet
 
@@ -51,6 +51,9 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+//    用liveData存已經被刪除的pet
+    val liveDeletePet = MutableLiveData<Pet>()
 
     override fun onCleared() {
         super.onCleared()
@@ -139,6 +142,37 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
                 _refreshStatus.value = false
             }
         }
+    }
+
+//      delete pet item
+    fun deletePet(petID: String) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.deletePet(petID)) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
+
+    fun saveLiveDeletePet() {
+
     }
 
     fun displayEditPetDetailsComplete () {

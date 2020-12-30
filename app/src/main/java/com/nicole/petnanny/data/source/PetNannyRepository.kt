@@ -85,4 +85,8 @@ interface PetNannyRepository {
     fun getLiveOneDemandOrder(orderID: String?): MutableLiveData<Order>
 
     fun getLiveOneWorkOrder(orderID: String?): MutableLiveData<Order>
+
+    suspend fun deletePet(petID: String): Result<Boolean>
+
+    suspend fun deleteService(id: String): Result<Boolean>
 }

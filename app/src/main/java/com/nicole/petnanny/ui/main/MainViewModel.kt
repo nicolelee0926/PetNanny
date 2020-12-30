@@ -56,4 +56,5 @@ class MainViewModel(private val repository: PetNannyRepository): ViewModel() {
     fun changeEditServiceStatusFalse(){
         editServiceFlag.value = false
     }
+
 }

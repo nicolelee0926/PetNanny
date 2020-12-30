@@ -15,7 +15,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent">
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <View
                 android:id="@+id/view14"
@@ -31,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:text="修改成功"
-                android:textSize="16sp"
                 android:textColor="@color/colorWhite"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view14"
                 app:layout_constraintEnd_toEndOf="@+id/view14"
                 app:layout_constraintStart_toStartOf="@+id/view14" />
@@ -47,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="@+id/view14"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="false"
-                app:lottie_rawRes="@raw/lottie_pen"/>
+                app:lottie_rawRes="@raw/lottie_pen" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

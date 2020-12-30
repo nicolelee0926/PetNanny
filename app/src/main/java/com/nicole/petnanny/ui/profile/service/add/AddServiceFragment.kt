@@ -17,12 +17,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.nicole.petnanny.MobileNavigationDirections
 import com.nicole.petnanny.dialog.SuccessSubmitDialog.AddSuccessPage
 import com.nicole.petnanny.databinding.FragmentProfileAddServiceBinding
 import com.nicole.petnanny.ext.getVmFactory
 import com.nicole.petnanny.ui.main.MainViewModel
+import com.github.dhaval2404.imagepicker.ImagePicker
 
 class AddServiceFragment: Fragment() {
 
@@ -78,7 +78,7 @@ class AddServiceFragment: Fragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
+
             }
 
         }
@@ -90,7 +90,6 @@ class AddServiceFragment: Fragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }
@@ -102,7 +101,6 @@ class AddServiceFragment: Fragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }

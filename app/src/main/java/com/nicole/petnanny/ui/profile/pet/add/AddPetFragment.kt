@@ -102,10 +102,10 @@ class AddPetFragment : Fragment() {
         binding.spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                viewModel.selectedType.value = parent?.selectedItem.toString()
+                Log.d("selectedType", "${parent?.selectedItem}" )
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }
@@ -120,7 +120,6 @@ class AddPetFragment : Fragment() {
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
 
         }
