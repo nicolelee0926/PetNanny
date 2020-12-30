@@ -27,6 +27,10 @@ class ServiceAdapter(val viewModel: ServiceViewModel) : ListAdapter<Nanny, Servi
             binding.root.setOnClickListener {
                 viewModel._navigationToEditSerciveDetail.value = item
             }
+            binding.btnRemove.setOnClickListener {
+                item.ID?.let { it1 -> viewModel.deleteService(it1) }
+                viewModel.getServicesResult()
+            }
             binding.executePendingBindings()
         }
 

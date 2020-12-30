@@ -149,6 +149,33 @@ class ServiceViewModel(private val repository: PetNannyRepository): ViewModel() 
 //        }
 //    }
 
+    //      delete service item
+    fun deleteService(id: String) {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.deleteService(id)) {
+                is Result.Success-> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = PetNannyApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
+
     fun displayEditServiceDetailsComplete () {
         _navigationToEditSerciveDetail.value = null
     }

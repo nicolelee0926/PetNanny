@@ -31,7 +31,7 @@ class PetFragment() : Fragment()  {
 
         binding.viewModel = viewModel
 
-        val petAdapter = PetAdapter(viewModel)
+        val petAdapter = PetAdapter(viewModel, binding.layoutPetListView)
         binding.rvPet.adapter = petAdapter
 
         viewModel.pet.observe(viewLifecycleOwner, Observer {

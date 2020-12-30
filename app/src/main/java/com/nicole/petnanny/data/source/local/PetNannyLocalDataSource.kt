@@ -186,5 +186,13 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun deletePet(petID: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteService(id: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
 
 }
