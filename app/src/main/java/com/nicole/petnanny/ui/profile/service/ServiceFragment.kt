@@ -38,7 +38,7 @@ class ServiceFragment() : Fragment() {
 
         binding.viewModel = viewModel
 
-        val serviceAdapter = ServiceAdapter(viewModel)
+        val serviceAdapter = ServiceAdapter(viewModel, binding.layoutServiceListView)
         binding.rvNanny.adapter = serviceAdapter
 
         viewModel.service.observe(viewLifecycleOwner, Observer {

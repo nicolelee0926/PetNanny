@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 class ServiceViewModel(private val repository: PetNannyRepository): ViewModel() {
 
 
-    private var _service = MutableLiveData<List<Nanny>>()
+    var _service = MutableLiveData<List<Nanny>>()
     val service: LiveData<List<Nanny>>
         get() = _service
 

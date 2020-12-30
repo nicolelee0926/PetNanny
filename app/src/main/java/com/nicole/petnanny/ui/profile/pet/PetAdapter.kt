@@ -34,18 +34,16 @@ class PetAdapter(val viewModel: PetViewModel, val petListView: ConstraintLayout)
             }
             binding.btnRemove.setOnClickListener {
 
-
-                val timer = object : CountDownTimer(20000, 20000) {
-
+                val timer = object : CountDownTimer(8000, 8000) {
 
                     override fun onTick(millisUntilFinished: Long) {
-                        val snackBar = Snackbar.make(petListView, "確定要刪除嗎？", Snackbar.LENGTH_INDEFINITE)
+                        val snackBar = Snackbar.make(petListView, "確定要刪除嗎？", Snackbar.LENGTH_LONG)
 
                         val petList = viewModel.pet.value
-                        val delete = petList?.filter {
+                        val deletePetList = petList?.filter {
                             it != item
                         }
-                        viewModel._pet.value = delete
+                        viewModel._pet.value = deletePetList
 
                         snackBar.setAction("回復") {
                             viewModel._pet.value = petList
