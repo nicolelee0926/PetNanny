@@ -68,12 +68,6 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    // Handle leave detail
-    private val _leaveDetail = MutableLiveData<Boolean>()
-
-    val leaveDetail: LiveData<Boolean>
-        get() = _leaveDetail
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -172,8 +166,6 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
         livaDemandOrderChatRoom = repository.getLiveOneDemandOrder(demandDetail.value?.orderID)
     }
 
-    fun leaveDetail() {
-        _leaveDetail.value = true
-    }
+
 
 }

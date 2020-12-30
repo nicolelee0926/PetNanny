@@ -59,6 +59,12 @@ class NannyDetailViewModel(
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    // Handle leave detail
+    private val _leaveDetail = MutableLiveData<Boolean>()
+
+    val leaveDetail: LiveData<Boolean>
+        get() = _leaveDetail
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -68,6 +74,10 @@ class NannyDetailViewModel(
 //        一開始先賦值給要帶過去的data
         _navigateToDemandNannyData.value = nannyDetailArgus.value
         Log.d("&&&&&&&&&", "${_navigateToDemandNannyData.value}")
+    }
+
+    fun leaveDetail() {
+        _leaveDetail.value = true
     }
 
 

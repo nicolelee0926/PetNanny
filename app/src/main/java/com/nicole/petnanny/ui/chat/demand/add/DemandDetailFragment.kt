@@ -79,19 +79,6 @@ class DemandDetailFragment: Fragment() {
         chatRoomName.value = viewModel.demandDetail.value?.nannyServiceDetail?.nannyName.toString()
         mainViewModel.currentFragmentType.value = chatRoomName
 
-//          add leave button
-        mainViewModel.leaveDemandChatRoomFlag.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                    viewModel.leaveDetail()
-                    mainViewModel.changeLeaveDemandChatRoomStatusFalse()
-            }
-        })
-
-        viewModel.leaveDetail.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                if (it) findNavController().popBackStack()
-            }
-        })
 
         return binding.root
     }

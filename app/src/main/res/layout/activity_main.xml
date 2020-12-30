@@ -53,8 +53,20 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_DEMAND_NANNY_NAME ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_DEMAND_NANNY_NAME || viewModel.currentFragmentType == CurrentFragmentType.CHAT_ROOM_WORK_USER_NAME || viewModel.currentFragmentType == CurrentFragmentType.MY_ORDER_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.MY_CLIENT_DETAIL || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_NANNY_CENTER ? View.VISIBLE : View.GONE}"
                         app:srcCompat="@drawable/ic_cancel_white"
+                        />
+
+                    <ImageView
+                        android:id="@+id/btn_main_close"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE_USER_EDIT || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_NANNY_CENTER_EXAMINE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_NANNY_CENTER_LICENSE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_PET || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_ADD_SERVICE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_EDIT_SERVICE || viewModel.currentFragmentType == CurrentFragmentType.PROFILE_EDIT_PET ? View.VISIBLE : View.GONE}"
+                        app:srcCompat="@drawable/ic_close_white"
                         />
 
                     <TextView

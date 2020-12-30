@@ -57,11 +57,4 @@ class MainViewModel(private val repository: PetNannyRepository): ViewModel() {
         editServiceFlag.value = false
     }
 
-    val leaveDemandChatRoomFlag = MutableLiveData<Boolean>()
-    fun changeLeaveDemandChatRoomStatusTrue(){
-        leaveDemandChatRoomFlag.value = true
-    }
-    fun changeLeaveDemandChatRoomStatusFalse(){
-        leaveDemandChatRoomFlag.value = false
-    }
 }

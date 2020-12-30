@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
@@ -80,10 +81,18 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeEditServiceStatusTrue()
         }
 
-//        以下是返回鍵操作
+//        detail頁面返回鍵操作
         binding.btnMainLeave.setOnClickListener {
-            viewModel.changeLeaveDemandChatRoomStatusTrue()
+            findNavController(R.id.nav_host_fragment).popBackStack()
+//            this.onBackPressedDispatcher.onBackPressed()
         }
+
+//        修改或增加頁面close
+        binding.btnMainClose.setOnClickListener {
+            findNavController(R.id.nav_host_fragment).popBackStack()
+        }
+
+
 
         // Obtain the FirebaseAnalytics instance.
         firebaseAnalytics = Firebase.analytics

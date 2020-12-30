@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.databinding.FragmentHomeNannyDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
@@ -27,6 +28,16 @@ class NannyDetailFragment:Fragment() {
             Log.d("***********", "${viewModel.navigateToDemandNannyData.value}")
                 findNavController().navigate(NannyDetailFragmentDirections.actionNannyDetailFragmentToSendDemandFragment(viewModel.navigateToDemandNannyData.value!!))
         }
+
+        binding.btnNannyDetailLeave.setOnClickListener {
+            viewModel.leaveDetail()
+        }
+
+        viewModel.leaveDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) findNavController().popBackStack()
+            }
+        })
 
         return binding.root
     }

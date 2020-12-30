@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.nicole.petnanny.CurrentFragmentType
 import com.nicole.petnanny.databinding.FragmentWorkChatroomDetailBinding
 import com.nicole.petnanny.ext.getVmFactory
@@ -85,6 +86,8 @@ class WorkDetailFragment : Fragment() {
         val chatRoomName = CurrentFragmentType.CHAT_ROOM_WORK_USER_NAME
         chatRoomName.value = viewModel.workDetail.value?.userInfo?.userName.toString()
         mainViewModel.currentFragmentType.value = chatRoomName
+
+
 
         return binding.root
     }

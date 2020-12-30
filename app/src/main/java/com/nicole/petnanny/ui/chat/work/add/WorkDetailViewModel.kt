@@ -68,6 +68,7 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -166,4 +167,5 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
     fun getLiveOneWorkOrderResult() {
         livaWorkOrderChatRoom = repository.getLiveOneWorkOrder(workDetail.value?.orderID)
     }
+
 }

@@ -50,6 +50,16 @@
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+                    <ImageView
+                        android:id="@+id/btn_nanny_detail_leave"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_cancel_white"
+                        />
 
                     <TextView
                         android:id="@+id/toolbar_title"
@@ -58,6 +68,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:singleLine="true"
+                        android:layout_marginRight="40dp"
                         android:text="@{viewModel.nannyDetail.nannyName}"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
