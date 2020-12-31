@@ -13,10 +13,10 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
     override suspend fun addPet(pet: Pet): Result<Boolean>{
         TODO("not implemented")
     }
+
     override suspend fun getPets(): Result<List<Pet>> {
         TODO("Not yet implemented")
     }
-
 
     override suspend fun addService(service: Nanny): Result<Boolean> {
         TODO("Not yet implemented")
@@ -69,10 +69,7 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateParentCheckoutCompleteStatus(
-        orderID: String,
-        viewModel: MyOrderDetailViewModel
-    ): Result<Boolean> {
+    override suspend fun updateParentCheckoutCompleteStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
@@ -80,10 +77,7 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateNannyCompleteServiceStatus(
-        orderID: String,
-        viewModel: MyClientDetailViewModel
-    ): Result<Boolean> {
+    override suspend fun updateNannyCompleteServiceStatus(orderID: String, viewModel: MyClientDetailViewModel): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
@@ -91,10 +85,7 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateParentCheckCompleteServiceStatus(
-        orderID: String,
-        viewModel: MyOrderDetailViewModel
-    ): Result<Boolean> {
+    override suspend fun updateParentCheckCompleteServiceStatus(orderID: String, viewModel: MyOrderDetailViewModel): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
@@ -154,11 +145,7 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getThreeSelectedList(
-        serviceType: String,
-        petType: String,
-        location: String
-    ): Result<List<Nanny>> {
+    override suspend fun getThreeSelectedList(serviceType: String, petType: String, location: String): Result<List<Nanny>> {
         TODO("Not yet implemented")
     }
 
@@ -193,6 +180,4 @@ class PetNannyLocalDataSource(val context: Context): PetNannyDataSource {
     override suspend fun deleteService(id: String): Result<Boolean> {
         TODO("Not yet implemented")
     }
-
-
 }
