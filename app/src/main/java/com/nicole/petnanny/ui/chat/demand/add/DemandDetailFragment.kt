@@ -33,11 +33,7 @@ class DemandDetailFragment: Fragment() {
         binding.rvDemandChatContent.adapter = chatRoomDetailAdapter
 
         binding.btnSendMessage.setOnClickListener {
-//            if (isEmpty()) {
-//                Toast.makeText(requireContext(),"請輸入訊息", Toast.LENGTH_SHORT).show()
-//            } else {
-                viewModel.setMessage()
-//            }
+            viewModel.setMessage()
             binding.etMessageContent.setText("")
         }
 
@@ -52,13 +48,13 @@ class DemandDetailFragment: Fragment() {
             binding.rvDemandChatContent.smoothScrollToPosition(chatRoomDetailAdapter.itemCount)
         })
 
-//        snapshot
+        //  snapshot
         viewModel.livemessages.observe(viewLifecycleOwner, Observer {
             Log.d("uuuuu", "$it ")
             viewModel.getLiveMessage()
         })
 
-//        snapshot demandOrder
+        //  snapshot demandOrder
         viewModel.livaDemandOrderChatRoom.observe(viewLifecycleOwner, Observer {
             if (it.userCheckedStatus == true) {
                 binding.tvDemandOrderStatus.setText("此筆訂單完成")
@@ -73,12 +69,11 @@ class DemandDetailFragment: Fragment() {
             }
         })
 
-//          改chat room 型態
+        //  改chat room 型態
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         val chatRoomName = CurrentFragmentType.CHAT_ROOM_DEMAND_NANNY_NAME
         chatRoomName.value = viewModel.demandDetail.value?.nannyServiceDetail?.nannyName.toString()
         mainViewModel.currentFragmentType.value = chatRoomName
-
 
         return binding.root
     }

@@ -15,8 +15,6 @@ class NannyLicense: Fragment() {
     ): View? {
         val binding = FragmentProfileNannyLicenseBinding.inflate(inflater, container, false)
 
-
-
         return binding.root
     }
 }

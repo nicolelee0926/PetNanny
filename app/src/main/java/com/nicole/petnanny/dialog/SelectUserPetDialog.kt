@@ -8,7 +8,6 @@ import androidx.fragment.app.DialogFragment
 import com.nicole.petnanny.data.Pet
 import com.nicole.petnanny.ui.home.senddemand.SendDemandViewModel
 
-
 class SelectUserPetDialog(val userPetList: List<Pet>, val viewModel: SendDemandViewModel): DialogFragment() {
 
     override fun onStart() {

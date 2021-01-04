@@ -49,7 +49,7 @@ class ServiceFragment() : Fragment() {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddServiceFragment())
         }
 
-        //        navigate to edit service detail page
+        //  navigate to edit service detail page
         viewModel.navigationToEditSerciveDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToEditServiceFragment(it))
@@ -57,7 +57,7 @@ class ServiceFragment() : Fragment() {
             }
         })
 
-//        show dialog
+        //   show dialog
         viewModel.isShowDialog.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 setVerificationDialog()

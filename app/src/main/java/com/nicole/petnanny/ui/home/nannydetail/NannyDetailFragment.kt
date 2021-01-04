@@ -41,6 +41,4 @@ class NannyDetailFragment:Fragment() {
 
         return binding.root
     }
-
-
 }

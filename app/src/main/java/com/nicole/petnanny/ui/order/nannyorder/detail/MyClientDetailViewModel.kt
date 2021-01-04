@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class MyClientDetailViewModel(private val repository: PetNannyRepository, private val argumentsMyClient: Order): ViewModel() {
 
-    //    第一行給xml綁資料用 第二行將argus值指定給myClientDetail
+    //  第一行給xml綁資料用 第二行將argus值指定給myClientDetail
     val myClientDetail: LiveData<Order>
         get() = myClientDetailArgus
 
@@ -25,7 +25,7 @@ class MyClientDetailViewModel(private val repository: PetNannyRepository, privat
         value = argumentsMyClient
     }
 
-//  用來觀察NannyAcceptStatus欄位結果的liveData  (接受後 接受及拒絕的按鈕消失 跳出等待保姆付款)
+    //  用來觀察NannyAcceptStatus欄位結果的liveData  (接受後 接受及拒絕的按鈕消失 跳出等待保姆付款)
     var liveAcceptStatusNanny = MutableLiveData<Boolean>()
 
     // 用來監聽存parentCheckoutCompleteStatus用
@@ -62,11 +62,10 @@ class MyClientDetailViewModel(private val repository: PetNannyRepository, privat
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-//        getMyClientParentCheckoutCompleteStatus()
         getParentCheckServiceCompleteStatus()
     }
 
-//    update NannyAcceptStatus變true
+    //  update NannyAcceptStatus變true
     fun updateNannyAcceptStatus() {
         Log.d("updateNannyAcceptStatus", "hate")
 
@@ -95,7 +94,7 @@ class MyClientDetailViewModel(private val repository: PetNannyRepository, privat
         }
     }
 
-//    監聽parentCheckoutCompleteStatus
+    //  監聽parentCheckoutCompleteStatus
     fun getMyClientParentCheckoutCompleteStatus() {
         coroutineScope.launch {
 
@@ -130,7 +129,7 @@ class MyClientDetailViewModel(private val repository: PetNannyRepository, privat
         }
     }
 
-    //    update NannyCompleteServiceStatus變true
+    //  update NannyCompleteServiceStatus變true
     fun updateNannyCompleteServiceStatus() {
         Log.d("updateNannyCompleteServiceStatus", "hate")
 
@@ -159,7 +158,7 @@ class MyClientDetailViewModel(private val repository: PetNannyRepository, privat
         }
     }
 
-    //    監聽parentCheckServiceCompleteStatus
+    //  監聽parentCheckServiceCompleteStatus
     fun getParentCheckServiceCompleteStatus() {
         coroutineScope.launch {
 

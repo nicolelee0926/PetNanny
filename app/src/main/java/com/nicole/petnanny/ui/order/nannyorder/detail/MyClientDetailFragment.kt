@@ -29,39 +29,37 @@ class MyClientDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-
         setAcceptStatusView(viewModel.myClientDetail.value?.nannyAcceptStatus)
         setCheckoutCompleteStatusParent(viewModel.myClientDetail.value?.userCheckoutStatus)
         setNannyCompleteServiceView(viewModel.myClientDetail.value?.nannyCompletedStatus)
 
-
-//    updateNannyAcceptStatus
+        //  updateNannyAcceptStatus
         binding.btnAcceptOrder.setOnClickListener {
             viewModel.updateNannyAcceptStatus()
         }
 
-//    observe acceptStatus後 元件做變化
+        //  observe acceptStatus後 元件做變化
         viewModel.liveAcceptStatusNanny.observe(viewLifecycleOwner, Observer {
             setAcceptStatusView(it)
         })
 
-//     家長付款完成 服務即將開始
+        //  家長付款完成 服務即將開始
         viewModel.liveCheckoutCompleteStatusParent.observe(viewLifecycleOwner, Observer {
             setCheckoutCompleteStatusParent(it)
             binding.ivServiceCompleted.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         })
 
-//    updateNannyCompleteServiceStatus
+        //  updateNannyCompleteServiceStatus
         binding.btnNannyCheckoutServiceCompleted.setOnClickListener {
             viewModel.updateNannyCompleteServiceStatus()
         }
 
-//    observe NannyCompleteServiceStatus後 元件做變化
+        //  observe NannyCompleteServiceStatus後 元件做變化
         viewModel.liveNannyCompleteServiceStatus.observe(viewLifecycleOwner, Observer {
             setNannyCompleteServiceView(it)
         })
 
-//    observe parentCheckServiceCompleteStatus後 元件做變化
+        //  observe parentCheckServiceCompleteStatus後 元件做變化
         viewModel.liveCheckServiceCompleteStatus.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 binding.ivServiceCompletedWaitParent.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
@@ -69,7 +67,6 @@ class MyClientDetailFragment : Fragment() {
                 binding.ivServiceCompletedFinallyNanny.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
             }
         })
-
 
         return binding.root
     }
@@ -99,5 +96,4 @@ class MyClientDetailFragment : Fragment() {
             binding.ivNannyAcceptStatus.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_status_ok))
         }
     }
-
 }

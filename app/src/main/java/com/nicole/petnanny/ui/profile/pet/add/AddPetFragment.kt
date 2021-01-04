@@ -58,13 +58,11 @@ class AddPetFragment : Fragment() {
             viewModel.addPet(it)
         })
 
-//        新增成功回到profile頁
+        //  新增成功回到profile頁
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-//                Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(SuccessSubmitDialog.AddSuccessPage.ADD_PET))
                 viewModel.submitToFireStoreFinished()
-//                fragmentManager?.let { it1 -> SuccessSubmitDialog().show(it1,"addPet") }
             }
         })
 
@@ -75,11 +73,9 @@ class AddPetFragment : Fragment() {
                 when (checkedId) {
                     R.id.radio_female -> {
                         viewModel.setGender("母")
-//                        Toast.makeText(requireContext(),"你選了母",Toast.LENGTH_SHORT).show()
                     }
                     R.id.radio_male -> {
                         viewModel.setGender("公")
-//                        Toast.makeText(requireContext(),"你選了公",Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -89,15 +85,12 @@ class AddPetFragment : Fragment() {
                 when (checkedId) {
                     R.id.radio_yes -> {
                         viewModel.setLigation("是")
-//                        Toast.makeText(requireContext(),"你選了是",Toast.LENGTH_SHORT).show()
                     }
                     R.id.radio_no -> {
                         viewModel.setLigation("否")
-//                        Toast.makeText(requireContext(),"你選了否",Toast.LENGTH_SHORT).show()
                     }
                 }
             })
-
 
         binding.spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
@@ -110,9 +103,6 @@ class AddPetFragment : Fragment() {
 
         }
 
-
-
-
         binding.spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                 viewModel.selectedAge.value = parent?.selectedItem.toString()
@@ -124,12 +114,12 @@ class AddPetFragment : Fragment() {
 
         }
 
-//        checkPhotoPermission
+        //  checkPhotoPermission
         binding.btnAddPetPhoto.setOnClickListener {
             checkPermission()
         }
 
-//        observe real URL Path
+        //  observe real URL Path
         viewModel.petPhotoRealPath.observe(viewLifecycleOwner, Observer {
             Log.d("petPhotoRealPath", " $it ")
         })
@@ -137,9 +127,8 @@ class AddPetFragment : Fragment() {
         return binding.root
     }
 
-//    開啟相機權限詢問
+    //  開啟相機權限詢問
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PET_REQUEST_EXTERNAL_STORAGE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -152,7 +141,6 @@ class AddPetFragment : Fragment() {
     }
 
     private fun checkPermission() {
-//        val permission = activity?.let { ContextCompat.checkSelfPermission(it, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) }
         val permission = requireActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         if (permission != PackageManager.PERMISSION_GRANTED) {
             //未取得權限，向使用者要求允許權限
@@ -171,7 +159,7 @@ class AddPetFragment : Fragment() {
             .start()
     }
 
-    //    拍完拿到file path
+    //  拍完拿到file path
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
@@ -180,7 +168,7 @@ class AddPetFragment : Fragment() {
                 if (filePath.isNotEmpty()) {
                     val imgPath = filePath
 
-//                   拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
+                    //  拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
                     viewModel.uploadPetPhoto(imgPath)
                     Log.d("imgPath", "$imgPath ")
                 } else {

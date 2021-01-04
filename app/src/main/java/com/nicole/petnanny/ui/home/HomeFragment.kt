@@ -29,12 +29,11 @@ class HomeFragment : Fragment() {
         val homeAdapter = HomeAdapter(viewModel)
         binding.rvHomeNanny.adapter = homeAdapter
 
-//拿到首頁 nanny list隨機保姆服務
+        //  拿到首頁 nanny list隨機保姆服務
         viewModel.nannyList.observe(viewLifecycleOwner, Observer {
             Log.d("nannyList", "$it ")
             homeAdapter.submitList(it)
         })
-
 
         binding.btnNannyCenter.setOnClickListener {
             findNavController().navigate(

@@ -18,7 +18,6 @@ import com.nicole.petnanny.ui.login.UserManager
 
 class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() {
 
-
     val setPetData = MutableLiveData<Pet>()
 
     var petName  = MutableLiveData<String>().apply { value = "" }
@@ -29,10 +28,10 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
     var selectedLigation = MutableLiveData<String>().apply { value = "" }
     var selectedType  = MutableLiveData<String>().apply { value = "" }
     var selectedAge = MutableLiveData<String>().apply { value = "" }
-    //    firebase photo local path
+    //  firebase photo local path
     val petPhotoRealPath = MutableLiveData<String>()
 
-//  傳送成功flag
+    //  傳送成功flag
     private val _submitDataFinished = MutableLiveData<Boolean>()
     val submitDataFinished: LiveData<Boolean>
         get() = _submitDataFinished
@@ -54,7 +53,6 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
 
     override fun onCleared() {
         super.onCleared()
@@ -94,7 +92,6 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
         _submitDataFinished.value = true
     }
 
-
     fun setPet() {
         setPetData.value =Pet(
                 petName = petName.value.toString(),
@@ -119,7 +116,7 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
         selectedLigation.value = ligation
     }
 
-//    upload petPhoto
+    //  upload petPhoto
     fun uploadPetPhoto(petPhotoLocalPath: String) {
         coroutineScope.launch {
 
@@ -148,7 +145,7 @@ class AddPetViewModel( private val repository: PetNannyRepository): ViewModel() 
         }
     }
 
-//    check info completed
+    //  check info completed
     fun checkInfoComplete(): Boolean {
         return (petPhotoRealPath.value != "" &&
                  petName.value != "" &&

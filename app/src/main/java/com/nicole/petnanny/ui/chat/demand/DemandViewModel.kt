@@ -21,18 +21,18 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     var demandOrderChatRoomList = MutableLiveData<List<Order>>()
 
 
-//    to demandAdapter viewHolder button set value 用
+    //  to demandAdapter viewHolder button set value 用
     var _navigationToDemandChatRoomDetail = MutableLiveData<Order>()
     val navigationToDemandChatRoomDetail: LiveData<Order>
         get() = _navigationToDemandChatRoomDetail
 
-//    snapshot
+    //  snapshot
     var liveDemandOrderChatRoomList = MutableLiveData<List<Order>>()
 
-//    如果沒有訊息顯示無聊天訊息的字＆圖
+    //  如果沒有訊息顯示無聊天訊息的字＆圖
     var noDemandMessage = MutableLiveData<Boolean>()
 
-//    first no message
+    //  first no message
     var firstNoMessage = MutableLiveData<Boolean>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -154,7 +154,6 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
         }
     }
 
-
     fun displayChatRoomDetailComplete() {
         _navigationToDemandChatRoomDetail.value = null
     }
@@ -166,7 +165,4 @@ class DemandViewModel(private val repository: PetNannyRepository): ViewModel() {
     fun getLiveDemandOrder() {
         demandOrderChatRoomList.value = liveDemandOrderChatRoomList.value
     }
-
-
-
 }

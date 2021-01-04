@@ -31,7 +31,6 @@ class WorkDetailFragment : Fragment() {
         val chatRoomDetailAdapter = ChatRoomDetailAdapter()
         binding.rvWorkChatContent.adapter = chatRoomDetailAdapter
 
-
         binding.btnSendMessage.setOnClickListener {
             viewModel.setWorkMessage()
             binding.etMessageContent.setText("")
@@ -48,13 +47,13 @@ class WorkDetailFragment : Fragment() {
             binding.rvWorkChatContent.smoothScrollToPosition(chatRoomDetailAdapter.itemCount)
         })
 
-//        snapshot
+        //  snapshot
         viewModel.liveWorkMessages.observe(viewLifecycleOwner, Observer {
             Log.d("uuuuu", "$it ")
             viewModel.getLiveMessage()
         })
 
-//        控制status View
+        //  控制status View
         binding.btnChatNannyStatus.setOnClickListener {
             if (binding.viewChatNannyStatus.visibility == View.GONE) {
                 binding.viewChatNannyStatus.visibility = View.VISIBLE
@@ -65,7 +64,7 @@ class WorkDetailFragment : Fragment() {
             }
         }
 
-//        snapshot workOrder
+        //  snapshot workOrder
         viewModel.livaWorkOrderChatRoom.observe(viewLifecycleOwner, Observer {
             if (it.userCheckedStatus == true) {
                 binding.tvWorkOrderStatus.text = "此筆訂單完成"
@@ -81,13 +80,11 @@ class WorkDetailFragment : Fragment() {
             }
         })
 
-//          改chat room 型態
+        //  改chat room 型態
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         val chatRoomName = CurrentFragmentType.CHAT_ROOM_WORK_USER_NAME
         chatRoomName.value = viewModel.workDetail.value?.userInfo?.userName.toString()
         mainViewModel.currentFragmentType.value = chatRoomName
-
-
 
         return binding.root
     }

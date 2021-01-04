@@ -51,7 +51,6 @@ class SendDemandFragment: Fragment() {
 
         val picker = builder.build()
 
-
         binding.btnStartTime.setOnClickListener {
             picker.show(activity?.supportFragmentManager!!, picker.toString())
 
@@ -61,7 +60,7 @@ class SendDemandFragment: Fragment() {
             picker.show(activity?.supportFragmentManager!!, picker.toString())
         }
 
-//      set picker binding
+        //  set picker binding
         picker.addOnNegativeButtonClickListener { picker.dismiss() }
         picker.addOnPositiveButtonClickListener {
             binding.btnStartTime.text = ("${SimpleDateFormat("yyyy.MM.dd").format(it.first)}")
@@ -71,7 +70,7 @@ class SendDemandFragment: Fragment() {
             calculationDay(it, binding)
         }
 
-//      set choice pet button
+        //  set choice pet button
         binding.btnChoiceUserPet.setOnClickListener {
             if(viewModel.userPetList.value?.size != 0 ){
                 viewModel.userPetList.value?.let { it1 -> fragmentManager?.let { it2 ->
@@ -84,7 +83,7 @@ class SendDemandFragment: Fragment() {
         }
 
 
-//       observe selected pet then change pet raw view
+        //  observe selected pet then change pet raw view
         viewModel.selectedPet.observe(viewLifecycleOwner, Observer {
             binding.tvUserPetName.visibility = View.VISIBLE
             binding.cardUserPetPhoto.visibility = View.VISIBLE
@@ -94,7 +93,7 @@ class SendDemandFragment: Fragment() {
         return binding.root
     }
 
-//    計算總天數
+    //  計算總天數
     fun calculationDay(time: Pair<Long, Long>, binding: FragmentSendDemandBinding) {
         val startDay = time.first
         val endDay = time.second
@@ -104,7 +103,7 @@ class SendDemandFragment: Fragment() {
                 binding.tvTotalDay.text = "x $totalTime"
                 viewModel.demandDay.value = binding.tvTotalDay.text.toString()
 
-//                計算單價*天數等於總價
+                //  計算單價*天數等於總價
                 val price = viewModel.nannyDataArgus.value?.price?.toLong()
                 price?.let {
                     val totalPrice = totalTime * price
@@ -114,6 +113,4 @@ class SendDemandFragment: Fragment() {
             }
         }
     }
-
-
 }

@@ -17,7 +17,6 @@ class NannyServiceFragment(val listener:(String)->Unit): DialogFragment()  {
         val binding = FragmentHomeNannyServiceBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
-
         binding.btnHomeVisit.setOnClickListener {
             listener("到府照顧")
             dismiss()

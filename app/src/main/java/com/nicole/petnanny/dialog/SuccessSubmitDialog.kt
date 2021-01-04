@@ -27,7 +27,6 @@ class SuccessSubmitDialog: DialogFragment() {
 
         val binding = FragmentSuccessSubmitBinding.inflate(inflater, container, false)
 
-
         binding.lottieSuccessSubmit.addAnimatorListener( object : Animator.AnimatorListener{
             override fun onAnimationStart(p0: Animator?) {
             }
@@ -85,5 +84,4 @@ class SuccessSubmitDialog: DialogFragment() {
             get() = _type
             set(value) { _type = value }
     }
-
 }

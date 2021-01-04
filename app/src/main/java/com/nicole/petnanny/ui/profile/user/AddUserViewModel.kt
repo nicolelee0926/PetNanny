@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 
 class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() {
 
-
     val setUserData = MutableLiveData<User>()
 
     //Get user data for profile
@@ -93,7 +92,7 @@ class AddUserViewModel(private val repository: PetNannyRepository): ViewModel() 
         }
     }
 
-//    一進來時要先get之前的user info
+    //  一進來時要先get之前的user info
     private fun getUserInfo(userEmail: String) {
         coroutineScope.launch {
 

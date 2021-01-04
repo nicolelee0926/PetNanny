@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.fragment_order_my_client.*
 
 class MyClientFragment() : Fragment() {
 
-
     var type: Int = 0
 
     constructor(int: Int) : this() {
@@ -28,7 +27,6 @@ class MyClientFragment() : Fragment() {
     }
 
     private val viewModel by viewModels<MyClientViewModel> { getVmFactory() }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,21 +44,17 @@ class MyClientFragment() : Fragment() {
                 binding.tvClientNoOrder.text = "您目前沒有任何工作訂單喔"
                 binding.ivClientNoOrder.setImageDrawable(resources.getDrawable(R.drawable.ic_no_order))
             } else {
-//
                 myClientAdapter.submitList(it)
             }
         })
 
-
-        //        navigate到MyClient detail頁
+        //  navigate到MyClient detail頁
         viewModel.navigationToMyClientDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyClientDetailFragment(it))
                 viewModel.displayMyClientDetailsComplete()
             }
         })
-
-
 
         return binding.root
     }

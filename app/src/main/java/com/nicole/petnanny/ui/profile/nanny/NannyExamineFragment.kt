@@ -37,12 +37,10 @@ class NannyExamineFragment: Fragment() {
             if (it == true) {
                 if (viewModel.checkInfoComplete()) {
                     viewModel.setNannyExamine()
-//                    mainViewModel.changeNannyExamineStatusFalse()
+                //  mainViewModel.changeNannyExamineStatusFalse()
                 } else {
                     Toast.makeText(requireContext(), "您的資料還沒填完唷", Toast.LENGTH_SHORT).show()
                       mainViewModel.changeNannyExamineStatusFalse()
-
-
                 }
             }
         })
@@ -51,27 +49,8 @@ class NannyExamineFragment: Fragment() {
             Log.d("nannyExamineEditText", "$it ")
             findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(SuccessSubmitDialog.AddSuccessPage.ADD_NANNY_EXAMINE))
             viewModel.addNannyExamine(it)
-//            setDialog()
         })
 
-
         return binding.root
-    }
-
-    private fun setDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("保姆審查資料")
-        builder.setMessage("建立成功，請耐心等待審查！")
-        builder.setCancelable(true)
-        val dlg: AlertDialog = builder.create()
-        dlg.show()
-        val t = Timer()
-        t.schedule(object : TimerTask() {
-            override fun run() {
-                dlg.dismiss()
-                t.cancel()
-                findNavController().navigate(NannyExamineFragmentDirections.actionNannyExamineFragmentToNavigationProfile())
-            }
-        }, 3000)
     }
 }

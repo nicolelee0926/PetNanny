@@ -18,7 +18,6 @@ class DefaultPetNannyRepository(private val remoteDataSource: PetNannyDataSource
         return remoteDataSource.getPets()
     }
 
-
     override suspend fun addService(service: Nanny): Result<Boolean> {
         return remoteDataSource.addService(service)
     }

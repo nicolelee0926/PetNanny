@@ -27,21 +27,21 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
         value = argumentsDemand
     }
 
-    //    snapshot 某筆訂單
+    //  snapshot 某筆訂單
     var livaDemandOrderChatRoom = MutableLiveData<Order>()
 
-    // get message
+    //  get message
     private var _messages = MutableLiveData<List<Message>>()
     val messages: LiveData<List<Message>>
         get() = _messages
 
-//  snapshot message
+    //  snapshot message
     var livemessages = MutableLiveData<List<Message>>()
 
-//  set Message
+    //  set Message
     var setMessage = MutableLiveData<Message>()
 
-    // EditText input
+    //  EditText input
     val enterMessage = MutableLiveData<String>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -165,7 +165,4 @@ class DemandDetailViewModel(private val repository: PetNannyRepository, private 
     fun getLiveOneDemandOrderResult() {
         livaDemandOrderChatRoom = repository.getLiveOneDemandOrder(demandDetail.value?.orderID)
     }
-
-
-
 }

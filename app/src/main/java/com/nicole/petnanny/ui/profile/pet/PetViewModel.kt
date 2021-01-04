@@ -52,24 +52,15 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-//    用liveData存已經被刪除的pet
-    val liveDeletePet = MutableLiveData<Pet>()
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
 
     init {
-//        if (PetNannyApplication.instance.isLiveDataDesign()) {
-//            getLivePetsResult()
-//        }
-//        else{
-            getPetsResult()
-//        }
+        getPetsResult()
         getUserResult(UserManager.user.value?.userEmail)
     }
-
 
     fun getPetsResult() {
         coroutineScope.launch {
@@ -105,7 +96,7 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
         }
     }
 
-        //    get user result save user verification to userManager
+    //    get user result save user verification to userManager
     fun getUserResult(userEmail: String?) {
         coroutineScope.launch {
 
@@ -144,7 +135,7 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
         }
     }
 
-//      delete pet item
+    //  delete pet item
     fun deletePet(petID: String) {
         coroutineScope.launch {
 
@@ -169,10 +160,6 @@ class PetViewModel(private val repository: PetNannyRepository):ViewModel() {
                 }
             }
         }
-    }
-
-    fun saveLiveDeletePet() {
-
     }
 
     fun displayEditPetDetailsComplete () {

@@ -104,9 +104,9 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
     }
 
     fun setEditService() {
-//        把之前帶過來的data先存起來
+        //  把之前帶過來的data先存起來
         val previousServiceData = serviceDetail.value
-//        再把新修改過的存到剛剛的liveData
+        //  再把新修改過的存到剛剛的liveData
         previousServiceData?.price = editServicePrice.value
         previousServiceData?.serviceName = editServiceName.value
         previousServiceData?.nannyIntroduction = editServiceIntroduction.value
@@ -118,7 +118,7 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
         setEditServiceData.value = previousServiceData
     }
 
-    //    upload editServicePhoto
+    //  upload editServicePhoto
     fun uploadEditServicePhoto(editServicePhotoLocalPath: String) {
         coroutineScope.launch {
 
@@ -147,11 +147,10 @@ class EditServiceViewModel(private val repository: PetNannyRepository, private v
         }
     }
 
-//    preload pic
+    //  preload pic
     fun preloadPic() {
         editServicePhotoRealPath.value = serviceDetail.value?.servicePhoto
 }
-
 
     fun modifyDataFinished() {
         _modifyDataFinished.value = null

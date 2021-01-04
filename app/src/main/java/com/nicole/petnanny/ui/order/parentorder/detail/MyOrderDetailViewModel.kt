@@ -20,7 +20,7 @@ class MyOrderDetailViewModel(
     private val argumentsMyOrder: Order
 ) : ViewModel() {
 
-    //        第一行給xml綁資料用 第二行將argus值指定給myOrderDetail
+    //  第一行給xml綁資料用 第二行將argus值指定給myOrderDetail
     val myOrderDetail: LiveData<Order>
         get() = myOrderDetailArgus
 
@@ -28,16 +28,16 @@ class MyOrderDetailViewModel(
         value = argumentsMyOrder
     }
 
-    // 用來監聽存nannyAcceptStatus用
+    //  用來監聽存nannyAcceptStatus用
     var liveAcceptStatusNanny = MutableLiveData<Boolean>()
 
-//    用來觀察ParentCheckoutStatus欄位結果的liveData  (完成付款後 按鈕消失 出現付款完成的字)
+    //  用來觀察ParentCheckoutStatus欄位結果的liveData  (完成付款後 按鈕消失 出現付款完成的字)
     var liveCheckoutStatusParent = MutableLiveData<Boolean>()
 
-    // 用來監聽存nannyServiceCompletedStatus用
+    //  用來監聽存nannyServiceCompletedStatus用
     var liveServiceCompletedNanny = MutableLiveData<Boolean>()
 
-//    update ParentCheckCompleteServiceStatus變true
+    //  update ParentCheckCompleteServiceStatus變true
     var liveParentCheckCompleteServiceStatus = MutableLiveData<Boolean>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -64,13 +64,7 @@ class MyOrderDetailViewModel(
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    init {
-
-//        getMyOrderNannyAcceptStatus()
-//        getNannyServiceCompletedStatus()
-    }
-
-    //    get nannyAcceptStatus
+    //  get nannyAcceptStatus
     fun getMyOrderNannyAcceptStatus() {
         coroutineScope.launch {
 
@@ -105,7 +99,7 @@ class MyOrderDetailViewModel(
         }
     }
 
-    //    update ParentCheckoutCompleteStatus變true
+    //  update ParentCheckoutCompleteStatus變true
     fun updateParentCheckoutCompleteStatus() {
         Log.d("updateNannyAcceptStatus", "hate")
 
@@ -134,7 +128,7 @@ class MyOrderDetailViewModel(
         }
     }
 
-    //    get nannyServiceCompletedStatus
+    //  get nannyServiceCompletedStatus
     fun getNannyServiceCompletedStatus() {
         coroutineScope.launch {
 
@@ -169,7 +163,7 @@ class MyOrderDetailViewModel(
         }
     }
 
-    //    update ParentCheckCompleteServiceStatus變true
+    //  update ParentCheckCompleteServiceStatus變true
     fun updateParentCheckCompleteServiceStatus() {
         Log.d("updateNannyCompleteServiceStatus", "hate")
 
@@ -197,7 +191,6 @@ class MyOrderDetailViewModel(
             }
         }
     }
-
 
     override fun onCleared() {
         super.onCleared()

@@ -16,7 +16,7 @@ import com.nicole.petnanny.ui.home.choiceservice.NannyServiceFragment
 
 class NannyListFragment : Fragment() {
 
-//    設flag讓第一次只load出serviceType
+    //    設flag讓第一次只load出serviceType
     var isAlreadyFetch = false
 
     private val viewModel by viewModels<NannyListViewModel> { getVmFactory(NannyListFragmentArgs.fromBundle(requireArguments()).serviceType) }
@@ -33,24 +33,24 @@ class NannyListFragment : Fragment() {
         binding.rvNannyList.adapter = nannyListAdapter
 
 
-//      按下後跳出dialog的服務類別
+            //  按下後跳出dialog的服務類別
         binding.btnChoiceService.setOnClickListener {
-//            接dialog點選後call back function傳回來的字串
+            //  接dialog點選後call back function傳回來的字串
             NannyServiceFragment {
                 Log.d("TEST", "NannyServiceFragment: $it")
                 viewModel.serviceType.value = it
             }.show(parentFragmentManager, "NannyServiceFragment")
         }
 
-//        load出首頁所選擇的類別後的list
+        //  load出首頁所選擇的類別後的list
         viewModel.nannyList.observe(viewLifecycleOwner, Observer {
-//            第一次只load出serviceType 其他兩種條件篩選不執行
+            //  第一次只load出serviceType 其他兩種條件篩選不執行
             isAlreadyFetch = true
             Log.d("pppppppppppppp", "${it.toString()} ")
             nannyListAdapter.submitList(it)
         })
 
-//        navigate到nanny detail頁
+        //  navigate到nanny detail頁
         viewModel.navigationToNannyDetail.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 findNavController().navigate(
@@ -62,7 +62,7 @@ class NannyListFragment : Fragment() {
             }
         })
 
-//        搜尋用 選擇寵物型態 記得加position==0(全部為空字串)的判斷
+        //  搜尋用 選擇寵物型態 記得加position==0(全部為空字串)的判斷
         binding.spinnerTypeNannyList.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
@@ -75,7 +75,7 @@ class NannyListFragment : Fragment() {
                 }
             }
 
-//        搜尋用 選擇地區 記得加position==0(全部為空字串)的判斷
+        //  搜尋用 選擇地區 記得加position==0(全部為空字串)的判斷
         binding.spinnerLocationNannyList.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                     Log.d("spinnerLocation", "${parent?.selectedItem}")
@@ -87,21 +87,21 @@ class NannyListFragment : Fragment() {
             }
 
 
-//        選擇服務類型 記得參數要按順序排 不然就要寫serviceType = viewModel.serviceType.value.toString()
+        //  選擇服務類型 記得參數要按順序排 不然就要寫serviceType = viewModel.serviceType.value.toString()
         viewModel.serviceType.observe(viewLifecycleOwner, Observer {
             viewModel.getThreeSelectedList(it, viewModel.selectedPetType.value.toString(), viewModel.selectedLocation.value.toString())
         })
 
-//        選擇寵物類型
+        //  選擇寵物類型
         viewModel.selectedPetType.observe(viewLifecycleOwner, Observer {
-//      被選擇後執行 isAlreadyFetch = false
+            //  被選擇後執行 isAlreadyFetch = false
             if (isAlreadyFetch)
                 viewModel.getThreeSelectedList(serviceType = viewModel.serviceType.value.toString(), petType = it, location = viewModel.selectedLocation.value.toString())
         })
 
-//        選擇地區
+        //  選擇地區
         viewModel.selectedLocation.observe(viewLifecycleOwner, Observer {
-//       被選擇後執行 isAlreadyFetch = false
+            //  被選擇後執行 isAlreadyFetch = false
             if (isAlreadyFetch)
                 viewModel.getThreeSelectedList(serviceType = viewModel.serviceType.value.toString(), petType = viewModel.selectedPetType.value.toString(), location = it)
         })
@@ -115,7 +115,6 @@ class NannyListFragment : Fragment() {
                 if (it) findNavController().popBackStack()
             }
         })
-
 
         return binding.root
     }

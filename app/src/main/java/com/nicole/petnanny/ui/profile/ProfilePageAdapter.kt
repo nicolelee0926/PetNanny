@@ -9,14 +9,14 @@ import com.nicole.petnanny.ui.profile.service.ServiceFragment
 class ProfilePageAdapter(fm: Fragment) : FragmentStateAdapter(fm){
 
     override fun getItemCount(): Int {
-        return 3
+        return 2
     }
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
             0 -> PetFragment(0)
-            1 -> ServiceFragment(1)
-            else -> CommentFragment(2)
+            else -> ServiceFragment(1)
+//            else -> CommentFragment(2)
         }
     }
 }

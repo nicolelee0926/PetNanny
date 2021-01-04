@@ -12,7 +12,6 @@ import com.nicole.petnanny.factory.NannyViewModelFactory
 import com.nicole.petnanny.factory.OrderViewModelFactory
 import com.nicole.petnanny.ui.profile.pet.edit.EditPetViewModel
 
-
 fun Fragment.getVmFactory(): ViewModelFactory {
     val repository = (requireContext().applicationContext as PetNannyApplication).repository
     return ViewModelFactory(repository)
