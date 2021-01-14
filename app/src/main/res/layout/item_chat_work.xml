@@ -25,7 +25,6 @@
             android:layout_marginStart="16dp"
             app:cardCornerRadius="50dp"
             app:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_userName">
 
@@ -43,30 +42,32 @@
             android:id="@+id/tv_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
             android:text="@{data.userInfo.userName}"
             android:textColor="@color/colorDeepGray"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/photoCardView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_serviceType"
             tools:text="美惠姐" />
 
 
         <TextView
             android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            tools:text="你好，需要我的幫忙嗎？"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{data.lastMessage.content}"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/photoCardView"
-            app:layout_constraintTop_toBottomOf="@+id/tv_userName"
-            app:layout_constraintVertical_bias="0.0"
-            android:text="@{data.lastMessage.content}"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_serviceType"
+            tools:text="你好，需要我的幫忙嗎？" />
 
 
         <TextView
@@ -84,7 +85,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_userName"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="到府美容" />
 
 

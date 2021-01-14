@@ -19,16 +19,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/bg_round_8dp"
             android:ellipsize="end"
             android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
             android:paddingRight="10dp"
+            android:paddingBottom="5dp"
             android:text="@{data.content}"
             android:textColor="@color/colorDeepGray"
             android:textSize="13sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/photo_nanny"
             app:layout_constraintTop_toTopOf="@+id/photo_nanny"
             tools:text="下午兩點" />
@@ -40,11 +46,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
             app:cardCornerRadius="50dp"
             app:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -57,16 +61,6 @@
                 app:imageUrl="@{data.senderImage}"
                 tools:src="@drawable/iv_home_s2" />
         </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textView103"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="已讀"
-            android:textColor="@color/colorGray"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView122"
-            app:layout_constraintStart_toStartOf="@+id/textView122" />
 
         <TextView
             android:id="@+id/textView122"
