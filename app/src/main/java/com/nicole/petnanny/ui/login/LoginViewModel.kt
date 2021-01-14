@@ -20,7 +20,6 @@ class LoginViewModel(private val repository: PetNannyRepository): ViewModel() {
     val user: LiveData<User>
         get() = UserManager.user
 
-
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -38,7 +37,6 @@ class LoginViewModel(private val repository: PetNannyRepository): ViewModel() {
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
 
     override fun onCleared() {
         super.onCleared()
@@ -72,5 +70,4 @@ class LoginViewModel(private val repository: PetNannyRepository): ViewModel() {
             }
         }
     }
-
 }

@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class WorkDetailViewModel(private val repository: PetNannyRepository, private val argumentsWork: Order): ViewModel() {
 
-    //    第一行給xml綁資料用 第二行將argus值指定給DemandDetail
+    //  第一行給xml綁資料用 第二行將argus值指定給DemandDetail
     val workDetail: LiveData<Order>
         get() = workDetailArgus
 
@@ -27,10 +27,10 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
         value = argumentsWork
     }
 
-    //    snapshot 某筆訂單
+    //  snapshot 某筆訂單
     var livaWorkOrderChatRoom = MutableLiveData<Order>()
 
-    // get message
+    //  get message
     private var _workMessages = MutableLiveData<List<Message>>()
     val workMessages: LiveData<List<Message>>
         get() = _workMessages
@@ -143,7 +143,6 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
         }
     }
 
-
     fun setWorkMessage() {
         setWorkMessage.value = Message(
             content = enterWorkMessage.value.toString(),
@@ -151,7 +150,7 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
             messageTime = System.currentTimeMillis(),
             senderImage = UserManager.user.value?.photo!!,
             senderEmail = UserManager.user.value?.userEmail!!,
-            id ="",
+            id =""
         )
     }
 
@@ -167,5 +166,4 @@ class WorkDetailViewModel(private val repository: PetNannyRepository, private va
     fun getLiveOneWorkOrderResult() {
         livaWorkOrderChatRoom = repository.getLiveOneWorkOrder(workDetail.value?.orderID)
     }
-
 }

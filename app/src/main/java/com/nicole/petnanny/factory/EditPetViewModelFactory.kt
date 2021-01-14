@@ -7,7 +7,6 @@ import com.nicole.petnanny.data.source.PetNannyRepository
 import com.nicole.petnanny.ui.home.nannylist.NannyListViewModel
 import com.nicole.petnanny.ui.profile.pet.edit.EditPetViewModel
 
-
 @Suppress("UNCHECKED_CAST")
 class EditPetViewModelFactory(
     private val repository: PetNannyRepository,

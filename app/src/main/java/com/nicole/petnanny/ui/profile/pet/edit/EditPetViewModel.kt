@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class EditPetViewModel(private val repository: PetNannyRepository, private val arguments: Pet): ViewModel() {
 
-    //    第一行給xml綁資料用 第二行將argus值指定給petDetail
+    //  第一行給xml綁資料用 第二行將argus值指定給petDetail
     val petDetail: LiveData<Pet>
         get() = petDetailArgus
 
@@ -27,7 +27,7 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
         value = arguments
     }
 
-//    edit pet data 修該過後的整包pet
+    //  edit pet data 修該過後的整包pet
     val setEditPetData = MutableLiveData<Pet>()
 
     var editPetName  = MutableLiveData<String>().apply { value = "" }
@@ -108,9 +108,9 @@ class EditPetViewModel(private val repository: PetNannyRepository, private val a
     }
 
     fun setEditPet() {
-//        把之前帶過來的data先存起來
+        //  把之前帶過來的data先存起來
         val previousPetData = petDetail.value
-//        再把新修改過的存到剛剛的liveData
+        //  再把新修改過的存到剛剛的liveData
         previousPetData?.petName = editPetName.value
         previousPetData?.petType = editSelectedType.value
         previousPetData?.petVariety = editPetVariety.value

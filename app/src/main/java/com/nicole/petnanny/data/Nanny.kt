@@ -16,12 +16,12 @@ data class Nanny(
     var nannyIDPhoto : String? = "",
     var nannyIDNumber : String? = "",
     var nannyIntroduction : String? = "",
-//    nannyName: 用來存po服務的保姆 他的userName(帶到訂單顯示用)
+    //    nannyName: 用來存po服務的保姆 他的userName(帶到訂單顯示用)
     var nannyName : String? = "",
     var nannyPetExperience : String? = "",
     var price : String? = "",
     var serviceArea : String? = "",
-//    nannyPhoto: 用來存po服務的保姆 他的nannyPhoto(帶到訂單顯示用)
+    //    nannyPhoto: 用來存po服務的保姆 他的nannyPhoto(帶到訂單顯示用)
     var nannyPhoto : String? = "",
     var nannyPhone: String?= "",
     var nannySelfPhoto : String? = "",

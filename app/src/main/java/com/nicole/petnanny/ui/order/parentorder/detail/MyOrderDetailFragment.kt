@@ -37,33 +37,32 @@ class MyOrderDetailFragment : Fragment() {
         setParentCheckNannyCompleteService(viewModel.myOrderDetail.value?.nannyCompletedStatus)
         setCompleteServiceFinally(viewModel.myOrderDetail.value?.userCheckedStatus)
 
-
-//        保姆接受 家長要去完成付款
+        //  保姆接受 家長要去完成付款
         viewModel.liveAcceptStatusNanny.observe(viewLifecycleOwner, Observer {
             setParentWaitCheckoutView(it)
         })
 
-//    update ParentCheckoutCompleteStatus
+        //  update ParentCheckoutCompleteStatus
         binding.btnCheckoutComplete.setOnClickListener {
             viewModel.updateParentCheckoutCompleteStatus()
 
         }
-//    observe ParentCheckoutCompleteStatus
+        //  observe ParentCheckoutCompleteStatus
         viewModel.liveCheckoutStatusParent.observe(viewLifecycleOwner, Observer {
             setParentCheckoutCompleteView(it)
         })
 
-//        保姆完成服務 家長要按確認按鈕
+        //  保姆完成服務 家長要按確認按鈕
         viewModel.liveServiceCompletedNanny.observe(viewLifecycleOwner, Observer {
             setParentCheckNannyCompleteService(it)
         })
 
-//    update ParentCheckCompleteServiceStatus
+        //  update ParentCheckCompleteServiceStatus
         binding.btnCheckServiceCompleted.setOnClickListener {
             viewModel.updateParentCheckCompleteServiceStatus()
 
         }
-//    家長自己觀察到服務完成欄位變true
+        //  家長自己觀察到服務完成欄位變true
         viewModel.liveParentCheckCompleteServiceStatus.observe(viewLifecycleOwner, Observer {
             setCompleteServiceFinally(it)
         })

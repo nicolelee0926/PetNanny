@@ -3,17 +3,12 @@ package com.nicole.petnanny.util
 import java.text.SimpleDateFormat
 import java.util.*
 
-object TimeUtil {
-//
-//    fun stampToTime(time: Long) : String {
-//        val simpleDateFormat = SimpleDateFormat("HH:mm")
-//        return simpleDateFormat.format(Date(time))
-//    }
 
-    fun Long.toDisplayFormat(): String {
-        return android.icu.text.SimpleDateFormat("hh:mm", Locale.TAIWAN).format(this)
-//        return android.icu.text.SimpleDateFormat("yyyy.MM.dd hh:mm", Locale.TAIWAN).format(this)
-    }
+fun Long.toDisplayFormat(): String {
+    val formatter = SimpleDateFormat("MM-dd HH:mm")
+//    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
+//    formatter.timeZone = TimeZone.getTimeZone("GMT :00:00")
+    return formatter.format(this)
 }
-
 

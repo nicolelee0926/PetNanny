@@ -62,10 +62,10 @@ class AddServiceFragment: Fragment() {
             viewModel.addService(it)
         })
 
-//                新增成功回到profile頁
+        //  新增成功回到profile頁
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-//                Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
+                //  Toast.makeText(requireContext(), "新增資料成功", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessSubmitDialog(AddSuccessPage.ADD_SERVICE))
                 viewModel.submitToFireStoreFinished()
             }
@@ -105,12 +105,12 @@ class AddServiceFragment: Fragment() {
 
         }
 
-        //        checkPhotoPermission
+        //  checkPhotoPermission
         binding.btnServiceTakePhoto.setOnClickListener {
             checkPermission()
         }
 
-//        observe real URL Path
+        //  observe real URL Path
         viewModel.servicePhotoRealPath.observe(viewLifecycleOwner, Observer {
             Log.d("petPhotoRealPath", " $it ")
         })
@@ -118,7 +118,7 @@ class AddServiceFragment: Fragment() {
         return binding.root
     }
 
-    //    開啟相機權限詢問
+    //  開啟相機權限詢問
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -150,7 +150,7 @@ class AddServiceFragment: Fragment() {
             .start()
     }
 
-    //    拍完拿到file path
+    //  拍完拿到file path
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (resultCode) {
@@ -159,7 +159,7 @@ class AddServiceFragment: Fragment() {
                 if (filePath.isNotEmpty()) {
                     val imgPath = filePath
 
-//                   拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
+                    //  拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
                     viewModel.uploadServicePhoto(imgPath)
                     Log.d("imgPath", "$imgPath ")
                 } else {
@@ -168,5 +168,4 @@ class AddServiceFragment: Fragment() {
             }
         }
     }
-
 }

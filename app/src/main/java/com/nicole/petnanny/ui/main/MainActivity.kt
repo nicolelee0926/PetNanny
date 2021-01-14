@@ -40,16 +40,14 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
 
-
+        //  observe目前在哪一個頁面
         viewModel.currentFragmentType.observe(this, Observer {
             Log.d("startPage", "${viewModel.currentFragmentType.value} ")
         })
 
-
         binding.viewModel = viewModel
 
         setupNavController()
-
 
         binding.textToolbarAddPet.setOnClickListener {
             Log.d("hiya_pet", "hiya ")
@@ -81,20 +79,18 @@ class MainActivity : AppCompatActivity() {
             viewModel.changeEditServiceStatusTrue()
         }
 
-//        detail頁面返回鍵操作
+        //  detail頁面返回鍵操作
         binding.btnMainLeave.setOnClickListener {
             findNavController(R.id.nav_host_fragment).popBackStack()
-//            this.onBackPressedDispatcher.onBackPressed()
+        //  或 this.onBackPressedDispatcher.onBackPressed()
         }
 
-//        修改或增加頁面close
+        //  修改或增加頁面close
         binding.btnMainClose.setOnClickListener {
             findNavController(R.id.nav_host_fragment).popBackStack()
         }
 
-
-
-        // Obtain the FirebaseAnalytics instance.
+        //  firebaseAnalytics init
         firebaseAnalytics = Firebase.analytics
         
     }

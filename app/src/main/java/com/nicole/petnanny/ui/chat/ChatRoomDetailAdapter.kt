@@ -38,9 +38,8 @@ class ChatRoomDetailAdapter : ListAdapter<Message, RecyclerView.ViewHolder>(Diff
             return oldItem.senderEmail == newItem.senderEmail
         }
 
-        private const val ITEM_VIEW_TYPE_SEND = 123
-        private const val ITEM_VIEW_TYPE_RECEIVED = 456
-
+        private const val ITEM_VIEW_TYPE_SEND = 1
+        private const val ITEM_VIEW_TYPE_RECEIVED = 2
 
     }
 

@@ -41,8 +41,6 @@ class OrderFragment : Fragment() {
             pager.setCurrentItem(tab.position, true)
         }.attach()
 
-
-
         return binding.root
     }
 }

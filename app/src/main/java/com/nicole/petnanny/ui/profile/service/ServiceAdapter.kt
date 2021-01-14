@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.BaseTransientBottomBar.ANIMATION_MODE_SLIDE
 import com.google.android.material.snackbar.Snackbar
 import com.nicole.petnanny.databinding.ItemProfileServiceBinding
 import com.nicole.petnanny.data.Nanny
@@ -31,11 +32,10 @@ class ServiceAdapter(val viewModel: ServiceViewModel, val serviceListView: Const
             }
             binding.btnRemove.setOnClickListener {
 
-
-                val timer = object : CountDownTimer(8000, 8000) {
+                val timer = object : CountDownTimer(5000, 5000) {
 
                     override fun onTick(millisUntilFinished: Long) {
-                        val snackBar = Snackbar.make(serviceListView, "確定要刪除嗎？", Snackbar.LENGTH_INDEFINITE)
+                        val snackBar = Snackbar.make(serviceListView, "確定要刪除嗎？", Snackbar.LENGTH_LONG)
 
                         val serviceList = viewModel.service.value
                         val deleteServiceList = serviceList?.filter {

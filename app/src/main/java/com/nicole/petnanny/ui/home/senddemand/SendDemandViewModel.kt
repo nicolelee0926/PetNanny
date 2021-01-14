@@ -43,14 +43,12 @@ class SendDemandViewModel(
     var userInfo = MutableLiveData<User>()
         get() = UserManager.user
 
-
     var _userPetList = MutableLiveData<List<Pet>>()  //給dialog存list用
     val userPetList: LiveData<List<Pet>>
         get() = _userPetList
 
-//    存被選到的pet
+    //  存被選到的pet
     var selectedPet = MutableLiveData<Pet>()
-
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -75,7 +73,6 @@ class SendDemandViewModel(
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
 
     init {
         getUserPetsResult()
@@ -152,7 +149,7 @@ class SendDemandViewModel(
             note = orderNote.value.toString(),
             userEmail = UserManager.user.value?.userEmail,
             nannyServiceDetail = nannyDataArgus.value,
-//            nannyEmail: 存保姆的email(如果是保姆身份 申請服務時多存一個自己的email在nannyEmail 到時訂單query用)
+            //  nannyEmail: 存保姆的email(如果是保姆身份 申請服務時多存一個自己的email在nannyEmail 到時訂單query用)
             nannyEmail = nannyDataArgus.value?.userEmail,
             demandDay = demandDay.value.toString(),
             totalPrice = totalPrice.value.toString(),
@@ -161,7 +158,6 @@ class SendDemandViewModel(
             selectedPet = selectedPet.value
             )
     }
-
 
     override fun onCleared() {
         super.onCleared()
@@ -176,5 +172,4 @@ class SendDemandViewModel(
                 orderServiceAddress.value != "" &&
                 orderNote.value != "")
     }
-
 }

@@ -58,14 +58,14 @@ class MyClientViewModel(private val repository: PetNannyRepository): ViewModel()
 
     init {
         if(UserManager.user.value?.verification == true) {
-//          要傳入自己的email(因為要query自己是保姆的訂單)
+            //  要傳入自己的email(因為要query自己是保姆的訂單)
             UserManager.user.value?.userEmail?.let {
                 getMyClientDataResult(it)
             }
         }
     }
 
-//    get myClientOrder時 去query自己的userEmail(存再Order欄位裡的nanny email)
+    //  get myClientOrder時 去query自己的userEmail(存再Order欄位裡的nanny email)
     fun getMyClientDataResult(nannyEmail : String) {
         coroutineScope.launch {
 
@@ -100,10 +100,7 @@ class MyClientViewModel(private val repository: PetNannyRepository): ViewModel()
         }
     }
 
-
-
     fun displayMyClientDetailsComplete () {
         _navigationToMyClientDetail.value = null
     }
-
 }

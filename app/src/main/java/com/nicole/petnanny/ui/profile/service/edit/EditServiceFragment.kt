@@ -53,17 +53,16 @@ class EditServiceFragment : Fragment() {
             viewModel.preloadPic()
         })
 
-//        send to firebase update data
+        //  send to firebase update data
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.editServiceFlag.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 viewModel.setEditService()
-//                Toast.makeText(requireContext(), "修改服務資料成功", Toast.LENGTH_SHORT).show()
                 mainViewModel.changeEditServiceStatusFalse()
             }
         })
 
-//        update modified edit pet data
+        //  update modified edit pet data
         viewModel.setEditServiceData.observe(viewLifecycleOwner, Observer {
             Log.d("setEditPetDatauuuuu", "$it ")
             viewModel.updateService(it)
@@ -80,7 +79,6 @@ class EditServiceFragment : Fragment() {
             }
 
         }
-
 
         binding.spinnerServiceArea.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
@@ -106,34 +104,29 @@ class EditServiceFragment : Fragment() {
 
         }
 
-        //        修改成功回到profile頁
+        //  修改成功回到profile頁
         viewModel.modifyDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-//                Toast.makeText(requireContext(), "修改資料成功", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(MobileNavigationDirections.actionGlobalSuccessEditDialog(SuccessEditDialog.EditSuccessPage.EDIT_SERVICE))
                 viewModel.modifyDataFinished()
             }
         })
 
-//             checkPhotoPermission
+        //  checkPhotoPermission
         binding.btnServiceTakePhoto.setOnClickListener {
             checkPermission()
         }
 
-
-        //        observe real URL Path
+        //  observe real URL Path
         viewModel.editServicePhotoRealPath.observe(viewLifecycleOwner, Observer {
-//            viewModel.setEditService()
             Log.d("editPetPhotoRealPath", " $it ")
         })
-
 
         return binding.root
     }
 
     //    開啟相機權限詢問
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             EDIT_SERVICE_REQUEST_EXTERNAL_STORAGE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -146,7 +139,6 @@ class EditServiceFragment : Fragment() {
     }
 
     private fun checkPermission() {
-//        val permission = activity?.let { ContextCompat.checkSelfPermission(it, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) }
         val permission = requireActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         if (permission != PackageManager.PERMISSION_GRANTED) {
             //未取得權限，向使用者要求允許權限
@@ -174,7 +166,7 @@ class EditServiceFragment : Fragment() {
                 if (filePath.isNotEmpty()) {
                     val imgPath = filePath
 
-//                   拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
+                    //  拿到本地端URL後去call拿到新的URL function 把舊的傳進去換新的
                     viewModel.uploadEditServicePhoto(imgPath)
                     Log.d("imgPath", "$imgPath ")
                 } else {

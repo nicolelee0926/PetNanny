@@ -35,11 +35,10 @@ class ProfileFragment : Fragment() {
             when(position){
                 0-> tab.text = "寵物"
                 1-> tab.text = "服務"
-                2-> tab.text = "評價"
+//                2-> tab.text = "評價"
             }
             pager.setCurrentItem(tab.position, true)
         }.attach()
-
 
         binding.btnEditUser.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToAddUserFragment())
@@ -49,7 +48,7 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToNannyCenterFragment())
         }
 
-        //      loading
+        //  loading
         binding.lottieLoading.addAnimatorListener( object : Animator.AnimatorListener{
             override fun onAnimationStart(p0: Animator?) {
             }

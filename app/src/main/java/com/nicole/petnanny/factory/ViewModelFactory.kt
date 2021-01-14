@@ -75,7 +75,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(MyClientViewModel::class.java) ->
                     MyClientViewModel(repository)
 
-
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

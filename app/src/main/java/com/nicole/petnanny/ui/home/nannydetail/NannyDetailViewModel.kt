@@ -79,6 +79,4 @@ class NannyDetailViewModel(
     fun leaveDetail() {
         _leaveDetail.value = true
     }
-
-
 }

@@ -38,21 +38,10 @@ class WorkFragment(): Fragment() {
                 workAdapter.submitList(it)
         })
 
-        //      get live work order snapshot
+        //  get live work order snapshot
         viewModel.liveWorkOrderChatRoomList.observe(viewLifecycleOwner, Observer {
                 viewModel.getLiveWorkOrder()
         })
-
-////        observe no message status
-//        viewModel.noWorkMessage.observe(viewLifecycleOwner, Observer {
-//            if(it == true) {
-//                binding.tvWorkNoMessage.visibility = View.GONE
-//                binding.ivWorkNoMessage.visibility = View.GONE
-//            } else  {
-//                binding.tvWorkNoMessage.text = "您目前沒有任何需求訊息喔"
-//                binding.ivWorkNoMessage.setImageDrawable(resources.getDrawable(R.drawable.ic_no_message))
-//            }
-//        })
 
         viewModel.navigationToWorkChatRoomDetail.observe(viewLifecycleOwner, Observer {
             if(null != it) {
@@ -62,7 +51,7 @@ class WorkFragment(): Fragment() {
         })
 
 
-//        loading
+        //  loading
         binding.lottieLoading.addAnimatorListener( object : Animator.AnimatorListener{
             override fun onAnimationStart(p0: Animator?) {
             }

@@ -18,7 +18,4 @@ class PetNannyApplication: Application() {
         super.onCreate()
         instance = this
     }
-
-//ues refresh
-    fun isLiveDataDesign() = true
 }

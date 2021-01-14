@@ -28,8 +28,8 @@ class MyOrderViewModel(private val repository: PetNannyRepository) : ViewModel()
     val navigationToMyOrderDetail: LiveData<Order>
         get() = _navigationToMyOrderDetail
 
-//    //  監聽NannyAcceptStatus欄位結果的liveData (跳出等待您的付款 及 付款完成按鈕)
-//    var liveAcceptStatusParent = MutableLiveData<List<Order>>()
+    //  監聽NannyAcceptStatus欄位結果的liveData (跳出等待您的付款 及 付款完成按鈕)
+    //  var liveAcceptStatusParent = MutableLiveData<List<Order>>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -140,12 +140,7 @@ class MyOrderViewModel(private val repository: PetNannyRepository) : ViewModel()
         }
     }
 
-
-
-
     fun displayMyOrderDetailsComplete() {
         _navigationToMyOrderDetail.value = null
     }
-
-
 }

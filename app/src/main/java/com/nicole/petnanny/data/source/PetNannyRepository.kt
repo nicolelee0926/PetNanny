@@ -8,12 +8,15 @@ import com.nicole.petnanny.ui.order.parentorder.detail.MyOrderDetailViewModel
 interface PetNannyRepository {
 
     suspend fun addPet(pet: Pet): Result<Boolean>
+
     suspend fun getPets(): Result<List<Pet>>
 
     suspend fun addService(service: Nanny): Result<Boolean>
+
     suspend fun getServices(): Result<List<Nanny>>
 
     suspend fun updateUser(user: User): Result<Boolean>
+
     suspend fun getUser(userEmail: String): Result<User>
 
     suspend fun addNannyExamine(nannyExamine: NannyExamine): Result<Boolean>

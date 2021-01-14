@@ -41,13 +41,13 @@ class AddUserFragment: Fragment() {
             }
         })
 
-//        update modified profile data
+        //  update modified profile data
         viewModel.setUserData.observe(viewLifecycleOwner, Observer {
             Log.d("userEditText", "$it ")
             viewModel.updateUser(it)
         })
 
-        //        新增成功回到profile頁
+        //  新增成功回到profile頁
         viewModel.submitDataFinished.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 if(viewModel.userIntroduction.value != "" && viewModel.userName.value != "") {

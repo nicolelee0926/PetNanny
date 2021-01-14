@@ -55,17 +55,17 @@ class LoginFragment: Fragment() {
     }
 
 
-//    啟動activity 進行google信任登入 打開選擇google帳號的畫面
+    //  啟動activity 進行google信任登入 打開選擇google帳號的畫面
     private fun googleLogin() {
         val signInIntent = googleSignInClient?.signInIntent
         startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
     }
 
-//    取得登入完後的結果 判斷是否是從google回來
+    //  取得登入完後的結果 判斷是否是從google回來
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-//    如果是的話 取得帳號資訊
+        //  如果是的話 取得帳號資訊
         if (requestCode == GOOGLE_LOGIN_CODE) {
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
 
@@ -81,7 +81,7 @@ class LoginFragment: Fragment() {
 
     private fun getLoginAuth(account:GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-//        將credential傳到firebase並建立帳號
+        //  將credential傳到firebase並建立帳號
         val auth = FirebaseAuth.getInstance()
         auth?.signInWithCredential(credential)?.addOnCompleteListener {
             if (it.isSuccessful) {

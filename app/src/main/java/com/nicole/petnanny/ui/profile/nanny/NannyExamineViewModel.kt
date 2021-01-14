@@ -51,7 +51,6 @@ class NannyExamineViewModel(private val repository: PetNannyRepository) : ViewMo
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-
     fun addNannyExamine(nannyExamine: NannyExamine) {
         Log.d("addNannyExamine", "hate")
 
@@ -95,7 +94,6 @@ class NannyExamineViewModel(private val repository: PetNannyRepository) : ViewMo
             userEmail = UserManager.user.value?.userEmail
         )
     }
-
 
     //    check info completed
     fun checkInfoComplete(): Boolean {

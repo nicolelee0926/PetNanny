@@ -58,10 +58,6 @@ class SuccessEditDialog: DialogFragment() {
 
         })
 
-
-
-
-
         binding.lottieSuccessEdit.playAnimation()
 
         return binding.root

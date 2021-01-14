@@ -44,7 +44,7 @@ class MyOrderFragment(): Fragment() {
             }
         })
 
-        //        navigate到MyOrder detail頁
+        //  navigate到MyOrder detail頁
         viewModel.navigationToMyOrderDetail.observe(viewLifecycleOwner, Observer {
             if(null != it) {
                 findNavController().navigate(OrderFragmentDirections.actionNavigationOrderToMyOrderDetailFragment(it))
@@ -57,9 +57,7 @@ class MyOrderFragment(): Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("!!!!", "!!! ");
         UserManager.user.value?.userEmail?.let {
-            Log.d("!!!", "$it ")
             viewModel.getMyOrderDataResult()
         }
     }
